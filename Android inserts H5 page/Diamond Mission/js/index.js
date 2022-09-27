@@ -22,7 +22,7 @@
 
     let swiper = new Swiper(".study_fo", {
         // 可以看到的是 3个半
-        slidesPerView: 4.5,
+        slidesPerView: 3.5,
         // 每个的元素间隔
         spaceBetween: -12,
     });

@@ -4,7 +4,7 @@ body {
     margin: 0 auto;
     // height: 1200px;
     background: url("../images/bg@2x.png") no-repeat;
-	background-size: cover;
+	  background-size: cover;
 }
 
 // a {
@@ -19,42 +19,140 @@ body {
 
 // 任务模块的轮播图
 .task {
-    // margin-top: .4267rem;
-  .study_fo {
-    padding: .4267rem 0rem .16rem .16rem;
-  }
-  .swiper-slide {
-    width: 6.1867rem !important;
-    height: 6.9867rem;
-    // font-size: 18px;
-    // background: #fff;
-    // background-color: #fff;
-    // border-radius: 0.266667rem;
-    // box-shadow: 0 0px 10px rgba(0, 0, 0, 0.1);
-    // p {
-    //   font-size: 0.693333rem;
-    //   color: #ff4400;
-    //   padding: 0 0.266667rem;
+    .study_fo {
+        padding: .4267rem 0rem .16rem .16rem;
+    }
+    .swiper-slide {
+        width: 6.1867rem;
+        height: 6.9867rem;
+        text-align: -webkit-center;
+        .num {
+            width: 2.5867rem;
+            height: 1.8667rem;
+            font-size: 1.44rem;
+            font-family: DINPro-Medium, DINPro;
+            font-weight: 500;
+            color: #FFFFFF;
+            line-height: 6.9867rem;
+            margin-bottom: .3733rem;
+        }
+        .text {
+            width: 2.56rem;
+            height: .88rem;
+            font-size: .64rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #FFFFFF;
+            line-height: 5.12rem;
+        }
+    }
+    .meet_number {
+        background: url("../images/相遇人数@2x.png") no-repeat;
+        background-size: cover;
+    }
+    .reply_message {
+        background: url("../images/回复消息@2x.png") no-repeat;
+        background-size: cover;
+    }
+    .received_the_news {
+        background: url("../images/收到消息@2x.png") no-repeat;
+        background-size: cover;
+    }
+    .valid_date {
+        background: url("../images/有效天数@2x.png") no-repeat;
+        background-size: cover;
+    }
+    .new_player_gift {
+        background: url("../images/新手礼物@2x.png") no-repeat;
+        background-size: cover;
+    }
+}
+
+.invitation_btn {
+    width: 18.4rem;
+    height: 3.2rem;
+    border-radius: 1.0667rem;
+    overflow: hidden;
+    margin: auto;
+    margin-bottom: 1.3333rem;
+}
+
+.content {
+    width: 100%;
+    height: 24rem;
+    background: #FFFFFF;
+    border-radius: 1.04rem 1.04rem 0px 0px;
+    text-align: center;
+    padding: .8rem .8rem .3733rem .8rem;
+    font-size: .8rem;
+    .title {
+        font-size: .8rem;
+        font-family: PingFangSC-Medium, PingFang SC;
+        font-weight: 500;
+        color: #1B1C33;
+        margin-bottom: .8rem;
+    }
+    .item_content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .item_content_btn_reward {
+            width: 3.4667rem;
+            height: 1.4933rem;
+            background: #C8DDEB;
+            border-radius: .8rem;
+            font-size: .5867rem;
+            font-family: PingFangSC-Medium, PingFang SC;
+            font-weight: 500;
+            color: #FFFFFF;
+            // line-height: 3.4667rem;
+        }
+        .item_content_left {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            .list_item_diamonds{
+                font-size: .96rem;
+                font-family: PingFangSC-Medium, PingFang SC;
+                font-weight: 500;
+                color: #1B1C33;
+                margin-bottom: .2133rem;
+            }
+        }
+    }
+    // .list_item {
+    //     width: 18.4rem;
+    //     height: 5.0133rem;
+    //     background: #F4FCFF;
+    //     border-radius: .64rem;
+    //     display: flex;
+    //     justify-content: center;
+    //     align-items: flex-start;
+    //     font-size: .64rem;
+    //     flex-direction: column;
+    //     padding: .8rem .96rem .8rem 1.0667rem;
+    //     .list_item_diamonds{
+    //         font-size: .96rem;
+    //         font-family: PingFangSC-Medium, PingFang SC;
+    //         font-weight: 500;
+    //         color: #1B1C33;
+    //         margin-bottom: .2133rem;
+    //     }
+    //     .list_item_reward {
+    //         width: 100%;
+    //         display: flex;
+    //         justify-content: space-between;
+    //         margin-bottom: .1067rem;
+    //         .list_item_btn_reward {
+    //             width: 3.4667rem;
+    //             height: 1.4933rem;
+    //             background: #C8DDEB;
+    //             border-radius: 30px;
+    //             font-size: .5867rem;
+    //             font-family: PingFangSC-Medium, PingFang SC;
+    //             font-weight: 500;
+    //             color: #FFFFFF;
+    //         }
+    //     }
     // }
-  }
-  .meet_number {
-    background: url("../images/相遇人数@2x.png") no-repeat;
-	background-size: cover;
-  }
-  .reply_message {
-    background: url("../images/回复消息@2x.png") no-repeat;
-	background-size: cover;
-  }
-  .received_the_news {
-    background: url("../images/收到消息@2x.png") no-repeat;
-	background-size: cover;
-  }
-  .valid_date {
-    background: url("../images/有效天数@2x.png") no-repeat;
-	background-size: cover;
-  }
-  .new_player_gift {
-    background: url("../images/新手礼物@2x.png") no-repeat;
-	background-size: cover;
-  }
 }
