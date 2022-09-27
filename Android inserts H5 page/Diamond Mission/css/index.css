@@ -1,0 +1,39 @@
+body {
+  min-width: 320px;
+  max-width: 750px;
+  margin: 0 auto;
+  background: url("../images/bg@2x.png") no-repeat;
+  background-size: cover;
+}
+@media screen and (min-width: 750px) {
+  html {
+    font-size: 37.5px !important;
+  }
+}
+.task .study_fo {
+  padding: 0.4267rem 0rem 0.16rem 0.16rem;
+}
+.task .swiper-slide {
+  width: 6.1867rem !important;
+  height: 6.9867rem;
+}
+.task .meet_number {
+  background: url("../images/相遇人数@2x.png") no-repeat;
+  background-size: cover;
+}
+.task .reply_message {
+  background: url("../images/回复消息@2x.png") no-repeat;
+  background-size: cover;
+}
+.task .received_the_news {
+  background: url("../images/收到消息@2x.png") no-repeat;
+  background-size: cover;
+}
+.task .valid_date {
+  background: url("../images/有效天数@2x.png") no-repeat;
+  background-size: cover;
+}
+.task .new_player_gift {
+  background: url("../images/新手礼物@2x.png") no-repeat;
+  background-size: cover;
+}
