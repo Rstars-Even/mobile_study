@@ -37,8 +37,8 @@ body {
             margin-bottom: .3733rem;
         }
         .text {
-            width: 2.56rem;
-            height: .88rem;
+            // width: 2.56rem;
+            // height: .88rem;
             font-size: .64rem;
             font-family: PingFangSC-Regular, PingFang SC;
             font-weight: 400;
@@ -79,7 +79,7 @@ body {
 
 .content {
     width: 100%;
-    height: 24rem;
+    height: 20rem;
     background: #FFFFFF;
     border-radius: 1.04rem 1.04rem 0px 0px;
     text-align: center;
@@ -92,67 +92,78 @@ body {
         color: #1B1C33;
         margin-bottom: .8rem;
     }
-    .item_content {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        .item_content_btn_reward {
-            width: 3.4667rem;
-            height: 1.4933rem;
-            background: #C8DDEB;
-            border-radius: .8rem;
+    .list_item {
+        background: #F4FCFF;
+        border-radius: .64rem;
+        padding: .8rem .96rem .8rem 1.0667rem;
+        position: relative;
+        .item_date {
+            width: 2.0267rem;
+            height: 1.0133rem;
+            position: absolute;
+            right: 0;
+            top: 0;
             font-size: .5867rem;
-            font-family: PingFangSC-Medium, PingFang SC;
-            font-weight: 500;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
             color: #FFFFFF;
-            // line-height: 3.4667rem;
+            background: #7AB7FC;
+            border-radius: 0 .64rem;
+            line-height: 1.0133rem;
         }
-        .item_content_left {
+        .item_content {
             display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            .list_item_diamonds{
-                font-size: .96rem;
+            justify-content: space-between;
+            align-items: center;
+            .item_content_btn_reward {
+                width: 3.4667rem;
+                height: 1.4933rem;
+                background: #C8DDEB;
+                border-radius: .8rem;
+                font-size: .5867rem;
                 font-family: PingFangSC-Medium, PingFang SC;
                 font-weight: 500;
-                color: #1B1C33;
-                margin-bottom: .2133rem;
+                color: #FFFFFF;
+                line-height: 1.4933rem;
+            }
+            .item_content_left {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                .list_item_diamonds{
+                    font-size: .96rem;
+                    font-family: PingFangSC-Medium, PingFang SC;
+                    font-weight: 500;
+                    color: #1B1C33;
+                    margin-bottom: .2133rem;
+                }
+                .list_item_reward {
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: .1067rem;
+                    font-size: .64rem;
+                    font-family: PingFangSC-Regular, PingFang SC;
+                    font-weight: 400;
+                    color: #1BA7C5;
+                }
+                .list_item_rewards {
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    font-size: .64rem;
+                    font-family: PingFangSC-Regular, PingFang SC;
+                    font-weight: 400;
+                    color: #1BA7C5;
+                }
+                .list_item_reward_title, .lilist_item_reward_num {
+                    margin-right: .2667rem;
+                }
+                .lilist_item_reward_img {
+                    width: .5067rem;
+                    height: .5067rem;
+                }
             }
         }
     }
-    // .list_item {
-    //     width: 18.4rem;
-    //     height: 5.0133rem;
-    //     background: #F4FCFF;
-    //     border-radius: .64rem;
-    //     display: flex;
-    //     justify-content: center;
-    //     align-items: flex-start;
-    //     font-size: .64rem;
-    //     flex-direction: column;
-    //     padding: .8rem .96rem .8rem 1.0667rem;
-    //     .list_item_diamonds{
-    //         font-size: .96rem;
-    //         font-family: PingFangSC-Medium, PingFang SC;
-    //         font-weight: 500;
-    //         color: #1B1C33;
-    //         margin-bottom: .2133rem;
-    //     }
-    //     .list_item_reward {
-    //         width: 100%;
-    //         display: flex;
-    //         justify-content: space-between;
-    //         margin-bottom: .1067rem;
-    //         .list_item_btn_reward {
-    //             width: 3.4667rem;
-    //             height: 1.4933rem;
-    //             background: #C8DDEB;
-    //             border-radius: 30px;
-    //             font-size: .5867rem;
-    //             font-family: PingFangSC-Medium, PingFang SC;
-    //             font-weight: 500;
-    //             color: #FFFFFF;
-    //         }
-    //     }
-    // }
 }
