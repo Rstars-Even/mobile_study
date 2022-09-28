@@ -10,7 +10,7 @@ body {
 }
 .warp {
   width: 100%;
-  height: 7.64rem;
+  height: 11.64rem;
   background: url("../images/img-bg.png") no-repeat center;
   background-size: cover;
   padding: 0.5333rem 1.0667rem 2.6133rem 1.0667rem;
@@ -76,7 +76,7 @@ body {
   height: 6.72rem;
   background: url("../images/img-jianbianbg.png") no-repeat center;
   background-size: cover;
-  margin-top: -1.7rem;
+  margin-top: -5.7rem;
   display: flex;
   justify-content: space-between;
   align-content: center;
@@ -133,4 +133,82 @@ body {
   font-family: PingFangSC-Regular, PingFang SC;
   font-weight: 400;
   color: #6A70FF;
+}
+.table {
+  width: 100%;
+  position: relative;
+}
+.table .table_title {
+  width: 18.4rem;
+  height: 1.76rem;
+  font-size: 0.5867rem;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #8D8E99;
+  display: flex;
+  align-items: center;
+  background: #FFFFFF;
+  border-radius: 0.32rem;
+  margin: -3.8667rem 0.8rem 0 0.8rem;
+}
+.table .table_title .table_title_user {
+  width: 50%;
+  margin-left: 0.5333rem;
+}
+.table .table_title .table_title_item {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+.table .table_title .table_title_item .table_icon {
+  width: 0.6667rem;
+  height: 0.6667rem;
+  background: url("../images/ic-zuo.png") no-repeat center;
+  background-size: cover;
+}
+.table .table_ul {
+  width: 100%;
+  position: absolute;
+  top: 2.1867rem;
+  margin: 0;
+}
+.table .table_ul .table_ul_li {
+  width: 100%;
+  height: 3.7333rem;
+  background: #FFFFFF;
+  padding: 0.5333rem 0 0.5333rem 0.8rem;
+}
+.table .table_ul .table_ul_li .table_li_item {
+  display: flex;
+}
+.table .table_ul .table_ul_li .table_li_item .table_li_img {
+  width: 2.6667rem;
+  height: 2.6667rem;
+  border-radius: 0.64rem;
+  background: blue;
+}
+.table .table_ul .table_ul_li .table_li_item .table_li_name {
+  font-size: 0.6933rem;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #1B1C33;
+}
+.table .table_ul .table_ul_li .table_li_item .table_li_icon {
+  width: 4.22rem;
+  height: 1.2rem;
+  margin-right: 0.52rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 0.5867rem;
+}
+.table .table_ul .table_ul_li .table_li_item .table_li_icon img {
+  width: 0.5333rem;
+  height: 0.5333rem;
+}
+.table .table_ul .table_ul_li .table_li_num {
+  font-size: 0.6933rem;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #1B1C33;
 }
