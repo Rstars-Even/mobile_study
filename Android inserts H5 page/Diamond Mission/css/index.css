@@ -97,7 +97,7 @@ body {
   color: #FFFFFF;
   background: #7AB7FC;
   border-radius: 0 0.64rem;
-  line-height: 1.0133rem;
+  padding: 0.1067rem;
 }
 .content .list_item .item_content {
   display: flex;
@@ -105,6 +105,7 @@ body {
   align-items: center;
 }
 .content .list_item .item_content .item_content_btn_reward {
+  padding: 0.16rem;
   width: 3.4667rem;
   height: 1.4933rem;
   background: #C8DDEB;
@@ -113,7 +114,8 @@ body {
   font-family: PingFangSC-Medium, PingFang SC;
   font-weight: 500;
   color: #FFFFFF;
-  line-height: 1.4933rem;
+  line-height: 1.08rem;
+  border: none;
 }
 .content .list_item .item_content .item_content_left {
   display: flex;

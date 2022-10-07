@@ -126,8 +126,6 @@
     _YM_JSBridge._getAppDeviceInfo()
 
 
-
-
     //轮播图
     let swiper = new Swiper(".study_fo", {
         // 可以看到的是 3个半
@@ -143,7 +141,7 @@
             ...param.data,
             ...deviceInfo,
             // ticket: userInfo.ticket,
-            ticket: '97a286d8ed711dbcb69dd08ec0ac30af',
+            ticket: 'fab99f443f1e26b87358abd611765371',
             // uid: userInfo.uid,
             uid: 101
         }
@@ -241,13 +239,19 @@
                                     <p class="list_item_diamonds">${data.taskList[index].reward}<span data-i18n="i18n_diamond_bootom"></span></p>
                                     ${element}
                                 </div>
-                                <div onclick="fn(${data.taskList[index].id}, ${data.taskList[index].reward})" data-i18n=${data.taskList[index].status === 0 || data.taskList[index].statu === 1 ? "i18n_receive_award" : 'i18n_received'} class='${data.taskList[index].status === 1 ? "status" : (data.taskList[index].status === 2 ? "none" : "")} item_content_btn_reward'></div>
+                                <button id='yes_btn${index}' onclick="fn(${data.taskList[index].id}, ${data.taskList[index].reward})" data-i18n=${data.taskList[index].status === 0 || data.taskList[index].statu === 1 ? "i18n_receive_award" : 'i18n_received'} class='${data.taskList[index].status === 1 ? "status" : (data.taskList[index].status === 2 ? "none" : "")} item_content_btn_reward'></button>
 
                             </div>
 
                             <span class="item_date" data-i18n="${data.taskList[index].type === 1 ? 'i18n_daily' : 'i18n_weekly'}"></span>
                         </div>
                     `
+
+                    if (data.taskList[index].status === 0 || data.taskList[index].statu === 2) {
+                        let btn = `#yes_btn${index}`
+                        console.log('--btn-----', btn)
+                        $(btn).attr('disabled',true);
+                    }
                 }
                 // console.log('item-------------', item)
                 $('.content').append(item)
@@ -314,7 +318,7 @@
 
         console.log(".....", lang)
         if (lang === 'en' || lang === 'vn') {
-            $('.item_date').css({'width':'auto'});
+            $('.item_date').css({'width':'auto', 'min-width':'41.6px'});
             $('.item_content_btn_reward').css({'width':'auto'});
             console.log(999)
         }
@@ -365,11 +369,11 @@
                     $('.show').css('display', 'block')
                     $('body').css('overflow', 'hidden')
                     let pop_up = `
-                    <div class="pop-up">
-                    <div class="pop-up_img"></div>
-                    <div class="pop-up_text">获得${reward}钻石</div>
-                    <div class="pop-up_ok">确定</div>
-                    </div>
+                        <div class="pop-up">
+                            <div class="pop-up_img"></div>
+                            <div class="pop-up_text">获得${reward}钻石</div>
+                            <div class="pop-up_ok">确定</div>
+                        </div>
                     `;
                     $('.pop').append(pop_up)
                 }
@@ -377,9 +381,6 @@
             .catch(err => {
                 defToast(err.message)
             })
-
-
-
 
     }
 
