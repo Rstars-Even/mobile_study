@@ -19,4 +19,16 @@
         )
     }
     langTranslate ()
+
+
+    // 本周上周数据样式切换。。
+    $(".content_btn_weeks1").click(function(){
+        $(".content_btn_weeks2").css({"color":"#FFFFFF", "background":"none"});
+        $(".content_btn_weeks1").css({"color":"#6A70FF", "background":"#FFFFFF"});
+    })
+    $(".content_btn_weeks2").click(function(){
+        $(".content_btn_weeks1").css({"color":"#FFFFFF", "background":"none"});
+        $(".content_btn_weeks2").css({"color":"#6A70FF", "background":"#FFFFFF"});
+    })
+
 })();

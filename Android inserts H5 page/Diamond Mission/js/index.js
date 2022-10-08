@@ -23,6 +23,9 @@
         }
     }
     const browser = checkClient()
+    console.log('browser=====:', browser)
+
+
     /**
      * @description 用户信息
      * @date 2022/6/2
@@ -32,9 +35,10 @@
      * @param {string} userInfo.ticket 用户登录ticket
      */
     let userInfo = {
-        uid: '10161',
-        ticket: '82ff9783f7132fcf8c508ac4dd21e5dc'
+        uid: '100',
+        ticket: '65b04941ce3de4950c2587dca22e6d2b'
     }
+
 
     /**
      * @description 设备信息
@@ -74,9 +78,10 @@
         _getAppDeviceInfo () {
             if (browser.android && window.androidJsObj) {
                 deviceInfo = { ...JSON.parse(window.androidJsObj.getDeviceInfo()) }
-            } else if (browser.ios && window.webkit) {
-            
-            }
+
+                console.log('调用安卓方法：', JSON.stringify(deviceInfo))
+                
+            } else if (browser.ios && window.webkit) {}
             localStorage.setItem('deviceInfo', JSON.stringify(deviceInfo))
         },
         
@@ -91,42 +96,45 @@
                 window.webkit.messageHandlers.getTicket.postMessage(null)
             } else if (browser.android) {
                 userInfo.uid = parseInt(window.androidJsObj.getUid())
+
+                alert('调用安卓方法：', window.androidJsObj.getTicket())
+                
                 userInfo.ticket = window.androidJsObj.getTicket()
                 userInfo.auth = 'Bearer ' + userInfo.ticket
                 localStorage.setItem('info', JSON.stringify(userInfo))
             }
         },
         
-        /**
-         * @desc app 链接跳转
-         * @date 2022/5/30
-         * @author: lzf
-         * @param {string|number} url 跳转的链接key
-         */
-        openAppLink: function (url) {
-            if (browser.android) {
-                const urlMap = {
-                    1001: 'app://yamoo.com/UserDiamondActivity', // 跳转兑换现金
-                    1002: 'app://yamoo.com/HomeFamilyCreateActivity', // 跳转创建家族
-                    1003: 'app://yamoo.com/UserAuthActivity' // 跳转真人认证
-                }
-                window.location.href = urlMap[url]
-            } else if (browser.ios) {
-            }
-        },
+        // /**
+        //  * @desc app 链接跳转
+        //  * @date 2022/5/30
+        //  * @author: lzf
+        //  * @param {string|number} url 跳转的链接key
+        //  */
+        // openAppLink: function (url) {
+        //     if (browser.android) {
+        //         const urlMap = {
+        //             1001: 'app://yamoo.com/UserDiamondActivity', // 跳转兑换现金
+        //             1002: 'app://yamoo.com/HomeFamilyCreateActivity', // 跳转创建家族
+        //             1003: 'app://yamoo.com/UserAuthActivity' // 跳转真人认证
+        //         }
+        //         window.location.href = urlMap[url]
+        //     } else if (browser.ios) {
+        //     }
+        // },
 
-        openUserInfo (uid) {
-            if (browser.android) {
-                window.androidJsObj.openUserPage(uid)
-            }
-        }
+        // openUserInfo (uid) {
+        //     if (browser.android) {
+        //         window.androidJsObj.openUserPage(uid)
+        //     }
+        // }
     }
 
     _YM_JSBridge._getAppUserInfo()
     _YM_JSBridge._getAppDeviceInfo()
 
 
-    //轮播图
+    //头部轮播图。。
     let swiper = new Swiper(".study_fo", {
         // 可以看到的是 3个半
         slidesPerView: 3.5,
@@ -134,16 +142,16 @@
         spaceBetween: -12,
     });
 
-        // 简易请求封装
+
+        
+    // 简易请求封装。。
     function defRequest (param) {
        
         param.data = {
             ...param.data,
             ...deviceInfo,
-            // ticket: userInfo.ticket,
-            ticket: 'fab99f443f1e26b87358abd611765371',
-            // uid: userInfo.uid,
-            uid: 101
+            ticket: userInfo.ticket,
+            uid: userInfo.uid,
         }
         let origin = location.origin
         console.log('origin----------', origin)
@@ -184,7 +192,7 @@
             }
             
             if (param.method === 'get') {
-                console.log('---最终请求地址---', `${ origin }/${ param.url }?${ param.data }`)
+                console.log('---最终请求地址---:', `${ origin }/${ param.url }?${ param.data }`)
                 req.open('get', `${ origin }/${ param.url }?${ param.data }`)
             }
             if (param.method === 'post') {
@@ -195,18 +203,18 @@
         })
     }
 
+
+    // 获取钻石任务列表数据。。。
     function getUserInfo () {
         defRequest({
             method: 'get',
-            // url: 'api/user/getInfo',
             url: 'api/task/diamond/getInfo',
             // data: {
             //     queryUid: 103
             // }
         })
             .then(res => {
-                
-                console.log('html ---------------->', $('.num').text())
+                // console.log('html ---------------->', $('.num').text())
 
                 $('.num1').html(res.data.matchNum)
                 $('.num2').html(res.data.replyNum)
@@ -221,6 +229,8 @@
                     let element = '';
                     // const element = array[index];
                     for (let i = 0; i < data.taskList[index].tasks.length; i++) {
+                        // console.log('----------------------><<<><><>:', data.taskList[index].tasks[i].title)
+
                         element += `
                             <div class="list_item_reward">
                                 <span class="list_item_reward_title ${data.taskList[index].tasks[i].done ? '' : 'colors'}">${data.taskList[index].tasks[i].title}</span>
@@ -230,7 +240,7 @@
                         `
                     }
 
-                    item+=`
+                    item += `
                         <div class="list_item">
                             <div class="item_content">
 
@@ -239,19 +249,13 @@
                                     <p class="list_item_diamonds">${data.taskList[index].reward}<span data-i18n="i18n_diamond_bootom"></span></p>
                                     ${element}
                                 </div>
-                                <button id='yes_btn${index}' onclick="fn(${data.taskList[index].id}, ${data.taskList[index].reward})" data-i18n=${data.taskList[index].status === 0 || data.taskList[index].statu === 1 ? "i18n_receive_award" : 'i18n_received'} class='${data.taskList[index].status === 1 ? "status" : (data.taskList[index].status === 2 ? "none" : "")} item_content_btn_reward'></button>
+                                <button id='yes_btn${index}' onclick="fn(${data.taskList[index].id}, ${data.taskList[index].reward}, ${data.taskList[index].status})" data-i18n=${data.taskList[index].status === 0 || data.taskList[index].statu === 1 ? "i18n_receive_award" : 'i18n_received'} class='${data.taskList[index].status === 1 ? "status" : (data.taskList[index].status === 2 ? "none" : "")} item_content_btn_reward'></button>
 
                             </div>
 
                             <span class="item_date" data-i18n="${data.taskList[index].type === 1 ? 'i18n_daily' : 'i18n_weekly'}"></span>
                         </div>
                     `
-
-                    if (data.taskList[index].status === 0 || data.taskList[index].statu === 2) {
-                        let btn = `#yes_btn${index}`
-                        console.log('--btn-----', btn)
-                        $(btn).attr('disabled',true);
-                    }
                 }
                 // console.log('item-------------', item)
                 $('.content').append(item)
@@ -264,14 +268,13 @@
     }
     getUserInfo ()
 
-
-        /**
-     * @description 建议 toast
-     * @date 2022/5/30
-     * @author: lzf
-     * @param {string} msg toast内容
-     * @param {number} [duration=1500] 自动关闭时间
-     */
+    /**
+        * @description 建议 toast 提示框。
+        * @date 2022/5/30
+        * @author: lzf
+        * @param {string} msg toast内容
+        * @param {number} [duration=1500] 自动关闭时间
+    */
     function defToast (msg, duration = 1500) {
         const toastList = document.querySelector('.d-toast')
         if (toastList) {
@@ -310,17 +313,22 @@
 	const lang = url.get('lang') || 'vn'
 	document.body.setAttribute('data-lang', lang)
 	localStorage.setItem('lang', lang)
-    // let lang = 'i18n_en';
 
     function langTranslate () {
         const $i18n = $.i18n()
         $i18n.locale = lang
 
         console.log(".....", lang)
-        if (lang === 'en' || lang === 'vn') {
+        if ( lang === 'en' ) {
+            $(".invitation_btn_imgags").attr("src", "./images/invite-en.png");
             $('.item_date').css({'width':'auto', 'min-width':'41.6px'});
             $('.item_content_btn_reward').css({'width':'auto'});
-            console.log(999)
+        } else if ( lang === 'vn' ) {
+            $(".invitation_btn_imgags").attr("src", "./images/invite-vn.png");
+            $('.item_date').css({'width':'auto', 'min-width':'41.6px'});
+            $('.item_content_btn_reward').css({'width':'auto'});
+        } else {
+            $(".invitation_btn_imgags").attr("src", "./images/invite-cn.png");
         }
 
         $.i18n.debug = true
@@ -340,28 +348,29 @@
     
     //弹窗事件。。
     $(".pop").on('click', '.pop-up_ok', function() {
-        // console.log('------------', $(".item_content_btn_reward"))
-        // $('.pop').css('display', 'none')
         $('.show').css('display', 'none')
         $('body').css('overflow', 'auto')
         $(".pop-up").remove();
         location.reload();
     });
-    fn = function (id, reward) {
-        console.log('-----------', id, reward)
+
+    //领取钻石奖励弹窗事件。。
+    fn = function (id, reward, status) {
+        console.log('-----------', id, reward, status)
+        // if (status === 0 || status === 2) {
+        //     console.log('---000000000000222222222222')
+        //     return
+        // }
 
         defRequest({
             method: 'get',
-            // url: 'api/user/getInfo',
             url: 'api/task/diamond/getReward',
             data: {
-                taskid: id
+                taskId: id
             }
         })
             .then(res => {
                 console.log('res', res);
-
-
 
 
                 if (res === 200) {
@@ -381,7 +390,6 @@
             .catch(err => {
                 defToast(err.message)
             })
-
     }
 
     // 邀请好友..

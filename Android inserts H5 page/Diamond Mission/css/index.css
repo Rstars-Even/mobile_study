@@ -2,7 +2,7 @@ body {
   min-width: 320px;
   max-width: 750px;
   margin: 0 auto;
-  background: url("../images/bg@2x.png") no-repeat;
+  background: url("../images/bg.png") no-repeat;
   background-size: cover;
 }
 @media screen and (min-width: 750px) {
@@ -97,6 +97,7 @@ body {
   color: #FFFFFF;
   background: #7AB7FC;
   border-radius: 0 0.64rem;
+  line-height: 0.8rem;
   padding: 0.1067rem;
 }
 .content .list_item .item_content {
@@ -105,8 +106,6 @@ body {
   align-items: center;
 }
 .content .list_item .item_content .item_content_btn_reward {
-  padding: 0.16rem;
-  width: 3.4667rem;
   height: 1.4933rem;
   background: #C8DDEB;
   border-radius: 0.8rem;
