@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>公会中心</title>
+    <title data-i18n="i18n_new_agency_center"></title>
     <link rel="stylesheet" href="./css/normalize.css">
     <link rel="stylesheet" href="./css/swiper.min.css">
     <link rel="stylesheet" href="./css/index.css">
@@ -19,7 +19,7 @@
                         <img src="./images/ic-id.png" alt=""> 
                         <span>1234567</span>
                     </div>
-                    <div class="header_item_num">主播数量：10</div>
+                    <div data-i18n="i18n_anchor_number" class="header_item_num"><span>10</span></div>
                 </div>
             </div>
         </div>
@@ -27,13 +27,13 @@
 
     <section class="content">
         <div class="content_btn">
-            <span class="content_btn_weeks1">本周</span>
-            <span class="content_btn_weeks2">上周</span>
+            <span data-i18n="i18n_this_week" class="content_btn_weeks1"></span>
+            <span data-i18n="i18n_last_week" class="content_btn_weeks2"></span>
         </div>
         <div class="content_nums">
             <div class="content_nums_img">
                 <img src="./images/zuanshi.png" alt="">
-                <span>汇总钻石：</span>
+                <span data-i18n="i18n_diamond_number"></span>
             </div>
             <div class="content_nums_num">10000.00</div>
         </div>
@@ -41,19 +41,23 @@
 
     <section class="table">
         <div class="table_title">
-            <div class="table_title_user">用户信息</div>
-            <div class="table_title_item">
-                <p>钻石收益</p>
-                <p>相遇人数</p>
-                <p>回复消息</p>
+            <div data-i18n="i18n_user_info" class="table_title_user"></div>
+            <div class="table_title_item title_data1">
+                <p data-i18n="i18n_diamond_income"></p>
+                <p data-i18n="i18n_meet_number"></p>
+                <p data-i18n="i18n_reply_message"></p>
                 <div class="table_icon"></div>
             </div>
-            <!-- <div>
-                <p>收到消息</p>
-                <p>有效消息</p>
-                <p>新手礼物</p>
-                <div class="table_icon"></div>
-            </div> -->
+
+            <!-- <div class="active"> -->
+                <div class="table_title_item title_data2" id="active">
+                    <p data-i18n="i18n_received_the_news"></p>
+                    <p data-i18n="i18n_valid_date"></p>
+                    <p data-i18n="i18n_new_player_gift"></p>
+                    <div class="table_icon2"></div>
+                </div>
+            <!-- </div> -->
+
         </div>
         <ul class="table_ul">
             <li class="table_ul_li">

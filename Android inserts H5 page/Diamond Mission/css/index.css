@@ -18,22 +18,24 @@ body {
   height: 6.9867rem;
   text-align: -webkit-center;
 }
-.task .swiper-slide .num {
+.task .swiper-slide .div {
+  margin-top: 2.6133rem;
+}
+.task .swiper-slide .div .num {
   width: 2.5867rem;
-  height: 1.8667rem;
+  height: 1.667rem;
   font-size: 1.44rem;
   font-family: DINPro-Medium, DINPro;
   font-weight: 500;
   color: #FFFFFF;
-  line-height: 6.9867rem;
-  margin-bottom: 0.3733rem;
 }
-.task .swiper-slide .text {
+.task .swiper-slide .div .text {
+  width: 80%;
+  height: 0.88rem;
   font-size: 0.64rem;
   font-family: PingFangSC-Regular, PingFang SC;
   font-weight: 400;
   color: #FFFFFF;
-  line-height: 5.12rem;
 }
 .task .meet_number {
   background: url("../images/相遇人数@2x.png") no-repeat;
@@ -106,6 +108,7 @@ body {
   align-items: center;
 }
 .content .list_item .item_content .item_content_btn_reward {
+  width: 3.4667rem;
   height: 1.4933rem;
   background: #C8DDEB;
   border-radius: 0.8rem;
@@ -214,12 +217,15 @@ body {
   display: none;
 }
 .status {
-  background: #65BEFE;
+  background: #65BEFE !important;
 }
 .none {
-  background: none;
-  color: #1BA7C5;
+  background: none !important;
+  color: #1BA7C5 !important;
 }
 .colors {
   color: #999999;
+}
+#item_date_colors {
+  background: #B883FF;
 }

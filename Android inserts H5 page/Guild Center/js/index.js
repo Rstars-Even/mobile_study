@@ -31,4 +31,16 @@
         $(".content_btn_weeks2").css({"color":"#6A70FF", "background":"#FFFFFF"});
     })
 
+
+    // 用户信息点击更多。。。
+    $(".table_icon").click(function(){
+        $(".title_data1").css({"display":"none"});
+        $(".title_data2").css({"display":"flex"});
+        console.log(2222222222)
+    })
+    $(".table_icon2").click(function(){
+        $(".title_data1").css({"display":"flex"});
+        $(".title_data2").css({"display":"none"});
+    })
+   
 })();

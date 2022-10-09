@@ -1,4 +1,10 @@
 (function () {
+    // 调试工具加载
+	const script = document.createElement('script')
+	script.src = './lib/eruda.min.js'
+	document.body.appendChild(script)
+	script.onload = function () { eruda.init() }
+
     /**
      * @description 获取客户端类型
      * @date 2022/6/7
@@ -23,7 +29,7 @@
         }
     }
     const browser = checkClient()
-    console.log('browser=====:', browser)
+    // console.log('browser=====:', browser)
 
 
     /**
@@ -35,8 +41,8 @@
      * @param {string} userInfo.ticket 用户登录ticket
      */
     let userInfo = {
-        uid: '100',
-        ticket: '65b04941ce3de4950c2587dca22e6d2b'
+        uid: '188',
+        ticket: "4d6b16680d7bcff3f52e4f8d36df6ac3",
     }
 
 
@@ -79,7 +85,7 @@
             if (browser.android && window.androidJsObj) {
                 deviceInfo = { ...JSON.parse(window.androidJsObj.getDeviceInfo()) }
 
-                console.log('调用安卓方法：', JSON.stringify(deviceInfo))
+                console.log('调用手机信息：', JSON.stringify(deviceInfo))
                 
             } else if (browser.ios && window.webkit) {}
             localStorage.setItem('deviceInfo', JSON.stringify(deviceInfo))
@@ -91,17 +97,23 @@
          * @author: lzf
          */
         _getAppUserInfo () {
-            if (browser.ios && window.webkit) {
-                window.webkit.messageHandlers.getUid.postMessage(null)
-                window.webkit.messageHandlers.getTicket.postMessage(null)
-            } else if (browser.android) {
-                userInfo.uid = parseInt(window.androidJsObj.getUid())
+            try {
 
-                alert('调用安卓方法：', window.androidJsObj.getTicket())
-                
-                userInfo.ticket = window.androidJsObj.getTicket()
-                userInfo.auth = 'Bearer ' + userInfo.ticket
-                localStorage.setItem('info', JSON.stringify(userInfo))
+                if (browser.ios && window.webkit) {
+                    window.webkit.messageHandlers.getUid.postMessage(null)
+                    window.webkit.messageHandlers.getTicket.postMessage(null)
+                } else if (browser.android) {
+                    userInfo.uid = parseInt(window.androidJsObj.getUid())
+                    
+                    console.log('获取身份信息：', window.androidJsObj.getTicket())
+                    
+                    userInfo.ticket = window.androidJsObj.getTicket()
+                    userInfo.auth = 'Bearer ' + userInfo.ticket
+                    localStorage.setItem('info', JSON.stringify(userInfo))
+                }
+
+            } catch (error) {
+                defToast(error)                
             }
         },
         
@@ -154,8 +166,8 @@
             uid: userInfo.uid,
         }
         let origin = location.origin
-        console.log('origin----------', origin)
-        console.log('oriparam.datagin----------', param.data)
+        // console.log('origin----------', origin)
+        // console.log('oriparam.datagin----------', param.data)
         // origin = origin.indexOf('localhost') > -1 ? 'http://beta.sukiechat.com' : origin
         // origin = origin.indexOf('beta') > -1 ? origin : 'http://act.sukiechat.com'
         origin = 'http://beta.sukiechat.com'
@@ -221,7 +233,7 @@
                 $('.num3').html(res.data.msgNum)
                 $('.num4').html(res.data.dayNum)
                 $('.num5').html(res.data.giftNum)
-                console.log('log - res ---------------->', res)
+                // console.log('log - res ---------------->', res)
                 // pageData.userInfo = res.data
                 let data = res.data;
                 let item = '';
@@ -249,11 +261,11 @@
                                     <p class="list_item_diamonds">${data.taskList[index].reward}<span data-i18n="i18n_diamond_bootom"></span></p>
                                     ${element}
                                 </div>
-                                <button id='yes_btn${index}' onclick="fn(${data.taskList[index].id}, ${data.taskList[index].reward}, ${data.taskList[index].status})" data-i18n=${data.taskList[index].status === 0 || data.taskList[index].statu === 1 ? "i18n_receive_award" : 'i18n_received'} class='${data.taskList[index].status === 1 ? "status" : (data.taskList[index].status === 2 ? "none" : "")} item_content_btn_reward'></button>
+                                <button onclick="fn(${data.taskList[index].id}, ${data.taskList[index].reward}, ${data.taskList[index].status})" data-i18n='${data.taskList[index].status === 0 || data.taskList[index].status === 1 ? "i18n_receive_award" : 'i18n_received'}' class='${data.taskList[index].status === 1 ? "status" : (data.taskList[index].status === 2 ? "none" : "")} item_content_btn_reward'></button>
 
                             </div>
 
-                            <span class="item_date" data-i18n="${data.taskList[index].type === 1 ? 'i18n_daily' : 'i18n_weekly'}"></span>
+                            <span id="${data.taskList[index].type === 1 ? '' : 'item_date_colors'}" class="item_date" data-i18n="${data.taskList[index].type === 1 ? 'i18n_daily' : 'i18n_weekly'}"></span>
                         </div>
                     `
                 }
@@ -309,8 +321,9 @@
     }
 
      // 设置语言类型
-	const url = new URLSearchParams(location.search)
-	const lang = url.get('lang') || 'vn'
+	// const url = new URLSearchParams(location.search)
+	// const lang = url.get('lang') || 'cn'
+	const lang = deviceInfo.lang || 'zh'
 	document.body.setAttribute('data-lang', lang)
 	localStorage.setItem('lang', lang)
 
@@ -322,11 +335,11 @@
         if ( lang === 'en' ) {
             $(".invitation_btn_imgags").attr("src", "./images/invite-en.png");
             $('.item_date').css({'width':'auto', 'min-width':'41.6px'});
-            $('.item_content_btn_reward').css({'width':'auto'});
-        } else if ( lang === 'vn' ) {
+            $('.item_content_btn_reward').css({'width':'4.4rem'});
+        } else if ( lang === 'vi' ) {
             $(".invitation_btn_imgags").attr("src", "./images/invite-vn.png");
             $('.item_date').css({'width':'auto', 'min-width':'41.6px'});
-            $('.item_content_btn_reward').css({'width':'auto'});
+            $('.item_content_btn_reward').css({'width':'4.8rem'});
         } else {
             $(".invitation_btn_imgags").attr("src", "./images/invite-cn.png");
         }
@@ -357,10 +370,10 @@
     //领取钻石奖励弹窗事件。。
     fn = function (id, reward, status) {
         console.log('-----------', id, reward, status)
-        // if (status === 0 || status === 2) {
-        //     console.log('---000000000000222222222222')
-        //     return
-        // }
+        if (status === 0 || status === 2) {
+            // console.log('---000000000000222222222222')
+            return
+        }
 
         defRequest({
             method: 'get',
@@ -373,7 +386,7 @@
                 console.log('res', res);
 
 
-                if (res === 200) {
+                if (res.code === 200) {
 
                     $('.show').css('display', 'block')
                     $('body').css('overflow', 'hidden')
@@ -395,10 +408,10 @@
     // 邀请好友..
     $('.url').click(function() {
         let url = localStorage.getItem('lang')
-        console.log('--66666------', url)
+        // console.log('--66666------', url)
         if (url === 'en') {
             location.href= "http://act.sukiechat.com/inviteAct/index.html?lang=en"
-        } else if (url === 'vn') {
+        } else if (url === 'vi') {
             location.href= "http://act.sukiechat.com/inviteAct/index.html?lang=vn"
         } else {
             location.href= "http://act.sukiechat.com/inviteAct/index.html?lang=cn"
