@@ -41,8 +41,8 @@
      * @param {string} userInfo.ticket 用户登录ticket
      */
     let userInfo = {
-        uid: '188',
-        ticket: "4d6b16680d7bcff3f52e4f8d36df6ac3",
+        uid: '103',
+        ticket: "9d51cecb3874eeed79938a6cf5fb487a",
     }
 
 
@@ -67,7 +67,7 @@
         deviceId: '001',
         fcmToken: 'fcmToken',
         imei: '001',
-        lang: 'zh',
+        lang: 'vi',
         os: 'android',
         brand: 'Huawei',
         model: 'P40%20pro',
@@ -258,7 +258,7 @@
 
                                 <div class="item_content_left">
 
-                                    <p class="list_item_diamonds">${data.taskList[index].reward}<span data-i18n="i18n_diamond_bootom"></span></p>
+                                    <p class="list_item_diamonds">${data.taskList[index].reward}<span data-i18n="i18n_diamond"></span></p>
                                     ${element}
                                 </div>
                                 <button onclick="fn(${data.taskList[index].id}, ${data.taskList[index].reward}, ${data.taskList[index].status})" data-i18n='${data.taskList[index].status === 0 || data.taskList[index].status === 1 ? "i18n_receive_award" : 'i18n_received'}' class='${data.taskList[index].status === 1 ? "status" : (data.taskList[index].status === 2 ? "none" : "")} item_content_btn_reward'></button>
@@ -385,7 +385,6 @@
             .then(res => {
                 console.log('res', res);
 
-
                 if (res.code === 200) {
 
                     $('.show').css('display', 'block')
@@ -393,11 +392,17 @@
                     let pop_up = `
                         <div class="pop-up">
                             <div class="pop-up_img"></div>
-                            <div class="pop-up_text">获得${reward}钻石</div>
-                            <div class="pop-up_ok">确定</div>
+                            <div class="pop-up_text">
+                                <span data-i18n="i18n_get"></span>
+                                <span>${reward}</span>
+                                <span data-i18n="i18n_diamond_bootom"></span>
+                            </div>
+                            <div class="pop-up_ok" data-i18n="i18n_ok"></div>
                         </div>
                     `;
                     $('.pop').append(pop_up)
+                    langTranslate ()
+
                 }
             })
             .catch(err => {
@@ -410,11 +415,11 @@
         let url = localStorage.getItem('lang')
         // console.log('--66666------', url)
         if (url === 'en') {
-            location.href= "http://act.sukiechat.com/inviteAct/index.html?lang=en"
+            location.href= "http://beta-act.sukiechat.com/inviteAct/index.html?lang=en"
         } else if (url === 'vi') {
-            location.href= "http://act.sukiechat.com/inviteAct/index.html?lang=vn"
+            location.href= "http://beta-act.sukiechat.com/inviteAct/index.html?lang=vn"
         } else {
-            location.href= "http://act.sukiechat.com/inviteAct/index.html?lang=cn"
+            location.href= "http://beta-act.sukiechat.com/inviteAct/index.html?lang=cn"
         }
     })
 })();

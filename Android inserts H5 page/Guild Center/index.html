@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="never">
     <title data-i18n="i18n_new_agency_center"></title>
     <link rel="stylesheet" href="./css/normalize.css">
     <link rel="stylesheet" href="./css/swiper.min.css">
@@ -19,7 +20,10 @@
                         <img src="./images/ic-id.png" alt=""> 
                         <span>1234567</span>
                     </div>
-                    <div data-i18n="i18n_anchor_number" class="header_item_num"><span>10</span></div>
+                    <div class="header_item_num">
+                        <span data-i18n="i18n_anchor_number"></span>
+                        <span>100</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -35,7 +39,7 @@
                 <img src="./images/zuanshi.png" alt="">
                 <span data-i18n="i18n_diamond_number"></span>
             </div>
-            <div class="content_nums_num">10000.00</div>
+            <div class="content_nums_num">10.00</div>
         </div>
     </section>
 
@@ -60,7 +64,7 @@
 
         </div>
         <ul class="table_ul">
-            <li class="table_ul_li">
+            <!-- <li class="table_ul_li">
                 <div class="table_li_item">
                     <img src="" alt="" class="table_li_img"/>
                     <div class="table_li_name_data">
@@ -72,21 +76,20 @@
                     </div>
                 </div>
                     
-                <div class="table_li_num">
+                <div class="table_li_num table_num1">
                     <span>100.00</span>
                     <span>100</span>
                     <span>100</span>
                 </div>
-                    <!-- <div>
-                        <span>100.00</span>
-                        <span>100</span>
-                        <span>100</span>
-                    </div> -->
-            </li>
+                <div class="table_li_num table_num2" id="active">
+                    <span>99.00</span>
+                    <span>99</span>
+                    <span>199</span>
+                </div>
+            </li> -->
             <!-- <li></li> -->
         </ul>
     </section>
-
     <script src="./lib/flexible.js"></script>
     <script src="./lib/jquery.main.js"></script>
     <script src="./lib/jquery.i18n.js"></script>
