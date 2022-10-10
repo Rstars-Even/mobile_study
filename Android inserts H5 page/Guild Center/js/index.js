@@ -68,7 +68,7 @@
         deviceId: '001',
         fcmToken: 'fcmToken',
         imei: '001',
-        lang: 'en',
+        lang: 'zh',
         os: 'android',
         brand: 'Huawei',
         model: 'P40 pro',
@@ -266,7 +266,7 @@
             method: 'get',
             url: 'api/guild/getInfo',
             data: {
-                type: 1,
+                type: 2,
                 pageNum: 1,
                 pageSize: 20
             }
@@ -274,6 +274,14 @@
             console.log('res---------------:', res);
 
                 if (res.code === 200) {
+                    // 工会信息。。
+                    let datas = res.data.guild;
+                    $('.header_content_name').html(datas.title);
+                    $('.header_userid').html(datas.id);
+                    $('.header_num').html(datas.userNum);
+                    $('.content_nums_num').html(res.data.diamond);
+                    
+                    // 动态创建列表数据。。
                     let data = res.data.userList;
                     let table_ul_li = ''
                     for (let index = 0; index < data.length; index++) {
@@ -293,13 +301,13 @@
                             
                                 <div class="table_li_num table_num1">
                                     <span>100.00</span>
-                                    <span>100</span>
-                                    <span>100</span>
+                                    <span>${data[index].matchNum}</span>
+                                    <span>${data[index].replyNum}</span>
                                 </div>
                                 <div class="table_li_num table_num2" id="active">
-                                    <span>99.00</span>
+                                    <span>${data[index].recvNum}</span>
                                     <span>99</span>
-                                    <span>199</span>
+                                    <span>${data[index].giftNum}</span>
                                 </div>
                             </li>
                         `;
