@@ -67,7 +67,7 @@
         deviceId: '001',
         fcmToken: 'fcmToken',
         imei: '001',
-        lang: 'vi',
+        lang: 'zh',
         os: 'android',
         brand: 'Huawei',
         model: 'P40%20pro',
