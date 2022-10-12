@@ -410,4 +410,19 @@
         console.log('---uid---:', uid);
         _YM_JSBridge.openUserInfo(uid)
     }
+
+    // 禁用头部滑动事件。。
+    $('.container').on("touchstart", function (params) {
+        // console.log('I touch you');
+        $('body').css({"overflow":"hidden"});
+    });
+    $('.container').on("touchmove", function (params) {
+        // console.log('move');
+        $('body').css({"overflow":"hidden"});
+    });
+    $('.container').on("touchend", function (params) {
+        // console.log('leave');
+        $('body').css({"overflow":"auto"});
+    });
+
 })();
