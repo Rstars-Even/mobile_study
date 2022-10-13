@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta
+			content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+			name="viewport">
+	<meta
+			content="ie=edge"
+			http-equiv="X-UA-Compatible">
+	<title>Sukie</title>
+	<link
+			href="css/reset.min.css"
+			rel="stylesheet">
+	<script src="lib/flexible.js"></script>
+	<link
+			href="css/index.css"
+			rel="stylesheet">
+</head>
+<body data-lang="cn">
+<main class="i-wrap">
+	<!-- banner -->
+	<section class="i-banner"></section>
+	<!-- 邀请 -->
+	<section class="i-invite">
+		<div class="i-invite_intro">
+			<p data-i18n="common_invite_friend_power"></p>
+			<p>
+				<span data-i18n="common_invite_commission"></span>
+				<i>20%</i>
+			</p>
+			<p data-i18n="common_reward"></p>
+		</div>
+		<div class="i-invite_info">
+			<span data-i18n="common_invite_code"></span>
+			<span class="i-invite_code"></span>
+			<button
+					class="btn-copy"
+					data-clipboard-text=""
+					data-i18n="common_copy_text"
+					type="button">
+			</button>
+		</div>
+	</section>
+	<!-- 分享 -->
+	<section class="i-share">
+		<div class="i-share_btn--group">
+			<div
+					class="btn-share btn-share_link"
+					data-i18n="common_share_link">
+			</div>
+			<div
+					class="btn-share btn-share_poster"
+					data-i18n="common_share_poster">
+			</div>
+		</div>
+		<p
+				class="i-share_tips"
+				data-i18n="common_share_content"></p>
+	</section>
+	<!-- 邀请 tabs -->
+	<section class="i-tabs">
+		<ul
+				class="i-tab"
+				data-cur="income">
+			<li
+					class="i-tab_item i-tab_item--active"
+					data-i18n="common_invite_income"
+					data-type="income">
+			</li>
+			<li
+					class="i-tab_item"
+					data-i18n="common_invite_count"
+					data-type="person">
+			</li>
+			<li
+					class="i-tab_item"
+					data-i18n="common_invite_rank"
+					data-type="rank">
+			</li>
+		</ul>
+		<div class="i-content"></div>
+	</section>
+	
+	<!-- 家族计划扶持 -->
+
+	<!-- 规则 -->
+	<aside class="i-aside i-aside_rule">
+		<div
+				class="btn-rule"
+				data-i18n="common_rule_text">
+		</div>
+	</aside>
+	<!-- 填写邀请码 -->
+	<aside class="i-aside i-aside_invite">
+		<div
+				class="btn-invite"
+				data-i18n="common_input_invite_code2">
+		</div>
+	</aside>
+	
+	<div
+			class="i-layer_mask"></div>
+	<!-- 规则弹层 -->
+	<div class="i-layer i-layer_rule">
+		<div class="i-rule_wrap">
+			<img
+					alt=""
+					class="i-rule_close"
+					src="images/index/icon-close.png"
+					srcset="images/index/icon-close.png 1x, images/index/icon-close@2x.png 2x">
+			<div class="i-rule_content">
+				<h4 data-i18n="common_invite_rule"></h4>
+				<p data-i18n="common_invite_content"></p>
+				<p data-i18n="common_invite_content1"></p>
+				<p data-i18n="common_invite_content2"></p>
+				<p data-i18n="common_invite_content3"></p>
+				<p data-i18n="common_invite_content4"></p>
+				<p data-i18n="common_invite_content5"></p>
+				<p data-i18n="common_invite_content6"></p>
+			</div>
+		</div>
+	</div>
+	<!-- 邀请码相关弹层 -->
+	<div
+			class="i-layer i-layer_code i-layer">
+		<div class="i-code_wrap">
+			<img
+					alt=""
+					class="i-code_close"
+					src="images/index/icon-close.png"
+					srcset="images/index/icon-close.png 1x, images/index/icon-close@2x.png 2x">
+			<div
+					class="i-invite_content">
+				<div class="i-invite_title">
+					<h4 data-i18n="common_input_invite_code"></h4>
+					<h6 data-i18n="common_hour_24"></h6>
+				</div>
+				<div class="i-code_box i-invite_box">
+					<p data-i18n="common_invite_time"></p>
+					<input
+							class="i-invite_input"
+							data-i18n="common_login_input_auth"
+							maxlength="5"
+							placeholder=""
+							type="text">
+					<button
+							class="i-invite_confirm"
+							data-i18n="common_confirm_text"
+							type="button">
+					</button>
+				</div>
+			</div>
+			
+			<div
+					class="i-treasure_content">
+				<div class="i-code_box i-treasure_box">
+					<img
+							alt=""
+							class="i-treasure_avatar"
+							src="">
+					<p class="i-treasure_nickname"></p>
+					<p>
+						<span data-i18n="common_send"></span>
+						<i data-i18n="common_box"></i>
+						<span data-i18n="common_for"></span>
+					</p>
+					<button
+							class="i-treasure_open"
+							data-i18n="common_open_text"
+							type="button">
+					</button>
+				</div>
+			</div>
+			
+			<div
+					class="i-diamond_content">
+				<div class="i-code_box i-diamond_box">
+					<div class="i-diamond_icon">
+						<img
+								alt=""
+								src="images/index/icon-diamond.png"
+								srcset="images/index/icon-diamond.png 1x, images/index/icon-diamond@2x.png 2x">
+					</div>
+					<p>
+						<span class="i-diamond_reward"></span>
+						<span data-i18n="common_diamond"></span>
+					</p>
+					<p data-i18n="common_diamond_desc"></p>
+					<button
+							class="i-diamond_confirm"
+							data-i18n="common_confirm_text"
+							type="button">
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+
+<script src="js/util.js"></script>
+<script src="lib/jquery-3.2.1.min.js"></script>
+<script src="lib/jquery.i18n.js"></script>
+<script src="lib/jquery.i18n.messagestore.js"></script>
+<script src="lib/clipboard.min.js"></script>
+<script src="lib/qrcode.min.js"></script>
+<script src="lib/html2canvas.min.js"></script>
+<script src="js/factory.js"></script>
+<script src="js/index.js"></script>
+</body>
+</html>

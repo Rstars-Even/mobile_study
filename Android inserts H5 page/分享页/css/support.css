@@ -1,0 +1,157 @@
+.s-wrap {
+	padding-top: 27.73vw;
+	padding-bottom: 10vw;
+	width: 100vw;
+	min-height: 100vh;
+	position: relative;
+}
+
+[data-lang=cn] .s-wrap {
+	background: #006ef4 url("../images/cn/img-bg@2x.png") no-repeat;
+	background-size: contain;
+}
+
+[data-lang=en] .s-wrap {
+	background: #006ef4 url("../images/en/img-bg@2x.png") no-repeat;
+	background-size: contain;
+}
+
+[data-lang=vn] .s-wrap {
+	background: #006ef4 url("../images/vn/img-bg@2x.png") no-repeat;
+	background-size: contain;
+}
+
+.s-aside_invite {
+	padding-top: 1.33vw;
+	padding-right: 2.67vw;
+	position: absolute;
+	top: 10.93vw;
+	width: 18.4vw;
+	height: 12.8vw;
+	background: url("../images/support/btn-invite@2x.png") no-repeat;
+	background-size: contain;
+	font-size: 0.32rem;
+	font-weight: 600;
+	text-align: center;
+}
+
+/* 家族特权 */
+.s-privilege {
+	margin: 0 auto;
+	width: 80vw;
+	height: 55.47vw;
+	text-align: center;
+	background: url("../images/support/img-privilege@2x.png") no-repeat;
+	background-size: contain;
+}
+
+.s-privilege > h4 {
+	padding-top: 6.67vw;
+	font-size: 5.33vw;
+}
+
+.s-privilege > p:first-of-type {
+	margin-top: 2.67vw;
+	font-size: 0.453rem;
+	font-weight: bold;
+}
+
+.s-privilege > p:first-of-type > i {
+	font-size: 1.173rem;
+	font-style: normal;
+	font-weight: 1000;
+	font-family: "DIN-Black", sans-serif;
+}
+
+.s-privilege > p:last-of-type {
+	margin-top: 2.67vw;
+	font-size: 0.347rem;
+	color: #a7acb9;
+}
+
+/* 家族 */
+.s-family {
+	margin-top: 11.73vw;
+	text-align: center;
+}
+
+.s-family-tips {
+	width: 75vw;
+	margin: 0 auto 3.47vw;
+	color: #fff;
+	font-size: 0.347rem;
+}
+
+.s-family_create {
+	display: none;
+	position: relative;
+	margin: 2.67vw auto 0;
+	padding-top: 4vw;
+	width: 76vw;
+	height: 15.47vw;
+	background: url("../images/support/btn-create@2x.png") no-repeat;
+	background-size: contain;
+}
+
+.s-family_create > p {
+	font-size: 0.453rem;
+	font-weight: bold;
+}
+
+.s-family_create--icon {
+	position: absolute;
+	width: 10.93vw;
+	height: 11.2vw;
+	right: 1.87vw;
+	bottom: -8vw;
+}
+
+.s-family_share {
+	display: none;
+	justify-content: center;
+	align-items: center;
+}
+
+.btn-share {
+	margin: 0 2.93vw;
+	width: 41.33vw;
+	height: 15.47vw;
+	padding-top: 4vw;
+	font-weight: bold;
+	font-size: 0.453rem;
+	background: url("../images/support/btn-share@2x.png") no-repeat;
+	background-size: contain;
+}
+
+/* 家族介绍 */
+.s-intro {
+	margin: 5.07vw auto 0;
+	padding: 22.93vw 8vw 9vw 6.13vw;
+	width: 88.8vw;
+	min-height: 107.73vw;
+}
+
+[data-lang=cn] .s-intro {
+	background: url("../images/cn/img-intro@2x.png") no-repeat;
+	background-size: 100% 100%;
+}
+
+[data-lang=en] .s-intro {
+	background: url("../images/en/img-intro@2x.png") no-repeat;
+	background-size: 100% 100%;
+}
+
+[data-lang=vn] .s-intro {
+	background: url("../images/vn/img-intro@2x.png") no-repeat;
+	background-size: 100% 100%;
+}
+
+.s-intro > p {
+	font-size: 0.373rem;
+}
+
+.s-intro > p:not(:last-child) {
+	margin-bottom: 2.67vw;
+}
+
+
