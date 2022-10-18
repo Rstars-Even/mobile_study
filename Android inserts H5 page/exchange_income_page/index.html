@@ -26,7 +26,7 @@
         <section class="box2">
             <div class="box2_title">
                 <div class="box2_title_text">提现方式</div>
-                <img src="./images/ic_shuoming.png" alt="">
+                <img src="./images/ic_shuoming.png" alt="" class="box2_title_img" />
             </div>
             <div class="box2_content">
                 <div class="box2_content_img">
@@ -39,19 +39,32 @@
         <button class="btn">确认提现</button>
     </section>
 
+    <!-- 提现选项列表，。。 -->
+    <section class="bottom_ul">
+        <div>钻石余额：100000</div>
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>3</li>
+            <li>3</li>
+            <li>3</li>
+            <li>3</li>
+        </ul>    
+    </section>
+
     <!-- 点击问号显示提示框。。 -->
     <section class="hint_view">
         <div class="hint_view_title">
             <div class="hint_view_title_text">提现说明</div>
-            <img src="./images/ic_guanbi.png" alt="">
+            <img src="./images/ic_guanbi.png" alt="" class="hint_view_title_off" />
         </div>
         <div class="hint_view_text">
             <p>使用Payoneer提现，需填写Payoneer帐号的邮箱（必填）和用户名（选填），成功绑定Payoneer帐号后可发起提现。</p>
             <p>使用银行卡提现，需完整填写银行名称、银行账号、真实姓名，成功绑定后可发起提现。</p>
-            <p>1、Payoneer帐号非本平台提供，需前往Payoneer官网自行注册（<span class="copy">点击复制Payoneer地址</span>）；未满18岁无法注册。</p>
+            <p>1、Payoneer帐号非本平台提供，需前往Payoneer官网自行注册（<span data-clipboard-text="https://www.payoneer.com/" class="copy">点击复制Payoneer地址</span>）；未满18岁无法注册。</p>
             <p>2、在本平台绑定Payoneer帐号（为注册时填写的邮箱信息），即可进行提现。</p>
-            <p>3、申请提现成功后，提现款项将在7个工作日内（自提现日起）发放至提交的提现方式账号上。
-            </p>
+            <p>3、申请提现成功后，提现款项将在7个工作日内（自提现日起）发放至提交的提现方式账号上。</p>
             <p>4、使用Payoneer帐号提现款项至个人当地的银行卡，具体手续费由Payoneer官方而定，与本平台无关。</p>
         </div>
     </section>
@@ -62,6 +75,7 @@
     <script src="./lib/jquery.main.js"></script>
     <script src="./lib/jquery.i18n.js"></script>
     <script src="./lib/jquery.i18n.messagestore.js"></script>
+    <script src="./lib/clipboard.min.js"></script>
     <!-- <script src="./lib/swiper.min.js"></script> -->
     <script src="./js/index.js"></script>
 </body>

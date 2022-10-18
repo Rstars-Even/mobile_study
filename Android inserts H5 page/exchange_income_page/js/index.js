@@ -179,8 +179,7 @@
     function langTranslate () {
         const $i18n = $.i18n()
         $i18n.locale = lang
-
-        console.log(".....", lang)
+        console.log(".....---------------------", lang)
 
         $.i18n.debug = true
         $i18n.load(`lang/i18n_${ lang }.json`, $i18n.locale).done(
@@ -255,174 +254,106 @@
     }
 
 
-    //列表数据获取。。
-    let pageData = {
-        type: 1,
-        pageNum: 1,
-        pageSize: 20,
-    }
+    // function guild_getInfo () {
+    //     defRequest({
+    //         method: 'get',
+    //         url: 'api/guild/getInfo',
+    //         data: {
+    //             type: pageData.type,
+    //             pageNum: pageData.pageNum,
+    //             pageSize: pageData.pageSize
+    //         }
+    //     }).then(res => {
+    //         console.log('res---------------:', res);
 
-    //滚动及监听。。
-    let handle= function () {
-        let scrollTop = $(this).scrollTop();
-        let scrollHeight = $(document).height();
-        let windowHeight = $(this).height();
-        // console.log(666666666)
-        if (scrollTop + windowHeight + 0.6 >= scrollHeight) {
-            // console.log('---', scrollTop, scrollHeight, windowHeight);
-            //这部分写逻辑代码
-            //滚动条下拉时，再追加下面的dom数据
-            pageData.pageNum++;
-            console.log("pageData.pageNum--------------------:", pageData);
+    //             if (res.code === 200) {
+    //                 // 工会信息。。
+    //                 let datas = res.data.guild;
+    //                 $('.header_content_name').html(datas.title);
+    //                 $('.header_userid').html(datas.id);
+    //                 $('.header_num').html(datas.userNum);
+    //                 $('.content_nums_num').html(res.data.diamond);
 
-            guild_getInfo ()
-        }
-    }
-    $(window).on("scroll", handle);
-
-
-    function guild_getInfo () {
-        defRequest({
-            method: 'get',
-            url: 'api/guild/getInfo',
-            data: {
-                type: pageData.type,
-                pageNum: pageData.pageNum,
-                pageSize: pageData.pageSize
-            }
-        }).then(res => {
-            console.log('res---------------:', res);
-
-                if (res.code === 200) {
-                    // 工会信息。。
-                    let datas = res.data.guild;
-                    $('.header_content_name').html(datas.title);
-                    $('.header_userid').html(datas.id);
-                    $('.header_num').html(datas.userNum);
-                    $('.content_nums_num').html(res.data.diamond);
-
-                    console.log('+++++res.data.userList.length:', res.data.userList.length)
-                    if (res.data.userList.length == 0 ) {
+    //                 console.log('+++++res.data.userList.length:', res.data.userList.length)
+    //                 if (res.data.userList.length == 0 ) {
                         
-                        $(window).off("scroll", handle); //卸载滚动事件
-                        return false;
-                    }
-                    creat_item(res)
-                }
-            })
-        .catch(err => {
-            defToast(err.message)
-        })
-    }
-    guild_getInfo ()
+    //                     $(window).off("scroll", handle); //卸载滚动事件
+    //                     return false;
+    //                 }
+    //                 creat_item(res)
+    //             }
+    //         })
+    //     .catch(err => {
+    //         defToast(err.message)
+    //     })
+    // }
+    // guild_getInfo ()
 
 
-    let isactive = false;
-    // 动态创建列表数据。。
-    let creat_item = function (res) {
-        let data = res.data.userList;
-        let table_ul_li = ''
+    // let isactive = false;
+    // // 动态创建列表数据。。
+    // let creat_item = function (res) {
+    //     let data = res.data.userList;
+    //     let table_ul_li = ''
 
-        for (let index = 0; index < data.length; index++) {
+    //     for (let index = 0; index < data.length; index++) {
 
-            table_ul_li += `
-                <li class="table_ul_li">
-                    <div class="table_li_item" onclick="fn(${data[index].uid})">
-                        <img src="${data[index].avatar}" alt="" class="table_li_img"/>
-                        <div class="table_li_name_data">
-                            <p class="table_li_name">${data[index].nickName}</p>
-                            <div class="table_li_icon">
-                                <img src="./images/ic-id.png" alt="">
-                                <span>${data[index].chatNo}</span>
-                            </div>
-                        </div>
-                    </div>
+    //         table_ul_li += `
+    //             <li class="table_ul_li">
+    //                 <div class="table_li_item" onclick="fn(${data[index].uid})">
+    //                     <img src="${data[index].avatar}" alt="" class="table_li_img"/>
+    //                     <div class="table_li_name_data">
+    //                         <p class="table_li_name">${data[index].nickName}</p>
+    //                         <div class="table_li_icon">
+    //                             <img src="./images/ic-id.png" alt="">
+    //                             <span>${data[index].chatNo}</span>
+    //                         </div>
+    //                     </div>
+    //                 </div>
                 
-                    <div class="table_li_num table_num1" id="${isactive ? 'active' : ''}">
-                        <span>${data[index].diamond}</span>
-                        <span>${data[index].matchNum}</span>
-                        <span>${data[index].replyNum}</span>
-                    </div>
-                    <div class="table_li_num table_num2" id="${!isactive ? 'active' : ''}">
-                        <span>${data[index].recvNum}</span>
-                        <span>${data[index].days}</span>
-                        <span>${data[index].giftNum}</span>
-                    </div>
-                </li>
-            `;
-        }
+    //                 <div class="table_li_num table_num1" id="${isactive ? 'active' : ''}">
+    //                     <span>${data[index].diamond}</span>
+    //                     <span>${data[index].matchNum}</span>
+    //                     <span>${data[index].replyNum}</span>
+    //                 </div>
+    //                 <div class="table_li_num table_num2" id="${!isactive ? 'active' : ''}">
+    //                     <span>${data[index].recvNum}</span>
+    //                     <span>${data[index].days}</span>
+    //                     <span>${data[index].giftNum}</span>
+    //                 </div>
+    //             </li>
+    //         `;
+    //     }
                     
-        $('.table_ul').append(table_ul_li)
-        langTranslate ()
-    }
+    //     $('.table_ul').append(table_ul_li)
+    //     langTranslate ()
+    // }
 
-    let isrequest = false;
-    // 本周上周数据样式切换。。
-    $(".content_btn_weeks1").click(function(){
-        if (isrequest) {
-            $(window).on("scroll", handle);
 
-            $(".content_btn_weeks2").css({"color":"#FFFFFF", "background":"none"});
-            $(".content_btn_weeks1").css({"color":"#6A70FF", "background":"#FFFFFF"});
-            pageData.type = 1;
-            pageData.pageNum = 1;
-            $('.table_ul_li').remove();
-            guild_getInfo ()
-            isrequest = false;
-        }
+    //选择提现金额列表。。。
+    $(".box_content").click(function(){
+        $(".show").css({"display":"block"});
+        $(".bottom_ul").css({"bottom":"0"});
+        // $(".hint_view").css({"display":"block"});
     })
-    $(".content_btn_weeks2").click(function(){
-        if (!isrequest) {
-            $(window).on("scroll", handle);
-
-            $(".content_btn_weeks1").css({"color":"#FFFFFF", "background":"none"});
-            $(".content_btn_weeks2").css({"color":"#6A70FF", "background":"#FFFFFF"});
-            pageData.type = 2;
-            pageData.pageNum = 1;
-            $('.table_ul_li').remove();
-            guild_getInfo ()
-            isrequest = true;
-        }
+    //右侧问号图标按钮是否显示提示框。。。
+    $(".box2_title_img").click(function(){
+        $(".show").css({"display":"block"});
+        $(".hint_view").css({"display":"block"});
     })
-
-    // 用户信息点击更多。。。
-    $(".table_icon").click(function(){
-        $(".title_data1").css({"display":"none"});
-        $(".title_data2").css({"display":"flex"});
-        console.log(2222222222)
-        $(".table_num1").css({"display":"none"});
-        $(".table_num2").css({"display":"flex"});
-
-        isactive = true;
+    // 点击关闭提示框。。
+    $(".hint_view_title_off").click(function(){
+        $(".hint_view").css({"display":"none"});
+        $(".show").css({"display":"none"});
     })
-    $(".table_icon2").click(function(){
-        $(".title_data1").css({"display":"flex"});
-        $(".title_data2").css({"display":"none"});
-        $(".table_num1").css({"display":"flex"});
-        $(".table_num2").css({"display":"none"});
-
-        isactive = false;
+    // 点击复制Payoneer地址。
+    $(".copy").click(function(){
+        const clipBoard = new ClipboardJS('.copy')
+		clipBoard.on('success', e => {
+			// defToast($.i18n().localize('common_copy_success'))
+            // https://www.payoneer.com/
+            alert('666')
+		})
     })
-   
-
-    // 查看公会成员用户信息。。
-    fn = function (uid) {
-        console.log('---uid---:', uid);
-        _YM_JSBridge.openUserInfo(uid)
-    }
-
-    // 禁用头部滑动事件。。
-    $('.container').on("touchstart", function (params) {
-        // console.log('I touch you');
-        $('body').css({"overflow":"hidden"});
-    });
-    $('.container').on("touchmove", function (params) {
-        // console.log('move');
-        $('body').css({"overflow":"hidden"});
-    });
-    $('.container').on("touchend", function (params) {
-        // console.log('leave');
-        $('body').css({"overflow":"auto"});
-    });
 
 })();

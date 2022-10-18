@@ -98,6 +98,7 @@ body {
   color: #1B1C33;
 }
 .btn {
+  width: 94%;
   height: 2.6667rem;
   background: linear-gradient(270deg, #FF8386 0%, #FFA3A6 100%);
   box-shadow: 0px 2px 20px 0px rgba(255, 131, 134, 0.4);
@@ -109,8 +110,8 @@ body {
   border: none;
   position: fixed;
   bottom: 0.48rem;
-  left: 0.8rem;
-  right: 0.8rem;
+  left: 50%;
+  transform: translate(-50%);
 }
 .hint_view {
   width: 14.9333rem;
@@ -123,6 +124,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 0.6933rem 1.12rem 1.28rem 1.12rem;
+  display: none;
 }
 .hint_view .hint_view_title {
   display: flex;
@@ -159,5 +161,15 @@ body {
   z-index: 99;
   position: fixed;
   top: 0;
-  display: block;
+  display: none;
+}
+.bottom_ul {
+  width: 100%;
+  height: 50%;
+  position: fixed;
+  bottom: -50%;
+  left: 0;
+  background-color: #257FE4;
+  transition: all 0.5s ease-in;
+  z-index: 999;
 }
