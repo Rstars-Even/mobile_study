@@ -33,22 +33,14 @@ body {
   padding: 0 0.8rem;
 }
 .box .box_content .box_content_us {
-  font-size: 1.0667rem;
-  font-family: DIN-Bold, DIN;
-  font-weight: bold;
-  color: #1B1C33;
+  font-size: 0.7467rem;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #C4C4CC;
 }
-.box .box_content .box_content_num {
-  display: flex;
-  align-items: center;
-  font-size: 0.8rem;
-  font-family: DIN-Bold, DIN;
-  font-weight: bold;
-  color: #1B1C33;
-}
-.box .box_content .box_content_num img {
-  width: 0.9333rem;
-  height: 0.9333rem;
+.box .box_content img {
+  width: 0.3733rem;
+  height: 0.6933rem;
 }
 .box2 .box2_title {
   display: flex;
@@ -165,11 +157,75 @@ body {
 }
 .bottom_ul {
   width: 100%;
-  height: 50%;
+  height: 20.8rem;
   position: fixed;
-  bottom: -50%;
+  bottom: -20.8rem;
   left: 0;
-  background-color: #257FE4;
+  background-color: #FFFFFF;
   transition: all 0.5s ease-in;
   z-index: 999;
+  padding: 0.96rem 0.8rem;
+  border-radius: 1.0667rem 1.0667rem 0 0;
+}
+.bottom_ul .bottom_ul_title {
+  display: flex;
+  margin-bottom: 1.6533rem;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+.bottom_ul .bottom_ul_title p {
+  font-size: 0.9067rem;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #1B1C33;
+}
+.bottom_ul .bottom_ul_title .bottom_ul_title_yve {
+  font-size: 0.7467rem;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #8D8E99;
+}
+.bottom_ul .bottom_ul_title .bottom_ul_title_num {
+  font-size: 0.6933rem;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #FF8386;
+}
+.bottom_ul ul {
+  margin: 0;
+}
+.bottom_ul ul li {
+  width: 100%;
+  height: 3.2rem;
+  margin-bottom: 0.5333rem;
+  background: #F8F4FF;
+  border-radius: 1.0667rem;
+  padding: 0 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.bottom_ul ul li .bottom_li_us {
+  font-size: 1.0667rem;
+  font-family: DIN-Bold, DIN;
+  font-weight: bold;
+  color: #1B1C33;
+}
+.bottom_ul ul li button {
+  width: 4.2667rem;
+  height: 1.92rem;
+  border-radius: 0.96rem;
+  border: none;
+  display: flex;
+  align-items: center;
+}
+.bottom_ul ul li button img {
+  width: 0.9067rem;
+  height: 0.9067rem;
+}
+.bottom_ul ul li button span {
+  font-size: 0.8rem;
+  font-family: DIN-Bold, DIN;
+  font-weight: bold;
+  color: #FFFFFF;
 }
