@@ -218,6 +218,8 @@ body {
   border: none;
   display: flex;
   align-items: center;
+  justify-content: space-evenly;
+  background-color: #997DFE;
 }
 .bottom_ul ul li button img {
   width: 0.9067rem;
