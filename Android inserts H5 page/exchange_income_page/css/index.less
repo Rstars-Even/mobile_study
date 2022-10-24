@@ -39,24 +39,35 @@ body {
         justify-content: space-between;
         align-items: center;
         padding: 0 .8rem;
-        // .box_content_us {
-        //     font-size: 1.0667rem;
-        //     font-family: DIN-Bold, DIN;
-        //     font-weight: bold;
-        //     color: #1B1C33;
-        // }
-        // .box_content_num {
-        //     display: flex;
-        //     align-items: center;
-        //     font-size: .8rem;
-        //     font-family: DIN-Bold, DIN;
-        //     font-weight: bold;
-        //     color: #1B1C33;
-        //     img {
-        //         width: .9333rem;
-        //         height: .9333rem;
-        //     }
-        // }
+        .box_content_us1 {
+            font-size: 1.0667rem;
+            font-family: DIN-Bold, DIN;
+            font-weight: bold;
+            color: #1B1C33;
+        }
+        .box_content_num {
+            width: 25%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: .8rem;
+            font-family: DIN-Bold, DIN;
+            font-weight: bold;
+            color: #1B1C33;
+            .box_content_num_diamond {
+                display: flex;
+                align-items: center;
+                img {
+                    width: .9333rem;
+                    height: .9333rem;
+                }
+            }
+            .box_content_num_img {
+                width: .3733rem;
+                height: .6933rem;
+            }
+        }
+        // 未选择时的样式。。
         .box_content_us {
             font-size: .7467rem;
             font-family: PingFangSC-Regular, PingFang SC;
@@ -95,6 +106,7 @@ body {
         padding: .5333rem .8rem;
         display: flex;
         align-items: center;
+        margin-bottom: 1.0667rem;
         .box2_content_img {
             width: 2.6667rem;
             height: 2.6667rem;
@@ -103,8 +115,8 @@ body {
             margin-right: .8rem;
             position: relative;
             img {
-                width: 2.48rem;
-                height: .96rem;
+                // width: 2.48rem;
+                // height: .96rem;
                 position: absolute;
                 top: 50%;
                 left: 50%;
@@ -117,6 +129,9 @@ body {
             font-weight: 400;
             color: #1B1C33;
         }
+    }
+    .box2_yinhangka {
+        
     }
 }
 // 提现按钮。。
@@ -205,6 +220,7 @@ body {
     z-index: 999;
     padding: .96rem .8rem;
     border-radius: 1.0667rem 1.0667rem 0 0;
+    overflow-y: scroll;
     .bottom_ul_title {
         display: flex;
         margin-bottom: 1.6533rem;
@@ -270,3 +286,6 @@ body {
         }
     }
 }
+// .show_selects {
+//     display: none !important;
+// }

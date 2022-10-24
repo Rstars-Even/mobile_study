@@ -32,6 +32,34 @@ body {
   align-items: center;
   padding: 0 0.8rem;
 }
+.box .box_content .box_content_us1 {
+  font-size: 1.0667rem;
+  font-family: DIN-Bold, DIN;
+  font-weight: bold;
+  color: #1B1C33;
+}
+.box .box_content .box_content_num {
+  width: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  font-family: DIN-Bold, DIN;
+  font-weight: bold;
+  color: #1B1C33;
+}
+.box .box_content .box_content_num .box_content_num_diamond {
+  display: flex;
+  align-items: center;
+}
+.box .box_content .box_content_num .box_content_num_diamond img {
+  width: 0.9333rem;
+  height: 0.9333rem;
+}
+.box .box_content .box_content_num .box_content_num_img {
+  width: 0.3733rem;
+  height: 0.6933rem;
+}
 .box .box_content .box_content_us {
   font-size: 0.7467rem;
   font-family: PingFangSC-Regular, PingFang SC;
@@ -66,6 +94,7 @@ body {
   padding: 0.5333rem 0.8rem;
   display: flex;
   align-items: center;
+  margin-bottom: 1.0667rem;
 }
 .box2 .box2_content .box2_content_img {
   width: 2.6667rem;
@@ -76,8 +105,6 @@ body {
   position: relative;
 }
 .box2 .box2_content .box2_content_img img {
-  width: 2.48rem;
-  height: 0.96rem;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -166,6 +193,7 @@ body {
   z-index: 999;
   padding: 0.96rem 0.8rem;
   border-radius: 1.0667rem 1.0667rem 0 0;
+  overflow-y: scroll;
 }
 .bottom_ul .bottom_ul_title {
   display: flex;

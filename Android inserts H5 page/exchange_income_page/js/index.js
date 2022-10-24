@@ -43,7 +43,7 @@
      */
     let userInfo = {
         uid: '102',
-        ticket: "96b3e9b5deec035aa37040dcfd3f6f29",
+        ticket: "6c673b53cb15a29b1c1c2dc53744b29e",
     }
 
 
@@ -198,7 +198,6 @@
 
     // 简易请求封装。。
     function defRequest (param) {
-       
         param.data = {
             ...param.data,
             ...deviceInfo,
@@ -253,81 +252,86 @@
         })
     }
 
+    // 获取可兑换的钻石列表。。
+    function get_diamond_select () {
+        defRequest({
+            method: 'get',
+            url: '/api/user/purse/costDiamond',
+            data: {
+                type: 2,
+            }
+        }).then(res => {
+            console.log('res-------提现列表选项--------:', res);
 
-    // function guild_getInfo () {
-    //     defRequest({
-    //         method: 'get',
-    //         url: 'api/guild/getInfo',
-    //         data: {
-    //             type: pageData.type,
-    //             pageNum: pageData.pageNum,
-    //             pageSize: pageData.pageSize
-    //         }
-    //     }).then(res => {
-    //         console.log('res---------------:', res);
+            if (res.code === 200) {
+                let datas = res.data;
+            
+                $('.bottom_ul_box>li').remove();    //先清空，在创建。
+                creat_item(datas)
+            }
+        })
+        .catch(err => {
+            defToast(err.message)
+        })
+    }
+    // 获取用户的钻石总数。。
+    let diamondNum = 5000;
+    function get_diamond () {
+        defRequest({
+            method: 'get',
+            url: '/api/user/purse/getPurse',
+            // data: {
+            //     type: 2,
+            // }
+        }).then(res => {
+            console.log('res-------钻石数量--------:', res);
 
-    //             if (res.code === 200) {
-    //                 // 工会信息。。
-    //                 let datas = res.data.guild;
-    //                 $('.header_content_name').html(datas.title);
-    //                 $('.header_userid').html(datas.id);
-    //                 $('.header_num').html(datas.userNum);
-    //                 $('.content_nums_num').html(res.data.diamond);
-
-    //                 console.log('+++++res.data.userList.length:', res.data.userList.length)
-    //                 if (res.data.userList.length == 0 ) {
-                        
-    //                     $(window).off("scroll", handle); //卸载滚动事件
-    //                     return false;
-    //                 }
-    //                 creat_item(res)
-    //             }
-    //         })
-    //     .catch(err => {
-    //         defToast(err.message)
-    //     })
-    // }
-    // guild_getInfo ()
+            if (res.code === 200) {
+                let datas = res.data.diamondNum;
+                $('.bottom_ul_title_num').html(datas);
+            }
+        })
+        .catch(err => {
+            defToast(err.message)
+        })
+    }
 
 
-    // let isactive = false;
-    // // 动态创建列表数据。。
-    // let creat_item = function (res) {
-    //     let data = res.data.userList;
-    //     let table_ul_li = ''
+    // 动态创建兑换提现列表数据。。
+    let creat_item = function (data) {
+        let table_ul_li = ''
 
-    //     for (let index = 0; index < data.length; index++) {
+        for (let index = 0; index < data.length; index++) {
 
-    //         table_ul_li += `
-    //             <li class="table_ul_li">
-    //                 <div class="table_li_item" onclick="fn(${data[index].uid})">
-    //                     <img src="${data[index].avatar}" alt="" class="table_li_img"/>
-    //                     <div class="table_li_name_data">
-    //                         <p class="table_li_name">${data[index].nickName}</p>
-    //                         <div class="table_li_icon">
-    //                             <img src="./images/ic-id.png" alt="">
-    //                             <span>${data[index].chatNo}</span>
-    //                         </div>
-    //                     </div>
-    //                 </div>
-                
-    //                 <div class="table_li_num table_num1" id="${isactive ? 'active' : ''}">
-    //                     <span>${data[index].diamond}</span>
-    //                     <span>${data[index].matchNum}</span>
-    //                     <span>${data[index].replyNum}</span>
-    //                 </div>
-    //                 <div class="table_li_num table_num2" id="${!isactive ? 'active' : ''}">
-    //                     <span>${data[index].recvNum}</span>
-    //                     <span>${data[index].days}</span>
-    //                     <span>${data[index].giftNum}</span>
-    //                 </div>
-    //             </li>
-    //         `;
-    //     }
-                    
-    //     $('.table_ul').append(table_ul_li)
-    //     langTranslate ()
-    // }
+            table_ul_li += `
+                <li onclick='select_item(${data[index].amount}, ${data[index].diamond})'>
+                    <div class="bottom_li_us">$ ${data[index].amount}</div>
+                    <button>
+                        <img src="./images/zuanshi.png" alt="">
+                        <span>${data[index].diamond}</span>
+                    </button>
+                </li>
+            `;
+        }
+        $('.bottom_ul_box').append(table_ul_li)
+        langTranslate ()
+    };
+    // 选择要兑换提现的美元/。。。
+    select_item = function (amount, diamond) {
+        console.log('amount, diamond----->:', amount, diamond)
+        if (diamondNum < diamond) {
+            alert('所需的钻石数量不够。。。');
+            return;
+        }
+        $(".show").css({"display":"none"});
+        $(".bottom_ul").css({"bottom":"-20.8rem"});     //隐藏选项框。。
+        
+        $(".show_select").css({"display":"none"});
+        $(".show_selects").css({"display":"flex"});
+        
+        $('.box_content_us1>span').html(amount);
+        $('.box_content_num_diamond>span').html(diamond);
+    }
 
 
     //选择提现金额列表。。。
@@ -335,6 +339,8 @@
         $(".show").css({"display":"block"});
         $(".bottom_ul").css({"bottom":"0"});
         // $(".hint_view").css({"display":"block"});
+        get_diamond ()
+        get_diamond_select ()
     })
     //右侧问号图标按钮是否显示提示框。。。
     $(".box2_title_img").click(function(){

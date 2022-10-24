@@ -14,18 +14,22 @@
     <section class="view">
         <section class="box">
             <div class="box_title">提现金额</div>
-
-            <div class="box_content">
+            <!-- 未选择 -->
+            <div class="box_content show_select">
                 <div class="box_content_us">请选择提现金额</div>
                 <img src="./images/Stroke 1.png" alt="">
             </div>
-            <!-- <div class="box_content">
-                <div class="box_content_us">$10</div>
+            <!-- 已选择 -->
+            <div style="display: none" class="box_content show_selects">
+                <div class="box_content_us1">$ <span>10</span></div>
                 <div class="box_content_num">
-                    <img src="./images/zuanshi.png" alt="">
-                    <span>1000</span>
+                    <div class="box_content_num_diamond">
+                        <img src="./images/zuanshi.png" alt="">
+                        <span>1000</span>
+                    </div>
+                    <img class="box_content_num_img" src="./images/Stroke 1.png" alt="">
                 </div>
-            </div> -->
+            </div>
         </section>
         
         <section class="box2">
@@ -33,9 +37,23 @@
                 <div class="box2_title_text">提现方式</div>
                 <img src="./images/ic_shuoming.png" alt="" class="box2_title_img" />
             </div>
+
+            <!-- 如果用户已经绑定了银行卡。。 -->
+            <div class="box2_yinhangka">
+
+            </div>
+
+            <!-- 用payoneer账户提现 -->
             <div class="box2_content">
                 <div class="box2_content_img">
                     <img src="./images/payoneer.png" alt="">
+                </div>
+                <p>添加提现信息</p>
+            </div>
+            <!-- 用银行卡提现 -->
+            <div class="box2_content">
+                <div class="box2_content_img">
+                    <img src="./images/ic_yinhangka.png" alt="">
                 </div>
                 <p>添加提现信息</p>
             </div>
@@ -53,28 +71,15 @@
                 <span class="bottom_ul_title_num">1000.00</span>
             </div>
         </div>
-        <ul>
-            <li>
+        <ul class="bottom_ul_box">
+            <!-- <li>
                 <div class="bottom_li_us">$ 10</div>
                 <button>
                     <img src="./images/zuanshi.png" alt="">
                     <span>1000</span>
                 </button>
-            </li>
-            <li>
-                <div class="bottom_li_us">$ 20</div>
-                <button>
-                    <img src="./images/zuanshi.png" alt="">
-                    <span>2000</span>
-                </button>
-            </li>
-            <li>
-                <div class="bottom_li_us">$ 50</div>
-                <button>
-                    <img src="./images/zuanshi.png" alt="">
-                    <span>5000</span>
-                </button>
-            </li>
+            </li> -->
+          
         </ul>
     </section>
 
