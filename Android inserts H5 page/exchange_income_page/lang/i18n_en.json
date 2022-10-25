@@ -1,14 +1,3 @@
 {
-    "i18n_anchor_number": "Idols：",
-    "i18n_diamond_number": "Total diamonds：",
-    "i18n_this_week": "This week",
-    "i18n_last_week": "Last week",
-    "i18n_user_info": "User information",
-    "i18n_diamond_income": "Diamond income",
-    "i18n_meet_number": "Met people",
-    "i18n_reply_message": "Reply say hi",
-    "i18n_received_the_news": "Receive messages",
-    "i18n_valid_date": "Valid day",
-    "i18n_new_player_gift": "First charge gift",
-    "i18n_new_agency_center": "Agency Center"
+    "common_copy_success": "Succeed"
 }

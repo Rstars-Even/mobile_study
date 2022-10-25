@@ -116,6 +116,73 @@ body {
   font-weight: 400;
   color: #1B1C33;
 }
+.box2 .box2_yinhangka {
+  width: 100%;
+  height: 6.5067rem;
+  background: url("../images/bg_yinhangka.png") no-repeat;
+  background-size: cover;
+  margin-bottom: 1.0667rem;
+  color: #FFFFFF;
+}
+.box2 .box2_yinhangka .box2_yinhangka_top {
+  width: 100%;
+  height: 4.3733rem;
+  border-bottom: 0.0267rem solid #4B4C62;
+  padding: 0.8rem 0 0.9067rem 0.8rem;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.48rem;
+}
+.box2 .box2_yinhangka .box2_yinhangka_top .box2_yinhangka_top_img {
+  width: 2.6667rem;
+  height: 2.6667rem;
+  background-color: #FFFFFF;
+  border-radius: 0.64rem;
+  margin-right: 0.8rem;
+  position: relative;
+}
+.box2 .box2_yinhangka .box2_yinhangka_top .box2_yinhangka_top_img img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.box2 .box2_yinhangka .box2_yinhangka_top .box2_yinhangka_top_userinfo .box2_yinhangka_userinfo_num {
+  font-size: 0.9067rem;
+  font-family: DIN-Bold, DIN;
+  font-weight: bold;
+  margin-bottom: 0.1867rem;
+}
+.box2 .box2_yinhangka .box2_yinhangka_top .box2_yinhangka_top_userinfo .box2_yinhangka_userinfo_text {
+  font-size: 0.6933rem;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+}
+.box2 .box2_yinhangka .box2_yinhangka_bottom {
+  display: flex;
+  width: 100%;
+  font-size: 0.6933rem;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+}
+.box2 .box2_yinhangka .box2_yinhangka_bottom .box2_yinhangka_bottom_left {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.box2 .box2_yinhangka .box2_yinhangka_bottom .box2_yinhangka_bottom_right {
+  width: 50%;
+  border-left: 0.0267rem solid #4B4C62;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.box2 .box2_yinhangka .box2_yinhangka_bottom img {
+  width: 0.6933rem;
+  height: 0.6933rem;
+  margin-right: 0.2667rem;
+}
 .btn {
   width: 94%;
   height: 2.6667rem;
@@ -134,7 +201,7 @@ body {
 }
 .hint_view {
   width: 14.9333rem;
-  height: 26.9467rem;
+  height: 30.9467rem;
   background: #FFFFFF;
   border-radius: 1.3333rem;
   position: fixed;

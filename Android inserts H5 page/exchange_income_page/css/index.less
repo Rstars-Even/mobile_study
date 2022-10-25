@@ -131,7 +131,77 @@ body {
         }
     }
     .box2_yinhangka {
-        
+        // width: 18.4rem;
+        width: 100%;
+        height: 6.5067rem;
+        background: url("../images/bg_yinhangka.png") no-repeat;
+        background-size: cover;
+        margin-bottom: 1.0667rem;
+        color: #FFFFFF;
+        .box2_yinhangka_top {
+            width: 100%;
+            height: 4.3733rem;
+            // opacity: 0.2;
+            border-bottom: .0267rem solid #4B4C62;
+            padding: .8rem 0 .9067rem .8rem;
+            display: flex;
+            align-items: center;
+            margin-bottom: .48rem;
+            .box2_yinhangka_top_img {
+                width: 2.6667rem;
+                height: 2.6667rem;
+                background-color: #FFFFFF;
+                border-radius: .64rem;
+                margin-right: .8rem;
+                position: relative;
+                img {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                }
+            }
+            .box2_yinhangka_top_userinfo {
+                .box2_yinhangka_userinfo_num {
+                    font-size: .9067rem;
+                    font-family: DIN-Bold, DIN;
+                    font-weight: bold;
+                    margin-bottom: .1867rem;
+                }
+                .box2_yinhangka_userinfo_text {
+                    font-size: .6933rem;
+                    font-family: PingFangSC-Regular, PingFang SC;
+                    font-weight: 400;
+                }
+            }
+        }
+        .box2_yinhangka_bottom{
+            display: flex;
+            width: 100%;
+            font-size: .6933rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            // padding-bottom: .4533rem;
+            .box2_yinhangka_bottom_left {
+                width: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center; 
+            }
+            .box2_yinhangka_bottom_right {
+                width: 50%;
+                // opacity: 0.2;
+                border-left: .0267rem solid #4B4C62;
+                display: flex;
+                justify-content: center;
+                align-items: center;    
+            }
+            img {
+                width: .6933rem;
+                height: .6933rem;
+                margin-right: .2667rem;
+            }
+        }
     }
 }
 // 提现按钮。。
@@ -156,8 +226,7 @@ body {
 // 问号提示框。。
 .hint_view {
     width: 14.9333rem;
-    // height: 23.9467rem;
-    height: 26.9467rem;
+    height: 30.9467rem;
     background: #FFFFFF;
     border-radius: 1.3333rem;
     position: fixed;

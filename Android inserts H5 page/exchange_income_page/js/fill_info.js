@@ -1,9 +1,14 @@
+
+// const lang = localStorage.getItem('lang')
+
+		// location.href = `index.html?lang=${ lang }`
 (function () {
     // 调试工具加载
 	const script = document.createElement('script')
 	script.src = './lib/eruda.min.js'
 	document.body.appendChild(script)
 	script.onload = function () { eruda.init() }
+
 
     /**
      * @description 获取客户端类型
@@ -67,7 +72,7 @@
         deviceId: '001',
         fcmToken: 'fcmToken',
         imei: '001',
-        lang: 'vi',
+        lang: 'en',
         os: 'android',
         brand: 'Huawei',
         model: 'P40 pro',
@@ -174,7 +179,7 @@
 	const lang = deviceInfo.lang || 'zh'
 	document.body.setAttribute('data-lang', lang)
 	localStorage.setItem('lang', lang)
-    
+
     function langTranslate () {
         const $i18n = $.i18n()
         $i18n.locale = lang
@@ -193,7 +198,6 @@
             }
         )
     }
-    langTranslate ()    //国际化。。
 
 
     // 简易请求封装。。
@@ -252,20 +256,32 @@
         })
     }
 
-    // 获取可兑换的钻石列表。。
-    function get_diamond_select () {
+
+    //选择提现金额列表。。。
+    $(".box2_title").click(function(){
+        $(".show").css({"display":"block"});
+        $(".bottom_ul").css({"bottom":"0"});
+    });
+    // 选择要绑定的银行。。确定
+    $(".bottom_ul_title_ok").click(function(){
+        $(".show").css({"display":"none"});
+        $(".bottom_ul").css({"bottom":"-20.8rem"});
+    })
+
+
+     // 获取可绑定的银行卡列表。。
+    function get_bnak_list () {
         defRequest({
             method: 'get',
-            url: '/api/user/purse/costDiamond',
-            data: {
-                type: 2,
-            }
+            url: '/api/user/purse/bankList',
+            // data: {
+            //     type: 2,
+            // }
         }).then(res => {
-            console.log('res-------提现列表选项--------:', res);
+            console.log('res-------银行卡列表--------:', res);
 
             if (res.code === 200) {
                 let datas = res.data;
-            
                 $('.bottom_ul_box>li').remove();    //先清空，在创建。
                 creat_item(datas)
             }
@@ -274,92 +290,26 @@
             defToast(err.message)
         })
     }
-    // 获取用户的钻石总数。。
-    let diamondNum = 5000;
-    function get_diamond () {
-        defRequest({
-            method: 'get',
-            url: '/api/user/purse/getPurse',
-            // data: {
-            //     type: 2,
-            // }
-        }).then(res => {
-            console.log('res-------钻石数量--------:', res);
+    get_bnak_list ()
 
-            if (res.code === 200) {
-                let datas = res.data.diamondNum;
-                $('.bottom_ul_title_num').html(datas);
-            }
-        })
-        .catch(err => {
-            defToast(err.message)
-        })
-    }
-
-
-    // 动态创建兑换提现列表数据。。
+     // 动态创建银行卡列表数据。。
     let creat_item = function (data) {
         let table_ul_li = ''
 
         for (let index = 0; index < data.length; index++) {
 
             table_ul_li += `
-                <li onclick='select_item(${data[index].amount}, ${data[index].diamond})'>
-                    <div class="bottom_li_us">$ ${data[index].amount}</div>
-                    <button>
-                        <img src="./images/zuanshi.png" alt="">
-                        <span>${data[index].diamond}</span>
-                    </button>
+                <li class="">
+                    <div>
+                        <img src="${data[index].logo}" alt="">
+                        <span>${data[index].bankName}</span>
+                    </div>
+                    <img class="ul_li_imgs" src="./images/icon／勾选.png" alt="">
                 </li>
             `;
         }
         $('.bottom_ul_box').append(table_ul_li)
         langTranslate ()
     };
-    // 选择要兑换提现的美元/。。。
-    select_item = function (amount, diamond) {
-        console.log('amount, diamond----->:', amount, diamond)
-        if (diamondNum < diamond) {
-            alert('所需的钻石数量不够。。。');
-            return;
-        }
-        $(".show").css({"display":"none"});
-        $(".bottom_ul").css({"bottom":"-20.8rem"});     //隐藏选项框。。
-        
-        $(".show_select").css({"display":"none"});
-        $(".show_selects").css({"display":"flex"});
-        
-        $('.box_content_us1>span').html(amount);
-        $('.box_content_num_diamond>span').html(diamond);
-    }
-
-
-    //选择提现金额列表。。。
-    $(".box_content").click(function(){
-        $(".show").css({"display":"block"});
-        $(".bottom_ul").css({"bottom":"0"});
-        // $(".hint_view").css({"display":"block"});
-        get_diamond ()
-        get_diamond_select ()
-    })
-    //右侧问号图标按钮是否显示提示框。。。
-    $(".box2_title_img").click(function(){
-        $(".show").css({"display":"block"});
-        $(".hint_view").css({"display":"block"});
-    })
-    // 点击关闭提示框。。
-    $(".hint_view_title_off").click(function(){
-        $(".hint_view").css({"display":"none"});
-        $(".show").css({"display":"none"});
-    })
-    // 点击复制Payoneer地址。
-    $(".copy").click(function(){
-        const clipBoard = new ClipboardJS('.copy')
-		clipBoard.on('success', e => {
-			defToast($.i18n().localize('common_copy_success'))
-            // https://www.payoneer.com/
-            // alert('666')
-		})
-    })
 
 })();
