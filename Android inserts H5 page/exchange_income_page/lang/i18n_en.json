@@ -1,3 +1,32 @@
 {
-    "common_copy_success": "Succeed"
+    "common_copy_success": "Succeed",
+    "i18n_withdraw": "Withdraw",
+    "i18n_withdraws": "Withdraw",
+    "i18n_withdrawal_way": "Withdrawal way",
+    "i18n_select_amount": "Please select the amount",
+    "i18n_delete": "Delete",
+    "i18n_edit": "Edit",
+    "i18n_add_account": "Add withdrawal account",
+    "i18n_confirm": "Confirm",
+    "i18n_balance": "Balance：",
+    "i18n_current": "Current",
+    "i18n_withdrawal_information": "Withdrawal information",
+    "i18n_select_bank": "Select Bank",
+    "i18n_submit": "Submit",
+    "i18n_bank_account": "Bank account",
+    "i18n_enter_account": "Please enter account",
+    "i18n_real_name": "Real name",
+    "i18n_enter_real_name": "Please enter real name",
+    "i18n_payoneer_email_account": "Payoneer email account",
+    "i18n_payoneer_name": "Payoneer name",
+    "i18n_enter_name": "Please enter name",
+    "i18n_description": "Description",
+
+    "i18n_description_title1": "Withdraw through Payoneer, you have to enter the payoneer email account (Required) and payoneer name( Optional), you can withdraw after you bind successfully;",
+    "i18n_description_title2": "Withdraw through bank card, you have to provide the bank name, bank account and real name, you can withdraw after you bind successfully;",
+    "i18n_description_content1": "1.Payoneer account is not provided by sukie, you need to go to Payoneer official website to register by yourself (click to copy Payoneer address); under 18 cannot register;",
+    "i18n_description_content2": "2.Bind the Payoneer account on Sukie (the email information filled in during registration) to withdraw money;",
+    "i18n_description_content3": "3.After the application for withdrawal is successful, the withdrawal amount will be issued to the submitted withdrawal method account within 7 working days (from the date of withdrawal);",
+    "i18n_description_content4": "4.Use Payoneer account to withdraw money to your local bank card. The specific handling fee is determined by Payoneer official and has nothing to do with this platform.",
+    "i18n_description_content5": "5.To withdraw cash by bank card, it will be transferred to the personal local bank card in Vietnamese dong. The fixed exchange rate is 1 USD = 24000 VND, and the withdrawal fee is fixed at 2% + 1500 VND;"
 }

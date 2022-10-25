@@ -1,3 +1,32 @@
 {
-    "common_copy_success": "Đã copy"
+    "common_copy_success": "Đã copy",
+    "i18n_withdraw": "Đổi thu lợi",
+    "i18n_withdraws": "Số tiền rút",
+    "i18n_withdrawal_way": "Phương thức rút tiền",
+    "i18n_select_amount": "Vui lòng chọn số tiền rút",
+    "i18n_delete": "Xóa",
+    "i18n_edit": "Soạn",
+    "i18n_add_account": "Thêm thông tin rút tiền",
+    "i18n_confirm": "Xác nhận rút tiền",
+    "i18n_balance": "Số dư kim cương：",
+    "i18n_current": "Phương thức hiện nay",
+    "i18n_withdrawal_information": "Nhập thông tin rút tiền",
+    "i18n_select_bank": "Chọn ngân hàng",
+    "i18n_submit": "Xác nhận",
+    "i18n_bank_account": "Số tài khoản ngân hàng",
+    "i18n_enter_account": "Nhập STK ngân hàng",
+    "i18n_real_name": "Họ tên chân thật",
+    "i18n_enter_real_name": "Vui lòng nhập họ tên",
+    "i18n_payoneer_email_account": "Tài khoản payoneer",
+    "i18n_payoneer_name": "Tên tài khoản",
+    "i18n_enter_name": "Vui lòng nhập tên tài khoản",
+    "i18n_description": "Hướng dẫn rút tiền",
+
+    "i18n_description_title1": "Rút tiền bằng payoneer, cần nhập địa chỉ email tài khoản(bắt buộc) và tên tài khoản(tùy chọn) payoneer, có thể rút tiền sau khi rằng buộc thanh công tài khoản Payoneer;",
+    "i18n_description_title2": "Rút tiền bằng thẻ ngân hàng, vui lòng nhập đầy đủ tên ngân hàng, số tài khoản ngân hàng, họ tên chính chủ, có thể rút tiền sau khi rằng buộc thành công;",
+    "i18n_description_content1": "1.Tài khoản Payoneer không phải do nền tảng Sukie cung cấp, mời bạn truy cập trang web chính thức của Payoneer để đăng ký(click copy địa chỉ Payoneer); chưa đủ 18 tuổi không thể đăng ký;",
+    "i18n_description_content2": "2.Rằng buộc tài khoản Payoeenr trên nền tảng Sukie( Thông tin email là email lúc đăng ký tài khoản Payoneer), bạn sẽ có thể rút tiền;",
+    "i18n_description_content3": "3.Sau khi xin rút tiền thành công, số tiền rút sẽ chuyển về tài khoản nhận tiền trong vòng 7 ngày làm việc(kể từ ngày xin rút tiền);",
+    "i18n_description_content4": "4.Sử dụng tài khoản payoneer rút tiền về số tài khoản ngân hàng địa phương của bạn, phí thủ tục do Payoneer quyết định, không liên quan đến nền tảng Sukie.",
+    "i18n_description_content5": "5.Rút tiền bằng hình thức thẻ ngân hàng, Sukie sẽ chuyển tiền VNĐ vào STK ngân hàng của bạn, rate 1$=24000 VNĐ, phí rút tiền cố định: 2%+1500 VNĐ."
 }

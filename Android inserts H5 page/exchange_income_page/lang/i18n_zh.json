@@ -1,3 +1,32 @@
 {
-    "common_copy_success": "复制成功"
+    "common_copy_success": "复制成功",
+    "i18n_withdraw": "兑换收益",
+    "i18n_withdraws": "提现金额",
+    "i18n_withdrawal_way": "提现方式",
+    "i18n_select_amount": "请选择提现金额",
+    "i18n_delete": "删除",
+    "i18n_edit": "编辑",
+    "i18n_add_account": "添加提现信息",
+    "i18n_confirm": "确认提现",
+    "i18n_balance": "钻石余额：",
+    "i18n_current": "当前方式",
+    "i18n_withdrawal_information": "提现信息填写",
+    "i18n_select_bank": "选择银行",
+    "i18n_submit": "确定",
+    "i18n_bank_account": "银行账号",
+    "i18n_enter_account": "请输入账号",
+    "i18n_real_name": "真实姓名",
+    "i18n_enter_real_name": "请输入真实姓名",
+    "i18n_payoneer_email_account": "Payoneer帐号",
+    "i18n_payoneer_name": "用户名",
+    "i18n_enter_name": "请输入用户名",
+    "i18n_description": "体现说明",
+
+    "i18n_description_title1": "使用Payoneer提现，需填写Payoneer帐号的邮箱（必填）和用户名（选填），成功绑定Payoneer帐号后可发起提现；",
+    "i18n_description_title2": "使用银行卡提现，需完整填写银行名称、银行账号、真实姓名，成功绑定后可发起提现；",
+    "i18n_description_content1": "1、Payoneer帐号非本平台提供，需前往Payoneer官网自行注册（点击复制Payoneer地址）；未满18岁无法注册；",
+    "i18n_description_content2": "2、在本平台绑定Payoneer帐号（为注册时填写的邮箱信息），即可进行提现；",
+    "i18n_description_content3": "3、申请提现成功后，提现款项将在7个工作日内（自提现日起）发放至提交的提现方式账号上；",
+    "i18n_description_content4": "4、使用Payoneer帐号提现款项至个人当地的银行卡，具体手续费由Payoneer官方而定，与本平台无关。",
+    "i18n_description_content5": "5、使用银行卡提现款，将以越南盾的方式打到个人的当地银行卡，固定汇率1 USD = 24000 VND，提现手续费固定为2%+1500VND；"
 }
