@@ -41,8 +41,8 @@
      * @param {string} userInfo.ticket 用户登录ticket
      */
     let userInfo = {
-        uid: '102',
-        ticket: "a6e7ef1ee1d8e5d1f269470af488d6b3",
+        uid: '100',
+        ticket: "2ded721532f0f270c0b44f087ee4e615",
     }
 
 
@@ -275,7 +275,7 @@
         })
     }
     // 获取用户的钻石总数。。
-    let diamondNum = 5000;
+    let diamondNum = 0;
     function get_diamond () {
         defRequest({
             method: 'get',
@@ -288,6 +288,7 @@
 
             if (res.code === 200) {
                 let datas = res.data.diamondNum;
+                diamondNum = datas;
                 $('.bottom_ul_title_num').html(datas);
             }
         })
@@ -320,7 +321,8 @@
     select_item = function (amount, diamond) {
         console.log('amount, diamond----->:', amount, diamond)
         if (diamondNum < diamond) {
-            alert('所需的钻石数量不够。。。');
+            // alert('所需的钻石数量不够。。。');
+			defToast($.i18n().localize('common_copy_success'))
             return;
         }
         $(".show").css({"display":"none"});
@@ -334,14 +336,26 @@
     }
 
 
-    //选择提现金额列表。。。
+    //选择提现钻石列表。。。
     $(".box_content").click(function(){
-        $(".show").css({"display":"block"});
+        $(".shows").css({"display":"block"});
         $(".bottom_ul").css({"bottom":"0"});
         // $(".hint_view").css({"display":"block"});
-        get_diamond ()
-        get_diamond_select ()
+
+        let ul_length = $(".bottom_ul_box").children("li").length;
+        console.log('ul_le----------->', ul_length);
+
+        if ( ul_length <= 0 ) {
+            get_diamond ()
+            get_diamond_select ()
+        }
     })
+    // 点击蒙层关闭钻石提现列表。。
+    $(".shows").click(function(){
+        $(".shows").css({"display":"none"});
+        $(".bottom_ul").css({"bottom":"-20.8rem"});     //隐藏选项框。。
+    })
+
     //右侧问号图标按钮是否显示提示框。。。
     $(".box2_title_img").click(function(){
         $(".show").css({"display":"block"});
@@ -361,5 +375,100 @@
             // alert('666')
 		})
     })
+
+
+     // 获取用户已经绑定的银行卡。。
+    function get_bind_bank_card () {
+        defRequest({
+            method: 'get',
+            url: '/api/user/purse/getPayonner',
+            // data: {
+            //     type: 2,
+            // }
+        }).then(res => {
+            console.log('res-------已经绑定过的银行卡--------:', res);
+
+            if (res.code === 200) {
+               creat_bank_card(res.data);
+            }
+        })
+        .catch(err => {
+            defToast(err.message)
+        })
+    };
+    get_bind_bank_card ();
+
+     // 动态创建用户已经绑定的银行卡列表数据。。
+    let creat_bank_card = function (data) {
+        let bank_card_item = ''
+
+        for (let index = 0; index < data.length; index++) {
+
+            bank_card_item += `
+                <div class="box2_yinhangka">
+                    <div class="box2_yinhangka_top" onclick='select_bank_card(${index})'>
+                        <div class="box2_yinhangka_top_img">
+                            <img src="${data[index].bank.logo}" alt="">
+                        </div>
+                        <div class="box2_yinhangka_top_userinfo">
+                            <p class="box2_yinhangka_userinfo_num">${data[index].email}</p>
+                            <p class="box2_yinhangka_userinfo_text">${data[index].userName}</p>
+                        </div>
+
+                        <div class="selected">当前方式</div>
+                    </div>
+                    <div class="box2_yinhangka_bottom">
+                        <div class="box2_yinhangka_bottom_left" onclick='del_bank_crad()'>
+                            <img src="./images/chengyuan_ic_delete.png" alt="">
+                            <span>删除</span>
+                        </div>
+                        <div class="box2_yinhangka_bottom_right" onclick='edit_bank_crad()'>
+                            <img src="./images/zhuye_ic_bianji.png" alt="">
+                            <span>编辑</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        $('.box_bank_card').append(bank_card_item);
+
+        $('.box_bank_card .box2_yinhangka:first-child .box2_yinhangka_top .selected').show();
+        langTranslate ()
+    };
+
+    //选择银行卡事件。。
+    select_bank_card = function (index) {
+        console.log('index', index);
+        
+        $('.selected').hide();
+        $(`.box_bank_card .box2_yinhangka:nth-child(${index + 1}) .box2_yinhangka_top .selected`).show();
+    };
+    // 删除银行卡事件。。
+    del_bank_crad = function() {
+        console.log('del_bank_crad', 666);
+    }
+    // 编辑银行卡事件。。
+    edit_bank_crad = function() {
+        console.log('edit_bank_crad', 999);
+    }
+    // $(".box_bank_card").on('click', '.box2_yinhangka_top', function() {
+    //     console.log('index', 54);
+    // });
+
+
+    // 确认提现。。。
+    $('.btn').click(function() {
+        // if (condition) {
+        //     return
+        // }
+
+        $(".show").css({"display":"block"});
+        $(".enter_password_box").css({"display":"block"});
+    })
+    // 
+    $('.enter_password_off').click(function() {
+        $(".show").css({"display":"none"});
+        $(".enter_password_box").css({"display":"none"});
+    });
 
 })();

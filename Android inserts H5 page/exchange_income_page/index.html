@@ -39,26 +39,30 @@
             </div>
 
             <!-- 如果用户已经绑定了银行卡。。 -->
-            <div class="box2_yinhangka">
-                <div class="box2_yinhangka_top">
-                    <div class="box2_yinhangka_top_img">
-                        <img src="./images/payoneer.png" alt="">
+            <div class="box_bank_card">
+                <!-- <div class="box2_yinhangka">
+                    <div class="box2_yinhangka_top">
+                        <div class="box2_yinhangka_top_img">
+                            <img src="./images/payoneer.png" alt="">
+                        </div>
+                        <div class="box2_yinhangka_top_userinfo">
+                            <p class="box2_yinhangka_userinfo_num">3033 **** 1998</p>
+                            <p class="box2_yinhangka_userinfo_text">青椒</p>
+                        </div>
+
+                        <div class="selected">当前方式</div>
                     </div>
-                    <div class="box2_yinhangka_top_userinfo">
-                        <p class="box2_yinhangka_userinfo_num">3033 **** 1998</p>
-                        <p class="box2_yinhangka_userinfo_text">青椒</p>
+                    <div class="box2_yinhangka_bottom">
+                        <div class="box2_yinhangka_bottom_left">
+                            <img src="./images/chengyuan_ic_delete.png" alt="">
+                            <span>删除</span>
+                        </div>
+                        <div class="box2_yinhangka_bottom_right">
+                            <img src="./images/zhuye_ic_bianji.png" alt="">
+                            <span>编辑</span>
+                        </div>
                     </div>
-                </div>
-                <div class="box2_yinhangka_bottom">
-                    <div class="box2_yinhangka_bottom_left">
-                        <img src="./images/chengyuan_ic_delete.png" alt="">
-                        <span>删除</span>
-                    </div>
-                    <div class="box2_yinhangka_bottom_right">
-                        <img src="./images/zhuye_ic_bianji.png" alt="">
-                        <span>编辑</span>
-                    </div>
-                </div>
+                </div> -->
             </div>
 
             <!-- 用payoneer账户提现 -->
@@ -118,6 +122,25 @@
     </section>
     <!-- // 遮罩。 -->
     <section class="show"></section>
+    <section class="shows"></section>
+
+    <!-- 验证密码框。。 -->
+    <section class="enter_password_box">
+        <div class="enter_password">
+            <div class="enter_password_title">验证交易密码</div>
+            <img class="enter_password_off" src="./images/ic_guanbi.png" alt="">
+            <div class="enter_password_text">消费1000钻石兑换10$</div>
+            <div class="enter_password_num">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <input maxlength="4" type="text">
+            <div class="enter_password_hint">密码错误（剩余3次机会）</div>
+        </div>
+    </section>
+
 
     <script src="./lib/flexible.js"></script>
     <script src="./lib/jquery.main.js"></script>

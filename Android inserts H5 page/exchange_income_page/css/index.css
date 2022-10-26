@@ -132,6 +132,7 @@ body {
   display: flex;
   align-items: center;
   margin-bottom: 0.48rem;
+  position: relative;
 }
 .box2 .box2_yinhangka .box2_yinhangka_top .box2_yinhangka_top_img {
   width: 2.6667rem;
@@ -157,6 +158,23 @@ body {
   font-size: 0.6933rem;
   font-family: PingFangSC-Regular, PingFang SC;
   font-weight: 400;
+}
+.box2 .box2_yinhangka .box2_yinhangka_top .selected {
+  width: 3.4133rem;
+  height: 1.0133rem;
+  background: #FFD76A;
+  background-size: cover;
+  font-size: 0.5867rem;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #703713;
+  position: absolute;
+  right: 0;
+  top: 0;
+  text-align: center;
+  line-height: 1.0133rem;
+  border-radius: 0px 0.88rem;
+  display: none;
 }
 .box2 .box2_yinhangka .box2_yinhangka_bottom {
   display: flex;
@@ -186,13 +204,12 @@ body {
 .btn {
   width: 94%;
   height: 2.6667rem;
-  background: linear-gradient(270deg, #FF8386 0%, #FFA3A6 100%);
-  box-shadow: 0px 2px 20px 0px rgba(255, 131, 134, 0.4);
+  background: #EBEBEB;
   border-radius: 66px;
   font-size: 0.9067rem;
   font-family: PingFangSC-Regular, PingFang SC;
   font-weight: 400;
-  color: #FFFFFF;
+  color: #C4C4CC;
   border: none;
   position: fixed;
   bottom: 0.48rem;
@@ -240,10 +257,11 @@ body {
 .hint_view .hint_view_text p {
   margin-bottom: 1rem;
 }
-.show {
+.show,
+.shows {
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.5);
   z-index: 99;
   position: fixed;
   top: 0;
@@ -325,4 +343,75 @@ body {
   font-family: DIN-Bold, DIN;
   font-weight: bold;
   color: #FFFFFF;
+}
+.box2 .box2_content:last-child {
+  margin-bottom: 4.2133rem;
+}
+.enter_password_box {
+  position: fixed;
+  z-index: 999;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+}
+.enter_password {
+  width: 14.9333rem;
+  height: 10.6667rem;
+  background: #FFFFFF;
+  border-radius: 1.3333rem;
+  text-align: center;
+  position: relative;
+}
+.enter_password .enter_password_title {
+  display: inline-block;
+  font-size: 0.9067rem;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #1B1C33;
+  margin: 0.6933rem 0 0.64rem 0;
+}
+.enter_password img {
+  width: 0.7467rem;
+  height: 0.7467rem;
+  position: absolute;
+  top: 0.8rem;
+  right: 0.8rem;
+}
+.enter_password .enter_password_text {
+  font-size: 0.6933rem;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #1B1C33;
+  margin-bottom: 1.6267rem;
+}
+.enter_password .enter_password_num {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-bottom: 0.5867rem;
+}
+.enter_password .enter_password_num div {
+  width: 2.6667rem;
+  height: 2.9867rem;
+  background: #F2F2F3;
+  border-radius: 0.64rem;
+}
+.enter_password input {
+  height: 2.9867rem;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 4.8rem;
+  border: 0.0267rem solid red;
+  padding-left: 2.0267rem;
+  letter-spacing: 2.6667rem;
+  caret-color: transparent;
+}
+.enter_password .enter_password_hint {
+  font-size: 0.5867rem;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FF4B3F;
 }
