@@ -1,7 +1,6 @@
 
 // const lang = localStorage.getItem('lang')
 
-		// location.href = `index.html?lang=${ lang }`
 (function () {
     // 调试工具加载
 	const script = document.createElement('script')
@@ -46,8 +45,8 @@
      * @param {string} userInfo.ticket 用户登录ticket
      */
     let userInfo = {
-        uid: '102',
-        ticket: "39e0fa9bb96ddf9dd7cc760b25967b1f",
+        uid: '100',
+        ticket: "63b2aa675652a582ad5e6108a124e5dc",
     }
 
 
@@ -256,6 +255,34 @@
         })
     }
 
+    const url = new URLSearchParams(location.search)
+	// const lang = url.get('lang') || 'cn'
+	const edit_type = url.get('type') || 1
+	const id = url.get('id');
+	const email = url.get('email');
+	const userName = url.get('userName');
+    console.log('填写类型-----------：', edit_type)
+    // 添加payoneer 账号信息填写。。
+    if (edit_type == 1) {
+        $('.box1').css('display','block')
+
+    } else if (edit_type == 2) {        // 添加银行账户信息填写。。。。。
+        $('.box2').css('display','block')
+        $('.bank_info').html('银行账号')
+        get_bnak_list ()
+    } else {        // 修改银行账户信息填写。。。。
+        const bankName = url.get('bankName');
+        const logo = url.get('logo');
+
+        $('.box1').css('display','block');
+        $('.bank_info').html('银行账号');
+        $('.form_num').attr("value", `${email}`);
+        $('.form_userName').attr("value", `${userName}`);
+        $('.box1 span').html(`${bankName}`);
+        $('.box1 img').attr("src", `${logo}`);
+
+    }
+
 
     //选择提现金额列表。。。
     $(".box2_title").click(function(){
@@ -293,13 +320,17 @@
 
                 $('.bottom_ul_box>li').remove();    //先清空，在创建。
                 creat_item(datas)
+
+                //edit==2 时给默认，因用户点击选择银行直接点确定会出现空白。。
+                bankImgSrc = datas[0].logo;
+                bankName = datas[0].bankName;
             }
         })
         .catch(err => {
             defToast(err.message)
         })
     }
-    get_bnak_list ()
+    
 
      // 动态创建银行卡列表数据。。
     let creat_item = function (data) {

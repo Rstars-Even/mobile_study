@@ -41,8 +41,8 @@
      * @param {string} userInfo.ticket 用户登录ticket
      */
     let userInfo = {
-        uid: '102',
-        ticket: "3cb218d75333d94fd15c60abb8fda6fb",
+        uid: '100',
+        ticket: "63b2aa675652a582ad5e6108a124e5dc",
     }
 
 
@@ -426,7 +426,7 @@
                             <img src="./images/chengyuan_ic_delete.png" alt="">
                             <span>删除</span>
                         </div>
-                        <div class="box2_yinhangka_bottom_right" onclick='edit_bank_crad()'>
+                        <div class="box2_yinhangka_bottom_right" onclick="edit_bank_crad('${data[index].id}', '${data[index].email}', '${data[index].userName}', '${data[index].bank.shortName}', '${data[index].bank.logo}')">
                             <img src="./images/zhuye_ic_bianji.png" alt="">
                             <span>编辑</span>
                         </div>
@@ -439,6 +439,7 @@
         $('.box_bank_card .box2_yinhangka:first-child .box2_yinhangka_top .selected').show();
         langTranslate ()
     };
+
 
     //选择银行卡事件。。
     select_bank_card = function (index) {
@@ -461,11 +462,10 @@
         $(".delete").css({"display":"none"});
     })
     // 编辑银行卡事件。。
-    edit_bank_crad = function() {
-        console.log('edit_bank_crad', 999);
-
-
-
+    edit_bank_crad = function(...data) {
+        console.log('edit_bank_crad', data);
+        edit_type = 3;
+        location.href = `fill_info.html?type=${edit_type}&id=${data[0]}&email=${data[1]}&userName=${data[2]}&bankName=${data[3]}&logo=${data[4]}`
 
     }
     // $(".box_bank_card").on('click', '.box2_yinhangka_top', function() {
@@ -473,7 +473,7 @@
     // });
 
 
-    // 确认提现。。。
+    // 确认提现。。。打开输入密码页面。
     $('.btn').click(function() {
         // if (condition) {
         //     return
@@ -483,15 +483,23 @@
         $(".enter_password_box").css({"display":"block"});
         $("body").css({"overflow":"hidden"});
     })
-    // 
+    // 关闭输入密码页面。。
     $('.enter_password_off').click(function() {
         $(".show").css({"display":"none"});
         $(".enter_password_box").css({"display":"none"});
         $("body").css({"overflow":"auto"});
     });
 
-
-
+    //payoneer账号信息添加 
+    let edit_type = 1;
+    $('.payoneer_click').click(function() {
+        location.href = `fill_info.html?type=${edit_type}`
+    })
+    //银行卡账号信息添加 \
+    $('.bank_click').click(function() {
+        edit_type = 2;
+        location.href = `fill_info.html?type=${edit_type}`
+    })
 })();
 
 

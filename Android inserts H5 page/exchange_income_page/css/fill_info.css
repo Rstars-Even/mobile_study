@@ -9,6 +9,7 @@ body {
   }
 }
 .box1 {
+  display: none;
   margin: 0 0.8rem;
 }
 .box1 .box1_title {
@@ -33,6 +34,7 @@ body {
   color: #FFFFFF;
 }
 .box2 {
+  display: none;
   margin: 0 0.8rem;
 }
 .box2 .box2_title {
