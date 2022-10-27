@@ -41,8 +41,8 @@
      * @param {string} userInfo.ticket 用户登录ticket
      */
     let userInfo = {
-        uid: '100',
-        ticket: "2ded721532f0f270c0b44f087ee4e615",
+        uid: '102',
+        ticket: "3cb218d75333d94fd15c60abb8fda6fb",
     }
 
 
@@ -325,7 +325,7 @@
 			defToast($.i18n().localize('common_copy_success'))
             return;
         }
-        $(".show").css({"display":"none"});
+        $(".shows").css({"display":"none"});
         $(".bottom_ul").css({"bottom":"-20.8rem"});     //隐藏选项框。。
         
         $(".show_select").css({"display":"none"});
@@ -338,6 +338,7 @@
 
     //选择提现钻石列表。。。
     $(".box_content").click(function(){
+        $("body").css({"overflow":"hidden"});
         $(".shows").css({"display":"block"});
         $(".bottom_ul").css({"bottom":"0"});
         // $(".hint_view").css({"display":"block"});
@@ -354,17 +355,20 @@
     $(".shows").click(function(){
         $(".shows").css({"display":"none"});
         $(".bottom_ul").css({"bottom":"-20.8rem"});     //隐藏选项框。。
+        $("body").css({"overflow":"auto"});
     })
 
     //右侧问号图标按钮是否显示提示框。。。
     $(".box2_title_img").click(function(){
         $(".show").css({"display":"block"});
         $(".hint_view").css({"display":"block"});
+        $("body").css({"overflow":"hidden"});
     })
     // 点击关闭提示框。。
     $(".hint_view_title_off").click(function(){
         $(".hint_view").css({"display":"none"});
         $(".show").css({"display":"none"});
+        $("body").css({"overflow":"auto"});
     })
     // 点击复制Payoneer地址。
     $(".copy").click(function(){
@@ -446,10 +450,23 @@
     // 删除银行卡事件。。
     del_bank_crad = function() {
         console.log('del_bank_crad', 666);
+        $(".show").css({"display":"block"});
+        $("body").css({"overflow":"hidden"});
+        $(".delete").css({"display":"block"});
     }
+    // 取消删除
+    $('.del_box_click_off').click(function() {
+        $(".show").css({"display":"none"});
+        $("body").css({"overflow":"auto"});
+        $(".delete").css({"display":"none"});
+    })
     // 编辑银行卡事件。。
     edit_bank_crad = function() {
         console.log('edit_bank_crad', 999);
+
+
+
+
     }
     // $(".box_bank_card").on('click', '.box2_yinhangka_top', function() {
     //     console.log('index', 54);
@@ -464,11 +481,32 @@
 
         $(".show").css({"display":"block"});
         $(".enter_password_box").css({"display":"block"});
+        $("body").css({"overflow":"hidden"});
     })
     // 
     $('.enter_password_off').click(function() {
         $(".show").css({"display":"none"});
         $(".enter_password_box").css({"display":"none"});
+        $("body").css({"overflow":"auto"});
     });
 
+
+
 })();
+
+
+$('.password').on('input',function(){           //输入密码事件。。
+    var value = $(this).val();
+    var length = value.length;
+    $('.enter_password_num').find('.li').each(function(i){
+        if (i < length) {
+            $(this).find('.circle').css({display: 'inline-block'});
+        } else {
+            $(this).find('.circle').hide();
+        }
+    });
+
+    if(length == 4) {
+        console.log(999999);
+    }
+});

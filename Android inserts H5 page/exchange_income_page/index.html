@@ -123,6 +123,16 @@
     <!-- // 遮罩。 -->
     <section class="show"></section>
     <section class="shows"></section>
+    <!-- 删除绑定银行卡二次确认弹窗 -->
+    <section class="delete">
+        <div class="del_box">
+            <div class="del_box_title">是否删除当前提现账户</div>
+            <div class="del_box_click">
+                <div class="del_box_click_off">取消</div>
+                <div class="del_box_click_del">删除</div>
+            </div>
+        </div>
+    </section>
 
     <!-- 验证密码框。。 -->
     <section class="enter_password_box">
@@ -130,13 +140,23 @@
             <div class="enter_password_title">验证交易密码</div>
             <img class="enter_password_off" src="./images/ic_guanbi.png" alt="">
             <div class="enter_password_text">消费1000钻石兑换10$</div>
+
             <div class="enter_password_num">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
+                <div class="li"><span class="circle"></span></div>
+                <div class="li"><span class="circle"></span></div>
+                <div class="li"><span class="circle"></span></div>
+                <div class="li"><span class="circle"></span></div>
             </div>
-            <input maxlength="4" type="text">
+            <input maxlength="4" type="tel" name="password" class="password">
+            <!-- <div class="quickPayBox">
+                <input type="tel" name="password" class="password" maxlength="4">
+                <ul class="showView">
+                    <li><i class="circle"></i></li>
+                    <li><i class="circle"></i></li>
+                    <li><i class="circle"></i></li>
+                    <li><i class="circle"></i></li>
+                </ul>
+            </div> -->
             <div class="enter_password_hint">密码错误（剩余3次机会）</div>
         </div>
     </section>

@@ -47,7 +47,7 @@
      */
     let userInfo = {
         uid: '102',
-        ticket: "a6e7ef1ee1d8e5d1f269470af488d6b3",
+        ticket: "39e0fa9bb96ddf9dd7cc760b25967b1f",
     }
 
 
@@ -262,10 +262,16 @@
         $(".show").css({"display":"block"});
         $(".bottom_ul").css({"bottom":"0"});
     });
+    let bankImgSrc = '';
+    let bankName = '';
     // 选择要绑定的银行。。确定
     $(".bottom_ul_title_ok").click(function(){
         $(".show").css({"display":"none"});
         $(".bottom_ul").css({"bottom":"-20.8rem"});
+
+
+        $('.box2_title div img').attr("src", bankImgSrc)     //选择列表中的第几家银行。
+        $('.box2_title div span').html(bankName)
     })
 
 
@@ -282,6 +288,9 @@
 
             if (res.code === 200) {
                 let datas = res.data;
+                $('.box2_title div img').attr("src", datas[0].logo)     //首次默认为列表中的第一家银行。
+                $('.box2_title div span').html(datas[0].bankName)
+
                 $('.bottom_ul_box>li').remove();    //先清空，在创建。
                 creat_item(datas)
             }
@@ -297,19 +306,33 @@
         let table_ul_li = ''
 
         for (let index = 0; index < data.length; index++) {
+            let src = data[index].logo;
 
             table_ul_li += `
-                <li class="">
+                <li class="" onclick="selected_banks(${index}, '${src}', '${data[index].bankName}')">
                     <div>
-                        <img src="${data[index].logo}" alt="">
+                        <img src="${src}" alt="">
                         <span>${data[index].bankName}</span>
                     </div>
-                    <img class="ul_li_imgs" src="./images/icon／勾选.png" alt="">
+                    <img class="ul_li_imgs" src="./images/icon／未勾选.png" alt="">
                 </li>
             `;
         }
         $('.bottom_ul_box').append(table_ul_li)
+
+        $('.bottom_ul_box li:first-child .ul_li_imgs').attr("src", "./images/icon／勾选.png")
+        
         langTranslate ()
     };
+    
+    selected_banks = function (index, src, name) {
+        bankImgSrc = src;
+        bankName = name;
+        console.log('7777----index----777', index);
+        
+        $('.ul_li_imgs').attr("src", "./images/icon／未勾选.png")
+        // $('.selected').hide();
+        $(`.bottom_ul_box li:nth-child(${index + 1}) .ul_li_imgs`).attr("src", "./images/icon／勾选.png");
+    }
 
 })();

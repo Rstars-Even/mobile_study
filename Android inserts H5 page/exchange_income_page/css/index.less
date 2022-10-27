@@ -287,9 +287,9 @@ body {
 }
 // 遮罩。
 .show, .shows{
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
     z-index: 99;
     position: fixed;
     top: 0;
@@ -387,7 +387,6 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     display: none;
-
 }
 .enter_password {
     width: 14.9333rem;
@@ -429,6 +428,20 @@ body {
             height: 2.9867rem;
             background: #F2F2F3;
             border-radius: .64rem;
+            // line-height: 2.9867rem;
+            position: relative;
+            .circle {
+                width: .8rem;
+                height: .8rem;
+                border-radius: 50%;
+                background: #898989;
+                // display: inline-block;
+                display: none;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
         }
     } 
     input {
@@ -436,12 +449,12 @@ body {
         width: 100%;
         position: absolute;
         left: 0;
-        top: 4.8rem;
-        border: .0267rem solid red;
-        padding-left: 2.0267rem;
-        // letter-spacing: 2.6133rem;
-        letter-spacing: 2.6667rem;
+        top: 5rem;
+        // border: .0267rem solid red;
+        // padding-left: 2.0267rem;
+        // letter-spacing: 2.6667rem;
         caret-color: transparent;
+        opacity: 0.01;
     }
     .enter_password_hint {
         font-size: .5867rem;
@@ -450,3 +463,64 @@ body {
         color: #FF4B3F;
     }
 }
+
+// <!-- 删除绑定银行卡事件 -->
+.delete {
+    position: fixed;
+    z-index: 999;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+.del_box {
+    width: 14.9333rem;
+    height: 7.1467rem;
+    background: #FFF;
+    border-radius: 1.3333rem;
+    text-align: center;
+    display: flex;
+    flex-flow: column;
+    .del_box_title {
+        font-size: .7467rem;
+        font-family: PingFangSC-Medium, PingFang SC;
+        font-weight: 500;
+        color: #1B1C33;
+        margin: 1.7067rem 0;
+        display: inline-block;
+        // height: 1.0667rem
+    }
+    .del_box_click {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        position: relative;
+        .del_box_click_off {
+            padding: 1rem;
+            width: 50%;
+            height: 100%;
+            font-size: .7467rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #8D8E99;
+            // position: absolute;
+            // bottom: 0;
+            // left: 0;
+        }
+        .del_box_click_del {
+            padding: 1rem;
+            // position: absolute;
+            // right: 0;
+            // bottom: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(270deg, #FF8386 0%, #FFA3A6 100%);
+            border-radius: 1.3333rem 0px 1.3333rem 0px;
+            font-size: .7467rem;
+            font-family: PingFangSC-Medium, PingFang SC;
+            font-weight: 500;
+            color: #FFFFFF;
+        }
+    }
+} 
