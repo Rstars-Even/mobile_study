@@ -46,7 +46,7 @@
      */
     let userInfo = {
         uid: '100',
-        ticket: "63b2aa675652a582ad5e6108a124e5dc",
+        ticket: "81aa671c751d662b08dc8e104492eecc",
     }
 
 
@@ -197,7 +197,7 @@
             }
         )
     }
-
+    langTranslate ()
 
     // 简易请求封装。。
     function defRequest (param) {
@@ -258,14 +258,19 @@
     const url = new URLSearchParams(location.search)
 	// const lang = url.get('lang') || 'cn'
 	const edit_type = url.get('type') || 1
-	const id = url.get('id');
 	const email = url.get('email');
 	const userName = url.get('userName');
+
+
     console.log('填写类型-----------：', edit_type)
+    let bankIds = 0;        //选择的银行id...
+    let edit_id = 0;        //修改时所需的银行id...
+
+
     // 添加payoneer 账号信息填写。。
     if (edit_type == 1) {
         $('.box1').css('display','block')
-
+        
     } else if (edit_type == 2) {        // 添加银行账户信息填写。。。。。
         $('.box2').css('display','block')
         $('.bank_info').html('银行账号')
@@ -273,6 +278,8 @@
     } else {        // 修改银行账户信息填写。。。。
         const bankName = url.get('bankName');
         const logo = url.get('logo');
+        const id = url.get('id');
+        const bankId = url.get('bankId');
 
         $('.box1').css('display','block');
         $('.bank_info').html('银行账号');
@@ -281,6 +288,8 @@
         $('.box1 span').html(`${bankName}`);
         $('.box1 img').attr("src", `${logo}`);
 
+        bankIds = bankId;
+        edit_id = id;
     }
 
 
@@ -324,6 +333,8 @@
                 //edit==2 时给默认，因用户点击选择银行直接点确定会出现空白。。
                 bankImgSrc = datas[0].logo;
                 bankName = datas[0].bankName;
+                bankIds = datas[0].id;
+
             }
         })
         .catch(err => {
@@ -340,7 +351,7 @@
             let src = data[index].logo;
 
             table_ul_li += `
-                <li class="" onclick="selected_banks(${index}, '${src}', '${data[index].bankName}')">
+                <li class="" onclick="selected_banks(${index}, '${src}', '${data[index].bankName}', ${data[index].id})">
                     <div>
                         <img src="${src}" alt="">
                         <span>${data[index].bankName}</span>
@@ -356,14 +367,71 @@
         langTranslate ()
     };
     
-    selected_banks = function (index, src, name) {
+    selected_banks = function (index, src, name, id) {
         bankImgSrc = src;
         bankName = name;
-        console.log('7777----index----777', index);
+        bankIds = id;
+        // console.log('7777----index----777', index);
         
         $('.ul_li_imgs').attr("src", "./images/icon／未勾选.png")
         // $('.selected').hide();
         $(`.bottom_ul_box li:nth-child(${index + 1}) .ul_li_imgs`).attr("src", "./images/icon／勾选.png");
     }
 
+    // 绑定银行卡确认提交。。
+    $('.btn_ok').click(function () {
+        let btn_email = $('.form_num').val().trim();
+        let btn_userName = $('.form_userName').val().trim();
+
+        if (edit_type == 2 && bankIds == 0) {
+            defToast($.i18n().localize('i18n_select_bank'))
+            return;
+        }
+
+        if (btn_email && btn_userName) {
+            console.log('绑定卡最后参数--------------------》》》', btn_email, btn_userName, +bankIds, +edit_id);
+            defRequest({
+                method: 'post',
+                url: '/api/user/purse/savePayonner',
+                data: {
+                    email: btn_email,
+                    userName: btn_userName,
+                    bankId: +bankIds,
+                    id: +edit_id
+                }
+            }).then(res => {
+        
+                if (res.code === 200) {
+                    
+                    // location.href = 'index.html';
+                    
+                }
+            })
+            .catch(err => {
+                defToast(err.message)
+            })
+
+        } else {
+            defToast($.i18n().localize('i18n_enter_account'))
+        }
+    })
+
+
+
+    // function getCookie (cookieName) {
+    //     //使用字符串匹配的方式
+    //     if (document.cookie.length>0){
+    //         var start=document.cookie.indexOf(cookieName + "=")
+    //         if (start!=-1){ 
+    //             start=start + cookieName.length+1
+    //             var end=document.cookie.indexOf(";",start)
+    //             if (end==-1) end=document.cookie.length
+    //             return unescape(document.cookie.substring(start,end))
+    //         } 
+    //     }
+    //     return null
+    // }
+
+
+    
 })();

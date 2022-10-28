@@ -1,4 +1,5 @@
 {
+    "i18n_success": "sự thành công",
     "common_copy_success": "Đã copy",
     "i18n_withdraw": "Đổi thu lợi",
     "i18n_withdraws": "Số tiền rút",
@@ -24,9 +25,20 @@
 
     "i18n_description_title1": "Rút tiền bằng payoneer, cần nhập địa chỉ email tài khoản(bắt buộc) và tên tài khoản(tùy chọn) payoneer, có thể rút tiền sau khi rằng buộc thanh công tài khoản Payoneer;",
     "i18n_description_title2": "Rút tiền bằng thẻ ngân hàng, vui lòng nhập đầy đủ tên ngân hàng, số tài khoản ngân hàng, họ tên chính chủ, có thể rút tiền sau khi rằng buộc thành công;",
-    "i18n_description_content1": "1.Tài khoản Payoneer không phải do nền tảng Sukie cung cấp, mời bạn truy cập trang web chính thức của Payoneer để đăng ký(click copy địa chỉ Payoneer); chưa đủ 18 tuổi không thể đăng ký;",
+    "i18n_description_content1-1": "1.Tài khoản Payoneer không phải do nền tảng Sukie cung cấp, mời bạn truy cập trang web chính thức của Payoneer để đăng ký",
+    "i18n_description_content1-2": "(click copy địa chỉ Payoneer);",
+    "i18n_description_content1-3": "chưa đủ 18 tuổi không thể đăng ký;",
     "i18n_description_content2": "2.Rằng buộc tài khoản Payoeenr trên nền tảng Sukie( Thông tin email là email lúc đăng ký tài khoản Payoneer), bạn sẽ có thể rút tiền;",
     "i18n_description_content3": "3.Sau khi xin rút tiền thành công, số tiền rút sẽ chuyển về tài khoản nhận tiền trong vòng 7 ngày làm việc(kể từ ngày xin rút tiền);",
     "i18n_description_content4": "4.Sử dụng tài khoản payoneer rút tiền về số tài khoản ngân hàng địa phương của bạn, phí thủ tục do Payoneer quyết định, không liên quan đến nền tảng Sukie.",
-    "i18n_description_content5": "5.Rút tiền bằng hình thức thẻ ngân hàng, Sukie sẽ chuyển tiền VNĐ vào STK ngân hàng của bạn, rate 1$=24000 VNĐ, phí rút tiền cố định: 2%+1500 VNĐ."
+    "i18n_description_content5": "5.Rút tiền bằng hình thức thẻ ngân hàng, Sukie sẽ chuyển tiền VNĐ vào STK ngân hàng của bạn, rate 1$=24000 VNĐ, phí rút tiền cố định: 2%+1500 VNĐ.",
+
+    "i18n_isdelete": "Xóa tài khoản rút tiền?",
+    "i18n_no": "Hủy",
+    "i18n_diamond_insufficient": "Số dư KC ko đủ",
+    "i18n_confirm_password": "Xác nhận mật khẩu",
+    "i18n_spend_diamond": "",
+    "i18n_spend_diamond2": "KC đổi",
+    "i18n_pas_error": "Mật khẩu sai (còn 3 lần)",
+    "i18n_please_try_tomorrow": "Xác nhận quá nhiều lần, ngày mai thử lại"
 }

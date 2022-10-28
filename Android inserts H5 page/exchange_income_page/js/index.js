@@ -41,8 +41,8 @@
      * @param {string} userInfo.ticket 用户登录ticket
      */
     let userInfo = {
-        uid: '100',
-        ticket: "63b2aa675652a582ad5e6108a124e5dc",
+        uid: '102',
+        ticket: "55609e51f597200e32e5adb103fd5a99",
     }
 
 
@@ -67,7 +67,7 @@
         deviceId: '001',
         fcmToken: 'fcmToken',
         imei: '001',
-        lang: 'vi',
+        lang: 'zh',
         os: 'android',
         brand: 'Huawei',
         model: 'P40 pro',
@@ -252,6 +252,17 @@
         })
     }
 
+    // 为适应国际化，进行初始化调整。。
+    if (deviceInfo.lang === 'en' || deviceInfo.lang === 'vi') {
+        // console.log(866666)
+        $('.enter_password_title').css({"width":"70%"});
+    }
+
+
+    let itemId = ''         //提现项目ID。。。。。。。。
+    let confId	= ''            //提现账号ID ...
+
+
     // 获取可兑换的钻石列表。。
     function get_diamond_select () {
         defRequest({
@@ -305,7 +316,7 @@
         for (let index = 0; index < data.length; index++) {
 
             table_ul_li += `
-                <li onclick='select_item(${data[index].amount}, ${data[index].diamond})'>
+                <li onclick='select_item(${data[index].amount}, ${data[index].diamond}, ${data[index].id})'>
                     <div class="bottom_li_us">$ ${data[index].amount}</div>
                     <button>
                         <img src="./images/zuanshi.png" alt="">
@@ -317,22 +328,37 @@
         $('.bottom_ul_box').append(table_ul_li)
         langTranslate ()
     };
+
     // 选择要兑换提现的美元/。。。
-    select_item = function (amount, diamond) {
-        console.log('amount, diamond----->:', amount, diamond)
+    select_item = function (amount, diamond, id) {
         if (diamondNum < diamond) {
             // alert('所需的钻石数量不够。。。');
-			defToast($.i18n().localize('common_copy_success'))
+			defToast($.i18n().localize('i18n_diamond_insufficient'))
             return;
         }
         $(".shows").css({"display":"none"});
         $(".bottom_ul").css({"bottom":"-20.8rem"});     //隐藏选项框。。
+        $("body").css({"overflow":"auto"});
         
         $(".show_select").css({"display":"none"});
         $(".show_selects").css({"display":"flex"});
         
         $('.box_content_us1>span').html(amount);
         $('.box_content_num_diamond>span').html(diamond);
+
+        $('.number_of_diamonds').html(diamond);
+        $('.dollar').html(`$${amount}`);
+
+
+        itemId = id;
+        console.log('amount, diamond----->:', amount, diamond, id)
+
+
+        if (itemId && confId) {
+
+            $(".btn").css({"background":"linear-gradient(270deg, #FF8386 0%, #FFA3A6 100%)","box-shadow":"0px 2px 20px 0px rgba(255,131,134,0.4)","color":"#FFF"});
+            $(".btn").addClass("btns_submit");
+        }
     }
 
 
@@ -392,8 +418,11 @@
         }).then(res => {
             console.log('res-------已经绑定过的银行卡--------:', res);
 
-            if (res.code === 200) {
-               creat_bank_card(res.data);
+            if (res.code === 200 && res.data.length > 0) {
+                confId = res.data[0].id;
+                console.log('confId', confId);
+
+                creat_bank_card(res.data);
             }
         })
         .catch(err => {
@@ -410,7 +439,7 @@
 
             bank_card_item += `
                 <div class="box2_yinhangka">
-                    <div class="box2_yinhangka_top" onclick='select_bank_card(${index})'>
+                    <div class="box2_yinhangka_top" onclick='select_bank_card(${index}, ${data[index].id})'>
                         <div class="box2_yinhangka_top_img">
                             <img src="${data[index].bank.logo}" alt="">
                         </div>
@@ -419,16 +448,16 @@
                             <p class="box2_yinhangka_userinfo_text">${data[index].userName}</p>
                         </div>
 
-                        <div class="selected">当前方式</div>
+                        <div class="selected" data-i18n="i18n_current">当前方式</div>
                     </div>
                     <div class="box2_yinhangka_bottom">
-                        <div class="box2_yinhangka_bottom_left" onclick='del_bank_crad()'>
+                        <div class="box2_yinhangka_bottom_left" onclick='del_bank_crad(${data[index].id})'>
                             <img src="./images/chengyuan_ic_delete.png" alt="">
-                            <span>删除</span>
+                            <span data-i18n="i18n_delete">删除</span>
                         </div>
-                        <div class="box2_yinhangka_bottom_right" onclick="edit_bank_crad('${data[index].id}', '${data[index].email}', '${data[index].userName}', '${data[index].bank.shortName}', '${data[index].bank.logo}')">
+                        <div class="box2_yinhangka_bottom_right" onclick="edit_bank_crad('${data[index].id}', '${data[index].email}', '${data[index].userName}', '${data[index].bank.shortName}', '${data[index].bank.logo}', '${data[index].bankId}')">
                             <img src="./images/zhuye_ic_bianji.png" alt="">
-                            <span>编辑</span>
+                            <span data-i18n="i18n_edit">编辑</span>
                         </div>
                     </div>
                 </div>
@@ -436,25 +465,60 @@
         }
         $('.box_bank_card').append(bank_card_item);
 
+        if (deviceInfo.lang === 'vi') {
+            $('.selected').css({"width":"7.4133rem"});
+            
+        }
+
         $('.box_bank_card .box2_yinhangka:first-child .box2_yinhangka_top .selected').show();
         langTranslate ()
     };
 
 
     //选择银行卡事件。。
-    select_bank_card = function (index) {
-        console.log('index', index);
+    select_bank_card = function (index, id) {
+        // console.log('index', index, id);
         
         $('.selected').hide();
         $(`.box_bank_card .box2_yinhangka:nth-child(${index + 1}) .box2_yinhangka_top .selected`).show();
+
+        confId = id;
+        console.log('confId', confId);
     };
     // 删除银行卡事件。。
-    del_bank_crad = function() {
-        console.log('del_bank_crad', 666);
+    let bankId = '';
+    del_bank_crad = function(id) {
+        console.log('del_bank_crad', id);
+
         $(".show").css({"display":"block"});
         $("body").css({"overflow":"hidden"});
         $(".delete").css({"display":"block"});
+        bankId = id
     }
+    //确定删除。。
+    $('.del_box_click_del').click(function () {
+        defRequest({
+            method: 'post',
+            url: '/api/user/purse/delPayonner',
+            data: {
+                id: bankId,
+            }
+        }).then(res => {
+            // console.log('res-------已经绑定过的银行卡--------:', res);
+    
+            if (res.code === 200) {
+                // $(".show").css({"display":"none"});
+                // $("body").css({"overflow":"auto"});
+                // $(".delete").css({"display":"none"});
+                location.reload();
+            }
+        })
+        .catch(err => {
+            defToast(err.message)
+        })
+
+    })
+
     // 取消删除
     $('.del_box_click_off').click(function() {
         $(".show").css({"display":"none"});
@@ -465,7 +529,7 @@
     edit_bank_crad = function(...data) {
         console.log('edit_bank_crad', data);
         edit_type = 3;
-        location.href = `fill_info.html?type=${edit_type}&id=${data[0]}&email=${data[1]}&userName=${data[2]}&bankName=${data[3]}&logo=${data[4]}`
+        location.href = `fill_info.html?type=${edit_type}&id=${data[0]}&email=${data[1]}&userName=${data[2]}&bankName=${data[3]}&logo=${data[4]}&bankId=${data[5]}`
 
     }
     // $(".box_bank_card").on('click', '.box2_yinhangka_top', function() {
@@ -474,7 +538,7 @@
 
 
     // 确认提现。。。打开输入密码页面。
-    $('.btn').click(function() {
+    $('.view').on('click', '.btns_submit', function() {
         // if (condition) {
         //     return
         // }
@@ -500,21 +564,75 @@
         edit_type = 2;
         location.href = `fill_info.html?type=${edit_type}`
     })
-})();
 
+    let token = ''
+    $('.password').on('input',function(){           //输入密码事件。。
+        let value = $(this).val();
+        let length = value.length;
+        $('.enter_password_num').find('.li').each(function(i){
+            if (i < length) {
+                $(this).find('.circle').css({display: 'inline-block'});
+            } else {
+                $(this).find('.circle').hide();
+            }
+        });
+    
+        if(length == 4) {
+            let pwd = value;
+            console.log('pwd', pwd);
+    
+            defRequest({            //校验密码请求。。。
+                method: 'post',
+                url: '/api/user/setting/checkPwd',
+                data: {
+                    pwd: pwd,
+                }
+            }).then(res => {
+                console.log('res-------验证密码成功--------:', res);
+        
+                if (res.code === 200) {
+                    // location.reload();
+                    token = res.data;
 
-$('.password').on('input',function(){           //输入密码事件。。
-    var value = $(this).val();
-    var length = value.length;
-    $('.enter_password_num').find('.li').each(function(i){
-        if (i < length) {
-            $(this).find('.circle').css({display: 'inline-block'});
-        } else {
-            $(this).find('.circle').hide();
+                    submit(token);
+                    
+                }
+            })
+            .catch(err => {
+                // console.log('--------锁误信息------>', err);
+                // defToast(err.message)
+                $('.enter_password_hint').html(err.message);
+            })
         }
     });
 
-    if(length == 4) {
-        console.log(999999);
+
+    // 最终提现请求。。。
+    function submit(token) {
+        console.log("---最终请求数据-------------》：", confId, itemId, token);
+        defRequest({
+            method: 'post',
+            url: '/api/user/purse/withdraw',
+            data: {
+                confId: confId,
+                itemId: itemId,
+                token: token,
+            }
+        }).then(res => {
+            console.log('res-------交易成功--------:', res);
+    
+            if (res.code === 200) {
+                // console.log(6666666666);
+			    defToast($.i18n().localize('i18n_success'))
+
+                location.reload();
+            }
+        })
+        .catch(err => {
+            defToast(err.message)
+        })
     }
-});
+
+
+})();
+

@@ -228,6 +228,7 @@ body {
   transform: translate(-50%, -50%);
   padding: 0.6933rem 1.12rem 1.28rem 1.12rem;
   display: none;
+  overflow-y: auto;
 }
 .hint_view .hint_view_title {
   display: flex;
