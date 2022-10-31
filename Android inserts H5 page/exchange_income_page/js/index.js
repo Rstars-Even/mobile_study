@@ -42,7 +42,7 @@
      */
     let userInfo = {
         uid: '102',
-        ticket: "55609e51f597200e32e5adb103fd5a99",
+        ticket: "7bc26ae57039af6302154afc2b0177f5",
     }
 
 
@@ -67,7 +67,7 @@
         deviceId: '001',
         fcmToken: 'fcmToken',
         imei: '001',
-        lang: 'zh',
+        lang: 'en',
         os: 'android',
         brand: 'Huawei',
         model: 'P40 pro',
@@ -256,12 +256,18 @@
     if (deviceInfo.lang === 'en' || deviceInfo.lang === 'vi') {
         // console.log(866666)
         $('.enter_password_title').css({"width":"70%"});
+        $('.bottom_ul_title').css({"display":"block"});
     }
 
 
     let itemId = ''         //提现项目ID。。。。。。。。
     let confId	= ''            //提现账号ID ...
+    
+    let item_amount	= ''            //提现项目ID美元。。。。.
+    let bank_Id	= ''            //提现账号类型 ...
 
+    // let bank_id_includeds = localStorage.getItem('bank_id_included');//获取存储的元素
+    // console.log('bank_id_included', bank_id_includeds)
 
     // 获取可兑换的钻石列表。。
     function get_diamond_select () {
@@ -274,7 +280,7 @@
         }).then(res => {
             console.log('res-------提现列表选项--------:', res);
 
-            if (res.code === 200) {
+            if (res.code === 200 && res.data.length > 0) {
                 let datas = res.data;
             
                 $('.bottom_ul_box>li').remove();    //先清空，在创建。
@@ -331,11 +337,14 @@
 
     // 选择要兑换提现的美元/。。。
     select_item = function (amount, diamond, id) {
+
         if (diamondNum < diamond) {
             // alert('所需的钻石数量不够。。。');
 			defToast($.i18n().localize('i18n_diamond_insufficient'))
             return;
         }
+        $('.password').removeAttr("readonly");
+
         $(".shows").css({"display":"none"});
         $(".bottom_ul").css({"bottom":"-20.8rem"});     //隐藏选项框。。
         $("body").css({"overflow":"auto"});
@@ -351,6 +360,7 @@
 
 
         itemId = id;
+        item_amount = +amount;
         console.log('amount, diamond----->:', amount, diamond, id)
 
 
@@ -358,6 +368,9 @@
 
             $(".btn").css({"background":"linear-gradient(270deg, #FF8386 0%, #FFA3A6 100%)","box-shadow":"0px 2px 20px 0px rgba(255,131,134,0.4)","color":"#FFF"});
             $(".btn").addClass("btns_submit");
+            
+            $(".password").css({"display":"block"});
+            
         }
     }
 
@@ -420,9 +433,24 @@
 
             if (res.code === 200 && res.data.length > 0) {
                 confId = res.data[0].id;
+                bank_Id = res.data[0].bankId;
                 console.log('confId', confId);
 
                 creat_bank_card(res.data);
+
+                if (res.data.length == 1) {
+                    const element = res.data[0].bankId;
+                    if (element == 0) {
+
+                        $(".bank_click").css({"display":"flex"});
+                    } else {
+                        
+                        $(".payoneer_click").css({"display":"flex"});
+                    }
+                }
+
+            } else {
+                $(".box2_content").css({"display":"flex"});
             }
         })
         .catch(err => {
@@ -439,7 +467,7 @@
 
             bank_card_item += `
                 <div class="box2_yinhangka">
-                    <div class="box2_yinhangka_top" onclick='select_bank_card(${index}, ${data[index].id})'>
+                    <div class="box2_yinhangka_top" onclick='select_bank_card(${index}, ${data[index].id}, ${data[index].bankId})'>
                         <div class="box2_yinhangka_top_img">
                             <img src="${data[index].bank.logo}" alt="">
                         </div>
@@ -476,13 +504,15 @@
 
 
     //选择银行卡事件。。
-    select_bank_card = function (index, id) {
+    select_bank_card = function (index, id, bankId) {
         // console.log('index', index, id);
-        
+        $('.password').removeAttr("readonly");
+
         $('.selected').hide();
         $(`.box_bank_card .box2_yinhangka:nth-child(${index + 1}) .box2_yinhangka_top .selected`).show();
 
         confId = id;
+        bank_Id = bankId;
         console.log('confId', confId);
     };
     // 删除银行卡事件。。
@@ -538,15 +568,33 @@
 
 
     // 确认提现。。。打开输入密码页面。
-    $('.view').on('click', '.btns_submit', function() {
-        // if (condition) {
-        //     return
-        // }
+    // $('.view').on('click', '.btns_submit', function() {
+
+    //     $(".show").css({"display":"block"});
+    //     $(".enter_password_box").css({"display":"block"});
+    //     $("body").css({"overflow":"hidden"});
+    // })
+    $('.view').on('click', '#password', function() {
+
+        // console.log(".....焦点事件-------------", 777777)
+        if ( bank_Id == 0 &&  item_amount < 50) {
+
+            $('.password').attr("readonly", "readonly")
+
+			defToast($.i18n().localize('i18n_withdrawal$50'))
+            return;
+        }   else if ( bank_Id >= 1 && item_amount < 5){
+			defToast($.i18n().localize('i18n_withdrawal$5'))
+            return;
+        }
 
         $(".show").css({"display":"block"});
         $(".enter_password_box").css({"display":"block"});
         $("body").css({"overflow":"hidden"});
-    })
+
+    });
+
+
     // 关闭输入密码页面。。
     $('.enter_password_off').click(function() {
         $(".show").css({"display":"none"});
@@ -566,7 +614,7 @@
     })
 
     let token = ''
-    $('.password').on('input',function(){           //输入密码事件。。
+    $('.password').on('input',function(e){           //输入密码事件。。
         let value = $(this).val();
         let length = value.length;
         $('.enter_password_num').find('.li').each(function(i){
@@ -578,9 +626,16 @@
         });
     
         if(length == 4) {
+            console.log('事件----------', e)
+
+                setTimeout(function() {         //每次输完密码后清空。。
+                    $('#passwords').val('');
+                    $('.enter_password_num').find('.circle').hide();
+                }, 500)
+
             let pwd = value;
             console.log('pwd', pwd);
-    
+            
             defRequest({            //校验密码请求。。。
                 method: 'post',
                 url: '/api/user/setting/checkPwd',
@@ -602,6 +657,7 @@
                 // console.log('--------锁误信息------>', err);
                 // defToast(err.message)
                 $('.enter_password_hint').html(err.message);
+                
             })
         }
     });
@@ -622,6 +678,9 @@
             console.log('res-------交易成功--------:', res);
     
             if (res.code === 200) {
+
+                // localStorage.setItem('bank_id_included', confId)
+
                 // console.log(6666666666);
 			    defToast($.i18n().localize('i18n_success'))
 

@@ -40,5 +40,9 @@
     "i18n_spend_diamond": "消费",
     "i18n_spend_diamond2": "钻石兑换",
     "i18n_pas_error": "密码错误（剩余3次机会）",
-    "i18n_please_try_tomorrow": "验证失败次数过多，请明日再来"
+    "i18n_please_try_tomorrow": "验证失败次数过多，请明日再来",
+
+    "i18n_input_bank_num": "请输入银行卡号",
+    "i18n_withdrawal$50": "Payoneer最低提现$50",
+    "i18n_withdrawal$5": "银行卡最低提现$5"
 }

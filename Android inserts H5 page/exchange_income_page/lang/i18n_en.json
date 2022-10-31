@@ -40,5 +40,9 @@
     "i18n_spend_diamond": "Spend",
     "i18n_spend_diamond2": "diamonds to exchange",
     "i18n_pas_error": "Incorrect password (3 chances remaining)",
-    "i18n_please_try_tomorrow": "Too many verification failures, please try tomorrow"
+    "i18n_please_try_tomorrow": "Too many verification failures, please try tomorrow",
+
+    "i18n_input_bank_num": "Please enter bank card number",
+    "i18n_withdrawal$50": "Payoneer Minimum Withdrawal $50",
+    "i18n_withdrawal$5": "Bank card minimum withdrawal $5"
 }

@@ -40,5 +40,9 @@
     "i18n_spend_diamond": "",
     "i18n_spend_diamond2": "KC đổi",
     "i18n_pas_error": "Mật khẩu sai (còn 3 lần)",
-    "i18n_please_try_tomorrow": "Xác nhận quá nhiều lần, ngày mai thử lại"
+    "i18n_please_try_tomorrow": "Xác nhận quá nhiều lần, ngày mai thử lại",
+
+    "i18n_input_bank_num": "Nhập STK ngân hàng",
+    "i18n_withdrawal$50": "Payoneer tối thiểu 50$",
+    "i18n_withdrawal$5": "Thẻ ngân hàng tối thiểu 5$"
 }

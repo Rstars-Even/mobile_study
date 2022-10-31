@@ -45,8 +45,8 @@
      * @param {string} userInfo.ticket 用户登录ticket
      */
     let userInfo = {
-        uid: '100',
-        ticket: "81aa671c751d662b08dc8e104492eecc",
+        uid: '102',
+        ticket: "7bc26ae57039af6302154afc2b0177f5",
     }
 
 
@@ -183,10 +183,12 @@
         const $i18n = $.i18n()
         $i18n.locale = lang
         console.log(".....---------------------", lang)
-
+        
         $.i18n.debug = true
         $i18n.load(`lang/i18n_${ lang }.json`, $i18n.locale).done(
+            
             function () {
+                // console.log('----------------666666666-----------', $.i18n().localize('i18n_enter_real_name'));
                 $('[data-i18n]').each(function (index, item) {
                     if (item.nodeName === 'INPUT' && item.getAttribute('placeholder')) {
                         item.setAttribute('placeholder', $i18n.localize($(item).data('i18n')))
@@ -270,27 +272,54 @@
     // 添加payoneer 账号信息填写。。
     if (edit_type == 1) {
         $('.box1').css('display','block')
+        setTimeout(function() {
+            $('.form_num').attr("placeholder", $.i18n().localize('i18n_enter_account'));
+            $('.form_userName').attr("placeholder", $.i18n().localize('i18n_enter_name'));
+        }, 800)
         
     } else if (edit_type == 2) {        // 添加银行账户信息填写。。。。。
         $('.box2').css('display','block')
         $('.bank_info').html('银行账号')
+
+        $('.bank_info').attr("data-i18n", "i18n_bank_account");
+        $('.bank_name').attr("data-i18n", "i18n_real_name");
+        setTimeout(function() {
+            $('.form_num').attr("placeholder", $.i18n().localize('i18n_input_bank_num'));
+            $('.form_userName').attr("placeholder", $.i18n().localize('i18n_enter_real_name'));
+        }, 800)
+
         get_bnak_list ()
     } else {        // 修改银行账户信息填写。。。。
         const bankName = url.get('bankName');
         const logo = url.get('logo');
         const id = url.get('id');
         const bankId = url.get('bankId');
-
+        
+        if ( bankId != 0) {
+            
+            $('.bank_info').attr("data-i18n", "i18n_bank_account");
+            $('.bank_name').attr("data-i18n", "i18n_real_name");
+            setTimeout(function() {
+                $('.form_num').attr("placeholder", $.i18n().localize('i18n_input_bank_num'));
+                $('.form_userName').attr("placeholder", $.i18n().localize('i18n_enter_real_name'));
+            }, 500)
+        }
+        
         $('.box1').css('display','block');
-        $('.bank_info').html('银行账号');
+        setTimeout(function() {
+            $('.form_num').attr("placeholder", $.i18n().localize('i18n_enter_account'));
+            $('.form_userName').attr("placeholder", $.i18n().localize('i18n_enter_name'));
+        }, 800)
+        // $('.bank_info').html('银行账号');
         $('.form_num').attr("value", `${email}`);
         $('.form_userName').attr("value", `${userName}`);
         $('.box1 span').html(`${bankName}`);
         $('.box1 img').attr("src", `${logo}`);
-
+        
         bankIds = bankId;
         edit_id = id;
     }
+    
 
 
     //选择提现金额列表。。。
@@ -403,8 +432,7 @@
         
                 if (res.code === 200) {
                     
-                    // location.href = 'index.html';
-                    
+                    location.href = 'index.html';
                 }
             })
             .catch(err => {
@@ -417,21 +445,4 @@
     })
 
 
-
-    // function getCookie (cookieName) {
-    //     //使用字符串匹配的方式
-    //     if (document.cookie.length>0){
-    //         var start=document.cookie.indexOf(cookieName + "=")
-    //         if (start!=-1){ 
-    //             start=start + cookieName.length+1
-    //             var end=document.cookie.indexOf(";",start)
-    //             if (end==-1) end=document.cookie.length
-    //             return unescape(document.cookie.substring(start,end))
-    //         } 
-    //     }
-    //     return null
-    // }
-
-
-    
 })();
