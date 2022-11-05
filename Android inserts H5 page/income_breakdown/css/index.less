@@ -1,0 +1,145 @@
+body {
+    min-width: 320px;
+    max-width: 750px;
+    margin: 0 auto;
+    // height: 1200px;
+    background: url("../images/bg.png") no-repeat;
+	background-size: cover;
+    background: #F8F8F8;
+}
+
+@media screen and (min-width: 750px) {
+    html {
+        font-size: 37.5px !important;
+    }
+}
+
+// 头部。
+.header {
+    padding: .8rem;
+    background-color: #fff;
+    margin-bottom: .4267rem;
+    .header_top {
+        display: flex;
+        align-items: center;
+        font-size: .7467rem;
+        font-family: PingFangSC-Medium, PingFang SC;
+        font-weight: 500;
+        color: #1B1C33;
+        margin-bottom: 1.0667rem;
+        .header_top_img1 {
+            width: 1.1733rem;
+            height: 1.1733rem;
+            margin-right: .8rem;
+        }
+        .header_top_img2 {
+            width: .5333rem;
+            height: .3467rem;
+            margin-left: .5333rem;
+        }
+        .header_top_zhi {
+            margin: 0 .5333rem;
+        }
+    }
+    .header_down {
+        display: flex;
+        align-items: center;
+        div:first-of-type {
+            margin-right: 4.1333rem;
+        }
+        .header_down_get {
+            display: flex;
+            align-items: center;
+            .diamond {
+                font-size: .6933rem;
+                font-family: PingFangSC-Regular, PingFang SC;
+                font-weight: 400;
+                color: #8D8E99;
+            }
+            .num {
+                font-size: .6933rem;
+                font-family: PingFangSC-Medium, PingFang SC;
+                font-weight: 500;
+                color: #1B1C33;
+            }
+        }
+    }
+}
+
+// 日期选择器。。
+.headerSlots {
+    width: 100%;
+    height: 3.52rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .96rem 1.0667rem;
+    .quxiao {
+        font-size: .7467rem;
+        font-family: PingFangSC-Medium, PingFang SC;
+        font-weight: 500;
+        color: #C4C4CC;
+    }
+    .xuanze {
+        font-size: .9067rem;
+        font-family: PingFangSC-Medium, PingFang SC;
+        font-weight: 500;
+        color: #1B1C33;
+    }
+    .queding {
+        font-size: .7467rem;
+        font-family: PingFangSC-Medium, PingFang SC;
+        font-weight: 500;
+        color: #FF8386;
+    }
+}
+// 日期选择器。。
+.center {
+    width: 100%;
+    height: 2.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .center_left, .center_right {
+        width: 6.64rem;
+        height: 2.4rem;
+        font-size: .7467rem;
+        font-family: PingFangSC-Medium, PingFang SC;
+        font-weight: 500;
+        color: #1B1C33;
+        text-align: center;
+        line-height: 2.4rem;
+    }
+    .center_text {
+        margin: 0 .56rem;
+        font-size: .7467rem;
+        font-weight: 500;
+        color: #1B1C33;
+        font-family: PingFangSC-Medium, PingFang SC;
+    }
+    .selected {
+        background: url(../images/jvxin.png) no-repeat;
+        background-size: cover;
+    }
+    .un_selected {
+        background: url(../images/jvxin1.png) no-repeat;
+        background-size: cover;
+    }
+}
+// <!-- 标题导航。。 -->
+.task {
+    width: 100%;
+    height: 2.8267rem;
+    margin-bottom: .3733rem;
+    background: #fff;
+    .task_item {
+        text-align: center;
+        .task_item_text {
+            font-size: .6933rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #999999;
+            line-height: 2.8267rem;
+        }
+    }
+}

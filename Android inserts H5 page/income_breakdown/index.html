@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="i18n_diamond_mission"></title>
+    <link rel="stylesheet" href="./css/normalize.css">
+    <link rel="stylesheet" href="./css/swiper.min.css">
+    <link rel="stylesheet" href="./css/index.css">
+
+    <!-- 引入样式文件 -->
+    <link rel="stylesheet" href="https://unpkg.com/vant@2.12/lib/index.css"/>
+</head> 
+<body data-lang="cn">
+    <div id="app">
+        <div class="header">
+            <div class="header_top" @click="header_top_click">
+                <div><img class="header_top_img1" src="./images/icon_rili.png" alt=""></div>
+                <data_div>{{toolTime01}}</data_div>
+                <div class="header_top_zhi">至</div>
+                <data_div>{{toolTime02}}</data_div>
+                <div><img class="header_top_img2" src="./images/icon_sang.png" alt=""></div>
+            </div>
+            <div class="header_down">
+                <diamond_num></diamond_num>
+                <diamond_num></diamond_num>
+                <!-- <div class="header_down_reduce">
+                    <span>消费钻石：</span>
+                    <span>1000.00</span>
+                </div> -->
+            </div>
+        </div>
+
+        <van-popup v-model="isChoiceTime" round position="bottom" :style="{ height: '40%' }" />
+            <div class="headerSlots">
+                <div class="quxiao" @click="cancelClick">取消</div>
+                <div class="xuanze">选择时间</div>
+                <div class="queding" @click="determine">确定</div>
+            </div>
+            <div class="center">
+                <div class="center_left" :class="cont == 1 ? 'selected' : 'un_selected'" @click="timeClick(1)">{{toolTime01}}</div>
+                <div class="center_text">至</div>
+                <div class="center_right" :class="cont == 2 ? 'selected' : 'un_selected'" @click="timeClick(2)">{{toolTime02}}</div>
+            </div>
+            <div>
+                <van-datetime-picker visible-item-count="3" v-model="currentDate" type="date" @change="changeTimeMore" :show-toolbar="false"/>
+            </div>
+        </van-popup>
+        
+        <!-- 标题导航 ...-->
+        <div class="task">
+            <div class="swiper-container study_fo">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide meet_number" v-for="(item, index) in titles" :key="index">
+                        <div class="task_item">
+                            <p class="task_item_text">{{item}}</p>
+                            <img src="" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://unpkg.com/vue@2.6/dist/vue.min.js"></script>
+    <script src="https://unpkg.com/vant@2.12/lib/vant.min.js"></script>
+    <script src="./lib/flexible.js"></script>
+    <script src="./lib/jquery.main.js"></script>
+    <script src="./lib/jquery.i18n.js"></script>
+    <script src="./lib/jquery.i18n.messagestore.js"></script>
+    <script src="./lib/swiper.min.js"></script>
+    <script src="./js/index.js"></script>
+</body>
+</html>
