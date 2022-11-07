@@ -128,18 +128,41 @@ body {
 }
 // <!-- 标题导航。。 -->
 .task {
-    width: 100%;
-    height: 2.8267rem;
-    margin-bottom: .3733rem;
-    background: #fff;
-    .task_item {
-        text-align: center;
-        .task_item_text {
-            font-size: .6933rem;
-            font-family: PingFangSC-Regular, PingFang SC;
-            font-weight: 400;
-            color: #999999;
-            line-height: 2.8267rem;
+    .add_border {
+        border-right: .1067rem solid #FF8386;
+    }
+    .add_borders {
+        border-left: .1067rem solid #FF8386;
+    }
+    .study_fo {
+        width: 100%;
+        height: 2.8267rem;
+        margin-bottom: .3733rem;
+        background: #fff;
+        .task_item {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            .task_item_text {
+                font-size: .6933rem;
+                font-family: PingFangSC-Regular, PingFang SC;
+                font-weight: 400;
+                color: #999999;
+                margin-bottom: .2133rem;
+                // line-height: 2.8267rem;
+            }
+            .active {
+                font-size: .9067rem;
+                font-family: PingFangSC-Medium, PingFang SC;
+                font-weight: 500;
+                color: #212121;
+            }
+            img {
+                width: .5333rem;
+                height: .3733rem;
+            }
         }
     }
 }

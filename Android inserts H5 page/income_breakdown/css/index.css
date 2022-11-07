@@ -120,19 +120,39 @@ body {
   background: url(../images/jvxin1.png) no-repeat;
   background-size: cover;
 }
-.task {
+.task .add_border {
+  border-right: 0.1067rem solid #FF8386;
+}
+.task .add_borders {
+  border-left: 0.1067rem solid #FF8386;
+}
+.task .study_fo {
   width: 100%;
   height: 2.8267rem;
   margin-bottom: 0.3733rem;
   background: #fff;
 }
-.task .task_item {
-  text-align: center;
+.task .study_fo .task_item {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-.task .task_item .task_item_text {
+.task .study_fo .task_item .task_item_text {
   font-size: 0.6933rem;
   font-family: PingFangSC-Regular, PingFang SC;
   font-weight: 400;
   color: #999999;
-  line-height: 2.8267rem;
+  margin-bottom: 0.2133rem;
+}
+.task .study_fo .task_item .active {
+  font-size: 0.9067rem;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #212121;
+}
+.task .study_fo .task_item img {
+  width: 0.5333rem;
+  height: 0.3733rem;
 }
