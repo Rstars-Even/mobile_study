@@ -16,8 +16,10 @@ let app = new Vue({
             toolTime02: '',             //选择器中的日期
             startDate: '',
             endDate: '',
+            start_date_num: '',         //请求的时间戳-
+            end_date_num: '',
             // currentDate: new Date(),
-            startTimes: '',             //时间选择器选定的时间。。
+            startTimes: '',            //时间选择器选定的时间。。
             titles: ['汇总', '聊天', '礼物', '视频', '语音', '邀请收益', '系统赠送', '消费钻石',],
             isicon: 0,                    //tab选中状态。
             add_border: true,           //tab左右边框样式。。
@@ -58,6 +60,13 @@ let app = new Vue({
             this.isChoiceTime = false;
             this.startDate = this.toolTime01;
             this.endDate = this.toolTime02;
+
+            this.start_date_num = dayjs(this.toolTime01).valueOf();
+            let end = dayjs(this.toolTime02).endOf('day').format('YYYY-MM-DD HH:mm:ss');
+            this.end_date_num = dayjs(end).valueOf();
+            
+            console.log('-----请求的时间戳------：', this.start_date_num, this.end_date_num)
+            this.geta_pool_list();
         },
         // 切换背景事件。。
         timeClick(n) {
@@ -93,26 +102,32 @@ let app = new Vue({
         //时间处理。
         getMondayAndSunday() {
           
-            let today = dayjs().format('YYYY-MM-DD')
             let today_week = dayjs().day()
-            let start_time = dayjs(today).subtract(today_week - 1, 'day').format('YYYY-MM-DD')
+            let start_time = dayjs().subtract(today_week == 0 ? today_week + 6 : today_week - 1, 'day').format('YYYY-MM-DD')
             let end_time = dayjs(start_time).add(6, 'day').format('YYYY-MM-DD')
-            console.log('today_week',today ,today_week ,dayjs(today).subtract(today_week - 1, 'day'));
-            
-           
+
+
             this.toolTime01 = start_time;
             this.toolTime02 = end_time;
             this.startDate = start_time;
             this.endDate = end_time;
-            
+
+            let time = this.startDate.split('-');       //设置选择器默认值。。。
+            console.log('--jion---------', time)
+            this.startTimes = new Date(time[0], time[1] - 1, time[2]);
+            //为星期天加上23：59：59...。
+            let ends = dayjs(end_time).endOf('day').format('YYYY-MM-DD HH:mm:ss');
+
             // console.log(start_time, end_time)
             console.log('-------------yy-mm--dd:', this.startDate, this.endDate)
 
             console.log('时间戳', dayjs(start_time).valueOf(), dayjs(end_time).valueOf());
-
-            let ends = dayjs(end_time).endOf('day').format('YYYY-MM-DD HH:mm:ss');
             console.log('777777777', dayjs(ends).valueOf())
-
+            
+            this.start_date_num = dayjs(start_time).valueOf();
+            this.end_date_num = dayjs(ends).valueOf();
+            // this.start_date_num = startDate_num;
+            // this.end_date_num = endDate_num;
         },
 
         // 简易请求封装。。
@@ -176,8 +191,8 @@ let app = new Vue({
                 method: 'get',
                 url: '/api/user/purse/sumDiamond',
                 data: {
-                    startDate: this.toolTime01,
-                    endDate: this.toolTime02,
+                    startDate: this.start_date_num,
+                    endDate: this.end_date_num,
                 }
             }).then(res => {
                 console.log('res-------汇总列表，。。--------:', res);
@@ -191,7 +206,7 @@ let app = new Vue({
     },
     mounted() {
         this.getMondayAndSunday();
-        this.geta_pool_list ()
+        this.geta_pool_list();
         // console.log('=-------pool_list-----------', this.pool_list)
     }
 })

@@ -49,7 +49,7 @@
                 <div class="center_right" :class="cont == 2 ? 'selected' : 'un_selected'" @click="timeClick(2)">{{toolTime02}}</div>
             </div>
             <div>
-                <van-datetime-picker visible-item-count="3" type="date" @change="changeTimeMore" :show-toolbar="false"/>
+                <van-datetime-picker visible-item-count="3" type="date" @change="changeTimeMore" :show-toolbar="false" v-model="startTimes"/>
             </div>
         </van-popup>
         
