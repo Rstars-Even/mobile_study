@@ -1,9 +1,9 @@
-(function () {
+// (function () {
     // 调试工具加载
-	const script = document.createElement('script')
-	script.src = './lib/eruda.min.js'
-	document.body.appendChild(script)
-	script.onload = function () { eruda.init() }
+	// const script = document.createElement('script')
+	// script.src = './lib/eruda.min.js'
+	// document.body.appendChild(script)
+	// script.onload = function () { eruda.init() }
 
     /**
      * @description 获取客户端类型
@@ -41,8 +41,8 @@
      * @param {string} userInfo.ticket 用户登录ticket
      */
     let userInfo = {
-        uid: '103',
-        ticket: "9d51cecb3874eeed79938a6cf5fb487a",
+        uid: '150',
+        ticket: "231d0e9df343dc6af58a56b78f4b223b",
     }
 
 
@@ -269,4 +269,4 @@
         )
     }
     
-})();
+// })();

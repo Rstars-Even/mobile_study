@@ -16,19 +16,19 @@
         <div class="header">
             <div class="header_top" @click="header_top_click">
                 <div><img class="header_top_img1" src="./images/icon_rili.png" alt=""></div>
-                <data_div>{{toolTime01}}</data_div>
+                <data_div>{{startDate}}</data_div>
                 <div class="header_top_zhi">至</div>
-                <data_div>{{toolTime02}}</data_div>
+                <data_div>{{endDate}}</data_div>
                 <div><img class="header_top_img2" src="./images/icon_sang.png" alt=""></div>
             </div>
-            <div class="header_down">
+            <div class="header_down" v-if="pool_list">
                 <diamond_num>
                     <template v-slot:names>获取钻石：</template>
-                    <template v-slot:num>1000.00</template>
+                    <template v-slot:num>{{pool_list.incrDiamond}}</template>
                 </diamond_num>
                 <diamond_num>
                     <template v-slot:names>消费钻石：</template>
-                    <template v-slot:num>500.00</template>
+                    <template v-slot:num>{{pool_list.decrDiamond}}</template>
                 </diamond_num>
                 <!-- <div class="header_down_reduce">
                     <span>消费钻石：</span>
@@ -67,8 +67,21 @@
                 <div class="swiper-pagination"></div>
             </div>
         </div>
+        <!-- 汇总列表 -->
+        <ul v-if="pool_list" class="pool_ul">
+            <li class="pool_li" v-for="(item, index) in pool_list.list" :key="index">
+                <div class="pool_li_title">
+                    <img v-bind:src="item.icon" referrerPolicy="no-referrer" alt="">
+                    <p>{{item.title}}</p>
+                </div>
+                <div class="pool_li_num">
+                    <p>{{item.diamond}}</p>
+                    <img src="./images/ic_zuanshi.png" alt="">
+                </div>
+            </li>
+        </ul>
     </div>
-    
+    <script src="./lib/day@1.8.21.js"></script>
     <script src="./lib/vue@2.6.min.js"></script>
     <script src="./lib/vant@2.12.js"></script>
     <script src="./lib/flexible.js"></script>
@@ -76,6 +89,7 @@
     <script src="./lib/jquery.i18n.js"></script>
     <script src="./lib/jquery.i18n.messagestore.js"></script>
     <script src="./lib/swiper.min.js"></script>
+    <script src="./js/util.js"></script>
     <script src="./js/index.js"></script>
 </body>
 </html>
