@@ -87,27 +87,42 @@
         <!-- 聊天列表 -->
         <ul v-if="pool_list && listType == 1 ? true : false" class="chat_ul">
             <li class="pool_li" v-for="(item, index) in pool_list" :key="index">
-                <p>{{item.createTime}}</p>
-                <div v-for="(element, i) in item.datas" :key="i">
-                    <div>
-                        <div v-show="">
+                <p class="chat_ul_date">{{item.createTime}}</p>
+                <div class="chat_ul_item" v-for="(element, i) in item.datas" :key="i">
+                    <div class="chat_ul_left">
+                        <div v-show="!element.giftNum" class="chat_ul_item_text">
                             <p>回复了</p>
-                            <p>{{element.targetNick}}</p>    
+                            <p class="chat_ul_item_text_name">{{element.targetNick}}</p>    
                             <p>的消息</p>    
                         </div>
-                        <div>
+
+                        <div v-show="element.giftNum">
                             <p data-i18n="">回应了</p>
                             <p>{{element.targetNick}}</p>
                             <p>的搭讪</p>
                             <p>({{element.giftName}}x{{element.giftNum}})</p>
                         </div>
-                        <p>{{element.time_hours}}</p>
+
+                        <p class="chat_ul_item_date">{{element.time_hours}}</p>
                     </div>
-                    <div>
+                    <div class="chat_ul_right">
                         <p>+{{element.diamond}}</p>
-                        <img src="" alt="122">
+                        <img src="./images/ic_zuanshi.png" alt="">
                     </div>
                 </div>
+            </li>
+        </ul>
+        <!-- 礼物列表 -->
+        <ul v-if="pool_list && listType == 2 ? true : false" class="gift_ul">
+            <li class="pool_li" v-for="(item, index) in pool_list.list" :key="index">
+                <!-- <div class="pool_li_title">
+                    <img v-bind:src="item.icon" referrerPolicy="no-referrer" alt="">
+                    <p>{{item.title}}</p>
+                </div>
+                <div class="pool_li_num">
+                    <p>{{item.diamond}}</p>
+                    <img src="./images/ic_zuanshi.png" alt="">
+                </div> -->
             </li>
         </ul>
     </div>
