@@ -24,8 +24,9 @@ let app = new Vue({
             isicon: 0,                    //tab选中状态。
             add_border: true,           //tab左右边框样式。。
             pool_list: {},               //汇总列表。。
-            // get_diamond: '666',            //获取钻石总数。。
-            // reduce_diamond: '999'          //消费钻石的总数。。
+            incrDiamond: '',
+            decrDiamond: "",
+            listType: 0                 //列表类型。。0 汇总 1 聊天，2 礼物，3 视频，4 语音，5邀请，6系统，7消费
         }
     },
     components: {
@@ -66,7 +67,17 @@ let app = new Vue({
             this.end_date_num = dayjs(end).valueOf();
             
             console.log('-----请求的时间戳------：', this.start_date_num, this.end_date_num)
-            this.geta_pool_list();
+
+            if (this.listType == 0) {
+                this.geta_pool_list();
+            } else {
+                if (this.listType == 7) {
+                    this.get_list (2, this.listType);
+                } else {
+                    this.get_list (1, this.listType);
+                }
+            }
+            // this.geta_pool_list();
         },
         // 切换背景事件。。
         timeClick(n) {
@@ -87,8 +98,19 @@ let app = new Vue({
                 this.toolTime02 = this.startTimes;
             }
         },
-        selected(index) {
+        selected(index) {       //选择要显示的列表类型。。。0 汇总 1 聊天，2 礼物，3 视频，4 语音，5邀请，6系统，7消费
+            this.pool_list = {};
             this.isicon = index;
+            this.listType = index;
+            if (index == 0) {
+                this.geta_pool_list();
+            } else {
+                if (index == 7) {
+                    this.get_list (2, index);
+                } else {
+                    this.get_list (1, index);
+                }
+            }
         },
         gtouchmove(event) {
             event.preventDefault();
@@ -126,8 +148,6 @@ let app = new Vue({
             
             this.start_date_num = dayjs(start_time).valueOf();
             this.end_date_num = dayjs(ends).valueOf();
-            // this.start_date_num = startDate_num;
-            // this.end_date_num = endDate_num;
         },
 
         // 简易请求封装。。
@@ -196,8 +216,92 @@ let app = new Vue({
                 }
             }).then(res => {
                 console.log('res-------汇总列表，。。--------:', res);
+                if (res.code != 200) {
+                    return;
+                }
                 this.pool_list = res.data;
+                this.incrDiamond = res.data.incrDiamond;
+                this.decrDiamond = res.data.decrDiamond;
                 // console.log('=-------pool_list-----11111------', this.pool_list, this.get_diamond, this.reduce_diamond)
+            })
+            .catch(err => {
+                defToast(err.message)
+            })
+        },
+        // 请求其它列表数据。。billType：1 聊天，2 礼物，3 视频，4 语音，5邀请，6系统，7消费。type: 1 获得， 2 消费
+        get_list (type, listType) {
+
+            this.defRequest({
+                method: 'get',
+                url: '/api/user/purse/listDiamond',
+                data: {
+                    // startDateTime: this.start_date_num,
+                    startDateTime: 1610158495000,
+                    // endDateTime: this.end_date_num,
+                    endDateTime: 1667960095000,
+                    type: type,
+                    billType: listType,
+                    pageNum: 1,
+                    pageSize: 10
+                }
+            }).then(res => {
+                console.log(`res-------汇总列表，。。-${this.listType}-------:`, res);
+                if (res.code != 200) {
+                    return;
+                }
+                // this.pool_list = res.data;
+                // console.log('=-------pool_list-----11111------', this.pool_list, this.get_diamond, this.reduce_diamond)
+            
+                let tempArr = [];
+                var newArr = [];
+                let data = res.data;
+                let time_day;
+                let time_days
+                let time_dayss
+                for (let i = 0; i < data.length; i++) {
+                    time_day = dayjs(data[i].createTime).format('YYYY-MM-DD');
+                    // let time_hours = dayjs(data[i].createTime).format('HH:mm');
+                    console.log('-------时间对比-----', time_day,);
+
+                    if (tempArr.indexOf(time_day) === -1) {
+                        newArr.push({
+                            createTime: time_day,
+                            datas: [data[i]]
+                        });
+                        tempArr.push(time_day);
+                    } else {
+                        for (let j = 0; j < newArr.length; j++) {
+                            time_days = dayjs(data[i].createTime).format('YYYY-MM-DD');
+                            time_dayss = dayjs(newArr[j].createTime).format('YYYY-MM-DD');
+                            
+                            if (time_days == time_dayss) {
+                                newArr[j].datas.push(data[i]);
+                                // newArr[j].datas[j].time_hours = time_hours;
+                                break;
+                            }
+                        }
+                    }
+                }
+                let time_hours
+                for (let index = 0; index < newArr.length; index++) {
+                    const element = newArr[index];
+
+                    for (let k = 0; k < element.datas.length; k++) {
+                        const elements = element.datas[k];
+                        time_hours = dayjs(elements.createTime).format('HH:mm');
+
+                        // console.log('-------时间对比-----', time_day, time_hours);
+
+                        elements.time_hours = time_hours;
+                    }
+                    
+                }
+
+
+
+
+                console.log('------------newArr------------', newArr)
+                this.pool_list = newArr;
             })
             .catch(err => {
                 defToast(err.message)

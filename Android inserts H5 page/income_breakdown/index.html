@@ -13,29 +13,47 @@
 </head> 
 <body data-lang="cn">
     <div id="app">
-        <div class="header">
-            <div class="header_top" @click="header_top_click">
-                <div><img class="header_top_img1" src="./images/icon_rili.png" alt=""></div>
-                <data_div>{{startDate}}</data_div>
-                <div class="header_top_zhi">至</div>
-                <data_div>{{endDate}}</data_div>
-                <div><img class="header_top_img2" src="./images/icon_sang.png" alt=""></div>
+        <div class = "tab_title">
+            <div class="header">
+                <div class="header_top" @click="header_top_click">
+                    <div><img class="header_top_img1" src="./images/icon_rili.png" alt=""></div>
+                    <data_div>{{startDate}}</data_div>
+                    <div class="header_top_zhi">至</div>
+                    <data_div>{{endDate}}</data_div>
+                    <div><img class="header_top_img2" src="./images/icon_sang.png" alt=""></div>
+                </div>
+                <div class="header_down" v-if="pool_list">
+                    <diamond_num>
+                        <template v-slot:names>获取钻石：</template>
+                        <template v-slot:num>{{incrDiamond}}</template>
+                    </diamond_num>
+                    <diamond_num>
+                        <template v-slot:names>消费钻石：</template>
+                        <template v-slot:num>{{decrDiamond}}</template>
+                    </diamond_num>
+                    <!-- <div class="header_down_reduce">
+                        <span>消费钻石：</span>
+                        <span>1000.00</span>
+                    </div> -->
+                </div>
             </div>
-            <div class="header_down" v-if="pool_list">
-                <diamond_num>
-                    <template v-slot:names>获取钻石：</template>
-                    <template v-slot:num>{{pool_list.incrDiamond}}</template>
-                </diamond_num>
-                <diamond_num>
-                    <template v-slot:names>消费钻石：</template>
-                    <template v-slot:num>{{pool_list.decrDiamond}}</template>
-                </diamond_num>
-                <!-- <div class="header_down_reduce">
-                    <span>消费钻石：</span>
-                    <span>1000.00</span>
-                </div> -->
+            
+            <!-- 标题导航 ...-->
+            <div class="task">
+                <div class="swiper-container study_fo" :class="add_border ? 'add_border' : 'add_borders'">
+                    <div class="swiper-wrapper" @touchmove="gtouchmove(event)">
+                        <div class="swiper-slide meet_number" @click="selected(index)" v-for="(item, index) in titles" :key="index">
+                            <div class="task_item">
+                                <p class="task_item_text" :class="{active: isicon == index}">{{item}}</p>
+                                <img v-if="isicon == index" src="./images/tab_pre.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
             </div>
         </div>
+
         <!-- 隐藏的日期选择器，。。 -->
         <van-popup v-model="isChoiceTime" round position="bottom" :style="{ height: '14.5rem' }" />
             <div class="headerSlots">
@@ -52,23 +70,9 @@
                 <van-datetime-picker visible-item-count="3" type="date" @change="changeTimeMore" :show-toolbar="false" v-model="startTimes"/>
             </div>
         </van-popup>
-        
-        <!-- 标题导航 ...-->
-        <div class="task">
-            <div class="swiper-container study_fo" :class="add_border ? 'add_border' : 'add_borders'">
-                <div class="swiper-wrapper" @touchmove="gtouchmove(event)">
-                    <div class="swiper-slide meet_number" @click="selected(index)" v-for="(item, index) in titles" :key="index">
-                        <div class="task_item">
-                            <p class="task_item_text" :class="{active: isicon == index}">{{item}}</p>
-                            <img v-if="isicon == index" src="./images/tab_pre.png" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-pagination"></div>
-            </div>
-        </div>
+
         <!-- 汇总列表 -->
-        <ul v-if="pool_list" class="pool_ul">
+        <ul v-if="pool_list && listType == 0 ? true : false" class="pool_ul">
             <li class="pool_li" v-for="(item, index) in pool_list.list" :key="index">
                 <div class="pool_li_title">
                     <img v-bind:src="item.icon" referrerPolicy="no-referrer" alt="">
@@ -77,6 +81,32 @@
                 <div class="pool_li_num">
                     <p>{{item.diamond}}</p>
                     <img src="./images/ic_zuanshi.png" alt="">
+                </div>
+            </li>
+        </ul>
+        <!-- 聊天列表 -->
+        <ul v-if="pool_list && listType == 1 ? true : false" class="chat_ul">
+            <li class="pool_li" v-for="(item, index) in pool_list" :key="index">
+                <p>{{item.createTime}}</p>
+                <div v-for="(element, i) in item.datas" :key="i">
+                    <div>
+                        <div v-show="">
+                            <p>回复了</p>
+                            <p>{{element.targetNick}}</p>    
+                            <p>的消息</p>    
+                        </div>
+                        <div>
+                            <p data-i18n="">回应了</p>
+                            <p>{{element.targetNick}}</p>
+                            <p>的搭讪</p>
+                            <p>({{element.giftName}}x{{element.giftNum}})</p>
+                        </div>
+                        <p>{{element.time_hours}}</p>
+                    </div>
+                    <div>
+                        <p>+{{element.diamond}}</p>
+                        <img src="" alt="122">
+                    </div>
                 </div>
             </li>
         </ul>

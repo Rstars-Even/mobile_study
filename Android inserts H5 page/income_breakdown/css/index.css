@@ -156,6 +156,12 @@ body {
   width: 0.5333rem;
   height: 0.3733rem;
 }
+.tab_title {
+  position: sticky;
+  background: #F8F8F8;
+  top: 0;
+  left: 0;
+}
 .pool_ul {
   padding: 0 0.8rem;
   background: #fff;
