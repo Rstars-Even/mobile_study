@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-i18n="i18n_detail"></title>
     <link rel="stylesheet" href="./css/normalize.css">
-    <link rel="stylesheet" href="./css/swiper.min.css">
+    <!-- <link rel="stylesheet" href="./css/swiper.min.css"> -->
     <link rel="stylesheet" href="./css/index.css">
     <!-- 引入样式文件 -->
     <link rel="stylesheet" href="./css/vant@2.12.css"/>
@@ -23,14 +23,6 @@
                     <div><img class="header_top_img2" src="./images/icon_sang.png" alt=""></div>
                 </div>
                 <div class="header_down" v-if="pool_list">
-                    <!-- <diamond_num>
-                        <template v-slot:names>获取钻石：</template>
-                        <template v-slot:num>{{incrDiamond}}</template>
-                    </diamond_num>
-                    <diamond_num>
-                        <template v-slot:names>消费钻石：</template>
-                        <template v-slot:num>{{decrDiamond}}</template>
-                    </diamond_num> -->
                     <div class="header_down_get">
                         <span class='diamond' data-i18n="i18n_get"></span>
                         <span class='num'>{{incrDiamond}}</span>
@@ -41,22 +33,33 @@
                     </div>
                 </div>
             </div>
+        </div>
             
             <!-- 标题导航 ...-->
-            <div class="task">
-                <div class="swiper-container study_fo" :class="add_border ? 'add_border' : 'add_borders'">
-                    <div class="swiper-wrapper" @touchmove="gtouchmove(event)">
-                        <div class="swiper-slide meet_number" @click="selected(index)" v-for="(item, index) in titles" :key="index">
-                            <div class="task_item">
-                                <p class="task_item_text" :class="{active: isicon == index}">{{item}}</p>
-                                <img v-if="isicon == index" src="./images/tab_pre.png" alt="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-pagination"></div>
+            <!-- <div class="study_fo">
+                <div class="task_item" @click="selected(index)" v-for="(item, index) in titles" :key="index">
+                    <p class="task_item_text" :class="{active: isicon == index}">{{item}}</p>
+                    <img v-if="isicon == index" src="./images/tab_pre.png" alt="">
                 </div>
-            </div>
-        </div>
+            </div> -->
+
+            <van-tabs v-model="active" swipeable swipe-threshold=4 class="tab_s">
+                <van-tab v-for="item in titles" :title="item" class="tab_li">
+                    <div slot="title">鹅鹅</div>
+
+                    <div class="tab_c">{{ item }}</div>
+                    <div class="tab_c">{{ item }}</div>
+                    <div class="tab_c">{{ item }}</div>
+                    <div class="tab_c">{{ item }}</div>
+                    <div class="tab_c">{{ item }}</div>
+                    <div class="tab_c">{{ item }}</div>
+                    <div class="tab_c">{{ item }}</div>
+                    <div class="tab_c">{{ item }}</div>
+                    <div class="tab_c">{{ item }}</div>
+                    <div class="tab_c">{{ item }}</div>
+                    <div class="tab_c">{{ item }}</div>
+                </van-tab>
+            </van-tabs>
 
         <!-- 隐藏的日期选择器，。。 -->
         <van-popup v-model="isChoiceTime" round position="bottom" :style="{ height: '14.5rem' }" />
@@ -296,7 +299,7 @@
     <script src="./lib/jquery.main.js"></script>
     <script src="./lib/jquery.i18n.js"></script>
     <script src="./lib/jquery.i18n.messagestore.js"></script>
-    <script src="./lib/swiper.min.js"></script>
+    <!-- <script src="./lib/swiper.min.js"></script> -->
     <script src="./js/util.js"></script>
     <script src="./js/index.js"></script>
 </body>

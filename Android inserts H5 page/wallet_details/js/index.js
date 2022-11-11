@@ -21,9 +21,9 @@ let app = new Vue({
             // currentDate: new Date(),
             startTimes: '',            //时间选择器选定的时间。。
             lang: 'zh',
-            titles: ['汇总', '聊天', '礼物', '视频', '语音', '邀请收益', '系统赠送', '消费钻石',],
+            titles: ['汇总', '聊天', '礼物', '视频', '语音'],
             isicon: 0,                    //tab选中状态。
-            add_border: true,           //tab左右边框样式。。
+            // add_border: true,           //tab左右边框样式。。
             pool_list: {},               //汇总列表。。
             incrDiamond: '',
             decrDiamond: "",
@@ -32,6 +32,8 @@ let app = new Vue({
             pageNum: 1,
             pageSize: 20,
             lists: [],
+
+            active:""
         }
     },
     filters: {
@@ -143,15 +145,7 @@ let app = new Vue({
                 langTranslate ()
             }
         },
-        gtouchmove(event) {
-            // event.preventDefault();
-            // console.log("...滑动事件..------", event.touches[0].clientX > 250)
-            if (event.touches[0].clientX > 200) {
-                this.add_border = true;
-            } else {
-                this.add_border = false;
-            } 
-        },
+       
         //初始化时间处理。
         getMondayAndSunday() {
           
@@ -240,13 +234,13 @@ let app = new Vue({
 
             this.defRequest({
                 method: 'get',
-                url: '/api/user/purse/sumDiamond',
+                url: '/api/user/purse/sumGold',
                 data: {
                     startDate: this.start_date_num,
                     endDate: this.end_date_num,
                 }
             }).then(res => {
-                console.log('res-------汇总列表，。。--------:', res);
+                console.log('res-------汇总列表11111111，。。--------:', res);
                 if (res.code != 200) {
                     return;
                 }
@@ -376,19 +370,12 @@ let app = new Vue({
     mounted() {
         this.lang = lang;
         if (lang == 'en') {
-            this.titles = ['Summary', 'Messages', 'Gifts', 'Video call', 'Voice call', 'Invitation', 'System sent', 'Consuming diamonds',]
+            this.titles = ['Summary', 'Messages']
         } else if (lang == 'vi') {
-            this.titles = ['Tổng', 'Chat', 'Quà', 'Video', 'Voice', 'Thu lợi mời', 'H thng tng', 'Tiêu kim cương',]
+            this.titles = ['Tổng', 'Chat']
         };
         this.getMondayAndSunday();
         this.geta_pool_list();
-        window.addEventListener('scroll', this.handle)
+        // window.addEventListener('scroll', this.handle)
     }
 })
-//头部轮播图。。
-let swiper = new Swiper(".study_fo", {
-    // 可以看到的是 3个半
-    slidesPerView: 4,
-    // 每个的元素间隔
-    spaceBetween: 0,
-});

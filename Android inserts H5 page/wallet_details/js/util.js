@@ -42,7 +42,7 @@
      */
     let userInfo = {
         uid: '102',
-        ticket: "ed905a585d4975876f7828a111d2d6e1",
+        ticket: "bfb187f7551db2a2df87892557aea459",
     }
 
 
@@ -67,7 +67,7 @@
         deviceId: '001',
         fcmToken: 'fcmToken',
         imei: '001',
-        lang: 'vi',
+        lang: 'zh',
         os: 'android',
         brand: 'Huawei',
         model: 'P40%20pro',
