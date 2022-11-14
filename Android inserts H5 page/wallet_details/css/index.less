@@ -170,6 +170,7 @@ body {
     top: 0;
     left: 0;
     z-index: 999;
+    height: 5.1rem;
 }
 // 汇总列表。。。
 .pool_ul {
@@ -335,13 +336,42 @@ body {
             }
         }
     }
-// }
-.tab_s{
-    width: 100%;
-    .van-tab {
-        width: 25%;
-    }
+
+
+.van-tabs__nav .van-tab {
+    font-size: .6933rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #999999;
 }
-.tab_c {
-    margin-bottom: 40px
+.van-tabs__nav .van-tab--active{
+    font-size: .9067rem;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: #212121;
+}
+.van-tabs__nav .van-tabs__line {
+   
+    width: .5333rem;
+    height: .3733rem;
+    background: url("../images/tab_pre.png") no-repeat;
+	background-size: cover;
+    background-color: #FFF;
+}
+
+// 列表吸顶样式。。
+.van-index-bar .van-index-anchor--sticky {
+    padding-top: .52rem;
+    background-color: #F8F8F8;
+}
+// .van-index-bar .van-index-bar__sidebar {
+//     display: none;
+// }
+
+.gift_li .van-index-anchor {
+    color: #999999;
+}
+
+.ff {
+    margin-bottom: 50px;
 }

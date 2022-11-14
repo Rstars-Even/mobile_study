@@ -27,13 +27,14 @@ let app = new Vue({
             pool_list: {},               //汇总列表。。
             incrDiamond: '',
             decrDiamond: "",
-            listType: 0,                 //列表类型。。0 汇总 1 聊天，2 礼物，3 视频，4 语音，5邀请，6系统，7消费
+            listType: 2,                 //列表类型。。 1 获得，2 消费
 
             pageNum: 1,
             pageSize: 20,
             lists: [],
 
-            active:""
+            indexList: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+            selecteds: 'D'
         }
     },
     filters: {
@@ -83,23 +84,17 @@ let app = new Vue({
             document.documentElement.scrollTop = 0;
 
 
-            if (this.listType == 0) {
-                this.geta_pool_list();
-            } else {
-                // let results;
+            this.geta_pool_list();
+
                 if (this.listType == 7) {
                     this.lists = await this.get_list (2, this.listType);
-                    //  = results
                 } else {
                     this.lists = await this.get_list (1, this.listType);
-                    // this.lists = results
                 }
                 console.log ('-----------数据-------------0000',this.lists);
                 langTranslate ()
-            }
-            // this.geta_pool_list();
         },
-        // 切换背景事件。。
+        // 时间选择器切换背景事件。。
         timeClick(n) {
             if(n == 1) {
                 this.cont = 1;
@@ -107,7 +102,7 @@ let app = new Vue({
                 this.cont = 2;
             }
         },
-        // 选择的时间段。。
+        // 选择的时间段。。选择器自带的事件。。。
         changeTimeMore(picker) {
             let startTime = picker.getValues();
             this.startTimes = startTime[0] + "-" + startTime[1] + "-" + startTime[2];
@@ -118,33 +113,27 @@ let app = new Vue({
                 this.toolTime02 = this.startTimes;
             }
         },
-        async selected(index) {       //选择要显示的列表类型。。。0 汇总 1 聊天，2 礼物，3 视频，4 语音，5邀请，6系统，7消费
-            if (this.listType == index) {
-                console.log('--------防抖--节流------')
-                return
-            }
+        // async selected(index) {       //选择要显示的列表类型。。。1 获取 2 消费
+        //     if (this.listType == index) {
+        //         console.log('--------防抖--节流------')
+        //         return
+        //     }
 
-            this.lists = [];
-            document.documentElement.scrollTop = 0;
-            this.pageNum = 1;
-            this.isicon = index;
-            this.listType = index;
-            console.log('-----listType------',index, this.listType);
-            if (index == 0) {
-                this.geta_pool_list();
-            } else {
-                // let result;
-                if (index == 7) {
-                    this.lists = await this.get_list (2, index);
-                    // this.lists = result
-                } else {
-                    this.lists = await this.get_list (1, index);
-                    // this.lists = result
-                }
-                console.log ('-----------数据-------------0000',this.lists);
-                langTranslate ()
-            }
-        },
+        //     this.lists = [];
+        //     document.documentElement.scrollTop = 0;
+        //     this.pageNum = 1;
+        //     this.isicon = index;
+        //     this.listType = index;
+        //     console.log('-----listType------',index, this.listType);
+          
+        //         if (index == 7) {
+        //             this.lists = await this.get_list (2, index);
+        //         } else {
+        //             this.lists = await this.get_list (1, index);
+        //         }
+        //         console.log ('-----------数据-------------0000',this.lists);
+        //         langTranslate ()
+        // },
        
         //初始化时间处理。
         getMondayAndSunday() {
@@ -152,7 +141,6 @@ let app = new Vue({
             let today_week = dayjs().day()
             let start_time = dayjs().subtract(today_week == 0 ? today_week + 6 : today_week - 1, 'day').format('YYYY-MM-DD')
             let end_time = dayjs(start_time).add(6, 'day').format('YYYY-MM-DD')
-
 
             this.toolTime01 = start_time;
             this.toolTime02 = end_time;
@@ -176,114 +164,113 @@ let app = new Vue({
         },
 
         // 简易请求封装。。
-        defRequest (param) {
-            param.data = {
-                ...param.data,
-                ...deviceInfo,
-                ticket: userInfo.ticket,
-                uid: userInfo.uid,
-            }
-            let origin = location.origin
-            origin = 'http://beta.sukiechat.com'
-            return new Promise((resolve, reject) => {
-                param.data = param.data || {}
-                const formData = []
+        // defRequest (param) {
+        //     param.data = {
+        //         ...param.data,
+        //         ...deviceInfo,
+        //         ticket: userInfo.ticket,
+        //         uid: userInfo.uid,
+        //     }
+        //     let origin = location.origin
+        //     origin = 'http://beta.sukiechat.com'
+        //     return new Promise((resolve, reject) => {
+        //         param.data = param.data || {}
+        //         const formData = []
                 
-                for (let key in param.data) {
-                    formData.push(`${ key }=${ param.data[key] }`)
-                }
-                param.data = formData.join('&')
+        //         for (let key in param.data) {
+        //             formData.push(`${ key }=${ param.data[key] }`)
+        //         }
+        //         param.data = formData.join('&')
                 
-                const req = new XMLHttpRequest()
-                req.responseType = 'json'
+        //         const req = new XMLHttpRequest()
+        //         req.responseType = 'json'
                 
-                // 超时处理
-                req.timeout = 1000 * 60
-                req.ontimeout = function () {
-                    req.abort()
-                }
+        //         // 超时处理
+        //         req.timeout = 1000 * 60
+        //         req.ontimeout = function () {
+        //             req.abort()
+        //         }
                 
-                req.onreadystatechange = function () {
-                    if (req.readyState === 4) {
-                        if (req.status === 200) {
-                            if (req.response.code === 200) {
-                                resolve(req.response)
-                            } else {
-                                reject(req.response)
-                            }
-                        } else {
-                            reject(req.response)
-                        }
-                    }
-                }
+        //         req.onreadystatechange = function () {
+        //             if (req.readyState === 4) {
+        //                 if (req.status === 200) {
+        //                     if (req.response.code === 200) {
+        //                         resolve(req.response)
+        //                     } else {
+        //                         reject(req.response)
+        //                     }
+        //                 } else {
+        //                     reject(req.response)
+        //                 }
+        //             }
+        //         }
                 
-                if (param.method === 'get') {
-                    console.log('---最终请求地址---:', `${ origin }/${ param.url }?${ param.data }`)
-                    req.open('get', `${ origin }/${ param.url }?${ param.data }`)
-                }
-                if (param.method === 'post') {
-                    req.open('post', `${ origin }/${ param.url }?`)
-                    req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8')
-                }
-                req.send(param.method === 'post' ? new URLSearchParams(param.data) : null)
-            })
-        }, 
+        //         if (param.method === 'get') {
+        //             console.log('---最终请求地址---:', `${ origin }/${ param.url }?${ param.data }`)
+        //             req.open('get', `${ origin }/${ param.url }?${ param.data }`)
+        //         }
+        //         if (param.method === 'post') {
+        //             req.open('post', `${ origin }/${ param.url }?`)
+        //             req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8')
+        //         }
+        //         req.send(param.method === 'post' ? new URLSearchParams(param.data) : null)
+        //     })
+        // }, 
 
-        // 请求汇总列表数据。。。
+        // 请求金币汇总列表数据。。。
         geta_pool_list () {
 
-            this.defRequest({
+            defRequest({
                 method: 'get',
                 url: '/api/user/purse/sumGold',
                 data: {
-                    startDate: this.start_date_num,
-                    endDate: this.end_date_num,
+                    // startDate: this.start_date_num,
+                    // endDate: this.end_date_num,
+                    startDate: 1665728426000,
+                    endDate: 1668406826000,
                 }
             }).then(res => {
                 console.log('res-------汇总列表11111111，。。--------:', res);
                 if (res.code != 200) {
                     return;
                 }
-                this.pool_list = res.data;
-                this.incrDiamond = res.data.incrDiamond;
-                this.decrDiamond = res.data.decrDiamond;
-                // console.log('=-------pool_list-----11111------', this.pool_list, this.get_diamond, this.reduce_diamond)
+                // this.pool_list = res.data;
+                this.incrDiamond = res.data.incrGold;
+                this.decrDiamond = res.data.decrGold;
+                console.log('=-------pool_list-----11111------', this.incrDiamond, this.decrDiamond)
             })
             .catch(err => {
                 defToast(err.message)
             })
         },
-        // 请求其它列表数据。。billType：1 聊天，2 礼物，3 视频，4 语音，5邀请，6系统，7消费。type: 1 获得， 2 消费
-        get_list (type, listType) {
+        // 请求金币列表明细数据。。type: 1 获得， 2 消费
+        get_list (type) {
 
             return new Promise((resolve) => {
 
-                this.defRequest({
+                defRequest({
                     method: 'get',
-                    url: '/api/user/purse/listDiamond',
+                    url: '/api/user/purse/listGold',
                     data: {
-                        startDateTime: this.start_date_num,
-                        // startDateTime: 1610158495000,
-                        endDateTime: this.end_date_num,
-                        // endDateTime: 1667960095000,
+                        // startDate: this.start_date_num,
+                        // endDate: this.end_date_num,
+                        startDate: 1665728426000,
+                        endDate: 1668406826000,
                         type: type,
-                        billType: listType,
                         pageNum: this.pageNum,
                         pageSize: this.pageSize
                     }
                 }).then(res => {
+                    // console.log(`res-------消费金币列表，。。-------:`, res);
                     if (res.code != 200) {
                         return;
                     }
-                    // this.pool_list = res.data;
                     // console.log('=-------pool_list-----11111------', this.pool_list, this.get_diamond, this.reduce_diamond)
                     let data = res.data;
-                    console.log(`res-------汇总列表，。。${this.listType}-------:`, res);
-                    
-                    
                     let ress = this.data_handling (data);
+                    // this.lists = ress;
 
-                    console.log('------数据处理完成,返回 Promise----');
+                    // console.log('------数据处理完成,返回 Promise----', this.lists);
                     resolve(ress);
                 })
                 .catch(err => {
@@ -302,7 +289,7 @@ let app = new Vue({
             for (let i = 0; i < data.length; i++) {
                 time_day = dayjs(data[i].createTime).format('YYYY-MM-DD');
                 // let time_hours = dayjs(data[i].createTime).format('HH:mm');
-                console.log('-------时间对比-----', time_day,);
+                // console.log('-------时间对比-----', time_day,);
 
                 if (tempArr.indexOf(time_day) === -1) {
                     newArr.push({
@@ -341,6 +328,7 @@ let app = new Vue({
 
         // 第二次数据处理。。。
 
+        // 数据下拉加载更多。。。
         async handle () {
             let scrollTop = $(window).scrollTop();
             let scrollHeight = $(document).height();
@@ -353,19 +341,44 @@ let app = new Vue({
                 // if (this.listType == 0) {
                 //     this.geta_pool_list();
                 // } else {
-                    if (this.listType == 7) {
-                       data = await this.get_list (2, this.listType);
+                    if (this.listType == 2) {
+                       data = await this.get_list (2);      //消费、。。
                     } else {
-                       data = await this.get_list (1, this.listType);
+                    //    data = await this.get_list (1, this.listType);
                     }
                 // }
                 console.log("----------滑动加载数据----------:", this.pageNum, data);
-                this.lists = this.lists.concat(data);
-                console.log("----------滑动加载数据22222222222222----------:", data);
+                let lists_arr = this.lists.concat(data);
+                // console.log("----------合并滑动加载数1111111111111----------:", lists_arr);
+                
+                let time;
+                for (let index = 0; index < lists_arr.length; index++) {
+                    const element = lists_arr[index];
+
+                    if (element.createTime == time && index != 0) {
+                        lists_arr[index - 1].datas = lists_arr[index - 1].datas.concat(element.datas);
+                        lists_arr.splice(index,1);
+                        break;
+                    }
+                    time = element.createTime
+                }
+                
+                console.log("----------合并滑动加载数据22222222222222----------:", lists_arr);
+                this.lists = lists_arr;
+                console.log('--------滑动后的最终数据this.lists-----------', this.lists);
                 langTranslate ()
 
             }
-        }
+        },
+        async init () {
+            this.lists = await this.get_list(2);
+            console.log('-----首次列表数据----------', this.lists);
+        },
+        // 查看用户信息。。
+        find_infor (uid) {
+            console.log('---uid---:', uid);
+            _YM_JSBridge.openUserInfo(uid)
+        },
     },
     mounted() {
         this.lang = lang;
@@ -375,7 +388,9 @@ let app = new Vue({
             this.titles = ['Tổng', 'Chat']
         };
         this.getMondayAndSunday();
-        this.geta_pool_list();
-        // window.addEventListener('scroll', this.handle)
+        this.init();
+        // this.geta_pool_list();
+        window.addEventListener('scroll', this.handle)
+        // this.$refs.scrollTos.scrollTo('D');
     }
 })

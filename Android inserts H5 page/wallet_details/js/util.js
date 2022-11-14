@@ -42,7 +42,7 @@
      */
     let userInfo = {
         uid: '102',
-        ticket: "bfb187f7551db2a2df87892557aea459",
+        ticket: "aafed07a43dfafe4f5db9098506dea45",
     }
 
 
@@ -135,11 +135,12 @@
         //     }
         // },
 
-        // openUserInfo (uid) {
-        //     if (browser.android) {
-        //         window.androidJsObj.openUserPage(uid)
-        //     }
-        // }
+        // 查看用户信息。。
+        openUserInfo (uid) {
+            if (browser.android) {
+                window.androidJsObj.openUserPage(uid)
+            }
+        }
     }
 
     _YM_JSBridge._getAppUserInfo()
