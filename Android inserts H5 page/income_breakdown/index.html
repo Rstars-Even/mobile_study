@@ -43,7 +43,7 @@
             </div>
             
             <!-- 标题导航 ...-->
-            <div class="task">
+            <!-- <div class="task">
                 <div class="swiper-container study_fo" :class="add_border ? 'add_border' : 'add_borders'">
                     <div class="swiper-wrapper" @touchmove="gtouchmove(event)">
                         <div class="swiper-slide meet_number" @click="selected(index)" v-for="(item, index) in titles" :key="index">
@@ -55,8 +55,272 @@
                     </div>
                     <div class="swiper-pagination"></div>
                 </div>
-            </div>
+            </div> -->
         </div>
+        <!-- 标题导航 ...-->
+        <van-tabs :class="add_border ? 'add_border' : 'add_borders'" swipeable :swipe-threshold="4" sticky offset-top="5.1rem" @change="change" >
+            <van-tab :title="1232" name=0>
+                <div slot="title" data-i18n="i18n_summary">汇总</div>
+                    <!-- 汇总列表 -->
+                    <ul v-if="pool_list && listType == 0 ? true : false" class="pool_ul">
+                        <li class="pool_li" v-for="(item, index) in pool_list.list" :key="index">
+                            <div class="pool_li_title">
+                                <img v-bind:src="item.icon" referrerPolicy="no-referrer" alt="">
+                                <p>{{item.title}}</p>
+                            </div>
+                            <div class="pool_li_num">
+                                <p>{{item.diamond}}</p>
+                                <img src="./images/ic_zuanshi.png" alt="">
+                            </div>
+                        </li>
+                    </ul>
+            </van-tab>
+
+            <van-tab :title="456" name=1>
+                <div slot="title" data-i18n="i18n_messages">聊天</div>
+                <!-- 索引 -->
+                <van-index-bar :sticky-offset-top=130 highlight-color="#999999">
+                    <!-- 聊天列表 -->
+                    <ul v-if="listType == 1 ? true : false" class="chat_ul" ref='vanlist'>
+                        <li class="pool_li" v-for="(item, index) in lists" :key="index">
+                            <van-index-anchor index="1">{{item.createTime}}</van-index-anchor>
+
+                            <!-- <p class="chat_ul_date">{{item.createTime}}</p> -->
+                            <div class="chat_ul_item" v-for="(element, i) in item.datas" :key="i">
+                                <div class="chat_ul_left">
+                                    <div v-show="element.billType == 62 ? true : false" class="chat_ul_item_text">
+                                        <p data-i18n="i18n_reply">回复了</p>
+                                        <p @click="find_infor(element.targetUid)" class="chat_ul_item_text_name">{{element.targetNick}}</p>    
+                                        <p data-i18n="i18n_message">的消息</p>    
+                                    </div>
+
+                                    <div v-show="element.billType == 66 || element.billType == 69 ? true : false" class="chat_ul_item_text">
+                                        <p data-i18n="i18n_replys">回应了</p>
+                                        <p @click="find_infor(element.targetUid)" class="chat_ul_item_text_name">{{element.targetNick}}</p>
+                                        <p data-i18n="i18n_say_hi">的搭讪</p>
+                                        <p>({{element.giftName}}x{{element.giftNum}})</p>
+                                    </div>
+
+                                    <p class="chat_ul_item_date">{{element.time_hours}}</p>
+                                </div>
+                                <div class="chat_ul_right">
+                                    <p>+{{element.diamond}}</p>
+                                    <img src="./images/ic_zuanshi.png" alt="">
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </van-index-bar>
+            </van-tab>
+
+            <van-tab :title="456" name=2>
+                <div slot="title" data-i18n="i18n_gifts">礼物</div>
+                <!-- 索引 -->
+                <van-index-bar :sticky-offset-top=130 highlight-color="#999999">
+                    <!-- 礼物列表 -->
+                    <ul v-if="listType == 2 ? true : false" class="gift_ul">
+                        <li class="gift_li" v-for="(item, index) in lists" :key="index">
+                            <van-index-anchor index="1">{{item.createTime}}</van-index-anchor>
+
+                            <!-- <p class="gift_ul_date">{{item.createTime}}</p> -->
+                            <div class="gift_ul_item" v-for="(element, i) in item.datas" :key="i">
+
+                                <div class="gift_ul_left">
+                                    <div v-show="lang == 'en' || lang == 'vi'" class="gift_ul_item_text">
+                                        <p data-i18n="i18n_gets">收到</p>
+                                        <p>&nbsp {{element.giftName}}x{{element.giftNum}} &nbsp</p>
+                                        <p data-i18n="i18n_from">赠送的</p>
+                                        <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
+                                    </div>
+                                    <div v-show="lang == 'zh'" class="gift_ul_item_text">
+                                        <p data-i18n="i18n_gets">收到</p>
+                                        <p  @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
+                                        <p data-i18n="i18n_from">赠送的</p>
+                                        <p>{{element.giftName}}x{{element.giftNum}}</p>
+                                    </div>
+                                    <p class="gift_ul_item_date">{{element.time_hours}}</p>
+                                </div>
+
+                                <div class="gift_ul_right">
+                                    <p>+{{element.diamond}}</p>
+                                    <img src="./images/ic_zuanshi.png" alt="">
+                                </div>
+
+                            </div>
+                        </li>
+                    </ul>
+                </van-index-bar>
+            </van-tab>
+            <van-tab :title="456" name=3>
+                <div slot="title" data-i18n="i18n_videos">视频</div>
+                <!-- 索引 -->
+                <van-index-bar :sticky-offset-top=130 highlight-color="#999999">
+                    <!-- 视频列表 -->
+                    <ul v-if="listType == 3 ? true : false" class="gift_ul">
+                        <li class="gift_li" v-for="(item, index) in lists" :key="index">
+                            <van-index-anchor index="1">{{item.createTime}}</van-index-anchor>
+                            <!-- <p class="gift_ul_date">{{item.createTime}}</p> -->
+
+                            <div class="gift_ul_item" v-for="(element, i) in item.datas" :key="i">
+                                <div class="gift_ul_left">
+
+                                    <div v-show="lang == 'en' || lang == 'zh'" class="gift_ul_item_text">
+                                        <p data-i18n="i18n_with">与</p>
+                                        <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
+                                        <p data-i18n="i18n_video">视频通话</p>
+                                        <p>({{element.videoTime | time_filter}})</p>
+                                    </div>
+                                    <div v-show="lang == 'vi'" class="gift_ul_item_text">
+                                        <p data-i18n="i18n_video">视频通话</p>
+                                        <p>&nbsp ({{element.videoTime | time_filter}}) &nbsp</p>
+                                        <p data-i18n="i18n_with">与</p>
+                                        <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
+                                    </div>
+
+                                    <p class="gift_ul_item_date">{{element.time_hours}}</p>
+                                </div>
+                                
+                                <div class="gift_ul_right">
+                                    <p>+{{element.diamond}}</p>
+                                    <img src="./images/ic_zuanshi.png" alt="">
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </van-index-bar>
+            </van-tab>
+
+            <van-tab :title="456" name=4>
+                <div slot="title" data-i18n="i18n_voices">语音</div>
+                <!-- 索引 -->
+                <van-index-bar :sticky-offset-top=130 highlight-color="#999999">
+                    <!-- 语音列表 -->
+                    <ul v-if="listType == 4 ? true : false" class="gift_ul">
+                        <li class="gift_li" v-for="(item, index) in lists" :key="index">
+                            <van-index-anchor index="1">{{item.createTime}}</van-index-anchor>
+                            <!-- <p class="gift_ul_date">{{item.createTime}}</p> -->
+                            <div class="gift_ul_item" v-for="(element, i) in item.datas" :key="i">
+                                <div class="gift_ul_left">
+
+                                    <div v-show="lang == 'en' || lang == 'zh'" class="gift_ul_item_text">
+                                        <p data-i18n="i18n_withs">与</p>
+                                        <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
+                                        <p data-i18n="i18n_vidce">语音通话</p>
+                                        <p>({{element.voiceTime | time_filter}})</p>
+                                    </div>  
+                                    <div v-show="lang == 'vi'" class="gift_ul_item_text">
+                                        <p data-i18n="i18n_vidce">语音通话</p>
+                                        <p>&nbsp ({{element.voiceTime | time_filter}}) &nbsp</p>
+                                        <p data-i18n="i18n_withs">与</p>
+                                        <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
+                                    </div>  
+
+                                    <p class="gift_ul_item_date">{{element.time_hours}}</p>
+                                </div>
+
+                                <div class="gift_ul_right">
+                                    <p>+{{element.diamond}}</p>
+                                    <img src="./images/ic_zuanshi.png" alt="">
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </van-index-bar>
+            </van-tab>
+
+            <van-tab :title="456" name=5>
+                <div slot="title" data-i18n="i18n_invitation">邀请收益</div>
+                <!-- 索引 -->
+                <van-index-bar :sticky-offset-top=130 highlight-color="#999999">
+                    <!-- 邀请收益列表 -->
+                    <ul v-if="listType == 5 ? true : false" class="gift_ul">
+                        <li class="gift_li" v-for="(item, index) in lists" :key="index">
+                            <van-index-anchor index="1">{{item.createTime}}</van-index-anchor>
+                            <!-- <p class="gift_ul_date">{{item.createTime}}</p> -->
+                            <div class="gift_ul_item" v-for="(element, i) in item.datas" :key="i">
+                                <div class="gift_ul_left">
+                                    <div v-show="lang == 'en' || lang == 'zh'" class="gift_ul_item_text">
+                                        <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
+                                        <p data-i18n="i18n_commissions">的收益分成奖励</p>
+                                    </div>
+                                    <div v-show="lang == 'vi'" class="gift_ul_item_text">
+                                        <p data-i18n="i18n_commissions">的收益分成奖励</p>
+                                        <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
+                                    </div>
+                                    <p class="gift_ul_item_date">{{element.time_hours}}</p>
+                                </div>
+
+                                <div class="gift_ul_right">
+                                    <p>+{{element.diamond}}</p>
+                                    <img src="./images/ic_zuanshi.png" alt="">
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </van-index-bar>
+            </van-tab>
+
+            <van-tab :title="456" name=6>
+                <div slot="title" data-i18n="i18n_system_sents">系统赠送</div>
+                <!-- 索引 -->
+                <van-index-bar :sticky-offset-top=130 highlight-color="#999999">
+                    <!-- 系统赠送列表 -->
+                    <ul v-if="listType == 6 ? true : false" class="gift_ul">
+                        <li class="gift_li" v-for="(item, index) in lists" :key="index">
+                            <van-index-anchor index="1">{{item.createTime}}</van-index-anchor>
+                            <!-- <p class="gift_ul_date">{{item.createTime}}</p> -->
+                            <div class="gift_ul_item" v-for="(element, i) in item.datas" :key="i">
+                                <div class="gift_ul_left">
+                                    <div class="gift_ul_item_text">
+                                        <p data-i18n="i18n_system_sent">系统赠送</p>
+                                    </div>
+                                    <p class="gift_ul_item_date">{{element.time_hours}}</p>
+                                </div>
+
+                                <div class="gift_ul_right">
+                                    <p>+{{element.diamond}}</p>
+                                    <img src="./images/ic_zuanshi.png" alt="">
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </van-index-bar>
+            </van-tab>
+
+            <van-tab :title="456" name=7>
+                <div slot="title" data-i18n="i18n_consuming_diamonds">消费钻石</div>
+                <!-- 索引 -->
+                <van-index-bar :sticky-offset-top=130 highlight-color="#999999">
+                    <!-- 消费钻石列表 -->
+                    <ul v-if="listType == 7 ? true : false" class="gift_ul">
+                        <li class="gift_li" v-for="(item, index) in lists" :key="index">
+                            <van-index-anchor index="1">{{item.createTime}}</van-index-anchor>
+                            <!-- <p class="gift_ul_date">{{item.createTime}}</p> -->
+                            <div class="gift_ul_item" v-for="(element, i) in item.datas" :key="i">
+
+                                <div class="gift_ul_left">
+                                    <div v-show="element.billType == 91 ? true : false" class="gift_ul_item_text">
+                                        <p data-i18n="i18n_withdraw">提现了</p>
+                                        <p>&nbsp ${{element.amount}}</p>
+                                    </div>
+                                    <div v-show="element.billType == 90 ? true : false" class="gift_ul_item_text">
+                                        <p data-i18n="i18n_exchange">兑换了</p>
+                                        <p>&nbsp {{element.amount}}</p>
+                                        <p data-i18n="i18n_golds">金币</p>
+                                    </div>
+                                    <p class="gift_ul_item_date">{{element.time_hours}}</p>
+                                </div>
+
+                                <div class="gift_ul_right">
+                                    <p class="color">-{{element.diamond}}</p>
+                                    <img src="./images/ic_zuanshi.png" alt="">
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </van-index-bar>
+            </van-tab>
+        </van-tabs>
 
         <!-- 隐藏的日期选择器，。。 -->
         <van-popup v-model="isChoiceTime" round position="bottom" :style="{ height: '14.5rem' }" />
@@ -76,7 +340,7 @@
         </van-popup>
 
         <!-- 汇总列表 -->
-        <ul v-if="pool_list && listType == 0 ? true : false" class="pool_ul">
+        <!-- <ul v-if="pool_list && listType == 0 ? true : false" class="pool_ul">
             <li class="pool_li" v-for="(item, index) in pool_list.list" :key="index">
                 <div class="pool_li_title">
                     <img v-bind:src="item.icon" referrerPolicy="no-referrer" alt="">
@@ -87,23 +351,23 @@
                     <img src="./images/ic_zuanshi.png" alt="">
                 </div>
             </li>
-        </ul>
+        </ul> -->
+
         <!-- 聊天列表 -->
-        <ul v-if="listType == 1 ? true : false" class="chat_ul" ref='vanlist'>
+        <!-- <ul v-if="listType == 1 ? true : false" class="chat_ul" ref='vanlist'>
             <li class="pool_li" v-for="(item, index) in lists" :key="index">
-                <!-- {{item.createTime}} -->
                 <p class="chat_ul_date">{{item.createTime}}</p>
                 <div class="chat_ul_item" v-for="(element, i) in item.datas" :key="i">
                     <div class="chat_ul_left">
                         <div v-show="element.billType == 62 ? true : false" class="chat_ul_item_text">
                             <p  data-i18n="i18n_reply">回复了</p>
-                            <p class="chat_ul_item_text_name">{{element.targetNick}}</p>    
+                            <p @click="find_infor(element.targetUid)" class="chat_ul_item_text_name">{{element.targetNick}}</p>    
                             <p data-i18n="i18n_message">的消息</p>    
                         </div>
 
                         <div v-show="element.billType == 66 || element.billType == 69 ? true : false" class="chat_ul_item_text">
                             <p data-i18n="i18n_replys">回应了</p>
-                            <p class="chat_ul_item_text_name">{{element.targetNick}}</p>
+                            <p @click="find_infor(element.targetUid)" class="chat_ul_item_text_name">{{element.targetNick}}</p>
                             <p data-i18n="i18n_say_hi">的搭讪</p>
                             <p>({{element.giftName}}x{{element.giftNum}})</p>
                         </div>
@@ -116,10 +380,10 @@
                     </div>
                 </div>
             </li>
-        </ul>
+        </ul> -->
 
         <!-- 礼物列表 -->
-        <ul v-if="listType == 2 ? true : false" class="gift_ul">
+        <!-- <ul v-if="listType == 2 ? true : false" class="gift_ul">
             <li class="gift_li" v-for="(item, index) in lists" :key="index">
                 <p class="gift_ul_date">{{item.createTime}}</p>
                 <div class="gift_ul_item" v-for="(element, i) in item.datas" :key="i">
@@ -129,17 +393,11 @@
                             <p data-i18n="i18n_gets">收到</p>
                             <p>&nbsp {{element.giftName}}x{{element.giftNum}} &nbsp</p>
                             <p data-i18n="i18n_from">赠送的</p>
-                            <p class="gift_ul_item_text_name">{{element.targetNick}}</p>
+                            <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
                         </div>
-                        <!-- <div v-show="lang == 'vi'" class="gift_ul_item_text">
-                            <p data-i18n="i18n_gets">收到</p>
-                            <p>&nbsp {{element.giftName}}x{{element.giftNum}} &nbsp</p>
-                            <p data-i18n="i18n_from">赠送的</p>
-                            <p class="gift_ul_item_text_name">{{element.targetNick}}</p>
-                        </div> -->
                         <div v-show="lang == 'zh'" class="gift_ul_item_text">
                             <p data-i18n="i18n_gets">收到</p>
-                            <p class="gift_ul_item_text_name">{{element.targetNick}}</p>
+                            <p  @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
                             <p data-i18n="i18n_from">赠送的</p>
                             <p>{{element.giftName}}x{{element.giftNum}}</p>
                         </div>
@@ -153,9 +411,10 @@
 
                 </div>
             </li>
-        </ul>
+        </ul> -->
+        
         <!-- 视频列表 -->
-        <ul v-if="listType == 3 ? true : false" class="gift_ul">
+        <!-- <ul v-if="listType == 3 ? true : false" class="gift_ul">
             <li class="gift_li" v-for="(item, index) in lists" :key="index">
                 <p class="gift_ul_date">{{item.createTime}}</p>
 
@@ -164,7 +423,7 @@
 
                         <div v-show="lang == 'en' || lang == 'zh'" class="gift_ul_item_text">
                             <p data-i18n="i18n_with">与</p>
-                            <p class="gift_ul_item_text_name">{{element.targetNick}}</p>
+                            <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
                             <p data-i18n="i18n_video">视频通话</p>
                             <p>({{element.videoTime | time_filter}})</p>
                         </div>
@@ -172,7 +431,7 @@
                             <p data-i18n="i18n_video">视频通话</p>
                             <p>&nbsp ({{element.videoTime | time_filter}}) &nbsp</p>
                             <p data-i18n="i18n_with">与</p>
-                            <p class="gift_ul_item_text_name">{{element.targetNick}}</p>
+                            <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
                         </div>
 
                         <p class="gift_ul_item_date">{{element.time_hours}}</p>
@@ -184,9 +443,9 @@
                     </div>
                 </div>
             </li>
-        </ul>
+        </ul> -->
         <!-- 语音列表 -->
-        <ul v-if="listType == 4 ? true : false" class="gift_ul">
+        <!-- <ul v-if="listType == 4 ? true : false" class="gift_ul">
             <li class="gift_li" v-for="(item, index) in lists" :key="index">
                 <p class="gift_ul_date">{{item.createTime}}</p>
                 <div class="gift_ul_item" v-for="(element, i) in item.datas" :key="i">
@@ -194,15 +453,15 @@
 
                         <div v-show="lang == 'en' || lang == 'zh'" class="gift_ul_item_text">
                             <p data-i18n="i18n_withs">与</p>
-                            <p class="gift_ul_item_text_name">{{element.targetNick}}</p>
-                            <p data-i18n="i18n_video">语音通话</p>
+                            <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
+                            <p data-i18n="i18n_vidce">语音通话</p>
                             <p>({{element.voiceTime | time_filter}})</p>
                         </div>  
                         <div v-show="lang == 'vi'" class="gift_ul_item_text">
-                            <p data-i18n="i18n_video">语音通话</p>
+                            <p data-i18n="i18n_vidce">语音通话</p>
                             <p>&nbsp ({{element.voiceTime | time_filter}}) &nbsp</p>
                             <p data-i18n="i18n_withs">与</p>
-                            <p class="gift_ul_item_text_name">{{element.targetNick}}</p>
+                            <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
                         </div>  
 
                         <p class="gift_ul_item_date">{{element.time_hours}}</p>
@@ -214,20 +473,20 @@
                     </div>
                 </div>
             </li>
-        </ul>
+        </ul> -->
         <!-- 邀请收益列表 -->
-        <ul v-if="listType == 5 ? true : false" class="gift_ul">
+        <!-- <ul v-if="listType == 5 ? true : false" class="gift_ul">
             <li class="gift_li" v-for="(item, index) in lists" :key="index">
                 <p class="gift_ul_date">{{item.createTime}}</p>
                 <div class="gift_ul_item" v-for="(element, i) in item.datas" :key="i">
                     <div class="gift_ul_left">
                         <div v-show="lang == 'en' || lang == 'zh'" class="gift_ul_item_text">
-                            <p class="gift_ul_item_text_name">{{element.targetNick}}</p>
+                            <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
                             <p data-i18n="i18n_commissions">的收益分成奖励</p>
                         </div>
                         <div v-show="lang == 'vi'" class="gift_ul_item_text">
                             <p data-i18n="i18n_commissions">的收益分成奖励</p>
-                            <p class="gift_ul_item_text_name">{{element.targetNick}}</p>
+                            <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
                         </div>
                         <p class="gift_ul_item_date">{{element.time_hours}}</p>
                     </div>
@@ -238,18 +497,15 @@
                     </div>
                 </div>
             </li>
-        </ul>
+        </ul> -->
         <!-- 系统赠送列表 -->
-        <ul v-if="listType == 6 ? true : false" class="gift_ul">
+        <!-- <ul v-if="listType == 6 ? true : false" class="gift_ul">
             <li class="gift_li" v-for="(item, index) in lists" :key="index">
                 <p class="gift_ul_date">{{item.createTime}}</p>
                 <div class="gift_ul_item" v-for="(element, i) in item.datas" :key="i">
                     <div class="gift_ul_left">
                         <div class="gift_ul_item_text">
-                            <!-- <p data-i18n="">与</p> -->
-                            <!-- <p class="gift_ul_item_text_name">{{element.targetNick}}</p> -->
                             <p data-i18n="i18n_system_sent">系统赠送</p>
-                            <!-- <p>({{element.voiceTime | time_filter}})</p> -->
                         </div>
                         <p class="gift_ul_item_date">{{element.time_hours}}</p>
                     </div>
@@ -260,9 +516,9 @@
                     </div>
                 </div>
             </li>
-        </ul>
+        </ul> -->
         <!-- 消费钻石列表 -->
-        <ul v-if="listType == 7 ? true : false" class="gift_ul">
+        <!-- <ul v-if="listType == 7 ? true : false" class="gift_ul">
             <li class="gift_li" v-for="(item, index) in lists" :key="index">
                 <p class="gift_ul_date">{{item.createTime}}</p>
                 <div class="gift_ul_item" v-for="(element, i) in item.datas" :key="i">
@@ -271,7 +527,6 @@
                         <div v-show="element.billType == 91 ? true : false" class="gift_ul_item_text">
                             <p data-i18n="i18n_withdraw">提现了</p>
                             <p>&nbsp ${{element.amount}}</p>
-                            <!-- <p>美金</p> -->
                         </div>
                         <div v-show="element.billType == 90 ? true : false" class="gift_ul_item_text">
                             <p data-i18n="i18n_exchange">兑换了</p>
@@ -287,7 +542,7 @@
                     </div>
                 </div>
             </li>
-        </ul>
+        </ul> -->
     </div>
     <script src="./lib/day@1.8.21.js"></script>
     <script src="./lib/vue@2.6.min.js"></script>

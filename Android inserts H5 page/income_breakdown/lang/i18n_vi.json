@@ -22,6 +22,20 @@
     "i18n_withdraw": "Đã đổi",
     "i18n_exchange": "Đã đổi",
     "i18n_golds": "xu",
-    "i18n_system_sent": "H thng tng"
+    "i18n_system_sent": "H thng tng",
+
+    "i18n_no_more": "không còn nữa",
+
+
+
+    "i18n_summary": "Tổng",
+    "i18n_messages": "Chat",
+    "i18n_gifts": "Quà",
+    "i18n_videos": "Video",
+    "i18n_voices": "Voice",
+    "i18n_invitation": "Thu lợi mời",
+    "i18n_system_sents": "H thng tng",
+    "i18n_consuming_diamonds": "Tiêu kim cương"
+
 
 }

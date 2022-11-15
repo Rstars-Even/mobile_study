@@ -20,9 +20,9 @@ let app = new Vue({
             end_date_num: '',
             // currentDate: new Date(),
             startTimes: '',            //时间选择器选定的时间。。
-            lang: 'zh',
-            titles: ['汇总', '聊天', '礼物', '视频', '语音'],
-            isicon: 0,                    //tab选中状态。
+            // lang: 'zh',
+            // titles: ['汇总', '聊天'],
+            // isicon: 0,                    //tab选中状态。
             // add_border: true,           //tab左右边框样式。。
             pool_list: {},               //汇总列表。。
             incrDiamond: '',
@@ -34,7 +34,6 @@ let app = new Vue({
             lists: [],
 
             indexList: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-            selecteds: 'D'
         }
     },
     filters: {
@@ -62,6 +61,7 @@ let app = new Vue({
         async determine() {
 
             this.isChoiceTime = false;
+            // 把所选的时间转为时间戳。。
             let test_startDate = dayjs(this.toolTime01).valueOf();
             let end = dayjs(this.toolTime02).endOf('day').format('YYYY-MM-DD HH:mm:ss');
             let test_endDate = dayjs(end).valueOf();
@@ -85,55 +85,52 @@ let app = new Vue({
 
 
             this.geta_pool_list();
-
-                if (this.listType == 7) {
-                    this.lists = await this.get_list (2, this.listType);
-                } else {
-                    this.lists = await this.get_list (1, this.listType);
-                }
-                console.log ('-----------数据-------------0000',this.lists);
-                langTranslate ()
+            this.lists = await this.get_list (this.listType);
+            // console.log ('-----------数据-------------0000',this.lists);
+            langTranslate ()
         },
         // 时间选择器切换背景事件。。
         timeClick(n) {
+            let times
             if(n == 1) {
                 this.cont = 1;
+                times = this.toolTime01.split('-');       //设置选择器默认值。。。
+                this.startTimes = new Date(times[0], times[1] - 1, times[2]);
             } else {
                 this.cont = 2;
+                times = this.toolTime02.split('-');       //设置选择器默认值。。。
+                this.startTimes = new Date(times[0], times[1] - 1, times[2]);
             }
         },
         // 选择的时间段。。选择器自带的事件。。。
         changeTimeMore(picker) {
             let startTime = picker.getValues();
             this.startTimes = startTime[0] + "-" + startTime[1] + "-" + startTime[2];
-            
+            // console.log('---------this.startTimes----', this.startTimes);
+
             if(this.cont == 1) {
                 this.toolTime01 = this.startTimes;
             } else {
                 this.toolTime02 = this.startTimes;
             }
         },
-        // async selected(index) {       //选择要显示的列表类型。。。1 获取 2 消费
-        //     if (this.listType == index) {
-        //         console.log('--------防抖--节流------')
-        //         return
-        //     }
-
-        //     this.lists = [];
-        //     document.documentElement.scrollTop = 0;
-        //     this.pageNum = 1;
-        //     this.isicon = index;
-        //     this.listType = index;
-        //     console.log('-----listType------',index, this.listType);
+        async change(name) {       //选择要显示的列表类型。。。1 获取 2 消费
+            let index = Number(name);
+            if (this.listType == index && this.lists.length > 0) {
+                console.log('--------防抖--节流------')
+                return
+            }
+            this.lists = [];
+            document.documentElement.scrollTop = 0;
+            this.pageNum = 1;
+            this.listType = index;
+            console.log('-----listType------',index, this.listType);
           
-        //         if (index == 7) {
-        //             this.lists = await this.get_list (2, index);
-        //         } else {
-        //             this.lists = await this.get_list (1, index);
-        //         }
-        //         console.log ('-----------数据-------------0000',this.lists);
-        //         langTranslate ()
-        // },
+            this.lists = await this.get_list (index);
+        
+            console.log ('-----------数据-------------0000',this.lists);
+            langTranslate ()
+        },
        
         //初始化时间处理。
         getMondayAndSunday() {
@@ -148,7 +145,7 @@ let app = new Vue({
             this.endDate = end_time;
 
             let time = this.startDate.split('-');       //设置选择器默认值。。。
-            console.log('--jion---------', time)
+            // console.log('--jion---------', time)
             this.startTimes = new Date(time[0], time[1] - 1, time[2]);
             //为星期天加上23：59：59...。
             let ends = dayjs(end_time).endOf('day').format('YYYY-MM-DD HH:mm:ss');
@@ -157,65 +154,11 @@ let app = new Vue({
             console.log('-------------yy-mm--dd:', this.startDate, this.endDate)
 
             console.log('时间戳', dayjs(start_time).valueOf(), dayjs(end_time).valueOf());
-            console.log('777777777', dayjs(ends).valueOf())
+            // console.log('777777777', dayjs(ends).valueOf())
             
             this.start_date_num = dayjs(start_time).valueOf();
             this.end_date_num = dayjs(ends).valueOf();
         },
-
-        // 简易请求封装。。
-        // defRequest (param) {
-        //     param.data = {
-        //         ...param.data,
-        //         ...deviceInfo,
-        //         ticket: userInfo.ticket,
-        //         uid: userInfo.uid,
-        //     }
-        //     let origin = location.origin
-        //     origin = 'http://beta.sukiechat.com'
-        //     return new Promise((resolve, reject) => {
-        //         param.data = param.data || {}
-        //         const formData = []
-                
-        //         for (let key in param.data) {
-        //             formData.push(`${ key }=${ param.data[key] }`)
-        //         }
-        //         param.data = formData.join('&')
-                
-        //         const req = new XMLHttpRequest()
-        //         req.responseType = 'json'
-                
-        //         // 超时处理
-        //         req.timeout = 1000 * 60
-        //         req.ontimeout = function () {
-        //             req.abort()
-        //         }
-                
-        //         req.onreadystatechange = function () {
-        //             if (req.readyState === 4) {
-        //                 if (req.status === 200) {
-        //                     if (req.response.code === 200) {
-        //                         resolve(req.response)
-        //                     } else {
-        //                         reject(req.response)
-        //                     }
-        //                 } else {
-        //                     reject(req.response)
-        //                 }
-        //             }
-        //         }
-                
-        //         if (param.method === 'get') {
-        //             console.log('---最终请求地址---:', `${ origin }/${ param.url }?${ param.data }`)
-        //             req.open('get', `${ origin }/${ param.url }?${ param.data }`)
-        //         }
-        //         if (param.method === 'post') {
-        //             req.open('post', `${ origin }/${ param.url }?`)
-        //             req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8')
-        //         }
-        //         req.send(param.method === 'post' ? new URLSearchParams(param.data) : null)
-        //     })
-        // }, 
 
         // 请求金币汇总列表数据。。。
         geta_pool_list () {
@@ -224,10 +167,10 @@ let app = new Vue({
                 method: 'get',
                 url: '/api/user/purse/sumGold',
                 data: {
-                    // startDate: this.start_date_num,
-                    // endDate: this.end_date_num,
-                    startDate: 1665728426000,
-                    endDate: 1668406826000,
+                    startDate: this.start_date_num,
+                    endDate: this.end_date_num,
+                    // startDate: 1665728426000,
+                    // endDate: 1668406826000,
                 }
             }).then(res => {
                 console.log('res-------汇总列表11111111，。。--------:', res);
@@ -252,17 +195,20 @@ let app = new Vue({
                     method: 'get',
                     url: '/api/user/purse/listGold',
                     data: {
-                        // startDate: this.start_date_num,
-                        // endDate: this.end_date_num,
-                        startDate: 1665728426000,
-                        endDate: 1668406826000,
+                        startDate: this.start_date_num,
+                        endDate: this.end_date_num,
+                        // startDate: 1665728426000,
+                        // endDate: 1668406826000,
                         type: type,
                         pageNum: this.pageNum,
                         pageSize: this.pageSize
                     }
                 }).then(res => {
-                    // console.log(`res-------消费金币列表，。。-------:`, res);
+                    console.log(`res-------qingqiu金币列表，。。-------:`, res);
                     if (res.code != 200) {
+                        return;
+                    } else if (res.data.length == 0) {
+			            defToast($.i18n().localize('i18n_no_more'))
                         return;
                     }
                     // console.log('=-------pool_list-----11111------', this.pool_list, this.get_diamond, this.reduce_diamond)
@@ -338,15 +284,8 @@ let app = new Vue({
                 
                 this.pageNum++;
                 let data;
-                // if (this.listType == 0) {
-                //     this.geta_pool_list();
-                // } else {
-                    if (this.listType == 2) {
-                       data = await this.get_list (2);      //消费、。。
-                    } else {
-                    //    data = await this.get_list (1, this.listType);
-                    }
-                // }
+                data = await this.get_list (this.listType);      //消费、。。
+                    
                 console.log("----------滑动加载数据----------:", this.pageNum, data);
                 let lists_arr = this.lists.concat(data);
                 // console.log("----------合并滑动加载数1111111111111----------:", lists_arr);
@@ -372,6 +311,7 @@ let app = new Vue({
         },
         async init () {
             this.lists = await this.get_list(2);
+            langTranslate ()
             console.log('-----首次列表数据----------', this.lists);
         },
         // 查看用户信息。。
@@ -381,16 +321,11 @@ let app = new Vue({
         },
     },
     mounted() {
-        this.lang = lang;
-        if (lang == 'en') {
-            this.titles = ['Summary', 'Messages']
-        } else if (lang == 'vi') {
-            this.titles = ['Tổng', 'Chat']
-        };
+       
         this.getMondayAndSunday();
         this.init();
-        // this.geta_pool_list();
+        this.geta_pool_list();
         window.addEventListener('scroll', this.handle)
-        // this.$refs.scrollTos.scrollTo('D');
+
     }
 })

@@ -35,10 +35,10 @@
         </div>
             
         <!-- 标题导航 ...-->
-        <van-tabs swipeable swipe-threshold=4 sticky offset-top="5.1rem">
-            <van-tab :title="1232">
-                <div slot="title">消费明细</div>
-                <van-index-bar :sticky-offset-top=150 highlight-color="#ee0a24" ref='scrollTos'>
+        <van-tabs swipeable swipe-threshold=4 sticky offset-top="5.1rem" @change="change" >
+            <van-tab :title="1232" name=2>
+                <div slot="title" data-i18n="i18n_pay_detail">消费明细</div>
+                <van-index-bar :sticky-offset-top=130 highlight-color="#999999">
                     <ul v-if="listType == 2 ? true : false" class="gift_ul">
                         <li class="gift_li" v-for="(item, index) in lists" :key="index">
 
@@ -46,48 +46,85 @@
                             <div class="gift_ul_item" v-for="(element, i) in item.datas" :key="i">
                                 <!-- 发消息扣金币 -->
                                 <div class="gift_ul_left" v-if="element.billType == 31">
-                                    <div v-show="lang == 'zh'" class="gift_ul_item_text">
-                                        <p>发消息给</p>
+                                    <div class="gift_ul_item_text">
+                                        <p data-i18n="i18n_send_message">发消息给</p>
                                         <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
                                     </div>
                                     <p class="gift_ul_item_date">{{element.time_hours}}</p>
                                 </div>
                                 <!-- 赠送礼物扣金币 -->
                                 <div class="gift_ul_left" v-if="element.billType == 30">
-                                    <div v-show="lang == 'zh'" class="gift_ul_item_text">
-                                        <p>赠送</p>
-                                        <p>&nbsp {{element.giftName}}x{{element.giftNum}}</p>
-                                        <p>给</p>
+                                    <div class="gift_ul_item_text">
+                                        <p data-i18n="i18n_Send">赠送</p>
+                                        <p>&nbsp {{element.giftName}}x{{element.giftNum}} &nbsp</p>
+                                        <p data-i18n="i18n_tos">给</p>
                                         <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
                                     </div>
                                     <p class="gift_ul_item_date">{{element.time_hours}}</p>
                                 </div>
                                 <!-- 赠送礼物搭讪扣金币 -->
                                 <div class="gift_ul_left" v-if="element.billType == 32">
-                                    <div v-show="lang == 'zh'" class="gift_ul_item_text">
-                                        <p>赠送</p>
+                                    <div class="gift_ul_item_text">
+                                        <p data-i18n="i18n_Send">赠送</p>
                                         <p>&nbsp {{element.giftName}}x{{element.giftNum}} &nbsp</p>
-                                        <p>搭讪</p>
+                                        <p data-i18n="i18n_say_hi">搭讪</p>
                                         <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
+                                        <p data-i18n="i18n_say_hi2" v-if="lang == 'vi'" data-i18n="i18n_"></p>
                                     </div>
                                     <p class="gift_ul_item_date">{{element.time_hours}}</p>
                                 </div>
                                 <!-- 参与金币转盘消费扣金币 -->
                                 <div class="gift_ul_left" v-if="element.billType == 33">
-                                    <div v-show="lang == 'zh'" class="gift_ul_item_text">
-                                        <p>参与</p>
-                                        <p>&nbsp 金币转盘 &nbsp</p>
-                                        <p>消费</p>
+                                    <div class="gift_ul_item_text">
+                                        <p data-i18n="i18n_play">参与</p>
+                                        <!-- <p>&nbsp 金币转盘 &nbsp</p> -->
+                                        <!-- <p>消费</p> -->
                                     </div>
                                     <p class="gift_ul_item_date">{{element.time_hours}}</p>
                                 </div>
                                 <!-- 参与动物乐园消费扣金币 -->
                                 <div class="gift_ul_left" v-if="element.billType == 42">
-                                    <div v-show="lang == 'zh'" class="gift_ul_item_text">
-                                        <p>参与</p>
-                                        <p>&nbsp 动物乐园 &nbsp</p>
-                                        <p>消费</p>
+                                    <div class="gift_ul_item_text">
+                                        <p data-i18n="i18n_animal">参与</p>
+                                        <!-- <p>&nbsp 动物乐园 &nbsp</p>
+                                        <p>消费</p> -->
                                     </div>
+                                    <p class="gift_ul_item_date">{{element.time_hours}}</p>
+                                </div>
+                                <!-- 视频通话扣金币 -->
+                                <div class="gift_ul_left" v-if="element.billType == 40">
+
+                                    <div v-show="lang == 'zh' || lang == 'en'" class="gift_ul_item_text">
+                                        <p data-i18n="i18n_with">与</p>
+                                        <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
+                                        <p data-i18n="i18n_Video">视频通话</p>
+                                        <p>({{element.videoTime | time_filter}})</p>
+                                    </div>
+                                    <div v-show="lang == 'vi' " class="gift_ul_item_text">
+                                        <p data-i18n="i18n_Video">视频通话</p>
+                                        <p>&nbsp ({{element.videoTime | time_filter}}) &nbsp</p>
+                                        <p data-i18n="i18n_with">与</p>
+                                        <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
+                                    </div>
+
+                                    <p class="gift_ul_item_date">{{element.time_hours}}</p>
+                                </div>
+                                <!-- 语音通话扣金币 -->
+                                <div class="gift_ul_left" v-if="element.billType == 41">
+                                    
+                                    <div v-show="lang == 'zh' || lang == 'en'" class="gift_ul_item_text">
+                                        <p data-i18n="i18n_withs">与</p>
+                                        <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
+                                        <p data-i18n="i18n_Voice">语音通话</p>
+                                        <p>&nbsp ({{element.voiceTime | time_filter}}) &nbsp</p>
+                                    </div>
+                                    <div v-show="lang == 'vi' " class="gift_ul_item_text">
+                                        <p data-i18n="i18n_Voice">语音通话</p>
+                                        <p>&nbsp ({{element.voiceTime | time_filter}}) &nbsp</p>
+                                        <p data-i18n="i18n_with">与</p>
+                                        <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
+                                    </div>
+
                                     <p class="gift_ul_item_date">{{element.time_hours}}</p>
                                 </div>
 
@@ -102,29 +139,120 @@
                 </van-index-bar>
             </van-tab>
 
-            <van-tab :title="456" class="tab_li">
-                <div slot="title">获得明细</div>
+            <van-tab :title="456" name=1>
+                <div slot="title" data-i18n="i18n_get_detail">获得明细</div>
 
-                    <van-index-bar :sticky-offset-top=150 :index-list="indexList">
-                    <van-index-anchor index="1">标题1</van-index-anchor>
-                    <div class="ff">BBBBBBB111</div>
-                    <div class="ff">BBBBBBB111</div>
-                    <div class="ff">BBBBBBB111</div>
-                    <div class="ff">BBBBBBB111</div>
-                    <div class="ff">BBBBBBB111</div>
-                    
-                    <van-index-anchor index="2">标题2</van-index-anchor>
-                    <div class="ff">BBBBBBB2222</div>
-                    <div class="ff">BBBBBBB2222</div>
-                    <div class="ff">BBBBBBB2222</div>
-                    <div class="ff">BBBBBBB2222</div>
+                <van-index-bar :sticky-offset-top=130 highlight-color="#999999">
+                    <ul v-if="listType == 1 ? true : false" class="gift_ul">
+                        <li class="gift_li" v-for="(item, index) in lists" :key="index">
 
-                    <van-index-anchor index="3">标题3</van-index-anchor>
-                    <div class="ff">BBBBBBB3333</div>
-                    <div class="ff">BBBBBBB3333</div>
-                    <div class="ff">BBBBBBB3333</div>
-                    <div class="ff">BBBBBBB3333</div>
-                    <div class="ff">BBBBBBB3333</div>
+                            <van-index-anchor index="1">{{item.createTime}}</van-index-anchor>
+                            <div class="gift_ul_item" v-for="(element, i) in item.datas" :key="i">
+                                <!-- 充值加金币 -->
+                                <div class="gift_ul_left" v-if="element.billType == 1">
+                                    <div class="gift_ul_item_text">
+                                        <p data-i18n="i18n_recharge">充值</p>
+                                    </div>
+                                    <p class="gift_ul_item_date">{{element.time_hours}}</p>
+                                </div>
+                                <!-- 兑换加金币 -->
+                                <div class="gift_ul_left" v-if="element.billType == 5">
+                                    <div class="gift_ul_item_text">
+                                        <p data-i18n="i18n_exchange_golds">兑换金币</p>
+                                    </div>
+                                    <p class="gift_ul_item_date">{{element.time_hours}}</p>
+                                </div>
+                                <!-- 领取每日奖励加金币 -->
+                                <div class="gift_ul_left" v-if="element.billType == 3">
+                                    <div class="gift_ul_item_text">
+                                        <p data-i18n="i18n_get_day_ewards">领取每日奖励</p>
+                                    </div>
+                                    <p class="gift_ul_item_date">{{element.time_hours}}</p>
+                                </div>
+                                <!-- 系统赠送加金币 -->
+                                <div class="gift_ul_left" v-if="element.billType == 2 || element.billType == 6">
+                                    <div class="gift_ul_item_text">
+                                        <p data-i18n="i18n_system_sent">系统赠送</p>
+                                    </div>
+                                    <p class="gift_ul_item_date">{{element.time_hours}}</p>
+                                </div>
+                                <!-- 金币转盘加金币 -->
+                                <div class="gift_ul_left" v-if="element.billType == 34">
+                                    <div class="gift_ul_item_text">
+                                        <p data-i18n="i18n_turntable_add">参与&nbsp 金币转盘 &nbsp奖励</p>
+                                    </div>
+                                    <p class="gift_ul_item_date">{{element.time_hours}}</p>
+                                </div>
+                                <!-- 金币转盘退回加金币 -->
+                                <div class="gift_ul_left" v-if="element.billType == 35">
+                                    <div class="gift_ul_item_text">
+                                        <p data-i18n="i18n_turntable_return">参与&nbsp 金币转盘 &nbsp退回</p>
+                                    </div>
+                                    <p class="gift_ul_item_date">{{element.time_hours}}</p>
+                                </div>
+                                <!-- 动物乐园加金币 -->
+                                <div class="gift_ul_left" v-if="element.billType == 50">
+                                    <div class="gift_ul_item_text">
+                                        <p data-i18n="i18n_animal_add">参与&nbsp 动物乐园 &nbsp奖励</p>
+                                    </div>
+                                    <p class="gift_ul_item_date">{{element.time_hours}}</p>
+                                </div>
+                                <!-- 赠送幸运礼物加金币 -->
+                                <div class="gift_ul_left" v-if="element.billType == 9">
+                                    <div class="gift_ul_item_text">
+                                        <p data-i18n="i18n_lucky_gift">赠送&nbsp 幸运礼物 &nbsp奖励</p>
+                                    </div>
+                                    <p class="gift_ul_item_date">{{element.time_hours}}</p>
+                                </div>
+                                <!-- 发消息退回 -->
+                                <div class="gift_ul_left" v-if="element.billType == 4">
+
+                                    <div v-show="lang == 'zh' || lang == 'vi'" class="gift_ul_item_text">
+                                        <p data-i18n="i18n_send_message">发消息给</p>
+                                        <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
+                                        <p data-i18n="i18n_gold_return">金币退回</p>
+                                    </div>
+                                    <div v-show="lang == 'en'" class="gift_ul_item_text">
+                                        <p data-i18n="i18n_gold_return">金币退回</p>
+                                        <p data-i18n="i18n_send_message2">发消息给</p>
+                                        <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
+                                    </div>
+
+                                    <p class="gift_ul_item_date">{{element.time_hours}}</p>
+                                </div>
+                                <!-- 送礼物搭讪退回 -->
+                                <div class="gift_ul_left" v-if="element.billType == 8">
+
+                                    <div v-show="lang == 'zh'" class="gift_ul_item_text">
+                                        <p data-i18n="i18n_say_hi">搭讪</p>
+                                        <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
+                                        <p data-i18n="i18n_gold_return">金币退回</p>
+                                        <p>({{element.giftName}}X1)</p>
+                                    </div>
+                                    <div v-show="lang == 'en'" class="gift_ul_item_text">
+                                        <p data-i18n="i18n_gold_return">金币退回</p>
+                                        <p data-i18n="i18n_say_hi">搭讪</p>
+                                        <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
+                                        <!-- <p>({{element.giftName}}X1)</p> -->
+                                    </div>
+                                    <div v-show="lang == 'vi'" class="gift_ul_item_text">
+                                        <p data-i18n="i18n_say_hi3">搭讪</p>
+                                        <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
+                                        <p data-i18n="i18n_gold_return">金币退回</p>
+                                        <!-- <p>({{element.giftName}}X1)</p> -->
+                                    </div>
+
+                                    <p class="gift_ul_item_date">{{element.time_hours}}</p>
+                                </div>
+
+                                <div class="gift_ul_right">
+                                    <p>+{{element.goldNum}}</p>
+                                    <img src="./images/ic_zuanshi.png" alt="">
+                                </div>
+
+                            </div>
+                        </li>
+                    </ul>
 
                 </van-index-bar>    
             </van-tab>
@@ -150,7 +278,8 @@
     </div>
     <script src="./lib/day@1.8.21.js"></script>
     <script src="./lib/vue@2.6.min.js"></script>
-    <script src="./lib/vant@2.12.js"></script>
+    <!-- <script src="./lib/vant@2.12.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vant/2.12.52/vant.min.js"></script>
     <script src="./lib/flexible.js"></script>
     <script src="./lib/jquery.main.js"></script>
     <script src="./lib/jquery.i18n.js"></script>

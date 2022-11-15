@@ -41,8 +41,8 @@
      * @param {string} userInfo.ticket 用户登录ticket
      */
     let userInfo = {
-        uid: '102',
-        ticket: "ed905a585d4975876f7828a111d2d6e1",
+        uid: '101',
+        ticket: "f2285815b5707ef62b14ce2e08beba62",
     }
 
 
@@ -67,7 +67,7 @@
         deviceId: '001',
         fcmToken: 'fcmToken',
         imei: '001',
-        lang: 'vi',
+        lang: 'zh',
         os: 'android',
         brand: 'Huawei',
         model: 'P40%20pro',
@@ -135,11 +135,11 @@
         //     }
         // },
 
-        // openUserInfo (uid) {
-        //     if (browser.android) {
-        //         window.androidJsObj.openUserPage(uid)
-        //     }
-        // }
+        openUserInfo (uid) {
+            if (browser.android) {
+                window.androidJsObj.openUserPage(uid)
+            }
+        }
     }
 
     _YM_JSBridge._getAppUserInfo()
@@ -190,7 +190,7 @@
             }
             
             if (param.method === 'get') {
-                console.log('---最终请求地址---:', `${ origin }/${ param.url }?${ param.data }`)
+                // console.log('---最终请求地址---:', `${ origin }/${ param.url }?${ param.data }`)
                 req.open('get', `${ origin }/${ param.url }?${ param.data }`)
             }
             if (param.method === 'post') {

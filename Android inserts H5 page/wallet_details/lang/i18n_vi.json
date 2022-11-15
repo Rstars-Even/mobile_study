@@ -1,27 +1,46 @@
 {
-    "i18n_detail": "Chi tiết",
-    "i18n_get": "Nhận kim cương:",
-    "i18n_pay": "Tiêu kim cương:",
+    "i18n_detail": "Chi tiết ví tiền",
+    "i18n_get": "Nhận xu：",
+    "i18n_pay": "Tiêu xu：",
     "i18n_to": "đến",
     "i18n_cancel": "Hủy",
     "i18n_ok": "Xác nhận",
     "i18n_select_time": "Chọn thời gian",
     "i18n_time_err": "Chn nhầm thời gian",
+    "i18n_pay_detail": "Chi tiết tiêu",
+    "i18n_get_detail": "Chi tiết nhn",
 
-    "i18n_reply": "trả lời tin nhắn của",
-    "i18n_message": "",
-    "i18n_replys": "trả lời bắt chuyện của",
-    "i18n_say_hi": "",
-    "i18n_gets": "Nhận",
-    "i18n_from": "từ",
+
+
+    "i18n_send_message": "Nhắn tin cho",
+    "i18n_Send": "Tặng",
+    "i18n_tos": "cho",
+    "i18n_say_hi": "cho",
+    "i18n_say_his": "bắt chuyện",
+    "i18n_play": "Tham gia  Vòng quay  trừ xu",
+    "i18n_animal": "Tham gia  Công viên động  vật trừ xu",
     "i18n_with": "với",
-    "i18n_withs": "với",
-    "i18n_video": "Chat video",
-    "i18n_vidce": "Chat voice",
-    "i18n_commissions": "Thưởng thu lợi hoa hồng của",
-    "i18n_withdraw": "Đã đổi",
-    "i18n_exchange": "Đã đổi",
-    "i18n_golds": "xu",
-    "i18n_system_sent": "H thng tng"
+    "i18n_Video": "Chat video",
+    "i18n_Voice": "Chat voice",
+
+
+
+
+    "i18n_recharge": "Nạp xu",
+    "i18n_exchange_golds": "Đổi xu",
+    "i18n_get_day_ewards": "Nhận thưởng hàng ngày",
+    "i18n_system_sent": "H thng tng",
+    "i18n_turntable_add": "Tham gia  Vòng quay  được thưởng",
+    "i18n_turntable_return": "Trả lại xu từ  Vòng quay",
+    "i18n_animal_add": "Tham gia  Công viên động vật  được thưởng",
+    "i18n_lucky_gift": "Tham gia  Quà may mắn  được thưởng",
+    "i18n_gold_return": "đã trả xu vào ví",
+    "i18n_say_hi3": "Bắt chuyện với",
+
+    
+
+   
+
+    "i18n_no_more": "không còn nữa"
 
 }

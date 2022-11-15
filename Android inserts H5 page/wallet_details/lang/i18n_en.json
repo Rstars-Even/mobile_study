@@ -7,24 +7,42 @@
     "i18n_ok": "OK",
     "i18n_select_time": "Select time",
     "i18n_time_err": "wrong time period selection",
+    "i18n_pay_detail": "Pay details",
+    "i18n_get_detail": "Get details",
 
-    "i18n_reply": "Reply",
-    "i18n_message": "message",
-    "i18n_replys": "Reply",
+
+
+    "i18n_send_message": "Send messages to",
+    "i18n_Send": "Send",
+    "i18n_tos": "to",
     "i18n_say_hi": "say hi",
-
-    "i18n_gets": "Get",
-    "i18n_from": "from",
-
+    "i18n_play": "Play turntable cost",
+    "i18n_animal": "Play animal paradise cost",
     "i18n_with": "Video call with",
     "i18n_withs": "Voice call with",
-    "i18n_video": "",
-    "i18n_vidce": "",
+    "i18n_Video": "",
+    "i18n_Voice": "",
 
-    "i18n_commissions": "invitation commissions",
-    "i18n_withdraw": "Withdraw",
-    "i18n_exchange": "Exchange",
-    "i18n_golds": "golds",
-    "i18n_system_sent": "System sent"
+
+
+
+    "i18n_recharge": "Recharge",
+    "i18n_exchange_golds": "Exchange golds",
+    "i18n_get_day_ewards": "Get daily rewards",
+    "i18n_system_sent": "System sent",
+    "i18n_turntable_add": "Play turntable reward",
+    "i18n_turntable_return": "Play turntable return",
+    "i18n_animal_add": "Play animal paradise reward",
+    "i18n_lucky_gift": "Send lucky gift reward",
+    "i18n_gold_return": "Gold return from",
+    "i18n_send_message2": "Sending messages to",
+    "i18n_say_hi2": "Saying hi to",
+
+
+    
+
+   
+
+    "i18n_no_more": "没有更多了"
 
 }

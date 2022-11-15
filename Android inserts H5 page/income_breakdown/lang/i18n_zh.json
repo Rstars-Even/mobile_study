@@ -22,6 +22,19 @@
     "i18n_withdraw": "提现了",
     "i18n_exchange": "兑换了",
     "i18n_golds": "金币",
-    "i18n_system_sent": "系统赠送"
+    "i18n_system_sent": "系统赠送",
+
+    "i18n_no_more": "没有更多了",
+
+
+
+    "i18n_summary": "汇总",
+    "i18n_messages": "聊天",
+    "i18n_gifts": "礼物",
+    "i18n_videos": "视频",
+    "i18n_voices": "语音",
+    "i18n_invitation": "邀请收益",
+    "i18n_system_sents": "系统赠送",
+    "i18n_consuming_diamonds": "消费钻石"
 
 }

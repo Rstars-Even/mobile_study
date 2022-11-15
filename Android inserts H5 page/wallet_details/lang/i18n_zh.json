@@ -1,5 +1,5 @@
 {
-    "i18n_detail": "收益明细",
+    "i18n_detail": "钱包明细",
     "i18n_get": "获得金币：",
     "i18n_pay": "消费金币：",
     "i18n_to": "至",
@@ -7,21 +7,38 @@
     "i18n_ok": "确认",
     "i18n_select_time": "选择时间",
     "i18n_time_err": "时间段选择错误",
+    "i18n_pay_detail": "消费明细",
+    "i18n_get_detail": "获得明细",
 
-    "i18n_reply": "回复了",
-    "i18n_message": "的消息",
-    "i18n_replys": "回应了",
-    "i18n_say_hi": "的搭讪",
-    "i18n_gets": "收到",
-    "i18n_from": "赠送的",
+
+
+    "i18n_send_message": "发消息给",
+    "i18n_Send": "赠送",
+    "i18n_tos": "给",
+    "i18n_say_hi": "搭讪",
+    "i18n_play": "参与 金币转盘 消费",
+    "i18n_animal": "参与 动物乐园 消费",
     "i18n_with": "与",
-    "i18n_withs": "与",
-    "i18n_video": "视频通话",
-    "i18n_vidce": "语音通话",
-    "i18n_commissions": "的收益分成奖励",
-    "i18n_withdraw": "提现了",
-    "i18n_exchange": "兑换了",
-    "i18n_golds": "金币",
-    "i18n_system_sent": "系统赠送"
+    "i18n_Video": "视频通话",
+    "i18n_Voice": "语音通话",
+
+
+
+
+    "i18n_recharge": "充值",
+    "i18n_exchange_golds": "兑换金币",
+    "i18n_get_day_ewards": "领取每日奖励",
+    "i18n_system_sent": "系统赠送",
+    "i18n_turntable_add": "参与 金币转盘 奖励",
+    "i18n_turntable_return": "参与 金币转盘 退回",
+    "i18n_animal_add": "参与 动物乐园 奖励",
+    "i18n_lucky_gift": "赠送 幸运礼物 奖励",
+    "i18n_gold_return": "金币退回",
+
+    
+
+   
+
+    "i18n_no_more": "没有更多了"
 
 }

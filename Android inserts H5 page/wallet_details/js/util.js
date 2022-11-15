@@ -41,8 +41,8 @@
      * @param {string} userInfo.ticket 用户登录ticket
      */
     let userInfo = {
-        uid: '102',
-        ticket: "aafed07a43dfafe4f5db9098506dea45",
+        uid: '101',
+        ticket: "f2285815b5707ef62b14ce2e08beba62",
     }
 
 
@@ -67,7 +67,7 @@
         deviceId: '001',
         fcmToken: 'fcmToken',
         imei: '001',
-        lang: 'zh',
+        lang: 'vi',
         os: 'android',
         brand: 'Huawei',
         model: 'P40%20pro',
@@ -191,7 +191,7 @@
             }
             
             if (param.method === 'get') {
-                console.log('---最终请求地址---:', `${ origin }/${ param.url }?${ param.data }`)
+                // console.log('---最终请求地址---:', `${ origin }/${ param.url }?${ param.data }`)
                 req.open('get', `${ origin }/${ param.url }?${ param.data }`)
             }
             if (param.method === 'post') {

@@ -334,9 +334,9 @@ body {
   padding-top: 0.52rem;
   background-color: #F8F8F8;
 }
+.van-index-bar .van-index-bar__sidebar {
+  display: none;
+}
 .gift_li .van-index-anchor {
   color: #999999;
-}
-.ff {
-  margin-bottom: 50px;
 }

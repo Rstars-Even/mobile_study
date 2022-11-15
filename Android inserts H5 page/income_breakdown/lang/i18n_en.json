@@ -25,6 +25,20 @@
     "i18n_withdraw": "Withdraw",
     "i18n_exchange": "Exchange",
     "i18n_golds": "golds",
-    "i18n_system_sent": "System sent"
+    "i18n_system_sent": "System sent",
+
+    "i18n_no_more": "No more data",
+
+
+
+    "i18n_summary": "Summary",
+    "i18n_messages": "messages",
+    "i18n_gifts": "Gifts",
+    "i18n_videos": "Video call",
+    "i18n_voices": "Voice call",
+    "i18n_invitation": "Invitation",
+    "i18n_system_sents": "System sent",
+    "i18n_consuming_diamonds": "Consuming diamonds"
+
 
 }
