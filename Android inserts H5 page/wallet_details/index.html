@@ -213,7 +213,7 @@
                                         <p data-i18n="i18n_gold_return">金币退回</p>
                                     </div>
                                     <div v-show="lang == 'en'" class="gift_ul_item_text">
-                                        <p data-i18n="i18n_gold_return">金币退回</p>
+                                        <p data-i18n="i18n_gold_return">金币退回</p>&nbsp
                                         <p data-i18n="i18n_send_message2">发消息给</p>
                                         <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
                                     </div>
@@ -227,19 +227,19 @@
                                         <p data-i18n="i18n_say_hi">搭讪</p>
                                         <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
                                         <p data-i18n="i18n_gold_return">金币退回</p>
-                                        <p>({{element.giftName}}X1)</p>
+                                        <p>({{element.giftName}}X{{element.giftNum}})</p>
                                     </div>
                                     <div v-show="lang == 'en'" class="gift_ul_item_text">
-                                        <p data-i18n="i18n_gold_return">金币退回</p>
-                                        <p data-i18n="i18n_say_hi">搭讪</p>
+                                        <p data-i18n="i18n_gold_return">金币退回</p>&nbsp
+                                        <p data-i18n="i18n_say_hi2">搭讪</p>
                                         <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
-                                        <!-- <p>({{element.giftName}}X1)</p> -->
+                                        <p>({{element.giftName}}X{{element.giftNum}})</p>
                                     </div>
                                     <div v-show="lang == 'vi'" class="gift_ul_item_text">
                                         <p data-i18n="i18n_say_hi3">搭讪</p>
                                         <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
                                         <p data-i18n="i18n_gold_return">金币退回</p>
-                                        <!-- <p>({{element.giftName}}X1)</p> -->
+                                        <p>&nbsp ({{element.giftName}}X{{element.giftNum}})</p>
                                     </div>
 
                                     <p class="gift_ul_item_date">{{element.time_hours}}</p>

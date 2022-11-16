@@ -41,8 +41,8 @@
      * @param {string} userInfo.ticket 用户登录ticket
      */
     let userInfo = {
-        uid: '101',
-        ticket: "f2285815b5707ef62b14ce2e08beba62",
+        uid: '102',
+        ticket: "3f6add10563baf485925af46a34e19cb",
     }
 
 
@@ -67,7 +67,7 @@
         deviceId: '001',
         fcmToken: 'fcmToken',
         imei: '001',
-        lang: 'vi',
+        lang: 'en',
         os: 'android',
         brand: 'Huawei',
         model: 'P40%20pro',

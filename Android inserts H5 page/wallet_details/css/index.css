@@ -274,6 +274,7 @@ body {
 }
 .gift_ul_item .gift_ul_left .gift_ul_item_text {
   display: flex;
+  flex-wrap: wrap;
   font-size: 0.6933rem;
   font-family: PingFangSC-Regular, PingFang SC;
   font-weight: 400;
@@ -308,7 +309,7 @@ body {
 }
 .gift_ul_item .gift_ul_right img {
   width: 0.8533rem;
-  height: 0.8533rem;
+  height: 0.7733rem;
   margin-left: 0.2667rem;
 }
 .van-tabs__nav .van-tab {
