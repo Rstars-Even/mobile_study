@@ -230,6 +230,7 @@ body {
   font-weight: 400;
   color: #1B1C33;
   margin-bottom: 0.3733rem;
+  flex-wrap: wrap;
 }
 .chat_ul .chat_ul_item .chat_ul_left .chat_ul_item_text .chat_ul_item_text_name {
   font-size: 0.6933rem;
@@ -283,6 +284,7 @@ body {
   font-weight: 400;
   color: #1B1C33;
   margin-bottom: 0.3733rem;
+  flex-wrap: wrap;
 }
 .gift_ul_item .gift_ul_left .gift_ul_item_text .gift_ul_item_text_name {
   font-size: 0.6933rem;

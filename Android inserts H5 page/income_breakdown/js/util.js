@@ -41,8 +41,8 @@
      * @param {string} userInfo.ticket 用户登录ticket
      */
     let userInfo = {
-        uid: '101',
-        ticket: "f2285815b5707ef62b14ce2e08beba62",
+        uid: '102',
+        ticket: "4a9d3d06a43bd4e01b28f408a1d65be9",
     }
 
 
