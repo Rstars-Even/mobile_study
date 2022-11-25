@@ -43,7 +43,7 @@
      */
     let userInfo = {
         uid: '102',
-        ticket: "96b3e9b5deec035aa37040dcfd3f6f29",
+        ticket: "e20403c7cc390ead5250a55d9b80be81",
     }
 
 

@@ -1,9 +1,9 @@
 // (function () {
     // 调试工具加载
-	// const script = document.createElement('script')
-	// script.src = './lib/eruda.min.js'
-	// document.body.appendChild(script)
-	// script.onload = function () { eruda.init() }
+	const script = document.createElement('script')
+	script.src = './lib/eruda.min.js'
+	document.body.appendChild(script)
+	script.onload = function () { eruda.init() }
 
     /**
      * @description 获取客户端类型
@@ -100,8 +100,8 @@
             try {
 
                 if (browser.ios && window.webkit) {
-                    window.webkit.messageHandlers.getUid.postMessage(null)
-                    window.webkit.messageHandlers.getTicket.postMessage(null)
+                    // window.webkit.messageHandlers.getUid.postMessage(null)
+                    // window.webkit.messageHandlers.getTicket.postMessage(null)
                 } else if (browser.android) {
                     userInfo.uid = parseInt(window.androidJsObj.getUid())
                     

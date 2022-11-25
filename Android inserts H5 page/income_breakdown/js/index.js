@@ -343,13 +343,37 @@ let app = new Vue({
          // 查看用户信息。。
         find_infor (uid) {
             console.log('---uid---:', uid);
-            _YM_JSBridge.openUserInfo(uid)
+            // _YM_JSBridge.openUserInfo(uid)
+            if (browser.ios) {
+                window.webkit.messageHandlers.jump_userinfo.postMessage(uid)
+
+            } else {
+
+                _YM_JSBridge.openUserInfo(uid)
+            }
         },
+
+        appSetToken(user, device) {
+            userInfo = JSON.parse(user)
+            deviceInfo = JSON.parse(device)
+            
+            this.getMondayAndSunday();
+            this.geta_pool_list();
+            window.addEventListener('scroll', this.handle)
+        }
     },
     mounted() {
-        
-        this.getMondayAndSunday();
-        this.geta_pool_list();
-        window.addEventListener('scroll', this.handle)
+        // this.getMondayAndSunday();
+        // this.geta_pool_list();
+        // window.addEventListener('scroll', this.handle)
+
+        if (browser.ios) {
+            window.appSetToken = this.appSetToken;
+        } else {
+
+            this.getMondayAndSunday();
+            this.geta_pool_list();
+            window.addEventListener('scroll', this.handle)
+        }
     }
 })

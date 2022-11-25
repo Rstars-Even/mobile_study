@@ -41,8 +41,8 @@
      * @param {string} userInfo.ticket 用户登录ticket
      */
     let userInfo = {
-        uid: '102',
-        ticket: "7bc26ae57039af6302154afc2b0177f5",
+        uid: '38603',
+        ticket: "e54a170352223a8d8084c1646dd98e0e",
     }
 
 
@@ -205,9 +205,8 @@
             uid: userInfo.uid,
         }
         let origin = location.origin
-        // console.log('origin----------', origin)
-        // console.log('oriparam.datagin----------', param.data)
         origin = 'http://beta.sukiechat.com'
+        // origin = 'http://act.sukiechat.com'
         return new Promise((resolve, reject) => {
             param.data = param.data || {}
             const formData = []

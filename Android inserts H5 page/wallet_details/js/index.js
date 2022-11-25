@@ -20,7 +20,7 @@ let app = new Vue({
             end_date_num: '',
             // currentDate: new Date(),
             startTimes: '',            //时间选择器选定的时间。。
-            // lang: 'zh',
+            langs: '',
             // titles: ['汇总', '聊天'],
             // isicon: 0,                    //tab选中状态。
             // add_border: true,           //tab左右边框样式。。
@@ -50,7 +50,7 @@ let app = new Vue({
         // 点击显示时间选择器。。
         header_top_click() {
             this.isChoiceTime = true;
-            langTranslate ()
+            langTranslate (this.langs)
 
         },
         // 取消关闭时间选择器。。
@@ -87,7 +87,7 @@ let app = new Vue({
             this.geta_pool_list();
             this.lists = await this.get_list (this.listType);
             // console.log ('-----------数据-------------0000',this.lists);
-            langTranslate ()
+            langTranslate (this.langs)
         },
         // 时间选择器切换背景事件。。
         timeClick(n) {
@@ -129,7 +129,7 @@ let app = new Vue({
             this.lists = await this.get_list (index);
         
             console.log ('-----------数据-------------0000',this.lists);
-            langTranslate ()
+            langTranslate (this.langs)
         },
        
         //初始化时间处理。
@@ -173,14 +173,14 @@ let app = new Vue({
                     // endDate: 1668406826000,
                 }
             }).then(res => {
-                console.log('res-------汇总列表11111111，。。--------:', res);
+                // console.log('res-------汇总列表11111111，。。--------:', res);
                 if (res.code != 200) {
                     return;
                 }
                 // this.pool_list = res.data;
                 this.incrDiamond = res.data.incrGold;
                 this.decrDiamond = res.data.decrGold;
-                console.log('=-------pool_list-----11111------', this.incrDiamond, this.decrDiamond)
+                // console.log('=-------pool_list-----11111------', this.incrDiamond, this.decrDiamond)
             })
             .catch(err => {
                 defToast(err.message)
@@ -305,27 +305,53 @@ let app = new Vue({
                 console.log("----------合并滑动加载数据22222222222222----------:", lists_arr);
                 this.lists = lists_arr;
                 console.log('--------滑动后的最终数据this.lists-----------', this.lists);
-                langTranslate ()
+                langTranslate (this.langs)
 
             }
         },
         async init () {
             this.lists = await this.get_list(2);
-            langTranslate ()
+            langTranslate (this.langs)
             console.log('-----首次列表数据----------', this.lists);
         },
         // 查看用户信息。。
         find_infor (uid) {
             console.log('---uid---:', uid);
-            _YM_JSBridge.openUserInfo(uid)
+            if (browser.ios) {
+                window.webkit.messageHandlers.jump_userinfo.postMessage(uid)
+
+            } else {
+
+                _YM_JSBridge.openUserInfo(uid)
+            }
         },
+
+        //ios首次进入页面加载次方法，获取到uid
+        appSetToken(user, device) {
+            console.log('-------ios------user-----------', user);
+            console.log('-------ios------device-----------', device);
+            userInfo = JSON.parse(user)
+            deviceInfo = JSON.parse(device)
+            this.langs = deviceInfo.lang
+            
+            langTranslate (this.langs)
+            this.getMondayAndSunday();
+            this.init();
+            this.geta_pool_list();
+            window.addEventListener('scroll', this.handle)
+
+        }
     },
     mounted() {
-       
-        this.getMondayAndSunday();
-        this.init();
-        this.geta_pool_list();
-        window.addEventListener('scroll', this.handle)
-
+        console.log('---是否为iOS---', browser.ios, window.webkit);
+        if (browser.ios) {
+            window.appSetToken = this.appSetToken;
+        } else {
+            this.langs = deviceInfo.lang;
+            this.getMondayAndSunday();
+            this.init();
+            this.geta_pool_list();
+            window.addEventListener('scroll', this.handle)
+        }
     }
 })

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,8 +10,9 @@
     <!-- 引入样式文件 -->
     <link rel="stylesheet" href="./css/vant@2.12.css"/>
 </head> 
-<body data-lang="cn">
+<body>
     <div id="app">
+        <template>
         <div class = "tab_title">
             <div class="header">
                 <div class="header_top" @click="header_top_click">
@@ -53,7 +54,7 @@
                                     <p class="gift_ul_item_date">{{element.time_hours}}</p>
                                 </div>
                                 <!-- 赠送礼物扣金币 -->
-                                <div class="gift_ul_left" v-if="element.billType == 30">
+                                <div class="gift_ul_left" v-if="element.billType == 30 || element.billType == 36">
                                     <div class="gift_ul_item_text">
                                         <p data-i18n="i18n_Send">赠送</p>
                                         <p>&nbsp {{element.giftName}}x{{element.giftNum}} &nbsp</p>
@@ -69,7 +70,7 @@
                                         <p>&nbsp {{element.giftName}}x{{element.giftNum}} &nbsp</p>
                                         <p data-i18n="i18n_say_hi">搭讪</p>
                                         <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
-                                        <p data-i18n="i18n_say_hi2" v-if="lang == 'vi'" data-i18n="i18n_"></p>
+                                        <p data-i18n="i18n_say_hi2" v-if="langs == 'vi'" data-i18n="i18n_"></p>
                                     </div>
                                     <p class="gift_ul_item_date">{{element.time_hours}}</p>
                                 </div>
@@ -94,13 +95,13 @@
                                 <!-- 视频通话扣金币 -->
                                 <div class="gift_ul_left" v-if="element.billType == 40">
 
-                                    <div v-show="lang == 'zh' || lang == 'en'" class="gift_ul_item_text">
+                                    <div v-show="langs == 'zh' || langs == 'en'" class="gift_ul_item_text">
                                         <p data-i18n="i18n_with">与</p>
                                         <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
                                         <p data-i18n="i18n_Video">视频通话</p>
                                         <p>({{element.videoTime | time_filter}})</p>
                                     </div>
-                                    <div v-show="lang == 'vi' " class="gift_ul_item_text">
+                                    <div v-show="langs == 'vi' " class="gift_ul_item_text">
                                         <p data-i18n="i18n_Video">视频通话</p>
                                         <p>&nbsp ({{element.videoTime | time_filter}}) &nbsp</p>
                                         <p data-i18n="i18n_with">与</p>
@@ -112,13 +113,13 @@
                                 <!-- 语音通话扣金币 -->
                                 <div class="gift_ul_left" v-if="element.billType == 41">
                                     
-                                    <div v-show="lang == 'zh' || lang == 'en'" class="gift_ul_item_text">
+                                    <div v-show="langs == 'zh' || langs == 'en'" class="gift_ul_item_text">
                                         <p data-i18n="i18n_withs">与</p>
                                         <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
                                         <p data-i18n="i18n_Voice">语音通话</p>
                                         <p>&nbsp ({{element.voiceTime | time_filter}}) &nbsp</p>
                                     </div>
-                                    <div v-show="lang == 'vi' " class="gift_ul_item_text">
+                                    <div v-show="langs == 'vi' " class="gift_ul_item_text">
                                         <p data-i18n="i18n_Voice">语音通话</p>
                                         <p>&nbsp ({{element.voiceTime | time_filter}}) &nbsp</p>
                                         <p data-i18n="i18n_with">与</p>
@@ -207,12 +208,12 @@
                                 <!-- 发消息退回 -->
                                 <div class="gift_ul_left" v-if="element.billType == 4">
 
-                                    <div v-show="lang == 'zh' || lang == 'vi'" class="gift_ul_item_text">
+                                    <div v-show="langs == 'zh' || langs == 'vi'" class="gift_ul_item_text">
                                         <p data-i18n="i18n_send_message">发消息给</p>
                                         <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
                                         <p data-i18n="i18n_gold_return">金币退回</p>
                                     </div>
-                                    <div v-show="lang == 'en'" class="gift_ul_item_text">
+                                    <div v-show="langs == 'en'" class="gift_ul_item_text">
                                         <p data-i18n="i18n_gold_return">金币退回</p>&nbsp
                                         <p data-i18n="i18n_send_message2">发消息给</p>
                                         <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
@@ -223,19 +224,19 @@
                                 <!-- 送礼物搭讪退回 -->
                                 <div class="gift_ul_left" v-if="element.billType == 8">
 
-                                    <div v-show="lang == 'zh'" class="gift_ul_item_text">
+                                    <div v-show="langs == 'zh'" class="gift_ul_item_text">
                                         <p data-i18n="i18n_say_hi">搭讪</p>
                                         <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
                                         <p data-i18n="i18n_gold_return">金币退回</p>
                                         <p>({{element.giftName}}X{{element.giftNum}})</p>
                                     </div>
-                                    <div v-show="lang == 'en'" class="gift_ul_item_text">
+                                    <div v-show="langs == 'en'" class="gift_ul_item_text">
                                         <p data-i18n="i18n_gold_return">金币退回</p>&nbsp
                                         <p data-i18n="i18n_say_hi2">搭讪</p>
                                         <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
                                         <p>({{element.giftName}}X{{element.giftNum}})</p>
                                     </div>
-                                    <div v-show="lang == 'vi'" class="gift_ul_item_text">
+                                    <div v-show="langs == 'vi'" class="gift_ul_item_text">
                                         <p data-i18n="i18n_say_hi3">搭讪</p>
                                         <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
                                         <p data-i18n="i18n_gold_return">金币退回</p>
@@ -274,17 +275,20 @@
                 <van-datetime-picker visible-item-count="3" type="date" @change="changeTimeMore" :show-toolbar="false" v-model="startTimes"/>
             </div>
         </van-popup>
-
+        </template>
     </div>
+    <script src="//cdn.bootcdn.net/ajax/libs/eruda/2.3.3/eruda.js"></script>
+    <script>eruda.init();</script>
+
     <script src="./lib/day@1.8.21.js"></script>
     <script src="./lib/vue@2.6.min.js"></script>
-    <!-- <script src="./lib/vant@2.12.js"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vant/2.12.52/vant.min.js"></script>
+    <script src="./lib/vant@2.12.js"></script>
     <script src="./lib/flexible.js"></script>
     <script src="./lib/jquery.main.js"></script>
     <script src="./lib/jquery.i18n.js"></script>
     <script src="./lib/jquery.i18n.messagestore.js"></script>
     <script src="./js/util.js"></script>
     <script src="./js/index.js"></script>
+
 </body>
 </html>

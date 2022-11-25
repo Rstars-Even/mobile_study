@@ -1,9 +1,10 @@
-// (function () {
+(function () {
     // 调试工具加载
 	// const script = document.createElement('script')
 	// script.src = './lib/eruda.min.js'
 	// document.body.appendChild(script)
 	// script.onload = function () { eruda.init() }
+})();
 
     /**
      * @description 获取客户端类型
@@ -41,8 +42,8 @@
      * @param {string} userInfo.ticket 用户登录ticket
      */
     let userInfo = {
-        uid: '102',
-        ticket: "3f6add10563baf485925af46a34e19cb",
+        // uid: '101',
+        // ticket: "97a867ac0f18b181c11fa4d5119bd3ac",
     }
 
 
@@ -61,19 +62,19 @@
      * @param {string} deviceInfo.os 操作系统
      */
     let deviceInfo = {
-        app: 'yamoo',
-        appVersion: '1.0.0',
-        country: 'Vietnam',
-        deviceId: '001',
-        fcmToken: 'fcmToken',
-        imei: '001',
-        lang: 'en',
-        os: 'android',
-        brand: 'Huawei',
-        model: 'P40%20pro',
-        osVersion: '10.0'
+        // app: 'yamoo',
+        // appVersion: '1.0.0',
+        // country: 'Vietnam',
+        // deviceId: '001',
+        // fcmToken: 'fcmToken',
+        // imei: '001',
+        // lang: 'en',
+        // os: 'android',
+        // brand: 'Huawei',
+        // model: 'P40%20pro',
+        // osVersion: '10.0'
     }
-
+    
     // Yamoo APP中h5调用原生app方法
     const _YM_JSBridge = {
         /**
@@ -82,13 +83,12 @@
          * @author: lzf
          */
         _getAppDeviceInfo () {
-            if (browser.android && window.androidJsObj) {
+            console.log('--_getAppDeviceInfo----------', window.androidJsObj);
+            if (browser.android) {
+                console.log('是安卓手机。。。');                
                 deviceInfo = { ...JSON.parse(window.androidJsObj.getDeviceInfo()) }
-
-                console.log('调用手机信息：', JSON.stringify(deviceInfo))
-                
-            } else if (browser.ios && window.webkit) {}
-            localStorage.setItem('deviceInfo', JSON.stringify(deviceInfo))
+            }
+            // localStorage.setItem('deviceInfo', JSON.stringify(deviceInfo))
         },
         
         /**
@@ -97,43 +97,20 @@
          * @author: lzf
          */
         _getAppUserInfo () {
-            try {
-
-                if (browser.ios && window.webkit) {
-                    window.webkit.messageHandlers.getUid.postMessage(null)
-                    window.webkit.messageHandlers.getTicket.postMessage(null)
-                } else if (browser.android) {
+            // try {
+                if (browser.android) {
+                    console.log('安卓获取身份信息：')
+                    
                     userInfo.uid = parseInt(window.androidJsObj.getUid())
-                    
-                    console.log('获取身份信息：', window.androidJsObj.getTicket())
-                    
                     userInfo.ticket = window.androidJsObj.getTicket()
-                    userInfo.auth = 'Bearer ' + userInfo.ticket
-                    localStorage.setItem('info', JSON.stringify(userInfo))
-                }
 
-            } catch (error) {
-                defToast(error)                
-            }
+                    // userInfo.auth = 'Bearer ' + userInfo.ticket
+                    // localStorage.setItem('info', JSON.stringify(userInfo))
+                }
+            // } catch (error) {
+            //     defToast(error)                
+            // }
         },
-        
-        // /**
-        //  * @desc app 链接跳转
-        //  * @date 2022/5/30
-        //  * @author: lzf
-        //  * @param {string|number} url 跳转的链接key
-        //  */
-        // openAppLink: function (url) {
-        //     if (browser.android) {
-        //         const urlMap = {
-        //             1001: 'app://yamoo.com/UserDiamondActivity', // 跳转兑换现金
-        //             1002: 'app://yamoo.com/HomeFamilyCreateActivity', // 跳转创建家族
-        //             1003: 'app://yamoo.com/UserAuthActivity' // 跳转真人认证
-        //         }
-        //         window.location.href = urlMap[url]
-        //     } else if (browser.ios) {
-        //     }
-        // },
 
         // 查看用户信息。。
         openUserInfo (uid) {
@@ -143,13 +120,13 @@
         }
     }
 
-    _YM_JSBridge._getAppUserInfo()
     _YM_JSBridge._getAppDeviceInfo()
+    _YM_JSBridge._getAppUserInfo()
 
 
     // 简易请求封装。。
     function defRequest (param) {
-       
+
         param.data = {
             ...param.data,
             ...deviceInfo,
@@ -244,17 +221,22 @@
     }
 
      // 设置语言类型
-	// const url = new URLSearchParams(location.search)
-	// const lang = url.get('lang') || 'cn'
-	const lang = deviceInfo.lang || 'zh'
-	document.body.setAttribute('data-lang', lang)
-	localStorage.setItem('lang', lang)
+    if (browser.android) {
+        console.log('国际化初始化');
+        console.log('-------------userInfo', userInfo);
+        console.log('-------------deviceInfo', deviceInfo);
+        
+        const lang = deviceInfo.lang;
+        langTranslate (lang)
+    } 
+	// document.body.setAttribute('data-lang', lang)
+	// localStorage.setItem('lang', lang)
 
-    function langTranslate () {
+    function langTranslate (lang) {
         const $i18n = $.i18n()
         $i18n.locale = lang
 
-        console.log(".....", lang)
+        console.log("...------lang------..", lang)
 
         $.i18n.debug = true
         $i18n.load(`lang/i18n_${ lang }.json`, $i18n.locale).done(
@@ -269,5 +251,3 @@
             }
         )
     }
-    langTranslate ()
-// })();
