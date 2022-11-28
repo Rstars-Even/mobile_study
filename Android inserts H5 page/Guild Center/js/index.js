@@ -1,9 +1,9 @@
 (function () {
     // 调试工具加载
-	const script = document.createElement('script')
-	script.src = './lib/eruda.min.js'
-	document.body.appendChild(script)
-	script.onload = function () { eruda.init() }
+	// const script = document.createElement('script')
+	// script.src = './lib/eruda.min.js'
+	// document.body.appendChild(script)
+	// script.onload = function () { eruda.init() }
 
 
     /**
@@ -31,7 +31,6 @@
     }
     const browser = checkClient()
     // console.log('browser=====:', browser)
-
 
     /**
      * @description 用户信息
@@ -83,12 +82,15 @@
          * @author: lzf
          */
         _getAppDeviceInfo () {
+            console.log('------window.androidJsObj-----', window.androidJsObj);
             if (browser.android && window.androidJsObj) {
                 deviceInfo = { ...JSON.parse(window.androidJsObj.getDeviceInfo()) }
 
                 console.log('调用手机信息：', JSON.stringify(deviceInfo))
                 
-            } else if (browser.ios && window.webkit) {}
+            } else if (browser.ios && window.webkit) {
+
+            }
             localStorage.setItem('deviceInfo', JSON.stringify(deviceInfo))
         },
         
@@ -101,14 +103,15 @@
             try {
 
                 if (browser.ios && window.webkit) {
-                    window.webkit.messageHandlers.getUid.postMessage(null)
-                    window.webkit.messageHandlers.getTicket.postMessage(null)
+                    console.log('=---------------ios设备--------');
+                    // window.webkit.messageHandlers.getUid.postMessage(null)
+                    // window.webkit.messageHandlers.getTicket.postMessage(null)
                 } else if (browser.android) {
-                    userInfo.uid = parseInt(window.androidJsObj.getUid())
-                    
                     console.log('获取身份信息：', window.androidJsObj.getTicket())
-                    
+
+                    userInfo.uid = parseInt(window.androidJsObj.getUid())
                     userInfo.ticket = window.androidJsObj.getTicket()
+                    
                     userInfo.auth = 'Bearer ' + userInfo.ticket
                     localStorage.setItem('info', JSON.stringify(userInfo))
                 }
@@ -128,6 +131,24 @@
 
     _YM_JSBridge._getAppUserInfo()
     _YM_JSBridge._getAppDeviceInfo()
+
+
+     //ios首次进入页面加载次方法，获取到uid
+    function appSetToken(user, device) {
+        console.log('-------ios------user-----------', user);
+        console.log('-------ios------device-----------', device);
+        userInfo = JSON.parse(user)
+        deviceInfo = JSON.parse(device)
+        // this.langs = deviceInfo.lang
+
+        langTranslate ()
+        guild_getInfo ()
+        $(window).on("scroll", handle);
+
+        // window.addEventListener('scroll', this.handle)
+    }
+    window.appSetToken = appSetToken
+    console.log('-----------appSetToken------', window.appSetToken);
 
 
     /**
@@ -278,7 +299,9 @@
             guild_getInfo ()
         }
     }
-    $(window).on("scroll", handle);
+    if (browser.android) {
+        $(window).on("scroll", handle);
+    }
 
 
     function guild_getInfo () {
@@ -314,8 +337,9 @@
             defToast(err.message)
         })
     }
-    guild_getInfo ()
-
+    if (browser.android) {
+        guild_getInfo ()
+    }
 
     let isactive = false;
     // 动态创建列表数据。。
@@ -408,7 +432,13 @@
     // 查看公会成员用户信息。。
     fn = function (uid) {
         console.log('---uid---:', uid);
-        _YM_JSBridge.openUserInfo(uid)
+        if (browser.ios) {
+            window.webkit.messageHandlers.jump_userinfo.postMessage(uid)
+
+        } else {
+
+            _YM_JSBridge.openUserInfo(uid)
+        }
     }
 
     // 禁用头部滑动事件。。

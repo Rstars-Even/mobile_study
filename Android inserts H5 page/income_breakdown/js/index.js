@@ -20,7 +20,7 @@ let app = new Vue({
             end_date_num: '',
             // currentDate: new Date(),
             startTimes: '',            //时间选择器选定的时间。。
-            // lang: 'zh',
+            langs: '',
             // titles: ['汇总', '聊天', '礼物', '视频', '语音', '邀请收益', '系统赠送', '消费钻石',],
             // isicon: 0,                    //tab选中状态。
             add_border: true,           //tab左右边框样式。。
@@ -48,7 +48,7 @@ let app = new Vue({
         // 点击显示时间选择器。。
         header_top_click() {
             this.isChoiceTime = true;
-            langTranslate ()
+            langTranslate (this.langs)
 
         },
         // 取消关闭时间选择器。。
@@ -89,7 +89,7 @@ let app = new Vue({
                 this.lists = await this.get_list (1, this.listType);
             }
             console.log ('-----------数据-------------0000',this.lists);
-            langTranslate ()
+            langTranslate (this.langs)
         },
         // 切换背景事件。。
         timeClick(n) {
@@ -151,7 +151,7 @@ let app = new Vue({
                     this.lists = await this.get_list (1, index);
                 }
                 console.log ('-----------数据-------------0000',this.lists);
-                langTranslate ()
+                langTranslate (this.langs)
             }
         },
         // gtouchmove(event) {
@@ -336,7 +336,7 @@ let app = new Vue({
 
                 this.lists = lists_arr;
                 console.log("----------滑动后的最终数据this.lists-----------", this.lists);
-                langTranslate ()
+                langTranslate (this.langs)
             }
         },
 
@@ -352,25 +352,33 @@ let app = new Vue({
                 _YM_JSBridge.openUserInfo(uid)
             }
         },
+        // async init () {
+        //     this.lists = await this.get_list(2);
+        //     langTranslate (this.langs)
+        //     console.log('-----首次列表数据----------', this.lists);
+        // },
 
+        //ios首次进入页面加载次方法，获取到uid
         appSetToken(user, device) {
+            console.log('-------ios------user-----------', user);
+            console.log('-------ios------device-----------', device);
             userInfo = JSON.parse(user)
             deviceInfo = JSON.parse(device)
-            
+            this.langs = deviceInfo.lang
+
+            langTranslate (this.langs)
             this.getMondayAndSunday();
             this.geta_pool_list();
             window.addEventListener('scroll', this.handle)
         }
     },
     mounted() {
-        // this.getMondayAndSunday();
-        // this.geta_pool_list();
-        // window.addEventListener('scroll', this.handle)
+        console.log('---是否为iOS---', browser.ios, window.webkit);
 
         if (browser.ios) {
             window.appSetToken = this.appSetToken;
         } else {
-
+            this.langs = deviceInfo.lang;
             this.getMondayAndSunday();
             this.geta_pool_list();
             window.addEventListener('scroll', this.handle)

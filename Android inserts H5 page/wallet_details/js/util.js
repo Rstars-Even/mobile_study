@@ -132,6 +132,8 @@
             ...deviceInfo,
             ticket: userInfo.ticket,
             uid: userInfo.uid,
+            // ticket: '5f66dcca6bd8d3cb464b9e4ef5303e10',
+            // uid: 102,
         }
         let origin = location.origin
         origin = 'http://beta.sukiechat.com'
@@ -235,11 +237,13 @@
     function langTranslate (lang) {
         const $i18n = $.i18n()
         $i18n.locale = lang
+        // $i18n.locale = 'zh'
 
         console.log("...------lang------..", lang)
 
         $.i18n.debug = true
         $i18n.load(`lang/i18n_${ lang }.json`, $i18n.locale).done(
+        // $i18n.load(`lang/i18n_zh.json`, $i18n.locale).done(
             function () {
                 $('[data-i18n]').each(function (index, item) {
                     if (item.nodeName === 'INPUT' && item.getAttribute('placeholder')) {

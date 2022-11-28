@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,7 +11,7 @@
     <!-- 引入样式文件 -->
     <link rel="stylesheet" href="./css/vant@2.12.css"/>
 </head> 
-<body data-lang="cn">
+<body>
     <div id="app">
         <template>
         <div class = "tab_title">
@@ -127,13 +127,13 @@
                             <div class="gift_ul_item" v-for="(element, i) in item.datas" :key="i">
 
                                 <div class="gift_ul_left">
-                                    <div v-show="lang == 'en' || lang == 'vi'" class="gift_ul_item_text">
+                                    <div v-show="langs == 'en' || langs == 'vi'" class="gift_ul_item_text">
                                         <p data-i18n="i18n_gets">收到</p>
                                         <p>&nbsp {{element.giftName}}x{{element.giftNum}} &nbsp</p>
                                         <p data-i18n="i18n_from">赠送的</p>
                                         <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
                                     </div>
-                                    <div v-show="lang == 'zh'" class="gift_ul_item_text">
+                                    <div v-show="langs == 'zh'" class="gift_ul_item_text">
                                         <p data-i18n="i18n_gets">收到</p>
                                         <p  @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
                                         <p data-i18n="i18n_from">赠送的</p>
@@ -165,13 +165,13 @@
                             <div class="gift_ul_item" v-for="(element, i) in item.datas" :key="i">
                                 <div class="gift_ul_left">
 
-                                    <div v-show="lang == 'en' || lang == 'zh'" class="gift_ul_item_text">
+                                    <div v-show="langs == 'en' || langs == 'zh'" class="gift_ul_item_text">
                                         <p data-i18n="i18n_with">与</p>
                                         <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
                                         <p data-i18n="i18n_video">视频通话</p>
                                         <p>({{element.videoTime | time_filter}})</p>
                                     </div>
-                                    <div v-show="lang == 'vi'" class="gift_ul_item_text">
+                                    <div v-show="langs == 'vi'" class="gift_ul_item_text">
                                         <p data-i18n="i18n_video">视频通话</p>
                                         <p>&nbsp ({{element.videoTime | time_filter}}) &nbsp</p>
                                         <p data-i18n="i18n_with">与</p>
@@ -203,13 +203,13 @@
                             <div class="gift_ul_item" v-for="(element, i) in item.datas" :key="i">
                                 <div class="gift_ul_left">
 
-                                    <div v-show="lang == 'en' || lang == 'zh'" class="gift_ul_item_text">
+                                    <div v-show="langs == 'en' || langs == 'zh'" class="gift_ul_item_text">
                                         <p data-i18n="i18n_withs">与</p>
                                         <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
                                         <p data-i18n="i18n_vidce">语音通话</p>
                                         <p>({{element.voiceTime | time_filter}})</p>
                                     </div>  
-                                    <div v-show="lang == 'vi'" class="gift_ul_item_text">
+                                    <div v-show="langs == 'vi'" class="gift_ul_item_text">
                                         <p data-i18n="i18n_vidce">语音通话</p>
                                         <p>&nbsp ({{element.voiceTime | time_filter}}) &nbsp</p>
                                         <p data-i18n="i18n_withs">与</p>
@@ -240,11 +240,11 @@
                             <!-- <p class="gift_ul_date">{{item.createTime}}</p> -->
                             <div class="gift_ul_item" v-for="(element, i) in item.datas" :key="i">
                                 <div class="gift_ul_left">
-                                    <div v-show="lang == 'en' || lang == 'zh'" class="gift_ul_item_text">
+                                    <div v-show="langs == 'en' || langs == 'zh'" class="gift_ul_item_text">
                                         <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
                                         <p data-i18n="i18n_commissions">的收益分成奖励</p>
                                     </div>
-                                    <div v-show="lang == 'vi'" class="gift_ul_item_text">
+                                    <div v-show="langs == 'vi'" class="gift_ul_item_text">
                                         <p data-i18n="i18n_commissions">的收益分成奖励</p>
                                         <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
                                     </div>
@@ -390,13 +390,13 @@
                 <div class="gift_ul_item" v-for="(element, i) in item.datas" :key="i">
 
                     <div class="gift_ul_left">
-                        <div v-show="lang == 'en' || lang == 'vi'" class="gift_ul_item_text">
+                        <div v-show="langs == 'en' || langs == 'vi'" class="gift_ul_item_text">
                             <p data-i18n="i18n_gets">收到</p>
                             <p>&nbsp {{element.giftName}}x{{element.giftNum}} &nbsp</p>
                             <p data-i18n="i18n_from">赠送的</p>
                             <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
                         </div>
-                        <div v-show="lang == 'zh'" class="gift_ul_item_text">
+                        <div v-show="langs == 'zh'" class="gift_ul_item_text">
                             <p data-i18n="i18n_gets">收到</p>
                             <p  @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
                             <p data-i18n="i18n_from">赠送的</p>
@@ -422,13 +422,13 @@
                 <div class="gift_ul_item" v-for="(element, i) in item.datas" :key="i">
                     <div class="gift_ul_left">
 
-                        <div v-show="lang == 'en' || lang == 'zh'" class="gift_ul_item_text">
+                        <div v-show="langs == 'en' || langs == 'zh'" class="gift_ul_item_text">
                             <p data-i18n="i18n_with">与</p>
                             <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
                             <p data-i18n="i18n_video">视频通话</p>
                             <p>({{element.videoTime | time_filter}})</p>
                         </div>
-                        <div v-show="lang == 'vi'" class="gift_ul_item_text">
+                        <div v-show="langs == 'vi'" class="gift_ul_item_text">
                             <p data-i18n="i18n_video">视频通话</p>
                             <p>&nbsp ({{element.videoTime | time_filter}}) &nbsp</p>
                             <p data-i18n="i18n_with">与</p>
@@ -452,13 +452,13 @@
                 <div class="gift_ul_item" v-for="(element, i) in item.datas" :key="i">
                     <div class="gift_ul_left">
 
-                        <div v-show="lang == 'en' || lang == 'zh'" class="gift_ul_item_text">
+                        <div v-show="langs == 'en' || langs == 'zh'" class="gift_ul_item_text">
                             <p data-i18n="i18n_withs">与</p>
                             <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
                             <p data-i18n="i18n_vidce">语音通话</p>
                             <p>({{element.voiceTime | time_filter}})</p>
                         </div>  
-                        <div v-show="lang == 'vi'" class="gift_ul_item_text">
+                        <div v-show="langs == 'vi'" class="gift_ul_item_text">
                             <p data-i18n="i18n_vidce">语音通话</p>
                             <p>&nbsp ({{element.voiceTime | time_filter}}) &nbsp</p>
                             <p data-i18n="i18n_withs">与</p>
@@ -481,11 +481,11 @@
                 <p class="gift_ul_date">{{item.createTime}}</p>
                 <div class="gift_ul_item" v-for="(element, i) in item.datas" :key="i">
                     <div class="gift_ul_left">
-                        <div v-show="lang == 'en' || lang == 'zh'" class="gift_ul_item_text">
+                        <div v-show="langs == 'en' || langs == 'zh'" class="gift_ul_item_text">
                             <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
                             <p data-i18n="i18n_commissions">的收益分成奖励</p>
                         </div>
-                        <div v-show="lang == 'vi'" class="gift_ul_item_text">
+                        <div v-show="langs == 'vi'" class="gift_ul_item_text">
                             <p data-i18n="i18n_commissions">的收益分成奖励</p>
                             <p @click="find_infor(element.targetUid)" class="gift_ul_item_text_name">{{element.targetNick}}</p>
                         </div>
@@ -546,6 +546,9 @@
         </ul> -->
         </template>
     </div>
+    <script src="./lib/eruda.min.js"></script>
+    <script>eruda.init();</script>
+
     <script src="./lib/day@1.8.21.js"></script>
     <script src="./lib/vue@2.6.min.js"></script>
     <script src="./lib/vant@2.12.js"></script>
