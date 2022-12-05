@@ -151,7 +151,7 @@ let app = new Vue({
     el: '#app',
     data: function () {
         return {
-           
+           active: 1
         }
     },
     methods: {

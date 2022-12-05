@@ -8,11 +8,13 @@
     <link rel="stylesheet" href="./css/normalize.css">
     <link rel="stylesheet" href="./css/swiper.min.css">
     <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/vant@2.12.css"/>
 </head>
 <body data-lang="cn">
     <div id="app">
         <template>  
         <!-- 任务模块。。 -->
+        <div class="title">
         <section class="task">
             <div class="swiper-container study_fo">
                 <div class="swiper-wrapper">
@@ -40,12 +42,6 @@
                             <p class="text" data-i18n="i18n_valid_date"></p>
                         </div>
                     </div>
-                    <div class="swiper-slide new_player_gift">
-                        <div class="div">
-                            <p class="num num5"></p>
-                            <p class="text" data-i18n="i18n_new_player_gift"></p>
-                        </div>
-                    </div>
                 </div>
                 <div class="swiper-pagination"></div>
             </div>
@@ -56,18 +52,25 @@
                 <img class="invitation_btn_imgags" src="" alt="">
             </a>
         </section>
-    
-            <!-- 钻石任务列表部分 -->
-            <!-- 标题导航 ...-->
-        <van-tabs swipeable swipe-threshold=4 sticky offset-top="5.1rem" @change="change" >
-            <van-tab :title="1232" name=2>
-                <div slot="title" data-i18n="i18n_pay_detail">消费明细</div>
-            </van-tab>
-            
-            <van-tab :title="456" name=1>
-                <div slot="title" data-i18n="i18n_get_detail">获得明细</div>
-            </van-tab>
-        </van-tabs>
+        </div>
+        <!-- 钻石任务列表部分 -->
+        <!-- 标题导航 ...-->
+        <section class="tab_content">
+            <van-tabs swipeable swipe-threshold=4 sticky offset-top="12.14rem" @change="change">
+                <van-tab name="1">
+                    <div slot="title">新人</div>
+                    <div class="centers" v-for="index in 10">内容000000000</div>
+                </van-tab>
+                <van-tab name="2">
+                    <div slot="title">今日</div>
+                    <div class="centers" v-for="index in 10">内容1111111</div>
+                </van-tab>
+                <van-tab name="3">
+                    <div slot="title">本周</div>
+                    <div class="centers" v-for="index in 10">内容2222</div>
+                </van-tab>
+            </van-tabs>
+        </section>
 
         <!-- 领取弹窗。。 -->
         </template>

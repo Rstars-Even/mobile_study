@@ -2,13 +2,21 @@ body {
   min-width: 320px;
   max-width: 750px;
   margin: 0 auto;
-  background: url("../images/bg.png") no-repeat;
   background-size: cover;
 }
 @media screen and (min-width: 750px) {
   html {
     font-size: 37.5px !important;
   }
+}
+.title {
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  left: 0;
+  background: url("../images/bg.png") no-repeat;
+  background-size: cover;
+  height: 12.14rem;
 }
 .task .study_fo {
   padding: 0.4267rem 0rem 0.16rem 0.16rem;
@@ -50,11 +58,7 @@ body {
   background-size: cover;
 }
 .task .valid_date {
-  background: url("../images/有效天数@2x.png") no-repeat;
-  background-size: cover;
-}
-.task .new_player_gift {
-  background: url("../images/新手礼物@2x.png") no-repeat;
+  background: url("../images/有效天数.png") no-repeat;
   background-size: cover;
 }
 .invitation_btn {
@@ -63,7 +67,6 @@ body {
   border-radius: 1.0667rem;
   overflow: hidden;
   margin: auto;
-  margin-bottom: 1.3333rem;
 }
 .pop-up {
   z-index: 999;
@@ -135,4 +138,37 @@ body {
 }
 #item_date_colors {
   background: #B883FF;
+}
+.centers {
+  margin-bottom: 2.6667rem;
+}
+.tab_content {
+  background: #FFFFFF;
+  border-radius: 0.5333rem 0.5333rem 0px 0px;
+}
+.van-tabs__nav--line {
+  border-radius: 0.5333rem 0.5333rem 0px 0px;
+}
+.van-tabs__nav .van-tab {
+  font-size: 0.6933rem;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #999999;
+}
+.van-tabs__nav .van-tab--active {
+  font-size: 0.9067rem;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #212121;
+}
+.van-tabs__nav .van-tabs__line {
+  width: 0.5333rem;
+  height: 0.3733rem;
+  background: url("../images/tab_pre.png") no-repeat;
+  background-size: cover;
+  background-color: #FFF;
+}
+.van-tabs--line .van-tabs__wrap {
+  background: url("../images/bg2.png") no-repeat;
+  background-size: cover;
 }
