@@ -41,8 +41,8 @@
      * @param {string} userInfo.ticket 用户登录ticket
      */
     let userInfo = {
-        uid: '102',
-        ticket: "e20403c7cc390ead5250a55d9b80be81",
+        // uid: '102',
+        // ticket: "e20403c7cc390ead5250a55d9b80be81",
     }
 
 
@@ -61,17 +61,17 @@
      * @param {string} deviceInfo.os 操作系统
      */
     let deviceInfo = {
-        app: 'yamoo',
-        appVersion: '1.0.0',
-        country: 'Vietnam',
-        deviceId: '001',
-        fcmToken: 'fcmToken',
-        imei: '001',
-        lang: 'en',
-        os: 'android',
-        brand: 'Huawei',
-        model: 'P40 pro',
-        osVersion: '10.0'
+        // app: 'yamoo',
+        // appVersion: '1.0.0',
+        // country: 'Vietnam',
+        // deviceId: '001',
+        // fcmToken: 'fcmToken',
+        // imei: '001',
+        // lang: 'en',
+        // os: 'android',
+        // brand: 'Huawei',
+        // model: 'P40 pro',
+        // osVersion: '10.0'
     }
 
     // Yamoo APP中h5调用原生app方法
@@ -193,18 +193,18 @@
 
 
     // 设置语言类型
-	const lang = deviceInfo.lang || 'zh'
-	document.body.setAttribute('data-lang', lang)
-	localStorage.setItem('lang', lang)
+	// const lang = deviceInfo.lang;
+	// document.body.setAttribute('data-lang', lang)
+	// localStorage.setItem('lang', lang)
 
     function langTranslate () {
         const $i18n = $.i18n()
-        $i18n.locale = lang
+        $i18n.locale = deviceInfo.lang
 
-        console.log(".....", lang)
+        console.log(".....", deviceInfo.lang)
 
         $.i18n.debug = true
-        $i18n.load(`lang/i18n_${ lang }.json`, $i18n.locale).done(
+        $i18n.load(`lang/i18n_${ deviceInfo.lang }.json`, $i18n.locale).done(
             function () {
                 $('[data-i18n]').each(function (index, item) {
                     if (item.nodeName === 'INPUT' && item.getAttribute('placeholder')) {

@@ -1,7 +1,7 @@
 (function () {
 	// 设置语言类型
 	const url = new URLSearchParams(location.search)
-	const lang = url.get('lang') || 'cn'
+	const lang = url.get('lang')
 	document.body.setAttribute('data-lang', lang)
 	localStorage.setItem('lang', lang)
 	// 调试工具加载
@@ -23,8 +23,8 @@ const browser = checkClient()
  * @param {string} userInfo.ticket 用户登录ticket
  */
 let userInfo = {
-	uid: '10161',
-	ticket: '82ff9783f7132fcf8c508ac4dd21e5dc'
+	// uid: '10161',
+	// ticket: '82ff9783f7132fcf8c508ac4dd21e5dc'
 }
 
 /**
@@ -42,14 +42,14 @@ let userInfo = {
  * @param {string} deviceInfo.os 操作系统
  */
 let deviceInfo = {
-	app: 'sukie',
-	appVersion: '1.0.0',
-	country: 'HongKong',
-	deviceId: '001',
-	fcmToken: 'fcmToken',
-	imei: '001',
-	lang: 'en',
-	os: 'android'
+	// app: 'sukie',
+	// appVersion: '1.0.0',
+	// country: 'HongKong',
+	// deviceId: '001',
+	// fcmToken: 'fcmToken',
+	// imei: '001',
+	// lang: 'en',
+	// os: 'android'
 }
 
 // Yamoo APP中h5调用原生app方法
@@ -75,9 +75,10 @@ const _YM_JSBridge = {
 	 */
 	_getAppUserInfo () {
 		if (browser.ios && window.webkit) {
-			window.webkit.messageHandlers.getUid.postMessage(null)
-			window.webkit.messageHandlers.getTicket.postMessage(null)
+			// window.webkit.messageHandlers.getUid.postMessage(null)
+			// window.webkit.messageHandlers.getTicket.postMessage(null)
 		} else if (browser.android) {
+			console.log('-----android---------');
 			userInfo.uid = parseInt(window.androidJsObj.getUid())
 			userInfo.ticket = window.androidJsObj.getTicket()
 			userInfo.auth = 'Bearer ' + userInfo.ticket
@@ -100,12 +101,17 @@ const _YM_JSBridge = {
 			}
 			window.location.href = urlMap[url]
 		} else if (browser.ios) {
+			if (url == 1001) {
+				window.webkit.messageHandlers.jump_income.postMessage(null) // 跳转兑换现金
+			}
 		}
 	},
 
 	openUserInfo (uid) {
 		if (browser.android) {
 			window.androidJsObj.openUserPage(uid)
+		} else if (browser.ios) {
+            window.webkit.messageHandlers.jump_userinfo.postMessage(uid)
 		}
 	}
 }
@@ -137,3 +143,25 @@ function checkClient () {
 		qq: u.match(/\sQQ/i) === ' qq', //是否QQ
 	}
 }
+
+
+// //ios首次进入页面加载次方法，获取到uid
+// if (browser.ios) {
+// 	console.log('----ios调试--------------');
+// 	window.appSetToken = appSetToken
+// }
+// function appSetToken(user, device) {
+// 	console.log('-------ios------user-----------', user);
+// 	console.log('-------ios------device-----------', device);
+// 	userInfo = JSON.parse(user)
+// 	deviceInfo = JSON.parse(device)
+	
+// 	localStorage.setItem('lang', device.lang)
+// 	localStorage.setItem('info', JSON.stringify(user))
+// 	localStorage.setItem('deviceInfo', JSON.stringify(device))
+
+// 	langTranslate()
+// 	getUserInfo()
+// 	getMyInviteCode()
+// 	getInviteIncome()
+// }

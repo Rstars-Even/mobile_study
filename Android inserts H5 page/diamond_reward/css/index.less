@@ -1,0 +1,166 @@
+body {
+    min-width: 320px;
+    max-width: 750px;
+    margin: 0 auto;
+    // height: 1200px;
+    background: url("../images/bg.png") no-repeat;
+	background-size: cover;
+}
+// html {
+//     position: relative;
+// }
+
+// a {
+//     text-decoration: none;
+// }
+
+@media screen and (min-width: 750px) {
+    html {
+        font-size: 37.5px !important;
+    }
+}
+
+// 任务模块的轮播图
+.task {
+    .study_fo {
+        padding: .4267rem 0rem .16rem .16rem;
+    }
+    .swiper-slide {
+        width: 6.1867rem;
+        height: 6.9867rem;
+        text-align: -webkit-center;
+        .div {
+            margin-top: 2.6133rem;
+            .num {
+                width: 2.5867rem;
+                // height: 1.8667rem;
+                height: 1.667rem;
+                font-size: 1.44rem;
+                font-family: DINPro-Medium, DINPro;
+                font-weight: 500;
+                color: #FFFFFF;
+                // line-height: 6.9867rem;
+                // margin-bottom: .3733rem;
+            }
+            .text {
+                // width: 2.56rem;
+                width: 80%;
+                height: .88rem;
+                font-size: .64rem;
+                font-family: PingFangSC-Regular, PingFang SC;
+                font-weight: 400;
+                color: #FFFFFF;
+                // line-height: 5.12rem;
+            }
+        }
+    }
+    .meet_number {
+        background: url("../images/相遇人数@2x.png") no-repeat;
+        background-size: cover;
+    }
+    .reply_message {
+        background: url("../images/回复消息@2x.png") no-repeat;
+        background-size: cover;
+    }
+    .received_the_news {
+        background: url("../images/收到消息@2x.png") no-repeat;
+        background-size: cover;
+    }
+    .valid_date {
+        background: url("../images/有效天数@2x.png") no-repeat;
+        background-size: cover;
+    }
+    .new_player_gift {
+        background: url("../images/新手礼物@2x.png") no-repeat;
+        background-size: cover;
+    }
+}
+// <!-- 图片按钮部分 -->
+.invitation_btn {
+    width: 18.4rem;
+    height: 3.2rem;
+    border-radius: 1.0667rem;
+    overflow: hidden;
+    margin: auto;
+    margin-bottom: 1.3333rem;
+}
+// <!-- 领取弹窗。。 -->
+.pop-up {
+    z-index: 999;
+    width: 12.2667rem;
+    height: 9.3067rem;
+    background: linear-gradient(180deg, #FFE3FB 0%, #FFFFFF 100%);
+    border-radius: .8rem;
+    // margin: 0 auto;
+    position: fixed;
+    top: 42%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    .pop-up_img {
+        width: 6.4rem;
+        height: 6.4rem;
+        background: url("../images/img_钻石.png") no-repeat;
+        background-size: cover;
+        margin: 0 auto;
+        position: absolute;
+        top: 8%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .pop-up_text {
+        font-size: .8rem;
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #1B1C33;
+        text-align: center;
+        line-height: 9.3067rem;
+    }
+    .pop-up_ok {
+        width: 9.6rem;
+        height: 2.1333rem;
+        background: linear-gradient(270deg, #FF8386 0%, #FFA3A6 100%);
+        box-shadow: 0px .0533rem .2667rem 0px rgba(255,131,134,0.4);
+        border-radius: 1.0667rem;
+        text-align: center;
+        line-height: 2.1333rem;
+        position: absolute;
+        left: 1.3333rem;
+        bottom: 1.0667rem;
+
+        font-size: .8rem;
+        font-family: PingFangSC-Semibold, PingFang SC;
+        font-weight: 600;
+        color: #FFFFFF;
+    }
+}
+
+.show {
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 99;
+    position: fixed;
+    top: 0;
+    display: none;
+}
+
+.active {
+    display: none;
+}
+
+.status {
+    background: #65BEFE !important;
+}
+
+.none {
+    background: none !important;
+    color: #1BA7C5 !important;
+}
+
+.colors {
+    color: #999999;
+}
+
+#item_date_colors {
+    background: #B883FF;
+}

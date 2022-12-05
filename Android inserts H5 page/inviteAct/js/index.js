@@ -11,13 +11,24 @@ const pageInfo = {
 }
 const FN = document.querySelector.bind(document)
 const lang = localStorage.getItem('lang')
+console.log('--------index.js--------', lang);
 
 window.addEventListener('DOMContentLoaded', () => {
-	langTranslate()
-	getUserInfo()
-	getMyInviteCode()
-	getInviteIncome()
-	
+	//ios首次进入页面加载次方法，获取到uid
+	if (browser.ios) {
+		console.log('----ios调试--------------');
+		window.appSetToken = appSetToken
+	}
+
+	console.log('-------userInfo----------', userInfo);
+
+	if (browser.android) {
+		langTranslate()
+		getUserInfo()
+		getMyInviteCode()
+		getInviteIncome()
+	}
+		
 	// 打开规则弹层
 	FN('.i-aside_rule').addEventListener('click', function () {
 		document.body.classList.add('bg-fixed')
@@ -314,6 +325,7 @@ function getInviteIncome (type = 'income') {
 		}
 	})
 		.then(res => {
+			console.log('---------邀请收益------', res);
 			const { data: { incomeList, total } } = res
 			setTimeout(() => {
 				createInviteList(type, incomeList, total)
@@ -424,7 +436,7 @@ function createFirstInviteItem (type = 'income', data) {
 				<div class="i-content_first--item">
 					<p>
 						<span data-i18n="common_invite_total_money">${ $.i18n().localize('common_invite_total_money') }</span>
-						<span>${ data }$</span>
+						<span>${ data }</span>
 					</p>
 					<div class="btn-exchange" data-i18n="common_invite_exchange_money">${ $.i18n().localize('common_invite_exchange_money') }</div>
 				</div>
@@ -493,9 +505,25 @@ function createInviteItem (type = 'income', data) {
 			<div class="i-content_item--info">
 				${ inviteInfo }
 			</div>
-			<p>+${ data.amount }$</p>
-		</div>
-	`
+			</div>
+			`
+			// <p>+${ data.amount }$</p>
 	return document.createRange().createContextualFragment(inviteItem)
 }
 
+// //ios首次进入页面加载次方法，获取到uid
+function appSetToken(user, device) {
+	console.log('-------ios------user-----------', user);
+	console.log('-------ios------device-----------', device);
+	userInfo = JSON.parse(user)
+	deviceInfo = JSON.parse(device)
+	
+	localStorage.setItem('lang', device.lang)
+	localStorage.setItem('info', JSON.stringify(user))
+	localStorage.setItem('deviceInfo', JSON.stringify(device))
+
+	langTranslate()
+	getUserInfo()
+	getMyInviteCode()
+	getInviteIncome()
+}

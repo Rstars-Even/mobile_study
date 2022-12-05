@@ -1,10 +1,4 @@
 (function () {
-    // 调试工具加载
-	const script = document.createElement('script')
-	script.src = './lib/eruda.min.js'
-	document.body.appendChild(script)
-	script.onload = function () { eruda.init() }
-
     /**
      * @description 获取客户端类型
      * @date 2022/6/7
@@ -41,8 +35,8 @@
      * @param {string} userInfo.ticket 用户登录ticket
      */
     let userInfo = {
-        uid: '103',
-        ticket: "9d51cecb3874eeed79938a6cf5fb487a",
+        // uid: '113',
+        // ticket: "ee53227aec959042a12ff2dfcf569e1e",
     }
 
 
@@ -61,17 +55,17 @@
      * @param {string} deviceInfo.os 操作系统
      */
     let deviceInfo = {
-        app: 'yamoo',
-        appVersion: '1.0.0',
-        country: 'Vietnam',
-        deviceId: '001',
-        fcmToken: 'fcmToken',
-        imei: '001',
-        lang: 'zh',
-        os: 'android',
-        brand: 'Huawei',
-        model: 'P40%20pro',
-        osVersion: '10.0'
+        // app: 'yamoo',
+        // appVersion: '1.0.0',
+        // country: 'Vietnam',
+        // deviceId: '001',
+        // fcmToken: 'fcmToken',
+        // imei: '001',
+        // lang: 'zh',
+        // os: 'android',
+        // brand: 'Huawei',
+        // model: 'P40%20pro',
+        // osVersion: '10.0'
     }
 
     // Yamoo APP中h5调用原生app方法
@@ -85,7 +79,7 @@
             if (browser.android && window.androidJsObj) {
                 deviceInfo = { ...JSON.parse(window.androidJsObj.getDeviceInfo()) }
 
-                console.log('调用手机信息：', JSON.stringify(deviceInfo))
+                // console.log('调用手机信息：', JSON.stringify(deviceInfo))
                 
             } else if (browser.ios && window.webkit) {}
             localStorage.setItem('deviceInfo', JSON.stringify(deviceInfo))
@@ -100,12 +94,12 @@
             try {
 
                 if (browser.ios && window.webkit) {
-                    window.webkit.messageHandlers.getUid.postMessage(null)
-                    window.webkit.messageHandlers.getTicket.postMessage(null)
+                    // window.webkit.messageHandlers.getUid.postMessage(null)
+                    // window.webkit.messageHandlers.getTicket.postMessage(null)
                 } else if (browser.android) {
                     userInfo.uid = parseInt(window.androidJsObj.getUid())
-                    
-                    console.log('获取身份信息：', window.androidJsObj.getTicket())
+                    console.log('--------安卓调试--------');
+                    // console.log('获取身份信息：', window.androidJsObj.getTicket())
                     
                     userInfo.ticket = window.androidJsObj.getTicket()
                     userInfo.auth = 'Bearer ' + userInfo.ticket
@@ -116,30 +110,6 @@
                 defToast(error)                
             }
         },
-        
-        // /**
-        //  * @desc app 链接跳转
-        //  * @date 2022/5/30
-        //  * @author: lzf
-        //  * @param {string|number} url 跳转的链接key
-        //  */
-        // openAppLink: function (url) {
-        //     if (browser.android) {
-        //         const urlMap = {
-        //             1001: 'app://yamoo.com/UserDiamondActivity', // 跳转兑换现金
-        //             1002: 'app://yamoo.com/HomeFamilyCreateActivity', // 跳转创建家族
-        //             1003: 'app://yamoo.com/UserAuthActivity' // 跳转真人认证
-        //         }
-        //         window.location.href = urlMap[url]
-        //     } else if (browser.ios) {
-        //     }
-        // },
-
-        // openUserInfo (uid) {
-        //     if (browser.android) {
-        //         window.androidJsObj.openUserPage(uid)
-        //     }
-        // }
     }
 
     _YM_JSBridge._getAppUserInfo()
@@ -166,10 +136,6 @@
             uid: userInfo.uid,
         }
         let origin = location.origin
-        // console.log('origin----------', origin)
-        // console.log('oriparam.datagin----------', param.data)
-        // origin = origin.indexOf('localhost') > -1 ? 'http://beta.sukiechat.com' : origin
-        // origin = origin.indexOf('beta') > -1 ? origin : 'http://act.sukiechat.com'
         origin = 'http://beta.sukiechat.com'
         return new Promise((resolve, reject) => {
             param.data = param.data || {}
@@ -233,7 +199,7 @@
                 $('.num3').html(res.data.msgNum)
                 $('.num4').html(res.data.dayNum)
                 $('.num5').html(res.data.giftNum)
-                // console.log('log - res ---------------->', res)
+                console.log('log - res -------------66466-------->', res)
                 // pageData.userInfo = res.data
                 let data = res.data;
                 let item = '';
@@ -261,7 +227,7 @@
                                     <p class="list_item_diamonds">${data.taskList[index].reward}<span data-i18n="i18n_diamond"></span></p>
                                     ${element}
                                 </div>
-                                <button onclick="fn(${data.taskList[index].id}, ${data.taskList[index].reward}, ${data.taskList[index].status})" data-i18n='${data.taskList[index].status === 0 || data.taskList[index].status === 1 ? "i18n_receive_award" : 'i18n_received'}' class='${data.taskList[index].status === 1 ? "status" : (data.taskList[index].status === 2 ? "none" : "")} item_content_btn_reward'></button>
+                                <button id='get${data.taskList[index].id}' onclick="fn(${data.taskList[index].id}, ${data.taskList[index].reward}, ${data.taskList[index].status})" data-i18n='${data.taskList[index].status === 0 || data.taskList[index].status === 1 ? "i18n_receive_award" : 'i18n_received'}' class='${data.taskList[index].status === 1 ? "status" : (data.taskList[index].status === 2 ? "none" : "")} item_content_btn_reward'></button>
 
                             </div>
 
@@ -278,7 +244,24 @@
                 defToast(err.message)
             })
     }
-    getUserInfo ()
+
+    //   ios首次进入页面加载次方法，获取到uid
+    function appSetToken(user, device) {
+        console.log('-------ios------user-----------', user);
+        console.log('-------ios------device-----------', device);
+        userInfo = JSON.parse(user)
+        deviceInfo = JSON.parse(device)
+
+        langTranslate ()
+        getUserInfo ()
+    }
+    window.appSetToken = appSetToken
+
+
+    if (browser.android) {
+        
+        getUserInfo ()
+    }
 
     /**
         * @description 建议 toast 提示框。
@@ -323,20 +306,20 @@
      // 设置语言类型
 	// const url = new URLSearchParams(location.search)
 	// const lang = url.get('lang') || 'cn'
-	const lang = deviceInfo.lang || 'zh'
-	document.body.setAttribute('data-lang', lang)
-	localStorage.setItem('lang', lang)
+	// const lang = deviceInfo.lang || 'zh'
+	// document.body.setAttribute('data-lang', lang)
+	// localStorage.setItem('lang', lang)
 
     function langTranslate () {
         const $i18n = $.i18n()
-        $i18n.locale = lang
+        $i18n.locale = deviceInfo.lang
 
-        console.log(".....", lang)
-        if ( lang === 'en' ) {
+        console.log(".....", deviceInfo.lang)
+        if ( deviceInfo.lang === 'en' ) {
             $(".invitation_btn_imgags").attr("src", "./images/invite-en.png");
             $('.item_date').css({'width':'auto', 'min-width':'41.6px'});
             $('.item_content_btn_reward').css({'width':'4.4rem'});
-        } else if ( lang === 'vi' ) {
+        } else if ( deviceInfo.lang === 'vi' ) {
             $(".invitation_btn_imgags").attr("src", "./images/invite-vn.png");
             $('.item_date').css({'width':'auto', 'min-width':'41.6px'});
             $('.item_content_btn_reward').css({'width':'4.8rem'});
@@ -345,7 +328,7 @@
         }
 
         $.i18n.debug = true
-        $i18n.load(`lang/i18n_${ lang }.json`, $i18n.locale).done(
+        $i18n.load(`lang/i18n_${ deviceInfo.lang }.json`, $i18n.locale).done(
             function () {
                 $('[data-i18n]').each(function (index, item) {
                     if (item.nodeName === 'INPUT' && item.getAttribute('placeholder')) {
@@ -364,11 +347,13 @@
         $('.show').css('display', 'none')
         $('body').css('overflow', 'auto')
         $(".pop-up").remove();
-        location.reload();
+        // location.reload();
+        // location.href = "index.html" + '?time=' + ((new Date()).getTime());
     });
 
     //领取钻石奖励弹窗事件。。
     fn = function (id, reward, status) {
+
         console.log('-----------', id, reward, status)
         if (status === 0 || status === 2) {
             // console.log('---000000000000222222222222')
@@ -401,8 +386,12 @@
                         </div>
                     `;
                     $('.pop').append(pop_up)
-                    langTranslate ()
 
+                    $(`#get${id}`).removeAttr("data-i18n")
+                    $(`#get${id}`).html($.i18n().localize('i18n_received'))
+                    $(`#get${id}`).attr('class', 'none item_content_btn_reward')
+                    
+                    langTranslate ()
                 }
             })
             .catch(err => {
@@ -412,8 +401,9 @@
 
     // 邀请好友..
     $('.url').click(function() {
-        let url = localStorage.getItem('lang')
-        // console.log('--66666------', url)
+        // let url = localStorage.getItem('lang')
+        let url = deviceInfo.lang
+        console.log('--66666------', url)
         if (url === 'en') {
             location.href= "http://beta-act.sukiechat.com/inviteAct/index.html?lang=en"
         } else if (url === 'vi') {

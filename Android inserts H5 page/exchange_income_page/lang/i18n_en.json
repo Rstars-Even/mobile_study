@@ -31,7 +31,7 @@
     "i18n_description_content2": "2.Bind the Payoneer account on Sukie (the email information filled in during registration) to withdraw money;",
     "i18n_description_content3": "3.After the application for withdrawal is successful, the withdrawal amount will be issued to the submitted withdrawal method account within 7 working days (from the date of withdrawal);",
     "i18n_description_content4": "4.Use Payoneer account to withdraw money to your local bank card. The specific handling fee is determined by Payoneer official and has nothing to do with this platform.",
-    "i18n_description_content5": "5.To withdraw cash by bank card, it will be transferred to the personal local bank card in Vietnamese dong. The fixed exchange rate is 1 USD = 24000 VND, and the withdrawal fee is fixed at 2% + 1500 VND;",
+    "i18n_description_content5": "5.To withdraw cash by bank card, it will be transferred to the personal local bank card in Vietnamese dong. The fixed exchange rate is 1 USD = 23000 VND, and the withdrawal fee is fixed at 2% + 1500 VND;",
 
     "i18n_isdelete": "Delete the withdrawal account？",
     "i18n_no": "Cancel",

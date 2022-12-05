@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="i18n_diamond_mission"></title>
+    <link rel="stylesheet" href="./css/normalize.css">
+    <link rel="stylesheet" href="./css/swiper.min.css">
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body data-lang="cn">
+    <div id="app">
+        <template>  
+        <!-- 任务模块。。 -->
+        <section class="task">
+            <div class="swiper-container study_fo">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide meet_number">
+                        <div class="div">
+                            <p class="num num1"></p>
+                            <p class="text" data-i18n="i18n_meet_number"></p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide reply_message">
+                        <div class="div">
+                            <p class="num num2"></p>
+                            <p class="text" data-i18n="i18n_reply_message"></p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide received_the_news">
+                        <div class="div">
+                            <p class="num num3"></p>
+                            <p class="text" data-i18n="i18n_received_the_news"></p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide valid_date">
+                        <div class="div">
+                            <p class="num num4"></p>
+                            <p class="text" data-i18n="i18n_valid_date"></p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide new_player_gift">
+                        <div class="div">
+                            <p class="num num5"></p>
+                            <p class="text" data-i18n="i18n_new_player_gift"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </section>
+        <!-- 图片按钮部分 -->
+        <section class="invitation_btn">
+            <a href="javascript:void(0)" class="url">
+                <img class="invitation_btn_imgags" src="" alt="">
+            </a>
+        </section>
+    
+            <!-- 钻石任务列表部分 -->
+            <!-- 标题导航 ...-->
+        <van-tabs swipeable swipe-threshold=4 sticky offset-top="5.1rem" @change="change" >
+            <van-tab :title="1232" name=2>
+                <div slot="title" data-i18n="i18n_pay_detail">消费明细</div>
+            </van-tab>
+            
+            <van-tab :title="456" name=1>
+                <div slot="title" data-i18n="i18n_get_detail">获得明细</div>
+            </van-tab>
+        </van-tabs>
+
+        <!-- 领取弹窗。。 -->
+        </template>
+    </div>
+  
+
+    <script src="./lib/eruda.min.js"></script>
+    <script>eruda.init();</script>
+
+    <script src="./lib/vue@2.6.min.js"></script>
+    <script src="./lib/vant@2.12.js"></script>
+    <script src="./lib/flexible.js"></script>
+    <script src="./lib/jquery.main.js"></script>
+    <script src="./lib/jquery.i18n.js"></script>
+    <script src="./lib/jquery.i18n.messagestore.js"></script>
+    <script src="./lib/swiper.min.js"></script>
+    <script src="./js/util.js"></script>
+    <script src="./js/index.js"></script>
+</body>
+</html>
