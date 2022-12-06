@@ -53,18 +53,109 @@
             </a>
         </section>
         </div>
-        <!-- 钻石任务列表部分 -->
-        <!-- 标题导航 ...-->
+        <!-- 钻石任务列表部分，标题导航 ...-->
         <section class="tab_content">
-            <van-tabs swipeable swipe-threshold=4 sticky offset-top="12.14rem" @change="change">
+            <van-tabs swipeable swipe-threshold=4 animated sticky offset-top="12.14rem" @change="change">
                 <van-tab name="1">
                     <div slot="title">新人</div>
-                    <div class="centers" v-for="index in 10">内容000000000</div>
+                    <div class="new_user" v-for="">
+                        <div class="new_user_left">
+                            <div class="new_user_title">完善资料</div>
+                            <div class="new_user_content">填写所有资料信息</div>
+                        </div>
+                        <img class="img_open" src="./images/open1.png" alt="">
+                    </div>
+
+                    <div class="new_user" v-for="">
+                        <div class="new_user_left">
+                            <div class="new_user_title">完善资料</div>
+                            <div class="new_user_content">填写所有资料信息</div>
+                        </div>
+                        <div class="new_user_right">
+                            <van-popover placement="bottom-end" v-model="showPopover" theme="dark" trigger="click" @open="open" @close="close">
+                                <div class="popover">开启青铜宝箱，最高可获得X钻石。</div>
+                                <template #reference>
+                                    <img class="img_off" src="./images/off1.png" alt="">
+                                </template>
+                            </van-popover>
+                        </div>
+                    </div>
+
+                    <div class="new_user" v-for="">
+                        <div class="new_user_left">
+                            <div class="new_user_title">完善资料</div>
+                            <div class="new_user_content">填写所有资料信息</div>
+                        </div>
+                        <div class="new_user_state">已领取</div>
+                    </div>
                 </van-tab>
+
                 <van-tab name="2">
                     <div slot="title">今日</div>
-                    <div class="centers" v-for="index in 10">内容1111111</div>
+                    <div class="new_today" v-for="(item,i) in list" :key="i">
+                        <van-tabs animated>
+                            <van-tab name="a" v-for="(data,j) in item.tasks" :key="j">
+                                <div slot="title">Lv {{data.id}}</div>
+                                <div class="today">
+                                    <div class="today_left">
+                                        <div class="today_title">{{data.lang[lang].title}}</div>
+                                        <div class="today_content">
+                                            <span>{{data.lang[lang].desc}}</span>
+                                            <span>{{data.value}}</span>/<span>{{data.need}}</span>&nbsp
+                                            <img v-show="data.status == 1 && data.status == 2" src="./images/ic-gouxuan@2x.png" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="today_right" v-if="data.status == 0">
+                                        <van-popover placement="bottom-end" v-model="showPopover" theme="dark" trigger="click" @open="open" @close="close">
+                                            <div class="popover">{{data.rewardBox.lang[lang].desc}}</div>
+                                            <template #reference>
+                                                <img class="img_off" :src=`./images/off${data.id}.png` alt="">
+                                            </template>
+                                        </van-popover>
+                                    </div>
+                                    <img v-if="data.status == 1" class="img_open" :src=`./images/open${data.id}.png` alt="">
+                                    <div v-if="data.status == 2" class="today_state">已领取</div>
+                                </div>
+                            </van-tab>
+                            <!-- <van-tab name="b">
+                                <div slot="title">Lv2</div>
+                                <div>内容bbbbbbbb</div>
+                            </van-tab>
+                            <van-tab name="c">
+                                <div slot="title">Lv3</div>
+                                <div>内容cccccc</div>
+                            </van-tab> -->
+                            
+                        </van-tabs>
+                    </div>
+                    <!-- <div class="new_today" v-for="">
+                        <van-tabs animated>
+                            <van-tab name="a" v-for="">
+                                <div slot="title">Lv1</div>
+                                <div class="today" v-for="">
+                                    <div class="today_left">
+                                        <div class="today_title">完善资料</div>
+                                        <div class="today_content">填写所有资料信息</div>
+                                    </div>
+                                    <img class="img_open" src="./images/open1.png" alt="">
+                                </div>
+                            </van-tab>
+                            <van-tab name="b">
+                                <div slot="title">Lv2</div>
+                                <div>内容bbbbbbbb</div>
+                            </van-tab>
+                            <van-tab name="c">
+                                <div slot="title">Lv3</div>
+                                <div>内容cccccc</div>
+                            </van-tab>
+                            
+                        </van-tabs>
+                    </div>
+                    <div class="new_today" v-for="">
+                        <div>9999999999999999</div>
+                    </div> -->
                 </van-tab>
+
                 <van-tab name="3">
                     <div slot="title">本周</div>
                     <div class="centers" v-for="index in 10">内容2222</div>

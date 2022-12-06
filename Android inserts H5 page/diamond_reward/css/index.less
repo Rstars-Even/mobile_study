@@ -163,17 +163,14 @@ body {
     background: #B883FF;
 }
 
-.centers {
-    margin-bottom: 2.6667rem
-}
-
+//设置tab样式。。
 .tab_content {
     background: #FFFFFF;
     border-radius: .5333rem .5333rem 0px 0px;
 }
-//设置tab样式。。
 .van-tabs__nav--line {
-    border-radius: .5333rem .5333rem 0px 0px;
+    // border-radius: .5333rem .5333rem 0px 0px;
+    border-radius: .64rem .64rem 0px 0px;
 }
 .van-tabs__nav .van-tab {
     font-size: .6933rem;
@@ -188,7 +185,6 @@ body {
     color: #212121;
 }
 .van-tabs__nav .van-tabs__line {
-   
     width: .5333rem;
     height: .3733rem;
     background: url("../images/tab_pre.png") no-repeat;
@@ -198,4 +194,155 @@ body {
 .van-tabs--line .van-tabs__wrap {
     background: url("../images/bg2.png") no-repeat;
 	background-size: cover;
+}
+
+// ..........................//
+.van-tab__pane {
+    padding: .5333rem .8rem 0px .8rem;
+    .new_user {         //新人任务。。。。
+        width: 100%;
+        height: 5.0133rem;
+        background: #F4FCFF;
+        border-radius: .64rem;
+        margin-bottom: .6933rem;
+        // padding: 0 1.76rem 0 1.0667rem;
+        padding-left: 1.0667rem;
+        display: flex;
+        // justify-content: space-between;
+        align-items: center;
+        .new_user_left {
+            width: 70%;
+            .new_user_title {
+                font-size: .8533rem;
+                font-family: PingFangSC-Medium, PingFang SC;
+                font-weight: 500;
+                color: #1B1C33;
+                margin-bottom: .2667rem;
+            }
+            .new_user_content {
+                font-size: .64rem;
+                font-family: PingFangSC-Regular, PingFang SC;
+                font-weight: 400;
+                color: #999999;
+            }
+        }
+        .new_user_state {
+            font-size: .5867rem;
+            font-family: PingFangSC-Medium, PingFang SC;
+            font-weight: 500;
+            color: #1BA7C5;
+            margin: 0 auto;
+        }
+        .img_open {
+            width: 3.2rem;
+            height: 3.5592rem;
+            margin: 0 auto;
+        }
+        .new_user_right {
+            margin: 0 auto;
+            .van-popover__wrapper {
+                vertical-align: middle;
+                .img_off {
+                    width: 2.9867rem;
+                    height: 2.6133rem;
+                }
+            }
+        }
+    }
+    .new_today {        //今日任务。。。。。
+        width: 100%;
+        height: 5.0133rem;
+        // background: #F4FCFF;
+        background: #39819d;
+        border-radius: .64rem;
+        margin-bottom: .6933rem;
+        .van-tab__pane {
+            padding: 0 .8rem;
+        }
+        .van-tabs__nav--line {
+            border-radius: .64rem 0 0px 0px;
+        }
+        .van-tabs__nav .van-tabs__line {
+            background: none;
+            background-color: none;
+        }
+        .van-tabs--line .van-tabs__wrap {
+            background: none;
+            height: .96rem;
+            border-radius: .64rem 0 0 0;
+        }
+        .van-tabs__nav--line {
+            width: 7.04rem;
+            height: .96rem;
+            background-color: #E3F7FF;
+        }
+        // 默认状态
+        .van-tabs__nav .van-tab {
+            font-size: .5867rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #60BBFE;
+        }
+        // 选中状态
+        .van-tabs__nav .van-tab--active{
+            background:#7BCBFF;
+            font-size: .5867rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #FFFFFF;
+        }
+        .today {
+            display: flex;
+            align-items: center;
+            .today_left {           //今日任务左边样式。。。。。
+                width: 70%;
+                .today_title {
+                    font-size: .8533rem;
+                    font-family: PingFangSC-Medium, PingFang SC;
+                    font-weight: 500;
+                    color: #1B1C33;
+                    margin-bottom: .2667rem;
+                }
+                .today_content {
+                    font-size: .64rem;
+                    font-family: PingFangSC-Regular, PingFang SC;
+                    font-weight: 400;
+                    color: #999999;
+                    img {
+                        width: .5333rem;
+                        height: .5333rem;
+                        display: inline-block;
+                    }
+                }
+            }
+            .today_state {          //今日任务右边样式。。。。。2已领取
+                font-size: .5867rem;
+                font-family: PingFangSC-Medium, PingFang SC;
+                font-weight: 500;
+                color: #1BA7C5;
+                margin: 0 auto;
+            }
+            .img_open {             //今日任务右边样式。。。。。1可领取
+                width: 3.2rem;
+                height: 3.5592rem;
+                margin: 0 auto;
+            }
+            .today_right {          //今日任务右边样式。。。。。0不可领取
+                margin: 0 auto;
+                .img_off {
+                    width: 2.9867rem;
+                    height: 2.6133rem;
+                }
+            }
+        }
+    }
+}
+// 气泡框。。
+.popover {
+    font-size: .5333rem;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: #FFFFFF;
+    padding: .32rem .8rem;
+    // background-color: #8D8D99;
 }

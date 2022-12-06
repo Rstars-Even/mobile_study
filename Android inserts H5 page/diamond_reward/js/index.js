@@ -151,13 +151,57 @@ let app = new Vue({
     el: '#app',
     data: function () {
         return {
-           active: 1
+            lang: 'zh',
+            list: [],
+            type: 1,                    //默认为新人任务。
+            showPopover: false,         //气泡框状态。
+            timer: null,                //设置一个定时器。
         }
     },
     methods: {
-        change() {
-            console.log('change事件');
+        // tab 切换。。
+        change(name) {
+            let index = Number(name);   //1:新人，2：今日，3：本周。
+            if (this.type == index) {
+                return
+            }
+            this.type = index;
+            console.log('change事件------index:', index);
+
+            this.get_task(this.type);
+        },
+
+        // 获取任务.
+        get_task(type) {    //1:新人，2：今日，3：本周。
+            defRequest({
+                method: 'get',
+                url: '/api/task2/diamond/getInfo',
+                data: {
+                    type: type,
+                }
+            }).then(res => {
+                console.log('res-------任务列表11111111，。。--------:', res);
+                if (res.code != 200) {
+                    return;
+                };
+                this.list = res.data;
+            })
+            .catch(err => {
+                defToast(err.message)
+            })
+        },
+        // 打开气泡框无操作5秒后自动关闭。。
+        open(){
+            this.timer = setTimeout(()=>{
+                this.showPopover = false
+            },5000)
+        },
+        // 有操作要清楚定时器。
+        close(){
+            clearTimeout(this.timer);
+            this.timer = null;
         }
+
     },
     mounted() {
         langTranslate ()

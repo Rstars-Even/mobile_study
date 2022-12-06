@@ -139,15 +139,12 @@ body {
 #item_date_colors {
   background: #B883FF;
 }
-.centers {
-  margin-bottom: 2.6667rem;
-}
 .tab_content {
   background: #FFFFFF;
   border-radius: 0.5333rem 0.5333rem 0px 0px;
 }
 .van-tabs__nav--line {
-  border-radius: 0.5333rem 0.5333rem 0px 0px;
+  border-radius: 0.64rem 0.64rem 0px 0px;
 }
 .van-tabs__nav .van-tab {
   font-size: 0.6933rem;
@@ -171,4 +168,146 @@ body {
 .van-tabs--line .van-tabs__wrap {
   background: url("../images/bg2.png") no-repeat;
   background-size: cover;
+}
+.van-tab__pane {
+  padding: 0.5333rem 0.8rem 0px 0.8rem;
+}
+.van-tab__pane .new_user {
+  width: 100%;
+  height: 5.0133rem;
+  background: #F4FCFF;
+  border-radius: 0.64rem;
+  margin-bottom: 0.6933rem;
+  padding-left: 1.0667rem;
+  display: flex;
+  align-items: center;
+}
+.van-tab__pane .new_user .new_user_left {
+  width: 70%;
+}
+.van-tab__pane .new_user .new_user_left .new_user_title {
+  font-size: 0.8533rem;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #1B1C33;
+  margin-bottom: 0.2667rem;
+}
+.van-tab__pane .new_user .new_user_left .new_user_content {
+  font-size: 0.64rem;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #999999;
+}
+.van-tab__pane .new_user .new_user_state {
+  font-size: 0.5867rem;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #1BA7C5;
+  margin: 0 auto;
+}
+.van-tab__pane .new_user .img_open {
+  width: 3.2rem;
+  height: 3.5592rem;
+  margin: 0 auto;
+}
+.van-tab__pane .new_user .new_user_right {
+  margin: 0 auto;
+}
+.van-tab__pane .new_user .new_user_right .van-popover__wrapper {
+  vertical-align: middle;
+}
+.van-tab__pane .new_user .new_user_right .van-popover__wrapper .img_off {
+  width: 2.9867rem;
+  height: 2.6133rem;
+}
+.van-tab__pane .new_today {
+  width: 100%;
+  height: 5.0133rem;
+  background: #39819d;
+  border-radius: 0.64rem;
+  margin-bottom: 0.6933rem;
+}
+.van-tab__pane .new_today .van-tab__pane {
+  padding: 0 0.8rem;
+}
+.van-tab__pane .new_today .van-tabs__nav--line {
+  border-radius: 0.64rem 0 0px 0px;
+}
+.van-tab__pane .new_today .van-tabs__nav .van-tabs__line {
+  background: none;
+  background-color: none;
+}
+.van-tab__pane .new_today .van-tabs--line .van-tabs__wrap {
+  background: none;
+  height: 0.96rem;
+  border-radius: 0.64rem 0 0 0;
+}
+.van-tab__pane .new_today .van-tabs__nav--line {
+  width: 7.04rem;
+  height: 0.96rem;
+  background-color: #E3F7FF;
+}
+.van-tab__pane .new_today .van-tabs__nav .van-tab {
+  font-size: 0.5867rem;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #60BBFE;
+}
+.van-tab__pane .new_today .van-tabs__nav .van-tab--active {
+  background: #7BCBFF;
+  font-size: 0.5867rem;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FFFFFF;
+}
+.van-tab__pane .new_today .today {
+  display: flex;
+  align-items: center;
+}
+.van-tab__pane .new_today .today .today_left {
+  width: 70%;
+}
+.van-tab__pane .new_today .today .today_left .today_title {
+  font-size: 0.8533rem;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #1B1C33;
+  margin-bottom: 0.2667rem;
+}
+.van-tab__pane .new_today .today .today_left .today_content {
+  font-size: 0.64rem;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #999999;
+}
+.van-tab__pane .new_today .today .today_left .today_content img {
+  width: 0.5333rem;
+  height: 0.5333rem;
+  display: inline-block;
+}
+.van-tab__pane .new_today .today .today_state {
+  font-size: 0.5867rem;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #1BA7C5;
+  margin: 0 auto;
+}
+.van-tab__pane .new_today .today .img_open {
+  width: 3.2rem;
+  height: 3.5592rem;
+  margin: 0 auto;
+}
+.van-tab__pane .new_today .today .today_right {
+  margin: 0 auto;
+}
+.van-tab__pane .new_today .today .today_right .img_off {
+  width: 2.9867rem;
+  height: 2.6133rem;
+}
+.popover {
+  font-size: 0.5333rem;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+  padding: 0.32rem 0.8rem;
 }

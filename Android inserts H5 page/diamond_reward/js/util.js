@@ -32,8 +32,8 @@ const browser = checkClient()
  * @param {string} userInfo.ticket 用户登录ticket
  */
 let userInfo = {
-    uid: '102',
-    ticket: "09f07e0bddf9ac2fca3baf1a8c03b5b1",
+    uid: '100',
+    ticket: "8dff1e65da7a884ed94661c51d311741",
 }
 
 
