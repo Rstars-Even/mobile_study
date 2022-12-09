@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="referrer" content="no-referrer" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-i18n="i18n_diamond_mission"></title>
@@ -56,114 +57,192 @@
         <!-- 钻石任务列表部分，标题导航 ...-->
         <section class="tab_content">
             <van-tabs swipeable swipe-threshold=4 animated sticky offset-top="12.14rem" @change="change">
+                <!-- --------------------------------新人任务-------------------------------- -->
                 <van-tab name="1">
                     <div slot="title">新人</div>
-                    <div class="new_user" v-for="">
+                    <template v-if="type == 1">
+                    <div class="new_user" v-for="(items, m) in list" :key="m">
+                        <!-- 左边任务详情 -->
                         <div class="new_user_left">
-                            <div class="new_user_title">完善资料</div>
-                            <div class="new_user_content">填写所有资料信息</div>
+                            <div class="new_user_title">{{items.lang[lang].title}}</div>
+                            <div class="new_user_content">{{items.lang[lang].desc}}</div>
                         </div>
-                        <img class="img_open" src="./images/open1.png" alt="">
-                    </div>
-
-                    <div class="new_user" v-for="">
-                        <div class="new_user_left">
-                            <div class="new_user_title">完善资料</div>
-                            <div class="new_user_content">填写所有资料信息</div>
-                        </div>
-                        <div class="new_user_right">
-                            <van-popover placement="bottom-end" v-model="showPopover" theme="dark" trigger="click" @open="open" @close="close">
-                                <div class="popover">开启青铜宝箱，最高可获得X钻石。</div>
-                                <template #reference>
-                                    <img class="img_off" src="./images/off1.png" alt="">
-                                </template>
+                        <!-- 右边领取按钮 -->
+                        <div class="new_user_right" v-if="items.status == 0">
+                            <van-popover v-if="previewIndex === items.id" placement="bottom-end" v-model="showPopover" theme="dark" trigger="click" @closed="closed" :offset="[55,51]">
+                                <div class="popover">{{items.rewardBox.lang[lang].desc}}</div>
                             </van-popover>
+                            <img @click="click_open(items.id)" class="img_off" src="./images/off1.png" alt="">
                         </div>
+                        <img class="img_open" src="./images/open1.png" alt="" @click="get_reward(items.orderId)" v-if="items.status == 1">
+                        <div class="new_user_state" v-if="items.status == 2">已领取</div>
                     </div>
-
-                    <div class="new_user" v-for="">
-                        <div class="new_user_left">
-                            <div class="new_user_title">完善资料</div>
-                            <div class="new_user_content">填写所有资料信息</div>
-                        </div>
-                        <div class="new_user_state">已领取</div>
-                    </div>
+                    </template>
                 </van-tab>
-
+                <!-- --------------------------------今日任务-------------------------------- -->
                 <van-tab name="2">
                     <div slot="title">今日</div>
+                    <template v-if="type == 2">
                     <div class="new_today" v-for="(item,i) in list" :key="i">
-                        <van-tabs animated>
-                            <van-tab name="a" v-for="(data,j) in item.tasks" :key="j">
-                                <div slot="title">Lv {{data.id}}</div>
+                        <!-- 需要 tab 导航 -->
+                        <van-tabs animated v-if="item.tasks">
+                            <van-tab :name="data.id" v-for="(data,j) in item.tasks" :key="j">
+                                <div slot="title">Lv {{j+1}}</div>
                                 <div class="today">
+                                    <!-- item 左边任务详情 -->
                                     <div class="today_left">
                                         <div class="today_title">{{data.lang[lang].title}}</div>
-                                        <div class="today_content">
+                                        <!-- 有礼物图片 -->
+                                        <div class="today_content" v-if="data.lang[lang].image" :class="{status1: data.status == 1 && data.status == 2}">
+                                            <span class="ion">
+                                                <img :src='data.lang[lang].image' alt="" style="width: .8rem; height: .8rem;">
+                                            </span>
+                                            {{data.lang[lang].desc}} {{data.value}}/{{data.need}}&nbsp
+                                            <img v-show="data.status == 1 && data.status == 2" src="./images/ic-gouxuan@2x.png" alt="">
+                                        </div>
+                                        <!-- 无礼物图片 -->
+                                        <div class="today_content" v-else :class="{status1: data.status == 1 && data.status == 2}">
                                             <span>{{data.lang[lang].desc}}</span>
                                             <span>{{data.value}}</span>/<span>{{data.need}}</span>&nbsp
                                             <img v-show="data.status == 1 && data.status == 2" src="./images/ic-gouxuan@2x.png" alt="">
                                         </div>
                                     </div>
+                                    <!-- item 右边领取按钮，需要气泡框 -->
                                     <div class="today_right" v-if="data.status == 0">
-                                        <van-popover placement="bottom-end" v-model="showPopover" theme="dark" trigger="click" @open="open" @close="close">
+                                        <van-popover v-if="previewIndex === data.id" placement="bottom-end" v-model="showPopover" theme="dark" trigger="click" @closed="closed" :offset="[55,51]">
                                             <div class="popover">{{data.rewardBox.lang[lang].desc}}</div>
-                                            <template #reference>
-                                                <img class="img_off" :src=`./images/off${data.id}.png` alt="">
-                                            </template>
                                         </van-popover>
+                                        <img @click="click_open(data.id)" class="img_off" :src=`./images/off${j+1}.png` alt="">
                                     </div>
-                                    <img v-if="data.status == 1" class="img_open" :src=`./images/open${data.id}.png` alt="">
+                                    <img v-if="data.status == 1" class="img_open" :src=`./images/open${j+1}.png` alt="">
                                     <div v-if="data.status == 2" class="today_state">已领取</div>
                                 </div>
                             </van-tab>
-                            <!-- <van-tab name="b">
-                                <div slot="title">Lv2</div>
-                                <div>内容bbbbbbbb</div>
-                            </van-tab>
-                            <van-tab name="c">
-                                <div slot="title">Lv3</div>
-                                <div>内容cccccc</div>
-                            </van-tab> -->
-                            
                         </van-tabs>
-                    </div>
-                    <!-- <div class="new_today" v-for="">
-                        <van-tabs animated>
-                            <van-tab name="a" v-for="">
-                                <div slot="title">Lv1</div>
-                                <div class="today" v-for="">
-                                    <div class="today_left">
-                                        <div class="today_title">完善资料</div>
-                                        <div class="today_content">填写所有资料信息</div>
-                                    </div>
-                                    <img class="img_open" src="./images/open1.png" alt="">
+                        <!-- 不需要 tab 情况 -->
+                        <div class="new_user" v-else>
+                            <!-- 左边任务详情 -->
+                            <div class="new_user_left">
+                                <div class="new_user_title">{{item.lang[lang].title}}</div>
+                                <div class="new_user_content" :class="{status1: item.status == 1 && item.status == 2}">
+                                    <span>{{item.lang[lang].desc}}</span>
+                                    <span>{{item.value}}</span>/<span>{{item.need}}</span>min&nbsp
+                                    <img v-show="item.status == 1 && item.status == 2" src="./images/ic-gouxuan@2x.png" alt="">
                                 </div>
-                            </van-tab>
-                            <van-tab name="b">
-                                <div slot="title">Lv2</div>
-                                <div>内容bbbbbbbb</div>
-                            </van-tab>
-                            <van-tab name="c">
-                                <div slot="title">Lv3</div>
-                                <div>内容cccccc</div>
-                            </van-tab>
-                            
-                        </van-tabs>
+                            </div>
+                            <!-- 右边领取按钮。 -->
+                            <div class="new_user_right" v-if="item.status == 0">
+                                <van-popover v-if="previewIndex === i" placement="bottom-end" v-model="showPopover" theme="dark" trigger="click" @closed="closed" :offset="[55,51]">
+                                    <div class="popover">{{item.rewardBox.lang[lang].desc}}</div>
+                                </van-popover>
+                                <img @click="click_open(i)" class="img_off" src="./images/off1.png" alt="">
+                            </div>
+                            <img v-if="item.status == 1" class="img_open" src="./images/open1.png" alt="">
+                            <div v-if="item.status == 2" class="new_user_state">已领取</div>
+                        </div>
                     </div>
-                    <div class="new_today" v-for="">
-                        <div>9999999999999999</div>
-                    </div> -->
+                    </template>
                 </van-tab>
-
+                <!-- --------------------------------本周任务-------------------------------- -->
                 <van-tab name="3">
                     <div slot="title">本周</div>
-                    <div class="centers" v-for="index in 10">内容2222</div>
+                    <template v-if="type == 3">
+                    <div class="toweek" v-for="(item, i) in list" :key="i">
+                        <!-- 有 tab 。。。 -->
+                        <van-tabs animated v-if="item.tasks && item.id != 1000">
+                            <van-tab :name="data.id" v-for="(data, j) in item.tasks" :key="j">
+                                <div slot="title">Lv {{j+1}}</div>
+                                <div class="today">
+                                    <!-- 左边任务详情 -->
+                                    <div class="today_left">
+                                        <div class="today_title">{{data.lang[lang].title}}</div>
+                                        <div class="today_content" :class="{status1: data.status == 1 && data.status == 2}">
+                                            <span>{{data.lang[lang].desc}}</span>
+                                            <span>{{data.value}}</span>/<span>{{data.need}}</span>&nbsp
+                                            <img v-show="data.status == 1 && data.status == 2" src="./images/ic-gouxuan@2x.png" alt="">
+                                        </div>
+                                    </div>
+                                    <!-- 右边领取按钮 -->
+                                    <div class="today_state0" v-if="data.status == 0">
+                                        <span>+{{data.reward}}</span> 
+                                        <span><img src="./images/zuanshi.png" alt=""></span>
+                                    </div>
+                                    <div @click="get_reward" class="today_state1" v-if="data.status == 1">
+                                        <span>+{{data.reward}}</span> 
+                                        <span><img src="./images/zuanshi.png" alt=""></span>
+                                    </div>
+                                    <div v-if="data.status == 2" class="today_state">已领取</div>
+                                </div>
+                            </van-tab>
+                        </van-tabs>
+                        <!-- 没 tab ，内容需要循环。 -->
+                        <div v-else-if="item.id == 1000" class="new_user">
+                            <!-- 左边任务详情 -->
+                            <div class="new_user_left">
+                                <div class="new_user_title">达成聊天活跃</div>
+                                <div class="new_user_content" v-for="(res, k) in item.tasks" :key="k">
+                                    <span :class="{status1: res.status == 1 && res.status == 2}">{{res.lang[lang].title}}</span>
+                                    <span :class="{status1: res.status == 1 && res.status == 2}">{{res.value}}/{{res.need}}</span>&nbsp
+                                    <img v-show="item.status == 1 && item.status == 2" src="./images/ic-gouxuan@2x.png" alt="">
+                                    <!-- 问号气泡框。。 -->
+                                    <van-popover v-if="k == 0" placement="bottom" v-model="hint" theme="dark" trigger="click">
+                                        <div class="popover">{{res.lang[lang].desc}}</div>
+                                        <template #reference>
+                                            <span class="hint">?</span>
+                                        </template>
+                                    </van-popover>
+                                </div>
+                            </div>
+                            <!-- 右边领取按钮 -->
+                            <div class="new_user_right0" v-if="item.status == 0">
+                                <span>+{{item.reward}}</span> 
+                                <span><img src="./images/zuanshi.png" alt=""></span>
+                            </div>
+                            <div class="new_user_right1" v-if="item.status == 1">
+                                <span>+{{item.reward}}</span> 
+                                <span><img src="./images/zuanshi.png" alt=""></span>
+                            </div>
+                            <div v-if="item.status == 2" class="new_user_state">已领取</div>
+                        </div>
+                        <!-- 没tab情况，内容不用循环。 -->
+                        <div class="new_user" v-else>
+                            <!-- 左边任务详情 -->
+                            <div class="new_user_left">
+                                <div class="new_user_title">{{item.lang[lang].title}}</div>
+                                <div class="new_user_content" :class="{status1: item.status == 1 && item.status == 2}">
+                                    <span>{{item.lang[lang].desc}}</span>
+                                    <span>{{item.value}}/{{item.need}}</span>&nbsp
+                                    <img v-show="item.status == 1 && item.status == 2" src="./images/ic-gouxuan@2x.png" alt="">
+                                </div>
+                            </div>
+                            <!-- 右边领取按钮 -->
+                            <div class="new_user_right0" v-if="item.status == 0">
+                                <span>+{{item.reward}}</span> 
+                                <span><img src="./images/zuanshi.png" alt=""></span>
+                            </div>
+                            <div class="new_user_right1" v-if="item.status == 1">
+                                <span>+{{item.reward}}</span> 
+                                <span><img src="./images/zuanshi.png" alt=""></span>
+                            </div>
+                            <div v-if="item.status == 2" class="new_user_state">已领取</div>
+                        </div>
+                    </div>
+                    </template>
                 </van-tab>
             </van-tabs>
         </section>
 
         <!-- 领取弹窗。。 -->
+        <!-- <van-dialog v-model="show">
+            <template slot="title">
+                <img class="top_img" src="./images/open1.png" alt="">
+                <img class="bottom_img" src="./images/img_baoxiang.png" alt="">
+            </template>
+            <div>
+                <p>开启青铜宝箱</p>
+                <p>获得了 20 钻石</p>
+            </div>
+        </van-dialog> -->
         </template>
     </div>
   

@@ -147,6 +147,8 @@ function jump_invite() {
 }
 
 
+// Vue.component('Dialog')
+
 let app = new Vue({
     el: '#app',
     data: function () {
@@ -155,22 +157,27 @@ let app = new Vue({
             list: [],
             type: 1,                    //默认为新人任务。
             showPopover: false,         //气泡框状态。
+            hint: false,                //气泡框状态。2
+            previewIndex: '',           //区分气泡框。
             timer: null,                //设置一个定时器。
+            // time: 5000
+            show: false, 
         }
     },
     methods: {
         // tab 切换。。
         change(name) {
             let index = Number(name);   //1:新人，2：今日，3：本周。
-            if (this.type == index) {
+            if (this.type === index) {
+                console.log('-------------防抖----------');
                 return
             }
             this.type = index;
             console.log('change事件------index:', index);
 
+            this.list = [];
             this.get_task(this.type);
         },
-
         // 获取任务.
         get_task(type) {    //1:新人，2：今日，3：本周。
             defRequest({
@@ -184,26 +191,78 @@ let app = new Vue({
                 if (res.code != 200) {
                     return;
                 };
-                this.list = res.data;
+                this.list = res.data.taskList;
             })
             .catch(err => {
                 defToast(err.message)
             })
         },
         // 打开气泡框无操作5秒后自动关闭。。
-        open(){
-            this.timer = setTimeout(()=>{
-                this.showPopover = false
-            },5000)
-        },
-        // 有操作要清楚定时器。
-        close(){
+        // opened(){
+        //     console.log('开始倒计时五秒器。。。');
+        //     this.timer = setTimeout(()=>{
+        //         this.showPopover = false
+        //         this.previewIndex = ''
+        //     }, this.time)
+        // },
+        // // 有操作要清楚定时器。
+        closed(){
+            console.log('执行清除计时器2222222222222222。。。');
             clearTimeout(this.timer);
             this.timer = null;
-        }
+            this.previewIndex = ''
+        },
+        // 用事件控制气泡框。。
+        click_open(i){
+            clearTimeout(this.timer);
+            console.log('------------i----------', i);
+            if (this.previewIndex === i) {
+                this.showPopover = false;
+                this.previewIndex = ''
+                return;
+            }
+            this.previewIndex = i;
+            this.showPopover = true;
+            
+            console.log('开始倒计时五秒器。。。');
+            this.timer = setTimeout(()=>{
+                this.showPopover = false
+                this.previewIndex = ''
+            }, 5000)
+            // this.time = 5000;
+        },
+        // 发送领取钻石请求。。
+        get_reward(orderId) {
+            // defRequest({
+            //     method: 'get',
+            //     url: '/api/task2/diamond/getReward',
+            //     data: {
+            //         orderId: orderId,
+            //     }
+            // }).then(res => {
+            //     console.log('res-------领取结果22222222，。。--------:', res);
+            //     if (res.code != 200) {
+            //         return;
+            //     };
 
+                vant.Dialog.alert({
+                    title: `<img class="top_img" src="./images/open1.png" alt="">
+                <img class="bottom_img" src="./images/img_baoxiang.png" alt="">`,
+                    message: '开启青铜宝箱\n获得了 20 钻石',
+                    theme: 'round-button',
+                }).then(() => {
+                // on close
+                });
+
+                // this.show = true;
+            // })
+            // .catch(err => {
+            //     defToast(err.message)
+            // })
+        }
     },
     mounted() {
+        this.get_task(this.type);
         langTranslate ()
         jump_invite()
         //头部轮播图。。
