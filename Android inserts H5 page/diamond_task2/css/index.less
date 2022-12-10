@@ -263,10 +263,10 @@ body {
             .van-popover__wrapper {
                 vertical-align: middle;
                 display: inline;
-                .img_off {
-                    width: 2.9867rem;
-                    height: 2.6133rem;
-                }
+            }
+            .img_off {
+                width: 2.9867rem;
+                height: 2.6133rem;
             }
         }
         .new_user_right0 {
@@ -328,7 +328,7 @@ body {
             background-color: none;
         }
         .van-tabs--line .van-tabs__wrap {
-            margin-bottom: .48rem;
+            // margin-bottom: .48rem;
             background: none;
             height: .96rem;
             border-radius: .64rem 0 0 0;
@@ -397,12 +397,15 @@ body {
                 .van-popover__wrapper {
                     vertical-align: middle;
                     display: inline;
-                    .img_off {
-                        width: 2.9867rem;
-                        height: 2.6133rem;
-                    }
+                }
+                .img_off {
+                    width: 2.9867rem;
+                    height: 2.6133rem;
                 }
             }
+        }
+        .new_today_height {
+            margin-top: .48rem;      //打开状态的宝箱时高度要增加。。
         }
     }
     .toweek {        //本周任务。。。。。
@@ -596,5 +599,11 @@ body {
     }
     .van-dialog__confirm:active {
         color: #fff;
+    }
+    .num {
+        color: #FF8386;
+    }
+    .van-hairline--top::after {
+        border-top-width: 0px;
     }
 }

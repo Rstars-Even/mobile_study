@@ -57,6 +57,7 @@ let app = new Vue({
             },
             is_show_newUser: true,       //是否显示新人任务。
             // active: 2005,
+            title_lang: []
         }
     },
     methods: {
@@ -164,7 +165,6 @@ let app = new Vue({
                     this.dialog.type_text = type == 1 ? '青铜' : (type == 2 ? '白银' : '黄金');
                 }
                 this.dialog.num = res.data;
-                this.dialog.num = 100;
                 langTranslate ()            //国际化。。
                 this.show = true;               //显示弹出框。。。
             })
@@ -226,7 +226,7 @@ let app = new Vue({
                             } else if (j === arrs.length-1) {
                                 //找完可领取的状态找未完成的状态，都没有就为已完成的最后一个。。
                                 mov.tasks.forEach(function (data, k) {
-                                    if (item.status == 0) {
+                                    if (data.status == 0) {
                                         mov.tabIndex = data.id;
                                         throw new error;
                                     }
@@ -249,6 +249,13 @@ let app = new Vue({
             userInfo = JSON.parse(user)
             deviceInfo = JSON.parse(device)
 
+            if (deviceInfo.lang == 'en') {
+                this.title_lang = ['New user', 'Today', 'Weekly'];
+            } else if (deviceInfo.lang == 'vi') {
+                this.title_lang = ['Người mới', 'Hôm nay', 'Tuần này'];
+            } else {
+                this.title_lang = ['新人', '今日', '本周'];
+            }
             this.get_task(this.type, this.is_show);
             langTranslate ()
             jump_invite()
@@ -263,10 +270,19 @@ let app = new Vue({
         }
     },
     mounted() {
+        // this.appSetToken();
+        
         if (browser.ios) {
             window.appSetToken = this.appSetToken;
         } else {
-
+            if (deviceInfo.lang == 'en') {
+                this.title_lang = ['New user', 'Today', 'Weekly'];
+            } else if (deviceInfo.lang == 'vi') {
+                this.title_lang = ['Người mới', 'Hôm nay', 'Tuần này'];
+            } else {
+                this.title_lang = ['新人', '今日', '本周'];
+            }
+            
             this.get_task(this.type, this.is_show);
             langTranslate ()
             jump_invite()

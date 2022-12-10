@@ -236,7 +236,7 @@ body {
   vertical-align: middle;
   display: inline;
 }
-.van-tab__pane .new_user .new_user_right .van-popover__wrapper .img_off {
+.van-tab__pane .new_user .new_user_right .img_off {
   width: 2.9867rem;
   height: 2.6133rem;
 }
@@ -294,7 +294,6 @@ body {
   background-color: none;
 }
 .van-tab__pane .new_today .van-tabs--line .van-tabs__wrap {
-  margin-bottom: 0.48rem;
   background: none;
   height: 0.96rem;
   border-radius: 0.64rem 0 0 0;
@@ -364,9 +363,12 @@ body {
   vertical-align: middle;
   display: inline;
 }
-.van-tab__pane .new_today .today .today_right .van-popover__wrapper .img_off {
+.van-tab__pane .new_today .today .today_right .img_off {
   width: 2.9867rem;
   height: 2.6133rem;
+}
+.van-tab__pane .new_today .new_today_height {
+  margin-top: 0.48rem;
 }
 .van-tab__pane .toweek {
   width: 100%;
@@ -547,4 +549,10 @@ body {
 }
 .van-dialog .van-dialog__confirm:active {
   color: #fff;
+}
+.van-dialog .num {
+  color: #FF8386;
+}
+.van-dialog .van-hairline--top::after {
+  border-top-width: 0px;
 }

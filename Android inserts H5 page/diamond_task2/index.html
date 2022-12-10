@@ -59,7 +59,8 @@
             <van-tabs swipeable swipe-threshold=4 animated sticky offset-top="12.14rem" @change="change">
                 <!-- --------------------------------新人任务-------------------------------- -->
                 <van-tab name="1" v-if="is_show_newUser">
-                    <div slot="title" data-i18n='i18n_new_user'>新人</div>
+                    <!-- <div slot="title">{{$.i18n().localize('i18n_new_user')}}</div> -->
+                    <div slot="title">{{title_lang[0]}}</div>
                     <template v-if="type == 1">
                     <div class="new_user" v-for="(items, m) in list" :key="m">
                         <!-- 左边任务详情 -->
@@ -81,30 +82,31 @@
                 </van-tab>
                 <!-- --------------------------------今日任务-------------------------------- -->
                 <van-tab name="2">
-                    <div slot="title" data-i18n='i18n_today'>今日</div>
+                    <!-- <div slot="title">{{$.i18n().localize('i18n_today')}}</div> -->
+                    <div slot="title">{{title_lang[1]}}</div>
                     <template v-if="type == 2">
                     <div class="new_today" v-for="(item,i) in list" :key="i">
                         <!-- 需要 tab 导航 -->
                         <van-tabs animated v-if="item.tasks" :active="item.tabIndex">
                             <van-tab :name="data.id" v-for="(data,j) in item.tasks" :key="j">
                                 <div slot="title">Lv {{j+1}}</div>
-                                <div class="today">
+                                <div class="today" :class="{new_today_height: data.status == 0 || data.status == 2}">
                                     <!-- item 左边任务详情 -->
                                     <div class="today_left">
                                         <div class="today_title">{{data.lang[lang].title}}</div>
                                         <!-- 有礼物图片 -->
-                                        <div class="today_content" v-if="data.lang[lang].image" :class="{status1: data.status == 1 && data.status == 2}">
+                                        <div class="today_content" v-if="data.lang[lang].image" :class="{status1: data.status == 1 || data.status == 2}">
                                             <span class="ion">
                                                 <img :src='data.lang[lang].image' alt="" style="width: .8rem; height: .8rem;">
                                             </span>
                                             {{data.lang[lang].desc}} {{data.value}}/{{data.need}}&nbsp
-                                            <img v-show="data.status == 1 && data.status == 2" src="./images/ic-gouxuan@2x.png" alt="">
+                                            <img v-show="data.status == 1 || data.status == 2" src="./images/ic-gouxuan@2x.png" alt="">
                                         </div>
                                         <!-- 无礼物图片 -->
-                                        <div class="today_content" v-else :class="{status1: data.status == 1 && data.status == 2}">
+                                        <div class="today_content" v-else :class="{status1: data.status == 1 || data.status == 2}">
                                             <span>{{data.lang[lang].desc}}</span>
                                             <span>{{data.value}}</span>/<span>{{data.need}}</span>&nbsp
-                                            <img v-show="data.status == 1 && data.status == 2" src="./images/ic-gouxuan@2x.png" alt="">
+                                            <img v-show="data.status == 1 || data.status == 2" src="./images/ic-gouxuan@2x.png" alt="">
                                         </div>
                                     </div>
                                     <!-- item 右边领取按钮，需要气泡框 -->
@@ -124,10 +126,10 @@
                             <!-- 左边任务详情 -->
                             <div class="new_user_left">
                                 <div class="new_user_title">{{item.lang[lang].title}}</div>
-                                <div class="new_user_content" :class="{status1: item.status == 1 && item.status == 2}">
+                                <div class="new_user_content" :class="{status1: item.status == 1 || item.status == 2}">
                                     <span>{{item.lang[lang].desc}}</span>
                                     <span>{{item.value}}</span>/<span>{{item.need}}</span>min&nbsp
-                                    <img v-show="item.status == 1 && item.status == 2" src="./images/ic-gouxuan@2x.png" alt="">
+                                    <img v-show="item.status == 1 || item.status == 2" src="./images/ic-gouxuan@2x.png" alt="">
                                 </div>
                             </div>
                             <!-- 右边领取按钮。 -->
@@ -145,7 +147,8 @@
                 </van-tab>
                 <!-- --------------------------------本周任务-------------------------------- -->
                 <van-tab name="3">
-                    <div slot="title" data-i18n='i18n_toweek'>本周</div>
+                    <!-- <div slot="title">{{$.i18n().localize('i18n_toweek')}}</div> -->
+                    <div slot="title">{{title_lang[2]}}</div>
                     <template v-if="type == 3">
                     <div class="toweek" v-for="(item, i) in list" :key="i">
                         <!-- 有 tab 。。。 -->
@@ -156,10 +159,10 @@
                                     <!-- 左边任务详情 -->
                                     <div class="today_left">
                                         <div class="today_title">{{data.lang[lang].title}}</div>
-                                        <div class="today_content" :class="{status1: data.status == 1 && data.status == 2}">
+                                        <div class="today_content" :class="{status1: data.status == 1 || data.status == 2}">
                                             <span>{{data.lang[lang].desc}}</span>
                                             <span>{{data.value}}</span>/<span>{{data.need}}</span>&nbsp
-                                            <img v-show="data.status == 1 && data.status == 2" src="./images/ic-gouxuan@2x.png" alt="">
+                                            <img v-show="data.status == 1 || data.status == 2" src="./images/ic-gouxuan@2x.png" alt="">
                                         </div>
                                     </div>
                                     <!-- 右边领取按钮 -->
@@ -181,9 +184,9 @@
                             <div class="new_user_left">
                                 <div class="new_user_title" data-i18n='i18n_active_tasks'>达成聊天活跃</div>
                                 <div class="new_user_content" v-for="(res, k) in item.tasks" :key="k">
-                                    <span :class="{status1: res.status == 1 && res.status == 2}">{{res.lang[lang].title}}</span>
-                                    <span :class="{status1: res.status == 1 && res.status == 2}">{{res.value}}/{{res.need}}</span>&nbsp
-                                    <img v-show="item.status == 1 && item.status == 2" src="./images/ic-gouxuan@2x.png" alt="">
+                                    <span :class="{status1: res.status == 1 || res.status == 2}">{{res.lang[lang].title}}</span>
+                                    <span :class="{status1: res.status == 1 || res.status == 2}">{{res.value}}/{{res.need}}</span>&nbsp
+                                    <img v-show="item.status == 1 || item.status == 2" src="./images/ic-gouxuan@2x.png" alt="">
                                     <!-- 问号气泡框。。 -->
                                     <van-popover v-if="k == 0" placement="bottom" v-model="hint" theme="dark" trigger="click">
                                         <div class="popover">{{res.lang[lang].desc}}</div>
@@ -209,10 +212,10 @@
                             <!-- 左边任务详情 -->
                             <div class="new_user_left">
                                 <div class="new_user_title">{{item.lang[lang].title}}</div>
-                                <div class="new_user_content" :class="{status1: item.status == 1 && item.status == 2}">
+                                <div class="new_user_content" :class="{status1: item.status == 1 || item.status == 2}">
                                     <span>{{item.lang[lang].desc}}</span>
                                     <span>{{item.value}}/{{item.need}}</span>&nbsp
-                                    <img v-show="item.status == 1 && item.status == 2" src="./images/ic-gouxuan@2x.png" alt="">
+                                    <img v-show="item.status == 1 || item.status == 2" src="./images/ic-gouxuan@2x.png" alt="">
                                 </div>
                             </div>
                             <!-- 右边领取按钮 -->
@@ -245,16 +248,28 @@
             </template>
 
             <div v-if="dialog.type == 4">
-                <p class="dialog_diamond_text"><span data-i18n='i18n_get'>获得</span> {{dialog.num}} <span data-i18n='i18n_diamond_bootom'>钻石</span></p>
+                <p class="dialog_diamond_text">
+                    <span data-i18n='i18n_get'>获得</span>
+                    <span class="num">{{ dialog.num }}</span>
+                    <span data-i18n='i18n_diamond_bootom'>钻石</span>
+                </p>
             </div>
             <div v-else>
                 <template v-if="lang == 'vi'">
                     <p><span data-i18n='i18n_open'>开启</span> <span data-i18n='i18n_chest'>宝箱</span> {{dialog.type_text}}</p>
-                    <p><span data-i18n='i18n_get'>获得了</span> {{dialog.num}} <span data-i18n='i18n_diamond_bootom'>钻石</span></p>
+                    <p>
+                        <span data-i18n='i18n_get'>获得了</span>
+                        <span class="num">{{ dialog.num }}</span>
+                        <span data-i18n='i18n_diamond_bootom'>钻石</span>
+                    </p>
                 </template>
                 <template v-else>
                     <p><span data-i18n='i18n_open'>开启</span>{{dialog.type_text}}<span data-i18n='i18n_chest'>宝箱</span></p>
-                    <p><span data-i18n='i18n_get'>获得了</span> {{dialog.num}} <span data-i18n='i18n_diamond_bootom'>钻石</span></p>
+                    <p>
+                        <span data-i18n='i18n_get'>获得了</span>
+                        <span class="num">{{ dialog.num }}</span>
+                        <span data-i18n='i18n_diamond_bootom'>钻石</span>
+                    </p>
                 </template>
             </div>
         </van-dialog>
