@@ -16,5 +16,14 @@
 
 
     "i18n_get": "nhận đc",
-    "i18n_diamond_bootom": "kim cương"
+    "i18n_diamond_bootom": "kim cương",
+
+    "i18n_online_time": "Thời gian online",
+    "i18n_active_tasks": "Hoàn thành nhiệm vụ sôi động",
+    "i18n_new_user": "Người mới",
+    "i18n_today": "Hôm nay",
+    "i18n_toweek": "Tuần này",
+    "i18n_open": "Mở",
+    "i18n_chest": "rương"
+
 }

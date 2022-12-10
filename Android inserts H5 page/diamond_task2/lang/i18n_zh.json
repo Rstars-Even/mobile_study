@@ -15,5 +15,13 @@
     "i18n_ok": "确定",
     "i18n_get": "获得",
 
-    "i18n_diamond_bootom": "钻石"
+    "i18n_diamond_bootom": "钻石",
+    
+    "i18n_online_time": "在线时间",
+    "i18n_active_tasks": "达成聊天活跃",
+    "i18n_new_user": "新人",
+    "i18n_today": "今日",
+    "i18n_toweek": "本周",
+    "i18n_open": "开启",
+    "i18n_chest": "宝箱"
 }

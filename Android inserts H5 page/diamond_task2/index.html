@@ -21,26 +21,26 @@
                 <div class="swiper-wrapper">
                     <div class="swiper-slide meet_number">
                         <div class="div">
-                            <p class="num num1"></p>
+                            <p class="num num1">{{head_data.matchNum}}</p>
                             <p class="text" data-i18n="i18n_meet_number"></p>
                         </div>
                     </div>
                     <div class="swiper-slide reply_message">
                         <div class="div">
-                            <p class="num num2"></p>
+                            <p class="num num2">{{head_data.replyNum}}</p>
                             <p class="text" data-i18n="i18n_reply_message"></p>
                         </div>
                     </div>
                     <div class="swiper-slide received_the_news">
                         <div class="div">
-                            <p class="num num3"></p>
+                            <p class="num num3">{{head_data.msgNum}}</p>
                             <p class="text" data-i18n="i18n_received_the_news"></p>
                         </div>
                     </div>
                     <div class="swiper-slide valid_date">
                         <div class="div">
-                            <p class="num num4"></p>
-                            <p class="text" data-i18n="i18n_valid_date"></p>
+                            <p class="num num4">{{head_data.dayNum}}</p>
+                            <p class="text" data-i18n="i18n_online_time"></p>
                         </div>
                     </div>
                 </div>
@@ -58,8 +58,8 @@
         <section class="tab_content">
             <van-tabs swipeable swipe-threshold=4 animated sticky offset-top="12.14rem" @change="change">
                 <!-- --------------------------------新人任务-------------------------------- -->
-                <van-tab name="1">
-                    <div slot="title">新人</div>
+                <van-tab name="1" v-if="is_show_newUser">
+                    <div slot="title" data-i18n='i18n_new_user'>新人</div>
                     <template v-if="type == 1">
                     <div class="new_user" v-for="(items, m) in list" :key="m">
                         <!-- 左边任务详情 -->
@@ -74,18 +74,18 @@
                             </van-popover>
                             <img @click="click_open(items.id)" class="img_off" src="./images/off1.png" alt="">
                         </div>
-                        <img class="img_open" src="./images/open1.png" alt="" @click="get_reward(items.orderId)" v-if="items.status == 1">
-                        <div class="new_user_state" v-if="items.status == 2">已领取</div>
+                        <img class="img_open" src="./images/open1.png" alt="" @click="get_reward(items.id, 1)" v-if="items.status == 1">
+                        <div class="new_user_state" v-if="items.status == 2" data-i18n='i18n_received'>已领取</div>
                     </div>
                     </template>
                 </van-tab>
                 <!-- --------------------------------今日任务-------------------------------- -->
                 <van-tab name="2">
-                    <div slot="title">今日</div>
+                    <div slot="title" data-i18n='i18n_today'>今日</div>
                     <template v-if="type == 2">
                     <div class="new_today" v-for="(item,i) in list" :key="i">
                         <!-- 需要 tab 导航 -->
-                        <van-tabs animated v-if="item.tasks">
+                        <van-tabs animated v-if="item.tasks" :active="item.tabIndex">
                             <van-tab :name="data.id" v-for="(data,j) in item.tasks" :key="j">
                                 <div slot="title">Lv {{j+1}}</div>
                                 <div class="today">
@@ -114,8 +114,8 @@
                                         </van-popover>
                                         <img @click="click_open(data.id)" class="img_off" :src=`./images/off${j+1}.png` alt="">
                                     </div>
-                                    <img v-if="data.status == 1" class="img_open" :src=`./images/open${j+1}.png` alt="">
-                                    <div v-if="data.status == 2" class="today_state">已领取</div>
+                                    <img @click="get_reward(data.id, j+1)" v-if="data.status == 1" class="img_open" :src=`./images/open${j+1}.png` alt="">
+                                    <div v-if="data.status == 2" class="today_state" data-i18n='i18n_received'>{{$.i18n().localize('i18n_received')}}</div>
                                 </div>
                             </van-tab>
                         </van-tabs>
@@ -137,19 +137,19 @@
                                 </van-popover>
                                 <img @click="click_open(i)" class="img_off" src="./images/off1.png" alt="">
                             </div>
-                            <img v-if="item.status == 1" class="img_open" src="./images/open1.png" alt="">
-                            <div v-if="item.status == 2" class="new_user_state">已领取</div>
+                            <img @click="get_reward(item.id, 1)" v-if="item.status == 1" class="img_open" src="./images/open1.png" alt="">
+                            <div v-if="item.status == 2" class="new_user_state" data-i18n='i18n_received'>已领取</div>
                         </div>
                     </div>
                     </template>
                 </van-tab>
                 <!-- --------------------------------本周任务-------------------------------- -->
                 <van-tab name="3">
-                    <div slot="title">本周</div>
+                    <div slot="title" data-i18n='i18n_toweek'>本周</div>
                     <template v-if="type == 3">
                     <div class="toweek" v-for="(item, i) in list" :key="i">
                         <!-- 有 tab 。。。 -->
-                        <van-tabs animated v-if="item.tasks && item.id != 1000">
+                        <van-tabs animated v-if="item.tasks && item.id != 1000" :active="item.tabIndex">
                             <van-tab :name="data.id" v-for="(data, j) in item.tasks" :key="j">
                                 <div slot="title">Lv {{j+1}}</div>
                                 <div class="today">
@@ -167,11 +167,11 @@
                                         <span>+{{data.reward}}</span> 
                                         <span><img src="./images/zuanshi.png" alt=""></span>
                                     </div>
-                                    <div @click="get_reward" class="today_state1" v-if="data.status == 1">
+                                    <div @click="get_reward(data.id, 4)" class="today_state1" v-if="data.status == 1">
                                         <span>+{{data.reward}}</span> 
                                         <span><img src="./images/zuanshi.png" alt=""></span>
                                     </div>
-                                    <div v-if="data.status == 2" class="today_state">已领取</div>
+                                    <div v-if="data.status == 2" class="today_state" data-i18n='i18n_received'>{{$.i18n().localize('i18n_received')}}</div>
                                 </div>
                             </van-tab>
                         </van-tabs>
@@ -179,7 +179,7 @@
                         <div v-else-if="item.id == 1000" class="new_user">
                             <!-- 左边任务详情 -->
                             <div class="new_user_left">
-                                <div class="new_user_title">达成聊天活跃</div>
+                                <div class="new_user_title" data-i18n='i18n_active_tasks'>达成聊天活跃</div>
                                 <div class="new_user_content" v-for="(res, k) in item.tasks" :key="k">
                                     <span :class="{status1: res.status == 1 && res.status == 2}">{{res.lang[lang].title}}</span>
                                     <span :class="{status1: res.status == 1 && res.status == 2}">{{res.value}}/{{res.need}}</span>&nbsp
@@ -198,11 +198,11 @@
                                 <span>+{{item.reward}}</span> 
                                 <span><img src="./images/zuanshi.png" alt=""></span>
                             </div>
-                            <div class="new_user_right1" v-if="item.status == 1">
+                            <div @click="get_reward(item.id, 4)" class="new_user_right1" v-if="item.status == 1">
                                 <span>+{{item.reward}}</span> 
                                 <span><img src="./images/zuanshi.png" alt=""></span>
                             </div>
-                            <div v-if="item.status == 2" class="new_user_state">已领取</div>
+                            <div v-if="item.status == 2" class="new_user_state" data-i18n='i18n_received'>已领取</div>
                         </div>
                         <!-- 没tab情况，内容不用循环。 -->
                         <div class="new_user" v-else>
@@ -220,11 +220,11 @@
                                 <span>+{{item.reward}}</span> 
                                 <span><img src="./images/zuanshi.png" alt=""></span>
                             </div>
-                            <div class="new_user_right1" v-if="item.status == 1">
+                            <div @click="get_reward(item.id, 4)" class="new_user_right1" v-if="item.status == 1">
                                 <span>+{{item.reward}}</span> 
                                 <span><img src="./images/zuanshi.png" alt=""></span>
                             </div>
-                            <div v-if="item.status == 2" class="new_user_state">已领取</div>
+                            <div v-if="item.status == 2" class="new_user_state" data-i18n='i18n_received'>已领取</div>
                         </div>
                     </div>
                     </template>
@@ -233,16 +233,31 @@
         </section>
 
         <!-- 领取弹窗。。 -->
-        <!-- <van-dialog v-model="show">
+        <van-dialog v-model="show" @confirm=confirm :confirm-button-text="$.i18n().localize('i18n_ok')">
             <template slot="title">
-                <img class="top_img" src="./images/open1.png" alt="">
-                <img class="bottom_img" src="./images/img_baoxiang.png" alt="">
+                <template v-if="dialog.type == 4">
+                    <img style="width: 6.4rem; height: 6.4rem" class="top_img top" src='./images/img_钻石.png' alt="">
+                </template>
+                <template v-else>
+                    <img class="top_img" :src=`./images/open${dialog.type}.png` alt="">
+                    <img class="bottom_img" src="./images/img_baoxiang.png" alt="">
+                </template>
             </template>
-            <div>
-                <p>开启青铜宝箱</p>
-                <p>获得了 20 钻石</p>
+
+            <div v-if="dialog.type == 4">
+                <p class="dialog_diamond_text"><span data-i18n='i18n_get'>获得</span> {{dialog.num}} <span data-i18n='i18n_diamond_bootom'>钻石</span></p>
             </div>
-        </van-dialog> -->
+            <div v-else>
+                <template v-if="lang == 'vi'">
+                    <p><span data-i18n='i18n_open'>开启</span> <span data-i18n='i18n_chest'>宝箱</span> {{dialog.type_text}}</p>
+                    <p><span data-i18n='i18n_get'>获得了</span> {{dialog.num}} <span data-i18n='i18n_diamond_bootom'>钻石</span></p>
+                </template>
+                <template v-else>
+                    <p><span data-i18n='i18n_open'>开启</span>{{dialog.type_text}}<span data-i18n='i18n_chest'>宝箱</span></p>
+                    <p><span data-i18n='i18n_get'>获得了</span> {{dialog.num}} <span data-i18n='i18n_diamond_bootom'>钻石</span></p>
+                </template>
+            </div>
+        </van-dialog>
         </template>
     </div>
   

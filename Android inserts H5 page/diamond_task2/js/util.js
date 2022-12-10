@@ -32,8 +32,8 @@ const browser = checkClient()
  * @param {string} userInfo.ticket 用户登录ticket
  */
 let userInfo = {
-    uid: '103',
-    ticket: "91d20ca020a5aa55078322fdb9aa6b67",
+    // uid: '100',
+    // ticket: "084c8d5ea08e882c61cffc40e31577cd",
 }
 
 
@@ -52,7 +52,7 @@ let userInfo = {
  * @param {string} deviceInfo.os 操作系统
  */
 let deviceInfo = {
-    lang: 'zh',
+    // lang: 'zh',
 }
 
 // Yamoo APP中h5调用原生app方法
@@ -66,7 +66,7 @@ const _YM_JSBridge = {
         if (browser.android && window.androidJsObj) {
             deviceInfo = { ...JSON.parse(window.androidJsObj.getDeviceInfo()) }
         } else if (browser.ios && window.webkit) {}
-        localStorage.setItem('deviceInfo', JSON.stringify(deviceInfo))
+        // localStorage.setItem('deviceInfo', JSON.stringify(deviceInfo))
     },
     
     /**
@@ -84,8 +84,8 @@ const _YM_JSBridge = {
                 console.log('--------安卓调试--------');
                 
                 userInfo.ticket = window.androidJsObj.getTicket()
-                userInfo.auth = 'Bearer ' + userInfo.ticket
-                localStorage.setItem('info', JSON.stringify(userInfo))
+                // userInfo.auth = 'Bearer ' + userInfo.ticket
+                // localStorage.setItem('info', JSON.stringify(userInfo))
             }
 
         } catch (error) {

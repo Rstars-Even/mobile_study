@@ -15,6 +15,14 @@
     "i18n_ok": "OK",
     "i18n_get": "get",
     
-    
-    "i18n_diamond_bootom": "diamonds"
+    "i18n_diamond_bootom": "diamonds",
+
+    "i18n_online_time": "Online",
+    "i18n_active_tasks": "Complete active tasks",
+    "i18n_new_user": "New user",
+    "i18n_today": "Today",
+    "i18n_toweek": "Weekly",
+    "i18n_open": "Open the",
+    "i18n_chest": "chest"
+
 }
