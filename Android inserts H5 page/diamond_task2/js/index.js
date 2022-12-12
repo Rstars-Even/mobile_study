@@ -41,7 +41,7 @@ let app = new Vue({
                 // msgNum: '',
                 // replyNum: ''
             },
-            lang: deviceInfo.lang,
+            lang: '',
             list: [],
             type: 1,                    //默认为新人任务。
             showPopover: false,         //气泡框状态。
@@ -68,10 +68,11 @@ let app = new Vue({
                 console.log('-------------防抖----------');
                 return
             }
+            console.log('lang[lang]----', this.list);
+            this.list = [];
             this.type = index;
             console.log('change事件------index:', index);
 
-            this.list = [];
             this.get_task(this.type);
         },
         // 获取任务.
@@ -91,6 +92,7 @@ let app = new Vue({
                 this.head_data = res.data
                 // console.log('----fn', fn);
                 if (fn) {
+                    console.log('首次进入页面，，。');
                     fn()        //执行回调函数，检测是否还有新人任务。。
                 }
 
@@ -246,11 +248,13 @@ let app = new Vue({
         appSetToken(user, device) {
             console.log('-------ios------user-----------', user);
             console.log('-------ios------device-----------', device);
-            userInfo = JSON.parse(user)
-            deviceInfo = JSON.parse(device)
+            // userInfo = JSON.parse(user)
+            // deviceInfo = JSON.parse(device)
+            this.lang = deviceInfo.lang
+
 
             if (deviceInfo.lang == 'en') {
-                this.title_lang = ['New user', 'Today', 'Weekly'];
+                this.title_lang = ['New user', 'Daily', 'Weekly'];
             } else if (deviceInfo.lang == 'vi') {
                 this.title_lang = ['Người mới', 'Hôm nay', 'Tuần này'];
             } else {
@@ -270,19 +274,19 @@ let app = new Vue({
         }
     },
     mounted() {
-        // this.appSetToken();
+        this.appSetToken();
         
         if (browser.ios) {
-            window.appSetToken = this.appSetToken;
+            // window.appSetToken = this.appSetToken;
         } else {
             if (deviceInfo.lang == 'en') {
-                this.title_lang = ['New user', 'Today', 'Weekly'];
+                this.title_lang = ['New user', 'Daily', 'Weekly'];
             } else if (deviceInfo.lang == 'vi') {
                 this.title_lang = ['Người mới', 'Hôm nay', 'Tuần này'];
             } else {
                 this.title_lang = ['新人', '今日', '本周'];
             }
-            
+            this.lang = deviceInfo.lang
             this.get_task(this.type, this.is_show);
             langTranslate ()
             jump_invite()
