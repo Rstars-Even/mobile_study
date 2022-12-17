@@ -1,0 +1,471 @@
+body {
+  min-width: 320px;
+  max-width: 750px;
+  margin: 0 auto;
+}
+@media screen and (min-width: 750px) {
+  html {
+    font-size: 37.5px !important;
+  }
+}
+.box {
+  width: 100%;
+  background: url("../images/zh/bg2.png") no-repeat;
+  background-size: cover;
+  padding: 16rem 0.64rem 0 0.64rem;
+  position: relative;
+}
+.box .rule_btn {
+  width: 3.68rem;
+  height: 1.44rem;
+  position: absolute;
+  right: 0;
+  top: 2.6133rem;
+  background: url("../images/rule_btn.png") no-repeat;
+  background-size: cover;
+  font-size: 0.64rem;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #841000;
+  text-align: center;
+  line-height: 1.44rem;
+}
+.box .box_timing {
+  width: 100%;
+  height: 16.4267rem;
+  background: url(../images/box_bg2.png) no-repeat;
+  background-size: cover;
+  padding-top: 1.9rem;
+  text-align: center;
+}
+.box .box_timing .van-count-down {
+  font-size: 1.3867rem;
+  font-family: PingFangSC-Semibold, PingFang SC;
+  font-weight: 600;
+  color: #FFFFFF;
+  margin-bottom: 1rem;
+}
+.box .box_timing .box_timing_text {
+  font-size: 0.6933rem;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FDDD99;
+  margin-bottom: 0.36rem;
+}
+.box .box_timing img {
+  width: 6.4rem;
+  height: 7.1467rem;
+  margin: 0 auto;
+}
+.box .box_timing_no {
+  width: 100%;
+  height: 20.16rem;
+  background: url(../images/box_bg_info.png) no-repeat;
+  background-size: cover;
+  padding-top: 1.9rem;
+  text-align: center;
+  position: relative;
+}
+.box .box_timing_no .van-count-down {
+  font-size: 1.3867rem;
+  font-family: PingFangSC-Semibold, PingFang SC;
+  font-weight: 600;
+  color: #FFFFFF;
+  margin-bottom: 1rem;
+}
+.box .box_timing_no .box_timing_text {
+  font-size: 0.6933rem;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FDDD99;
+  margin-bottom: 0.36rem;
+}
+.box .box_timing_no img {
+  width: 6.4rem;
+  height: 7.1467rem;
+  margin: 0 auto;
+}
+.box .box_timing_no .box_timing_user {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  right: 0;
+  bottom: 0.8rem;
+  font-size: 0.7467rem;
+  font-family: PingFangSC-Semibold, PingFang SC;
+  font-weight: 600;
+  color: #841000;
+  padding: 0 0.8rem;
+}
+.box .box_timing_no .box_timing_user .box_timing_user_left {
+  display: flex;
+  align-items: center;
+}
+.box .box_timing_no .box_timing_user .box_timing_user_left img {
+  width: 2.6667rem;
+  height: 2.6667rem;
+  background-color: #1B1C33;
+  margin-right: 0.5867rem;
+  border-radius: 0.7467rem;
+}
+.box .box_timing_no .box_timing_user .box_timing_user_left .user_name {
+  text-align: left;
+}
+.box .box_timing_no .box_timing_user .box_timing_user_left .user_name .user_infor_num {
+  margin-top: 0.2133rem;
+  font-size: 0.64rem;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #E12223;
+}
+.box .box_timing_no .box_timing_user .box_timing_user_left .user_name .user_infor_num .user_infor_title {
+  color: #841000;
+}
+.box .charm_title {
+  width: 9.6rem;
+  height: 2.56rem;
+  margin: 1.0667rem auto 0.32rem auto;
+}
+.box .box_list {
+  width: 100%;
+  height: 32.16rem;
+  background: url("../images/list_bg.png") no-repeat;
+  background-size: cover;
+  padding: 0.8rem;
+}
+.box .box_list .box_list_item {
+  width: 100%;
+  height: 2.4533rem;
+  background: url(../images/yesterday.png) no-repeat;
+  background-size: cover;
+  display: flex;
+  font-size: 0.9067rem;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FFFFFF;
+}
+.box .box_list .box_list_item span {
+  width: 50%;
+  height: 100%;
+  text-align: center;
+  line-height: 2.4533rem;
+}
+.box .box_list .box_list_item .is_selected {
+  color: #841000;
+  background: url("../images/today.png") no-repeat;
+  background-size: cover;
+}
+.box .box_list .box_list_text {
+  font-size: 0.64rem;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FDDD99;
+  margin: 0.8rem 0;
+  text-align: center;
+}
+.box .box_list ul {
+  overflow-y: auto;
+  height: 25.4667rem;
+  width: 100%;
+}
+.box .box_list ul li {
+  width: 100%;
+  height: 4.2667rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 0.0533rem solid rgba(253, 211, 133, 0.2);
+}
+.box .box_list ul li .li_left {
+  width: 84%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.box .box_list ul li .li_left .image {
+  width: 1.4933rem;
+  height: 1.0667rem;
+}
+.box .box_list ul li .li_left .sort_num {
+  font-size: 0.96rem;
+  font-family: DIN-Bold, DIN;
+  font-weight: bold;
+  color: #FDDD99;
+  text-align: center;
+}
+.box .box_list ul li .li_left .avatar {
+  width: 2.6667rem;
+  height: 2.6667rem;
+  background: #fff;
+  margin: 0 0.5333rem 0 0.64rem;
+}
+.box .box_list ul li .li_left .li_left_item {
+  color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+.box .box_list ul li .li_left .li_left_item .li_left_name {
+  font-size: 0.7467rem;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  margin-bottom: 0.32rem;
+}
+.box .box_list ul li .li_left .li_left_item .li_left_user {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.5867rem;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FFFFFF;
+}
+.box .box_list ul li .li_left .li_left_item .li_left_user .li_left_user_num {
+  padding: 0 0.2667rem;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 0.3733rem;
+  text-align: center;
+  margin-right: 0.2667rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.box .box_list ul li .li_left .li_left_item .li_left_user .li_left_user_num img {
+  display: inline-block;
+  width: 0.48rem;
+  height: 0.5867rem;
+}
+.box .box_list ul li .li_left .li_left_item .li_left_user .li_left_user_country {
+  padding: 0 0.2667rem;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 0.3733rem;
+  text-align: center;
+  margin-right: 0.2667rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.box .box_list ul li .li_left .li_left_item .li_left_user .li_left_user_country img {
+  display: inline-block;
+  width: 0.7467rem;
+  height: 0.48rem;
+}
+.box .box_list ul li .li_left .li_left_item .li_left_user span {
+  font-size: 0.5867rem;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FFFFFF;
+}
+.box .box_list ul li span {
+  font-size: 0.8533rem;
+  font-family: PingFangSC-Semibold, PingFang SC;
+  font-weight: 600;
+  color: #FDDD99;
+}
+.box .box_bottom {
+  position: fixed;
+  bottom: -3.84rem;
+  left: 0;
+  width: 100%;
+  height: 3.84rem;
+  background: linear-gradient(180deg, #FFDB99 0%, #FD9145 100%);
+  border-radius: 0.64rem 0.64rem 0px 0px;
+  padding: 0 0.8rem 0 0;
+  transition: all 1s ease-in;
+}
+.box .box_bottom .box_bottom_show {
+  width: 100%;
+  height: 4.2667rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.16rem;
+}
+.box .box_bottom .box_bottom_show .li_left {
+  width: 84%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.box .box_bottom .box_bottom_show .li_left .image {
+  width: 1.4933rem;
+  height: 1.0667rem;
+  margin-left: 0.64rem;
+}
+.box .box_bottom .box_bottom_show .li_left .sort_num {
+  font-size: 0.96rem;
+  font-family: DIN-Bold, DIN;
+  font-weight: bold;
+  color: #841000;
+  text-align: center;
+}
+.box .box_bottom .box_bottom_show .li_left .text {
+  font-size: 0.64rem;
+  font-family: PingFangSC-Semibold, PingFang SC;
+  font-weight: 600;
+  margin-left: 0.64rem;
+}
+.box .box_bottom .box_bottom_show .li_left .avatar {
+  width: 2.6667rem;
+  height: 2.6667rem;
+  background: #fff;
+  margin: 0 0.5333rem 0 0.64rem;
+}
+.box .box_bottom .box_bottom_show .li_left .li_left_item {
+  color: #841000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+.box .box_bottom .box_bottom_show .li_left .li_left_item .li_left_name {
+  font-size: 0.7467rem;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  margin-bottom: 0.32rem;
+}
+.box .box_bottom .box_bottom_show .li_left .li_left_item .li_left_user {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.5867rem;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FFFFFF;
+}
+.box .box_bottom .box_bottom_show .li_left .li_left_item .li_left_user .li_left_user_num {
+  padding: 0 0.2667rem;
+  background: rgba(132, 16, 0, 0.15);
+  border-radius: 0.3733rem;
+  text-align: center;
+  margin-right: 0.2667rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.box .box_bottom .box_bottom_show .li_left .li_left_item .li_left_user .li_left_user_num img {
+  display: inline-block;
+  width: 0.48rem;
+  height: 0.5867rem;
+}
+.box .box_bottom .box_bottom_show .li_left .li_left_item .li_left_user .li_left_user_country {
+  padding: 0 0.2667rem;
+  background: rgba(132, 16, 0, 0.15);
+  border-radius: 0.3733rem;
+  text-align: center;
+  margin-right: 0.2667rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.box .box_bottom .box_bottom_show .li_left .li_left_item .li_left_user .li_left_user_country img {
+  display: inline-block;
+  width: 0.7467rem;
+  height: 0.48rem;
+}
+.box .box_bottom .box_bottom_show .li_left .li_left_item .li_left_user span {
+  font-size: 0.5867rem;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FFFFFF;
+}
+.box .box_bottom .box_bottom_show span {
+  font-size: 0.8533rem;
+  font-family: PingFangSC-Semibold, PingFang SC;
+  font-weight: 600;
+  color: #E12223;
+}
+.box .box_bottom .box_bottom_no {
+  padding: 0.8533rem 0.64rem 0.8rem 0.64rem;
+  color: #841000;
+}
+.box .box_bottom .box_bottom_no .text_top {
+  font-size: 0.7467rem;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  margin-bottom: 0.32rem;
+}
+.box .box_bottom .box_bottom_no .text_bottom {
+  font-size: 0.64rem;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+}
+.rule_box {
+  width: 17.8133rem;
+  height: 19.7333rem;
+  background: url("../images/zh/rule_bg.png") no-repeat;
+  background-size: cover;
+  padding: 2.9333rem 1.0667rem 1.8667rem 1.0667rem;
+}
+.rule_box .rule_box2 {
+  overflow-y: auto;
+  width: 100%;
+  height: 100%;
+}
+.rule_box .rule_box2 p {
+  font-size: 0.7467rem;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FDDD99;
+  text-align: left;
+  margin-bottom: 0.32rem;
+}
+.van-popup {
+  background-color: rgba(0, 0, 0, 0) !important;
+}
+.van-dialog {
+  width: 12.2667rem !important;
+  overflow: inherit !important;
+  height: 10.6133rem;
+  background: linear-gradient(180deg, #FFE1EC 0%, #FFFFFF 100%);
+}
+.van-dialog .van-dialog__header {
+  position: relative;
+  margin-bottom: 3.4267rem;
+}
+.van-dialog .van-dialog__header .top {
+  top: 0.6rem;
+}
+.van-dialog .bottom_img {
+  position: absolute;
+  width: 6.3467rem;
+  height: 7.3067rem;
+  top: 0.4rem;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -9;
+}
+.van-dialog .van-dialog__content {
+  font-size: 0.7rem;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 0.8333rem;
+}
+.van-dialog .van-dialog__content .dialog_diamond_text {
+  font-size: 0.85rem;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #1B1C33;
+}
+.van-dialog .van-button--large {
+  width: 11rem;
+  height: 2.4rem;
+  background: #FF8D90;
+  border-radius: 1.8rem;
+  color: #fff;
+  flex: none;
+  margin: 0 auto;
+}
+.van-dialog .van-dialog__confirm:active {
+  color: #fff;
+}
+.van-dialog .num {
+  color: #FF8386;
+}
+.van-dialog .van-hairline--top::after {
+  border-top-width: 0px;
+}

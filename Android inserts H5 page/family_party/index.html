@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="referrer" content="no-referrer" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="i18n_detail"></title>
+    <link rel="stylesheet" href="./css/normalize.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <!-- 引入样式文件 -->
+    <link rel="stylesheet" href="./css/vant@2.12.css"/>
+</head> 
+<body>
+    <div id="app">
+        <template>
+        <div class="box">
+            <!-- 活动规则按钮 -->
+            <div class="rule_btn" @click="rule_btn" data-i18n="i18n_description"></div>
+
+            <!-- // 倒计时模块内容。。 --------已加入家族-->
+            <div class="box_timing_no" v-if="is_add_family">
+                <template>
+                    <p v-if="is_open" class="van-count-down" data-i18n="i18n_box_open"></p>
+                    <van-count-down v-if="!is_open" :time="time" @finish="finish"></van-count-down>
+                </template>
+                <template>
+                    <p v-if="is_open" class="box_timing_text" data-i18n="i18n_box_open_no5"></p>
+                    <p v-if="!is_open" class="box_timing_text" data-i18n="i18n_join_open"></p>
+                </template>
+                <template>
+                    <img v-if="is_open" @click="open_box" src="./images/open.png" alt="">
+                    <img v-else @click="off_box(1)" src="./images/off.png" alt="">
+                </template>
+                <!-- 用户信息。。。 -->
+                <div class="box_timing_user" v-if="user_info">
+                    <div class="box_timing_user_left">
+                        <img :src="user_info.avatar" alt="">
+                        <div class="user_name">
+                            <p>{{user_info.nickname}}</p>
+                            <p class="user_infor_num"><span class="user_infor_title" data-i18n="i18n_charm_value"></span> {{user_info.num}}</p>
+                        </div>
+                    </div>
+                    <span @click="show_popup">No.{{user_info.rank}} ＞</span>
+                </div>
+            </div>
+            <!-- // 倒计时模块内容。。 --------没有加入家族 -->
+            <div class="box_timing" v-else>
+                <template>
+                    <p v-if="is_open" class="van-count-down">钻石宝箱已开启</p>
+                    <van-count-down v-else :time="time"></van-count-down>
+                </template>
+                <p class="box_timing_text">参与活动，开启钻石宝箱</p>
+                <template>
+                    <img v-if="is_open" src="./images/open.png" alt="">
+                    <img v-else @click="off_box(0)" src="./images/off.png" alt="">
+                </template>
+            </div>
+            
+            <!-- // 魅力榜标题。。 -->
+            <img class="charm_title" src="./images/zh/charm_title.png" alt="">
+            <!-- // 魅力榜列表。。 -->
+            <div class="box_list">
+                <div class="box_list_item">
+                    <span data-i18n="i18n_box_today" :class="{is_selected: type == 0 }" @click="get_charm_list('0')">今日</span>
+                    <span data-i18n="i18n_box_yesterday" :class="{is_selected: type == 1 }" @click="get_charm_list(1)">昨日</span>
+                </div>
+                <p data-i18n="i18n_box_open_time" class="box_list_text"></p>
+                <ul v-if="list.length > 0">
+                    <li v-for="(item, i) in list" :key="i">
+                        <div class="li_left">
+                            <img class="image" v-if="i <= 2" :src=`./images/NO${i+1}.png` alt="">
+                            <span class="image sort_num" v-else>{{i+1}}</span>
+
+                            <img class="avatar" :src="item.familyLogo" alt="">
+                            <div class="li_left_item">
+                                <p class="li_left_name">{{item.familyName}}</p>
+                                <div class="li_left_user">
+                                    <div class="li_left_user_num">
+                                        <img src="./images/icon.png" alt="">
+                                        <p>&nbsp{{item.userNum}}</p>
+                                    </div>
+                                    <div class="li_left_user_country">
+                                        <img :src="item.countryImage" alt="">
+                                        <!-- <span>&nbsp河内</span> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <span>{{item.num}}</span>
+                    </li>
+                </ul>
+            </div>
+            <!-- // 底部自己家族信息。。 -->
+            <ul class="box_bottom">
+                <li class="box_bottom_show">
+                    <div class="li_left">
+                        <span class="image sort_num">16</span>
+                        <!-- <span class="sort_num text">未上榜</span> -->
+
+                        <img class="avatar" src="" alt="">
+                        <div class="li_left_item">
+                            <p class="li_left_name">水果家族</p>
+                            <div class="li_left_user">
+                                <div class="li_left_user_num">
+                                    <img src="./images/icon.png" alt="">
+                                    <p>&nbsp14</p>
+                                </div>
+                                <div class="li_left_user_country">
+                                    <img src="./images/national_flag_vietnam.png" alt="">
+                                    <span>&nbsp河内</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <span>999</span>
+                </li>
+                <!-- <li class="box_bottom_no">
+                    <p class="text_top">你未加入家族</p>
+                    <p class="text_bottom">成为家族成员，参与活动领取奖励</p>
+                </li> -->
+            </ul>
+        </div>
+
+
+        <!-- 活动规则弹窗。。 -->
+        <van-popup v-model="show">
+            <div class="rule_box">
+                <div class="rule_box2">
+                    <p data-i18n="i18n_text1"></p>
+                    <p data-i18n="i18n_text2"></p>
+                    <p>
+                        <p data-i18n="i18n_text3"></p>
+                        <p data-i18n="i18n_text4"></p>
+                        <p data-i18n="i18n_text5"></p>
+                        <p data-i18n="i18n_text6"></p>
+                        <p data-i18n="i18n_text7"></p>
+                    </p>
+                    <p data-i18n="i18n_text8"></p>
+                    <p data-i18n="i18n_text9"></p>
+                    <p data-i18n="i18n_text10"></p>
+                    <p data-i18n="i18n_text11"></p>
+                </div>
+            </div>
+        </van-popup>
+        <!-- 领取奖励弹弹窗。。 -->
+        <van-dialog v-model="shows" :confirm-button-text="$.i18n().localize('i18n_ok')">
+            <template slot="title">
+                <img class="bottom_img" src="./images/open_box.png" alt="">
+            </template>
+            
+            <template v-if="lang == 'vi'">
+                <p><span data-i18n='i18n_open'>开启</span> <span data-i18n='i18n_chest'>宝箱</span> kim cương</p>
+                <p>
+                    <span data-i18n='i18n_get'>获得了</span>
+                    <span class="num">{{ dialog.num }}</span>
+                    <span data-i18n='i18n_diamond_bootom'>钻石</span>
+                </p>
+            </template>
+            <template v-else>
+                <p><span data-i18n='i18n_open'></span></p>
+                <p>
+                    <span data-i18n='i18n_get'></span>
+                    <span class="num">{{ dialog.num }}</span>
+                    <span data-i18n='i18n_diamond_bootom'></span>
+                </p>
+            </template>
+        </van-dialog>
+
+        </template>
+    </div>
+    <script src="./lib/eruda.min.js"></script>
+    <script>eruda.init();</script>
+
+    <script src="./lib/vue@2.6.min.js"></script>
+    <script src="./lib/vant@2.12.js"></script>
+    <script src="./lib/flexible.js"></script>
+    <script src="./lib/jquery.main.js"></script>
+    <script src="./lib/jquery.i18n.js"></script>
+    <script src="./lib/jquery.i18n.messagestore.js"></script>
+    <script src="./js/util.js"></script>
+    <script src="./js/index.js"></script>
+
+</body>
+</html>
