@@ -32,12 +32,12 @@
      * @param {string} userInfo.ticket 用户登录ticket
      */
     let userInfo = {
-        // uid: '102',
-        // ticket: "b928343218af40c15c0b3a4443465d77",
-        uid: '267',
-        ticket: "e469e0b362aa2d9538acb40d31a627a4",
-        // uid: '404',
-        // ticket: "4910c89563d5e05851285662421c4315",
+        // uid: '101',
+        // ticket: "4d2fe1b17b497aa3600722683fb54d52",
+        // uid: '267',
+        // ticket: "fd089fa7e40c1a7a3ce5baecda8bd34e",
+        uid: '404',
+        ticket: "4910c89563d5e05851285662421c4315",
     }
 
 
@@ -56,7 +56,7 @@
      * @param {string} deviceInfo.os 操作系统
      */
     let deviceInfo = {
-        lang: 'zh',
+        lang: 'en',
     }
     
     // Yamoo APP中h5调用原生app方法

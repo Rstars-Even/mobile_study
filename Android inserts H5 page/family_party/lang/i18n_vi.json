@@ -1,7 +1,41 @@
 {
+    "i18n_detail": "Tiệc gia đình",
+    "i18n_ok": "Xác nhận",
+    "i18n_open_time": "Chưa đến lúc mở rương kho báu",
+    "i18n_add_family": "Chưa vào gia tộc, không thể than gia sự kiện.",
+    "i18n_open_fail": "Nhận thất bại, gia tộc của bạn không được thưởng.",
+    
+    "i18n_description": "Quy tắc sự kiện",
+    "i18n_text1": "1. BXH sẽ tính tổng mị đã nhận ở phòng gia tộc, 1xu= 1 điểm mị.",
+    "i18n_text2": "2. Gia tộc đứng top5 BXH ngày sẽ được nhận thưởng rương:",
+    "i18n_text3": "Top1: 200 kim cương",
+    "i18n_text4": "Top2: 120 kim cương",
+    "i18n_text5": "Top3: 80 kim cương",
+    "i18n_text6": "Top4: 60 kim cương",
+    "i18n_text7": "Top5: 40 kim cương",
+    "i18n_text8": "3. Thành viên gia tộc nhận được 100 mị trong phòng gia tộc mình mới được mở rương kho báu.",
+    "i18n_text9": "4. Điểm mị được tính từ 21:00:00-20:59:59",
+    "i18n_text10": "5. Thời gian sự kiện: 19/12-19/01",
+    "i18n_text11": "6. Không được sử dụng các phương tiện bất hợp pháp để nhận phần thưởng, nếu không sẽ bị khoá tài khoản.",
+
+
+    "i18n_charm_value": "Quyến rũ",
+    "i18n_join_open": "Tham gia sự kiện, mở rương kim cương. ",
+    "i18n_box_open": "Đã mở rương kim cương",
+    "i18n_box_open_no5": "Thành viên đứng top5 BXH ngày gia tộc được nhận thưởng",
+    "i18n_box_open_time": "BXH mị được tính tới 21:00(GMT+7) hàng ngày",
+    "i18n_box_off": "Chưa lên bảng",
+    "i18n_box_today": "Hôm nay",
+    "i18n_box_yesterday": "Hôm qua",
+
+
     "i18n_get": "nhận đc",
     "i18n_diamond_bootom": "kim cương",
     "i18n_open": "Mở",
-    "i18n_chest": "rương"
+    "i18n_chest": "rương",
+
+
+    "i18n_box_bootom1": "bạn không ở trong gia đình",
+    "i18n_box_bootom2": "Trở thành thành viên gia đình và tham gia các hoạt động để nhận phần thưởng"
 
 }

@@ -16,14 +16,25 @@ body {
     }
 }
 
-.box {
-    width: 100%;
+.box_zh {
     background: url("../images/zh/bg2.png") no-repeat;
 	background-size: cover;
+}
+.box_vi {
+    background: url("../images/vi/bg2.png") no-repeat;
+	background-size: cover;
+}
+.box_en {
+    background: url("../images/en/bg2.png") no-repeat;
+	background-size: cover;
+}
+.box {
+    width: 100%;
+    
     padding: 16rem .64rem 0 .64rem;
 
     position: relative;
-    // margin-bottom: 2.4rem;
+    margin-bottom: 2.4rem;
     // 活动规则按钮。。
     .rule_btn {
         width: 3.68rem;
@@ -40,6 +51,11 @@ body {
         text-align: center;
         line-height: 1.44rem;
     }
+    .rule_btn_vi {
+        width: 5rem;
+        background: url("../images/rule_btn.png") no-repeat;
+        background-size: 100% 100%;
+    }
     // 倒计时模块内容。。
     .box_timing {
         width: 100%;
@@ -47,6 +63,8 @@ body {
         background: url(../images/box_bg2.png) no-repeat;
         background-size: cover;
         padding-top: 1.9rem;
+        // padding-left: 0.8rem;
+        // padding-right: 0.8rem;
         text-align: center;
         .van-count-down {
             font-size: 1.3867rem;
@@ -54,6 +72,9 @@ body {
             font-weight: 600;
             color: #FFFFFF;
             margin-bottom: 1rem;
+        }
+        .van-count-down_en {
+            margin-bottom: 0.6rem;
         }
         .box_timing_text {
             font-size: .6933rem;
@@ -75,6 +96,8 @@ body {
         background: url(../images/box_bg_info.png) no-repeat;
         background-size: cover;
         padding-top: 1.9rem;
+        // padding-left: 0.8rem;
+        // padding-right: 0.8rem;
         text-align: center;
         position: relative;
         .van-count-down {
@@ -83,6 +106,9 @@ body {
             font-weight: 600;
             color: #FFFFFF;
             margin-bottom: 1rem;
+        }
+        .van-count-down_en {
+            margin-bottom: 0.6rem;
         }
         .box_timing_text {
             font-size: .6933rem;
@@ -215,6 +241,7 @@ body {
                         height: 2.6667rem;
                         background: #fff;
                         margin: 0 .5333rem 0 .64rem;
+                        border-radius: 0.7467rem;
                     }
                     .li_left_item {
                         color: #FFFFFF;
@@ -289,7 +316,8 @@ body {
     // 底部自己家族信息。。
     .box_bottom {
         position: fixed;
-        bottom: -3.84rem;
+        // bottom: -3.84rem;
+        bottom: 0;
         left: 0;
         width: 100%;
         height: 3.84rem;
@@ -332,6 +360,7 @@ body {
                     height: 2.6667rem;
                     background: #fff;
                     margin: 0 .5333rem 0 .64rem;
+                    border-radius: 0.7467rem;
                 }
                 .li_left_item {
                     color: #841000;
@@ -423,11 +452,21 @@ body {
 
 
 // 规则弹窗样式
+.rule_box_zh {
+    background: url("../images/zh/rule_bg.png") no-repeat;
+    background-size: cover;
+}
+.rule_box_vi {
+    background: url("../images/vi/rule_bg.png") no-repeat;
+    background-size: cover;
+}
+.rule_box_en {
+    background: url("../images/en/rule_bg.png") no-repeat;
+    background-size: cover;
+}
 .rule_box {
     width: 17.8133rem;
     height: 19.7333rem;
-    background: url("../images/zh/rule_bg.png") no-repeat;
-    background-size: cover;
     padding: 2.9333rem 1.0667rem 1.8667rem 1.0667rem;
     .rule_box2 {
         overflow-y: auto;

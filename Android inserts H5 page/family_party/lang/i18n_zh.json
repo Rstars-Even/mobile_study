@@ -29,7 +29,12 @@
     "i18n_box_yesterday": "昨日",
 
 
-    "i18n_open": "开启钻石宝箱启",
+    "i18n_open": "开启钻石宝箱",
     "i18n_get": "获得了",
-    "i18n_diamond_bootom": "钻石"
+    "i18n_diamond_bootom": "钻石",
+
+
+    "i18n_box_bootom1": "你未加入家族",
+    "i18n_box_bootom2": "成为家族成员，参与活动领取奖励"
+
 }

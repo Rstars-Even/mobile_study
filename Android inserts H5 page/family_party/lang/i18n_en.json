@@ -1,4 +1,38 @@
 {
+    "i18n_detail": "Family Party",
+    "i18n_ok": "confirm",
+    "i18n_open_time": "It's not time to open the treasure chest",
+    "i18n_add_family": "Haven‘t joined the family, cannot participate in the event",
+    "i18n_open_fail": "Failed to claim, your family has not received the reward",
     
+    "i18n_description": "Description",
+    "i18n_text1": "1.The Rank counts the sum of the charm of the gifts received in the family room, 1 gold coin = 1 charm.",
+    "i18n_text2": "2.The top five families on the daily Rank will get a treasure chest prize pool:",
+    "i18n_text3": "Top 1:200 diamonds",
+    "i18n_text4": "Top 2:120 diamonds",
+    "i18n_text5": "Top 3:80 diamonds",
+    "i18n_text6": "Top 4:60 diamonds",
+    "i18n_text7": "Top 5:40 diamonds",
+    "i18n_text8": "3.Only when family members receive 100 charm in their own family room can open the treasure chest.",
+    "i18n_text9": "4.Charm value statistics from 21:00:00-20:59:59 of the day.",
+    "i18n_text10": "5.Activity time December 19th - January 19th.",
+    "i18n_text11": "6.Don't use illegal means to obtain rewards, otherwise you will be officially banned.",
 
+
+    "i18n_charm_value": "Charm",
+    "i18n_join_open": "Participate in the event and open the diamond chest",
+    "i18n_box_open": "The Diamond Chest has been opened",
+    "i18n_box_open_no5": "Members of the top 5 families on the daily rank can receive rewards",
+    "i18n_box_open_time": "The charm value rank ends at 21:00 every day (GMT+7)",
+    "i18n_box_off": "Not randed",
+    "i18n_box_today": "Today",
+    "i18n_box_yesterday": "Yesterday",
+
+
+    "i18n_open": "Open the Diamond Chest",
+    "i18n_get": "get",
+    "i18n_diamond_bootom": "diamonds",
+
+    "i18n_box_bootom1": "you are not in the family",
+    "i18n_box_bootom2": "Become a family member and participate in activities to receive rewards"
 }
