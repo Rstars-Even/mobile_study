@@ -169,7 +169,7 @@
             </div>
         </van-popup>
         <!-- 领取奖励弹弹窗。。 -->
-        <van-dialog v-model="shows" :confirm-button-text="$.i18n().localize('i18n_ok')">
+        <van-dialog v-model="shows" :confirm-button-text="$.i18n().localize('i18n_ok')" @confirm="confirm">
             <template slot="title">
                 <img class="bottom_img" src="./images/open_box.png" alt="">
             </template>

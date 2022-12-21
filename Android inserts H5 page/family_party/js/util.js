@@ -34,10 +34,10 @@
     let userInfo = {
         // uid: '101',
         // ticket: "4d2fe1b17b497aa3600722683fb54d52",
-        // uid: '267',
-        // ticket: "fd089fa7e40c1a7a3ce5baecda8bd34e",
-        uid: '404',
-        ticket: "4910c89563d5e05851285662421c4315",
+        uid: '267',
+        ticket: "fd089fa7e40c1a7a3ce5baecda8bd34e",
+        // uid: '404',
+        // ticket: "4910c89563d5e05851285662421c4315",
     }
 
 

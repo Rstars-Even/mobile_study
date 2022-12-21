@@ -71,7 +71,6 @@ let app = new Vue({
                 } 
                 this.user_info = res.data;
                 this.time = res.data.countDownSeconds * 1000;
-                // this.time = 0 * 1000;
                 if (res.data.hasOwnProperty('familyInfo')) {
                     this.is_add_family = true;
                 }
@@ -82,12 +81,6 @@ let app = new Vue({
                 defToast(err.message)
             })
         },
-        // 显示底部自己家族信息栏。。。
-        // show_popup () {
-            // this.bottom_popup = true;
-            // $('.box_bottom').css('bottom', 0);
-            // $('.box').css('margin-bottom', '2.4rem');
-        // },
         // 宝箱没开启时，点击时的状态，，。。
         off_box (off_type) {
             if (off_type == 0) {
@@ -121,24 +114,31 @@ let app = new Vue({
                 defToast(err.message)
             })
         },
+        // 点击确认
+        confirm () {
+            // window.location.reload();
+        },
         // 倒计时结束时事件，。。。。
         finish () {
-            console.log(9999999999999);
+            console.log('---------倒计时结束，------------------');
             this.is_open = true;
 
             if (this.lang == 'en') {
                 $('.box_timing_no').css('padding', '.6rem .8rem');
                 $('.box_timing').css('padding', '.6rem .8rem');
-                // $('.van-count-down').css('margin-bottom', '.6rem');
                 $('.box_timing_text').css('margin-bottom', '0rem');
                 
             } else if (this.lang == 'vi' && this.is_open) {
                 $('.box_timing_no').css('padding', '.9rem .8rem');
                 $('.box_timing').css('padding', '.9rem .8rem');
             }
-
-
             langTranslate (this.lang)
+            if ( this.time != 0 ) {
+                console.log('--------------this.time-----', this.time);
+                this.get_info ();
+                this.get_charm_list ();
+
+            }
         },
 
         //ios首次进入页面加载次方法，获取到uid
@@ -152,18 +152,12 @@ let app = new Vue({
             if (this.lang == 'en' && this.is_open) {
                 $('.box_timing_no').css('padding', '.6rem .8rem');
                 $('.box_timing').css('padding', '.6rem .8rem');
-                // $('.van-count-down').css('margin-bottom', '.6rem');
                 $('.box_timing_text').css('margin-bottom', '0rem');
-            } else if (this.lang == 'vi') {
-                $('.rule_btn').css({'width': '5rem', 'background-size': '100% 100%'});
-                // $('.box').css({'background': 'url("../images/vi/bg2.png") no-repeat', 'background-size': 'cover'});
             } else if (this.lang == 'vi' && this.is_open) {
                 $('.box_timing_no').css('padding', '.9rem .8rem');
                 $('.box_timing').css('padding', '.9rem .8rem');
             }
-            // else if (this.lang == 'en') {
-            //     $('.box').css({'background': 'url("../images/en/bg2.png") no-repeat', 'background-size': 'cover'});
-            // }
+           
             langTranslate (this.langs)
             this.get_info ();
             this.get_charm_list ();
@@ -177,25 +171,16 @@ let app = new Vue({
             if (this.lang == 'en' && this.is_open) {
                 $('.box_timing_no').css('padding', '.6rem .8rem');
                 $('.box_timing').css('padding', '.6rem .8rem');
-                // $('.van-count-down').css('margin-bottom', '.6rem');
                 $('.box_timing_text').css('margin-bottom', '0rem');
-            } else if (this.lang == 'vi') {
-                console.log(7777777);
-                // $('.rule_btn').css({'width': '5rem', 'background-size': '100% 100%'});
-                // $('.box').css({'background': 'url("../images/vi/bg2.png") no-repeat', 'background-size': 'cover'});
             } else if (this.lang == 'vi' && this.is_open) {
                 $('.box_timing_no').css('padding', '.9rem .8rem');
                 $('.box_timing').css('padding', '.9rem .8rem');
             }
-            // else if (this.lang == 'en') {
-                // $('.box').css({'background': 'url("../images/en/bg2.png") no-repeat', 'background-size': 'cover'});
-            // }
             
             langTranslate (this.lang)
             this.get_info ();
             this.get_charm_list ();
-
-            console.log('----------------is_open----------', this.is_open);
+            // console.log('----------------is_open----------', this.is_open);
         }
     }
 })
