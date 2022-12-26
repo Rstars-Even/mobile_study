@@ -1,0 +1,615 @@
+body {
+    min-width: 320px;
+    max-width: 750px;
+    margin: 0 auto;
+    // height: 1200px;
+    // background: url("../images/bg.png") no-repeat;
+	background-size: cover;
+}
+@media screen and (min-width: 750px) {
+    html {
+        font-size: 37.5px !important;
+    }
+}
+// 头部与轮播图固定。
+.title {
+    position: sticky;
+    top: 0;
+    z-index: 99;
+    left: 0;
+    background: url("../images/bg.png") no-repeat;
+	background-size: cover;
+    height: 12.14rem;
+    // margin-bottom: 1.3333rem;
+}
+// 任务模块的轮播图
+.task {
+    .study_fo {
+        // padding: .4267rem 0rem .16rem .16rem;
+        padding: .4267rem 0.16rem .16rem .16rem;
+        // padding: .4267rem 0rem .16rem 0rem;
+    }
+    .swiper-slide {
+        width: 6.1867rem;
+        height: 6.9867rem;
+        text-align: -webkit-center;
+        .div {
+            margin-top: 2.6133rem;
+            .num {
+                width: 2.5867rem;
+                // height: 1.8667rem;
+                height: 1.667rem;
+                font-size: 1.44rem;
+                font-family: DINPro-Medium, DINPro;
+                font-weight: 500;
+                color: #FFFFFF;
+                // line-height: 6.9867rem;
+                // margin-bottom: .3733rem;
+            }
+            .text {
+                // width: 2.56rem;
+                width: 80%;
+                height: .88rem;
+                font-size: .64rem;
+                font-family: PingFangSC-Regular, PingFang SC;
+                font-weight: 400;
+                color: #FFFFFF;
+                // line-height: 5.12rem;
+            }
+        }
+    }
+    .swiper-wrapper {
+        justify-content: space-between;
+    }
+    .meet_number {
+        background: url("../images/xyrs.png") no-repeat;
+        background-size: cover;
+    }
+    .reply_message {
+        background: url("../images/sdxx.png") no-repeat;
+        background-size: cover;
+    }
+    .received_the_news {
+        background: url("../images/yxts1.png") no-repeat;
+        background-size: cover;
+        margin-right: 0px !important;
+    }
+    // .valid_date {
+    //     background: url("../images/yxts.png") no-repeat;
+    //     background-size: cover;
+    // }
+}
+// <!-- 图片按钮部分 -->
+.invitation_btn {
+    width: 18.4rem;
+    height: 3.2rem;
+    border-radius: 1.0667rem;
+    overflow: hidden;
+    margin: auto;
+    // margin-bottom: 1.3333rem;
+}
+// <!-- 领取弹窗。。 -->
+.pop-up {
+    z-index: 999;
+    width: 12.2667rem;
+    height: 9.3067rem;
+    background: linear-gradient(180deg, #FFE3FB 0%, #FFFFFF 100%);
+    border-radius: .8rem;
+    // margin: 0 auto;
+    position: fixed;
+    top: 42%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    .pop-up_img {
+        width: 6.4rem;
+        height: 6.4rem;
+        background: url("../images/img_钻石.png") no-repeat;
+        background-size: cover;
+        margin: 0 auto;
+        position: absolute;
+        top: 8%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .pop-up_text {
+        font-size: .8rem;
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #1B1C33;
+        text-align: center;
+        line-height: 9.3067rem;
+    }
+    .pop-up_ok {
+        width: 9.6rem;
+        height: 2.1333rem;
+        background: linear-gradient(270deg, #FF8386 0%, #FFA3A6 100%);
+        box-shadow: 0px .0533rem .2667rem 0px rgba(255,131,134,0.4);
+        border-radius: 1.0667rem;
+        text-align: center;
+        line-height: 2.1333rem;
+        position: absolute;
+        left: 1.3333rem;
+        bottom: 1.0667rem;
+
+        font-size: .8rem;
+        font-family: PingFangSC-Semibold, PingFang SC;
+        font-weight: 600;
+        color: #FFFFFF;
+    }
+}
+
+.show {
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 99;
+    position: fixed;
+    top: 0;
+    display: none;
+}
+
+.active {
+    display: none;
+}
+
+.status {
+    background: #65BEFE !important;
+}
+
+.status1 {
+    color: #1BA7C5 !important;
+}
+
+.none {
+    background: none !important;
+    color: #1BA7C5 !important;
+}
+
+.colors {
+    color: #999999;
+}
+
+#item_date_colors {
+    background: #B883FF;
+}
+
+//设置tab样式。。
+.tab_content {
+    background: #FFFFFF;
+    border-radius: .5333rem .5333rem 0px 0px;
+}
+.van-tabs__nav--line {
+    // border-radius: .5333rem .5333rem 0px 0px;
+    border-radius: .64rem .64rem 0px 0px;
+}
+.van-tabs__nav .van-tab {
+    font-size: .6933rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #999999;
+}
+.van-tabs__nav .van-tab--active{
+    font-size: .9067rem;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: #212121;
+}
+.van-tabs__nav .van-tabs__line {
+    width: .5333rem;
+    height: .3733rem;
+    background: url("../images/tab_pre.png") no-repeat;
+	background-size: cover;
+    background-color: #FFF;
+}
+.van-tabs--line .van-tabs__wrap {
+    background: url("../images/bg2.png") no-repeat;
+	background-size: cover;
+}
+
+// ..........................//
+.van-tab__pane {
+    padding: .5333rem .8rem 0px .8rem;
+    .new_user {         //新人任务。。。。
+        width: 100%;
+        height: 5.0133rem;
+        background: #F4FCFF;
+        border-radius: .64rem;
+        margin-bottom: .6933rem;
+        // padding: 0 1.76rem 0 1.0667rem;
+        padding-left: 1.0667rem;
+        display: flex;
+        // justify-content: space-between;
+        align-items: center;
+        .new_user_left {
+            width: 70%;
+            .new_user_title {
+                font-size: .8533rem;
+                font-family: PingFangSC-Medium, PingFang SC;
+                font-weight: 500;
+                color: #1B1C33;
+                margin-bottom: .2667rem;
+            }
+            .new_user_content {
+                font-size: .64rem;
+                font-family: PingFangSC-Regular, PingFang SC;
+                font-weight: 400;
+                color: #999999;
+                margin-bottom: .16rem;
+                img {
+                    width: .5333rem;
+                    height: .5333rem;
+                    display: inline-block;
+                }
+                .hint {
+                    width: .65rem;
+                    height: .65rem;
+                    background: #1B1C33;
+                    opacity: 0.2;
+                    display: inline-block;
+                    text-align: center;
+                    line-height: 0.65rem;
+                    border-radius: 50%;
+                }
+            }
+        }
+        .new_user_state {
+            font-size: .5867rem;
+            font-family: PingFangSC-Medium, PingFang SC;
+            font-weight: 500;
+            color: #1BA7C5;
+            margin: 0 auto;
+        }
+        .img_open {
+            width: 3.2rem;
+            height: 3.5592rem;
+            margin: 0 auto;
+        }
+        .new_user_right {
+            margin: 0 auto;
+            .van-popover__wrapper {
+                vertical-align: middle;
+                display: inline;
+            }
+            .img_off {
+                width: 2.9867rem;
+                height: 2.6133rem;
+            }
+        }
+        .new_user_right0 {
+            margin: 0 auto;
+            width: 3.4667rem;
+            height: 1.4933rem;
+            background: #C8DDEB;
+            // background: #71C7FE;
+            border-radius: .8rem;
+
+            font-size: .64rem;
+            font-family: PingFangSC-Medium, PingFang SC;
+            font-weight: 500;
+            color: #FFFFFF;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            img {
+                width: .7467rem;
+                height: .7467rem;
+            }
+        }
+        .new_user_right1 {
+            margin: 0 auto;
+            width: 3.4667rem;
+            height: 1.4933rem;
+            // background: #C8DDEB;
+            background: #71C7FE;
+            border-radius: .8rem;
+
+            font-size: .64rem;
+            font-family: PingFangSC-Medium, PingFang SC;
+            font-weight: 500;
+            color: #FFFFFF;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            img {
+                width: .7467rem;
+                height: .7467rem;
+            }
+        }
+    }
+    .new_today {        //今日任务。。。。。
+        width: 100%;
+        height: 5.0133rem;
+        background: #F4FCFF;
+        // background: #39819d;
+        border-radius: .64rem;
+        margin-bottom: .6933rem;
+        .van-tab__pane {
+            padding: 0 0 0 1.0667rem;
+        }
+        .van-tabs__nav--line {
+            border-radius: .64rem 0 0px 0px;
+        }
+        .van-tabs__nav .van-tabs__line {
+            background: none;
+            background-color: none;
+        }
+        .van-tabs--line .van-tabs__wrap {
+            // margin-bottom: .48rem;
+            background: none;
+            height: .96rem;
+            border-radius: .64rem 0 0 0;
+        }
+        .van-tabs__nav--line {
+            width: 7.04rem;
+            height: .96rem;
+            background-color: #E3F7FF;
+        }
+        // 默认状态
+        .van-tabs__nav .van-tab {
+            font-size: .5867rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #60BBFE;
+        }
+        // 选中状态
+        .van-tabs__nav .van-tab--active{
+            background:#7BCBFF;
+            font-size: .5867rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #FFFFFF;
+        }
+        .today {
+            display: flex;
+            align-items: center;
+            .today_left {           //今日任务左边样式。。。。。
+                width: 70%;
+                .today_title {
+                    font-size: .8533rem;
+                    font-family: PingFangSC-Medium, PingFang SC;
+                    font-weight: 500;
+                    color: #1B1C33;
+                    margin-bottom: .2667rem;
+                }
+                .today_content {
+                    font-size: .64rem;
+                    font-family: PingFangSC-Regular, PingFang SC;
+                    font-weight: 400;
+                    color: #999999;
+                    .ion {
+                        vertical-align: middle;
+                    }
+                    img {
+                        width: .5333rem;
+                        height: .5333rem;
+                        display: inline-block;
+                    }
+                }
+            }
+            .today_state {          //今日任务右边样式。。。。。2已领取
+                font-size: .5867rem;
+                font-family: PingFangSC-Medium, PingFang SC;
+                font-weight: 500;
+                color: #1BA7C5;
+                margin: 0 auto;
+            }
+            .img_open {             //今日任务右边样式。。。。。1可领取
+                width: 3.2rem;
+                height: 3.5592rem;
+                margin: 0 auto;
+            }
+            .today_right {          //今日任务右边样式。。。。。0不可领取
+                margin: 0 auto;
+                .van-popover__wrapper {
+                    vertical-align: middle;
+                    display: inline;
+                }
+                .img_off {
+                    width: 2.9867rem;
+                    height: 2.6133rem;
+                }
+            }
+        }
+        .new_today_height {
+            margin-top: .48rem;      //打开状态的宝箱时高度要增加。。
+        }
+    }
+    .toweek {        //本周任务。。。。。
+        width: 100%;
+        height: 5.0133rem;
+        background: #F4FCFF;
+        // background: #39819d;
+        border-radius: .64rem;
+        margin-bottom: .6933rem;
+        .van-tab__pane {
+            padding: 0 0 0 1.0667rem;
+        }
+        .van-tabs__nav--line {
+            border-radius: .64rem 0 0px 0px;
+        }
+        .van-tabs__nav .van-tabs__line {
+            background: none;
+            background-color: none;
+        }
+        .van-tabs--line .van-tabs__wrap {
+            // margin-bottom: .48rem;
+            margin-bottom: 1rem;
+            background: none;
+            height: .96rem;
+            border-radius: .64rem 0 0 0;
+        }
+        .van-tabs__nav--line.van-tabs__nav--complete {
+            // padding-left: 0;
+            padding: 0;
+        }
+        .van-tabs__nav--line {
+            // width: 7.04rem;
+            height: .96rem;
+            background-color: #F4FCFF;
+        }
+        // 默认状态
+        .van-tabs__nav .van-tab {
+            font-size: .5867rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #60BBFE;
+            width: 2.3467rem;
+            flex: none;
+            padding: 0;
+            background-color: #E3F7FF;
+        }
+        // 选中状态
+        .van-tabs__nav .van-tab--active{
+            background:#7BCBFF;
+            font-size: .5867rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #FFFFFF;
+        }
+        .today {
+            display: flex;
+            align-items: center;
+            .today_left {           ///本周任务左边样式。。。。。
+                width: 70%;
+                .today_title {
+                    font-size: .8533rem;
+                    font-family: PingFangSC-Medium, PingFang SC;
+                    font-weight: 500;
+                    color: #1B1C33;
+                    margin-bottom: .2667rem;
+                }
+                .today_content {
+                    font-size: .64rem;
+                    font-family: PingFangSC-Regular, PingFang SC;
+                    font-weight: 400;
+                    color: #999999;
+                    .ion {
+                        vertical-align: middle;
+                    }
+                    img {
+                        width: .5333rem;
+                        height: .5333rem;
+                        display: inline-block;
+                    }
+                }
+            }
+            .today_state {          ///本周任务右边样式。。。。。2已领取
+                font-size: .5867rem;
+                font-family: PingFangSC-Medium, PingFang SC;
+                font-weight: 500;
+                color: #1BA7C5;
+                margin: 0 auto;
+            }
+            .today_state1 {             ///本周任务右边样式。。。。。1可领取
+                margin: 0 auto;
+                width: 3.4667rem;
+                height: 1.4933rem;
+                // background: #C8DDEB;
+                background: #71C7FE;
+                border-radius: .8rem;
+
+                font-size: .64rem;
+                font-family: PingFangSC-Medium, PingFang SC;
+                font-weight: 500;
+                color: #FFFFFF;
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+                img {
+                    width: .7467rem;
+                    height: .7467rem;
+                }
+            }
+            .today_state0 {          ///本周任务右边样式。。。。。0不可领取
+               margin: 0 auto;
+                width: 3.4667rem;
+                height: 1.4933rem;
+                background: #C8DDEB;
+                // background: #71C7FE;
+                border-radius: .8rem;
+
+                font-size: .64rem;
+                font-family: PingFangSC-Medium, PingFang SC;
+                font-weight: 500;
+                color: #FFFFFF;
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+                img {
+                    width: .7467rem;
+                    height: .7467rem;
+                }
+            }
+        }
+    }
+}
+// 气泡框。。
+.popover {
+    font-size: .5333rem;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: #FFFFFF;
+    padding: .32rem .8rem;
+}
+// 弹出框组件样式。。
+.van-dialog {
+    width: 12.2667rem !important;
+    overflow: inherit !important;
+    height: 10.6133rem;
+    background: linear-gradient(180deg, #FFE1EC 0%, #FFFFFF 100%);
+    .van-dialog__header {
+        position: relative;
+        margin-bottom: 3.4267rem;
+        .top {
+            top: 0.6rem;
+        }
+    }
+    .top_img {
+        position: absolute;
+        width: 5.2267rem;
+        height: 5.8133rem;
+        top: -.4rem;
+        left: 51%;
+        transform: translate(-50%, -50%);
+    }
+    .bottom_img {
+        position: absolute;
+        width: 6.3467rem;
+        height: 2.8267rem;
+        top: 2.62rem;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: -9;
+    }
+    .van-dialog__content {
+        font-size: .7rem;
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        text-align: center;
+        margin-bottom: .8333rem;
+        .dialog_diamond_text {
+            font-size: .85rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #1B1C33;
+        }
+    }
+    .van-button--large {
+        width: 11rem;
+        height: 2.4rem;
+        background: #FF8D90;
+        border-radius: 1.8rem;
+        color: #fff;
+        flex: none;
+        margin: 0 auto;
+    }
+    .van-dialog__confirm:active {
+        color: #fff;
+    }
+    .num {
+        color: #FF8386;
+    }
+    .van-hairline--top::after {
+        border-top-width: 0px;
+    }
+}

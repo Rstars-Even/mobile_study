@@ -1,0 +1,558 @@
+body {
+  min-width: 320px;
+  max-width: 750px;
+  margin: 0 auto;
+  background-size: cover;
+}
+@media screen and (min-width: 750px) {
+  html {
+    font-size: 37.5px !important;
+  }
+}
+.title {
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  left: 0;
+  background: url("../images/bg.png") no-repeat;
+  background-size: cover;
+  height: 12.14rem;
+}
+.task .study_fo {
+  padding: 0.4267rem 0.16rem 0.16rem 0.16rem;
+}
+.task .swiper-slide {
+  width: 6.1867rem;
+  height: 6.9867rem;
+  text-align: -webkit-center;
+}
+.task .swiper-slide .div {
+  margin-top: 2.6133rem;
+}
+.task .swiper-slide .div .num {
+  width: 2.5867rem;
+  height: 1.667rem;
+  font-size: 1.44rem;
+  font-family: DINPro-Medium, DINPro;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+.task .swiper-slide .div .text {
+  width: 80%;
+  height: 0.88rem;
+  font-size: 0.64rem;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FFFFFF;
+}
+.task .swiper-wrapper {
+  justify-content: space-between;
+}
+.task .meet_number {
+  background: url("../images/xyrs.png") no-repeat;
+  background-size: cover;
+}
+.task .reply_message {
+  background: url("../images/sdxx.png") no-repeat;
+  background-size: cover;
+}
+.task .received_the_news {
+  background: url("../images/yxts1.png") no-repeat;
+  background-size: cover;
+  margin-right: 0px !important;
+}
+.invitation_btn {
+  width: 18.4rem;
+  height: 3.2rem;
+  border-radius: 1.0667rem;
+  overflow: hidden;
+  margin: auto;
+}
+.pop-up {
+  z-index: 999;
+  width: 12.2667rem;
+  height: 9.3067rem;
+  background: linear-gradient(180deg, #FFE3FB 0%, #FFFFFF 100%);
+  border-radius: 0.8rem;
+  position: fixed;
+  top: 42%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.pop-up .pop-up_img {
+  width: 6.4rem;
+  height: 6.4rem;
+  background: url("../images/img_钻石.png") no-repeat;
+  background-size: cover;
+  margin: 0 auto;
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.pop-up .pop-up_text {
+  font-size: 0.8rem;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #1B1C33;
+  text-align: center;
+  line-height: 9.3067rem;
+}
+.pop-up .pop-up_ok {
+  width: 9.6rem;
+  height: 2.1333rem;
+  background: linear-gradient(270deg, #FF8386 0%, #FFA3A6 100%);
+  box-shadow: 0px 0.0533rem 0.2667rem 0px rgba(255, 131, 134, 0.4);
+  border-radius: 1.0667rem;
+  text-align: center;
+  line-height: 2.1333rem;
+  position: absolute;
+  left: 1.3333rem;
+  bottom: 1.0667rem;
+  font-size: 0.8rem;
+  font-family: PingFangSC-Semibold, PingFang SC;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+.show {
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 99;
+  position: fixed;
+  top: 0;
+  display: none;
+}
+.active {
+  display: none;
+}
+.status {
+  background: #65BEFE !important;
+}
+.status1 {
+  color: #1BA7C5 !important;
+}
+.none {
+  background: none !important;
+  color: #1BA7C5 !important;
+}
+.colors {
+  color: #999999;
+}
+#item_date_colors {
+  background: #B883FF;
+}
+.tab_content {
+  background: #FFFFFF;
+  border-radius: 0.5333rem 0.5333rem 0px 0px;
+}
+.van-tabs__nav--line {
+  border-radius: 0.64rem 0.64rem 0px 0px;
+}
+.van-tabs__nav .van-tab {
+  font-size: 0.6933rem;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #999999;
+}
+.van-tabs__nav .van-tab--active {
+  font-size: 0.9067rem;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #212121;
+}
+.van-tabs__nav .van-tabs__line {
+  width: 0.5333rem;
+  height: 0.3733rem;
+  background: url("../images/tab_pre.png") no-repeat;
+  background-size: cover;
+  background-color: #FFF;
+}
+.van-tabs--line .van-tabs__wrap {
+  background: url("../images/bg2.png") no-repeat;
+  background-size: cover;
+}
+.van-tab__pane {
+  padding: 0.5333rem 0.8rem 0px 0.8rem;
+}
+.van-tab__pane .new_user {
+  width: 100%;
+  height: 5.0133rem;
+  background: #F4FCFF;
+  border-radius: 0.64rem;
+  margin-bottom: 0.6933rem;
+  padding-left: 1.0667rem;
+  display: flex;
+  align-items: center;
+}
+.van-tab__pane .new_user .new_user_left {
+  width: 70%;
+}
+.van-tab__pane .new_user .new_user_left .new_user_title {
+  font-size: 0.8533rem;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #1B1C33;
+  margin-bottom: 0.2667rem;
+}
+.van-tab__pane .new_user .new_user_left .new_user_content {
+  font-size: 0.64rem;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #999999;
+  margin-bottom: 0.16rem;
+}
+.van-tab__pane .new_user .new_user_left .new_user_content img {
+  width: 0.5333rem;
+  height: 0.5333rem;
+  display: inline-block;
+}
+.van-tab__pane .new_user .new_user_left .new_user_content .hint {
+  width: 0.65rem;
+  height: 0.65rem;
+  background: #1B1C33;
+  opacity: 0.2;
+  display: inline-block;
+  text-align: center;
+  line-height: 0.65rem;
+  border-radius: 50%;
+}
+.van-tab__pane .new_user .new_user_state {
+  font-size: 0.5867rem;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #1BA7C5;
+  margin: 0 auto;
+}
+.van-tab__pane .new_user .img_open {
+  width: 3.2rem;
+  height: 3.5592rem;
+  margin: 0 auto;
+}
+.van-tab__pane .new_user .new_user_right {
+  margin: 0 auto;
+}
+.van-tab__pane .new_user .new_user_right .van-popover__wrapper {
+  vertical-align: middle;
+  display: inline;
+}
+.van-tab__pane .new_user .new_user_right .img_off {
+  width: 2.9867rem;
+  height: 2.6133rem;
+}
+.van-tab__pane .new_user .new_user_right0 {
+  margin: 0 auto;
+  width: 3.4667rem;
+  height: 1.4933rem;
+  background: #C8DDEB;
+  border-radius: 0.8rem;
+  font-size: 0.64rem;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.van-tab__pane .new_user .new_user_right0 img {
+  width: 0.7467rem;
+  height: 0.7467rem;
+}
+.van-tab__pane .new_user .new_user_right1 {
+  margin: 0 auto;
+  width: 3.4667rem;
+  height: 1.4933rem;
+  background: #71C7FE;
+  border-radius: 0.8rem;
+  font-size: 0.64rem;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.van-tab__pane .new_user .new_user_right1 img {
+  width: 0.7467rem;
+  height: 0.7467rem;
+}
+.van-tab__pane .new_today {
+  width: 100%;
+  height: 5.0133rem;
+  background: #F4FCFF;
+  border-radius: 0.64rem;
+  margin-bottom: 0.6933rem;
+}
+.van-tab__pane .new_today .van-tab__pane {
+  padding: 0 0 0 1.0667rem;
+}
+.van-tab__pane .new_today .van-tabs__nav--line {
+  border-radius: 0.64rem 0 0px 0px;
+}
+.van-tab__pane .new_today .van-tabs__nav .van-tabs__line {
+  background: none;
+  background-color: none;
+}
+.van-tab__pane .new_today .van-tabs--line .van-tabs__wrap {
+  background: none;
+  height: 0.96rem;
+  border-radius: 0.64rem 0 0 0;
+}
+.van-tab__pane .new_today .van-tabs__nav--line {
+  width: 7.04rem;
+  height: 0.96rem;
+  background-color: #E3F7FF;
+}
+.van-tab__pane .new_today .van-tabs__nav .van-tab {
+  font-size: 0.5867rem;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #60BBFE;
+}
+.van-tab__pane .new_today .van-tabs__nav .van-tab--active {
+  background: #7BCBFF;
+  font-size: 0.5867rem;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FFFFFF;
+}
+.van-tab__pane .new_today .today {
+  display: flex;
+  align-items: center;
+}
+.van-tab__pane .new_today .today .today_left {
+  width: 70%;
+}
+.van-tab__pane .new_today .today .today_left .today_title {
+  font-size: 0.8533rem;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #1B1C33;
+  margin-bottom: 0.2667rem;
+}
+.van-tab__pane .new_today .today .today_left .today_content {
+  font-size: 0.64rem;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #999999;
+}
+.van-tab__pane .new_today .today .today_left .today_content .ion {
+  vertical-align: middle;
+}
+.van-tab__pane .new_today .today .today_left .today_content img {
+  width: 0.5333rem;
+  height: 0.5333rem;
+  display: inline-block;
+}
+.van-tab__pane .new_today .today .today_state {
+  font-size: 0.5867rem;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #1BA7C5;
+  margin: 0 auto;
+}
+.van-tab__pane .new_today .today .img_open {
+  width: 3.2rem;
+  height: 3.5592rem;
+  margin: 0 auto;
+}
+.van-tab__pane .new_today .today .today_right {
+  margin: 0 auto;
+}
+.van-tab__pane .new_today .today .today_right .van-popover__wrapper {
+  vertical-align: middle;
+  display: inline;
+}
+.van-tab__pane .new_today .today .today_right .img_off {
+  width: 2.9867rem;
+  height: 2.6133rem;
+}
+.van-tab__pane .new_today .new_today_height {
+  margin-top: 0.48rem;
+}
+.van-tab__pane .toweek {
+  width: 100%;
+  height: 5.0133rem;
+  background: #F4FCFF;
+  border-radius: 0.64rem;
+  margin-bottom: 0.6933rem;
+}
+.van-tab__pane .toweek .van-tab__pane {
+  padding: 0 0 0 1.0667rem;
+}
+.van-tab__pane .toweek .van-tabs__nav--line {
+  border-radius: 0.64rem 0 0px 0px;
+}
+.van-tab__pane .toweek .van-tabs__nav .van-tabs__line {
+  background: none;
+  background-color: none;
+}
+.van-tab__pane .toweek .van-tabs--line .van-tabs__wrap {
+  margin-bottom: 1rem;
+  background: none;
+  height: 0.96rem;
+  border-radius: 0.64rem 0 0 0;
+}
+.van-tab__pane .toweek .van-tabs__nav--line.van-tabs__nav--complete {
+  padding: 0;
+}
+.van-tab__pane .toweek .van-tabs__nav--line {
+  height: 0.96rem;
+  background-color: #F4FCFF;
+}
+.van-tab__pane .toweek .van-tabs__nav .van-tab {
+  font-size: 0.5867rem;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #60BBFE;
+  width: 2.3467rem;
+  flex: none;
+  padding: 0;
+  background-color: #E3F7FF;
+}
+.van-tab__pane .toweek .van-tabs__nav .van-tab--active {
+  background: #7BCBFF;
+  font-size: 0.5867rem;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FFFFFF;
+}
+.van-tab__pane .toweek .today {
+  display: flex;
+  align-items: center;
+}
+.van-tab__pane .toweek .today .today_left {
+  width: 70%;
+}
+.van-tab__pane .toweek .today .today_left .today_title {
+  font-size: 0.8533rem;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #1B1C33;
+  margin-bottom: 0.2667rem;
+}
+.van-tab__pane .toweek .today .today_left .today_content {
+  font-size: 0.64rem;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #999999;
+}
+.van-tab__pane .toweek .today .today_left .today_content .ion {
+  vertical-align: middle;
+}
+.van-tab__pane .toweek .today .today_left .today_content img {
+  width: 0.5333rem;
+  height: 0.5333rem;
+  display: inline-block;
+}
+.van-tab__pane .toweek .today .today_state {
+  font-size: 0.5867rem;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #1BA7C5;
+  margin: 0 auto;
+}
+.van-tab__pane .toweek .today .today_state1 {
+  margin: 0 auto;
+  width: 3.4667rem;
+  height: 1.4933rem;
+  background: #71C7FE;
+  border-radius: 0.8rem;
+  font-size: 0.64rem;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.van-tab__pane .toweek .today .today_state1 img {
+  width: 0.7467rem;
+  height: 0.7467rem;
+}
+.van-tab__pane .toweek .today .today_state0 {
+  margin: 0 auto;
+  width: 3.4667rem;
+  height: 1.4933rem;
+  background: #C8DDEB;
+  border-radius: 0.8rem;
+  font-size: 0.64rem;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.van-tab__pane .toweek .today .today_state0 img {
+  width: 0.7467rem;
+  height: 0.7467rem;
+}
+.popover {
+  font-size: 0.5333rem;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+  padding: 0.32rem 0.8rem;
+}
+.van-dialog {
+  width: 12.2667rem !important;
+  overflow: inherit !important;
+  height: 10.6133rem;
+  background: linear-gradient(180deg, #FFE1EC 0%, #FFFFFF 100%);
+}
+.van-dialog .van-dialog__header {
+  position: relative;
+  margin-bottom: 3.4267rem;
+}
+.van-dialog .van-dialog__header .top {
+  top: 0.6rem;
+}
+.van-dialog .top_img {
+  position: absolute;
+  width: 5.2267rem;
+  height: 5.8133rem;
+  top: -0.4rem;
+  left: 51%;
+  transform: translate(-50%, -50%);
+}
+.van-dialog .bottom_img {
+  position: absolute;
+  width: 6.3467rem;
+  height: 2.8267rem;
+  top: 2.62rem;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -9;
+}
+.van-dialog .van-dialog__content {
+  font-size: 0.7rem;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 0.8333rem;
+}
+.van-dialog .van-dialog__content .dialog_diamond_text {
+  font-size: 0.85rem;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #1B1C33;
+}
+.van-dialog .van-button--large {
+  width: 11rem;
+  height: 2.4rem;
+  background: #FF8D90;
+  border-radius: 1.8rem;
+  color: #fff;
+  flex: none;
+  margin: 0 auto;
+}
+.van-dialog .van-dialog__confirm:active {
+  color: #fff;
+}
+.van-dialog .num {
+  color: #FF8386;
+}
+.van-dialog .van-hairline--top::after {
+  border-top-width: 0px;
+}

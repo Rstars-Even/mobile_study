@@ -1,0 +1,27 @@
+{
+    "i18n_diamond_mission": "金币任务",
+    "i18n_meet_number": "相遇人数",
+    "i18n_reply_message": "对话人数",
+    "i18n_received_the_news": "亲密关系",
+    "i18n_valid_date": "有效天数",
+    "i18n_new_player_gift": "新手礼物",
+    "i18n_diamond_reward": "钻石奖励",
+    "i18n_diamond": "钻石",
+    "i18n_daily": "每日",
+    "i18n_weekly": "每周",
+    "i18n_receive_award": "领取奖励",
+    "i18n_received": "已领取",
+    "i18n_diamond_income": "钻石收益",
+    "i18n_ok": "确定",
+    "i18n_get": "获得",
+
+    "i18n_diamond_bootom": "金币",
+    
+    "i18n_online_time": "在线时间",
+    "i18n_active_tasks": "达成聊天活跃",
+    "i18n_new_user": "新人",
+    "i18n_today": "今日",
+    "i18n_toweek": "本周",
+    "i18n_open": "开启",
+    "i18n_chest": "宝箱"
+}
