@@ -182,23 +182,22 @@ let app = new Vue({
         // 检测是否还有新人任务。。。。。
         is_show() {
             try {
+                if (this.list.length === 0) {
+                    console.log('----=----新人任务已经全部完成----------');
+                    this.is_show_newUser = false;
+                }
+                // console.log('-------新人任务没完成。。--------');
+                // this.list.forEach( (mov, i, arr) => {
+                //     // console.log('---------mov.status--------', mov.status);
 
-                // let newUser_status_arr = [];
-                this.list.forEach( (mov, i, arr) => {
-                    // console.log('---------mov.status--------', mov.status);
-
-                    //有一个status不等于2直接跳出检测，继续渲染新人任务模块。
-                    if (mov.status !== 2) {
-                        this.is_show_newUser = true;
-                        throw new error;
-                    } else if (mov.status === 2) {
-                        // newUser_status_arr.push(mov.status);
-                        // if (newUser_status_arr.length == arr.length) {
-                        //     this.is_show_newUser = false;
-                        // }
-                        this.is_show_newUser = false;
-                    }
-                })
+                //     //有一个status不等于2直接跳出检测，继续渲染新人任务模块。
+                //     if (mov.status !== 2) {
+                //         this.is_show_newUser = true;
+                //         throw new error;
+                //     } else if (mov.status === 2) {
+                //         this.is_show_newUser = false;
+                //     }
+                // })
             } catch (error) {
                 console.log(error)
             }

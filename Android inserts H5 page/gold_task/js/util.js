@@ -32,10 +32,10 @@ const browser = checkClient()
  * @param {string} userInfo.ticket 用户登录ticket
  */
 let userInfo = {
+    uid: '109',
+    ticket: "58954bca838f7e3cb6b49b8dd94ec128",
     // uid: '100',
-    // ticket: "aed25bb5ed863fe33d1e3177cf4d0b67",
-    // uid: '138',
-    // ticket: "548daf30623a7dd7f1b1498da16161fe",
+    // ticket: "625a6d2f3f93ee4ba24f524613605934",
 }
 
 
@@ -54,7 +54,7 @@ let userInfo = {
  * @param {string} deviceInfo.os 操作系统
  */
 let deviceInfo = {
-    // lang: 'zh',
+    lang: 'zh',
 }
 
 // Yamoo APP中h5调用原生app方法
