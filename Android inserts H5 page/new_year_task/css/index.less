@@ -1,0 +1,504 @@
+body {
+    min-width: 320px;
+    max-width: 750px;
+    margin: 0 auto;
+    // width: 100vw;
+    // height: 100vh;
+    // background: url("../images/zh/bg.png") no-repeat center center;
+    // background: url("../images/zh/bg.png") no-repeat;
+	// background-size: 100% auto;
+	// background-size: cover;
+    /*兼容安卓手机没有高度导致无法显示背景图片*/
+    // width:100vw;
+    // height:100vh;
+    // padding: 0;
+    // margin: 0;
+    // background-image: url("../images/zh/");
+    // background-repeat: no-repeat;
+    // background-size: 100% 100%;
+    // -webkit-background-size: 100% 100%;
+    // background-attachment: fixed;
+    // -webkit-background-attachment: fixed;
+
+}
+
+@media screen and (min-width: 750px) {
+    html {
+        font-size: 37.5px !important;
+    }
+}
+
+.box_zh1 {
+    background: url("../images/zh/bg1.png") no-repeat;
+	background-size: cover;
+}
+.box_zh2 {
+    background: url("../images/zh/bg2.png") no-repeat;
+	background-size: cover;
+}
+.box_zh3 {
+    background: url("../images/zh/bg3.png") no-repeat;
+	background-size: cover;
+}
+
+.box_vi1 {
+    background: url("../images/vi/bg1.png") no-repeat;
+	background-size: cover;
+}
+.box_vi2 {
+    background: url("../images/vi/bg2.png") no-repeat;
+	background-size: cover;
+}
+.box_vi3 {
+    background: url("../images/vi/bg3.png") no-repeat;
+	background-size: cover;
+}
+
+.box_en1 {
+    background: url("../images/en/bg1.png") no-repeat;
+	background-size: cover;
+}
+.box_en2 {
+    background: url("../images/en/bg2.png") no-repeat;
+	background-size: cover;
+}
+.box_en3 {
+    background: url("../images/en/bg3.png") no-repeat;
+	background-size: cover;
+}
+.box {
+    width: 100%;
+    padding: 14.88rem .64rem 1.8667rem .64rem;
+    position: relative;
+    // 活动规则按钮。。
+    .rule_btn {
+        width: 3.68rem;
+        height: 1.44rem;
+        position: absolute;
+        right: 0;
+        top: 2.6133rem;
+        background: url("../images/rule_btn.png") no-repeat;
+        background-size: cover;
+        font-size: .64rem;
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #841000;
+        text-align: center;
+        line-height: 1.44rem;
+    }
+    .rule_btn_vi {
+        width: 5rem;
+        background: url("../images/rule_btn.png") no-repeat;
+        background-size: 100% 100%;
+    }
+    
+    // tab  样式。-----------------
+    .box_tab {
+        width: 100%;
+        height: 2.4533rem;
+        background: url("../images/tab1.png") no-repeat;
+        background-size: cover;
+        margin: 0 auto;
+        display: flex;
+        font-size: 0.9067rem;
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #FFFFFF;
+        margin-bottom: 1.0667rem;
+        span {
+            width: 33.333%;
+            height: 100%;
+            text-align: center;
+            line-height: 2.2rem;
+        }
+        .is_selected {
+            color: #841000;
+            background: url("../images/option1.png") no-repeat;
+            background-size: cover;
+        }
+    }
+
+    // 新年奖励--内容样式。。。
+    // 头框奖励样式。。
+    .charm_title {
+        width: 9.6rem;
+        height: 2.56rem;
+        margin: 0 auto .3733rem auto;
+    }
+    .header_frame_zh {
+        background: url("../images/zh/task1_bg.png") no-repeat;
+        background-size: cover;
+    }
+    .header_frame_en {
+        background: url("../images/en/task1_bg.png") no-repeat;
+        background-size: cover;
+    }
+    .header_frame_vi {
+        background: url("../images/vi/task1_bg.png") no-repeat;
+        background-size: cover;
+    }
+    .header_frame {
+        width: 100%;
+        height: 19.84rem;
+        margin: 0 auto;
+        text-align: center;
+        padding: 0 .96rem 1.3333rem .96rem;
+        .header_frame_name {
+            display: inline-block;
+            margin: 10.9867rem 0 .96rem 0;
+            font-size: .64rem;
+            font-family: PingFangSC-Medium, PingFang SC;
+            font-weight: 500;
+            color: #FDDD99;
+        }
+        ul {
+            li:last-child { border: none; }
+        }
+        .header_frame_content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: .6933rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #FFFFFF;
+            border-bottom: .0533rem solid rgba(255,222,151,0.2);
+            padding: .64rem 0;
+            .header_frame_top {
+                width: 74%;
+                text-align: left;
+                .header_frame_top_ask {
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: .2667rem;
+                    img {
+                        width: .96rem;
+                        height: .96rem;
+                    }
+                }
+                .header_frame_top_num {
+                    color: #FDDD99;
+                }
+            }
+            button {
+                width: 3.6267rem;
+                height: 1.3333rem;
+                border: none;
+                outline: none;
+                border-radius: .8rem;
+                color: #841000;
+            }
+            .ok {
+                background-color: #FDAF67;
+            }
+            .no {
+                background-color: #DD4E55;
+                color: rgba(253,221,153,0.5);
+            }
+        }
+    }
+    // 进场秀奖励；。。
+    .show_zh {
+        background: url("../images/zh/task2_bg.png") no-repeat;
+        background-size: cover;
+    }
+    .show_en {
+        background: url("../images/en/task2_bg.png") no-repeat;
+        background-size: cover;
+    }
+    .show_vi {
+        background: url("../images/vi/task2_bg.png") no-repeat;
+        background-size: cover;
+    }
+
+
+
+
+
+
+
+
+
+    // 礼物榜单--列表内容样式。。
+    .box_list {
+        width: 100%;
+        height: 39.0933rem;
+        background: url("../images/bg_2.png") no-repeat;
+        background-size: cover;
+        padding: .8rem;
+        .box_list_item {
+            width: 100%;
+            height: 2.4533rem;
+            background: url(../images/tab2.png) no-repeat;
+            background-size: cover;
+            display: flex;
+            // justify-content: space-around;
+            // align-items: center;
+            font-size: .9067rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #FFFFFF;
+            span {
+                width: 50%;
+                height: 100%;
+                text-align: center;
+                line-height: 2.4533rem;
+            }
+            .list_selected {
+                color: #841000;
+                background: url("../images/option2.png") no-repeat;
+                background-size: cover;
+            }
+        }
+        .box_list_text {
+            font-size: .64rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #FDDD99;
+            margin: .4rem 0;
+            text-align: center;
+        }
+        ul {
+            overflow-y: auto;
+            height: 34.4667rem;
+            width: 100%;
+            li {
+                width: 100%;
+                height: 4.2667rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-bottom: .0533rem solid rgba(253, 211, 133, 0.2);
+                .li_left {
+                    width: 84%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+                    .image {
+                        width: 1.4933rem;
+                        height: 1.0667rem;
+                        // margin-right: .64rem;
+                    }
+                    .sort_num{
+                        font-size: .96rem;
+                        font-family: DIN-Bold, DIN;
+                        font-weight: bold;
+                        color: #FDDD99;
+                        text-align: center;
+                    }
+                    .avatar {
+                        width: 2.6667rem;
+                        height: 2.6667rem;
+                        background: #fff;
+                        margin: 0 .5333rem 0 .64rem;
+                        border-radius: 0.7467rem;
+                    }
+                    .li_left_item {
+                        color: #FFFFFF;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start;
+                        justify-content: center;
+                        .li_left_name {
+                            font-size: .7467rem;
+                            font-family: PingFangSC-Medium, PingFang SC;
+                            font-weight: 500;
+                            // margin-bottom: .32rem;
+                        }
+                        // .li_left_user {
+                        //     display: flex;
+                        //     align-items: center;
+                        //     justify-content: center;
+                        //     font-size: .5867rem;
+                        //     font-family: PingFangSC-Regular, PingFang SC;
+                        //     font-weight: 400;
+                        //     color: #FFFFFF;
+                        //     .li_left_user_num {
+                        //         // width: 2rem;
+                        //         // height: .7467rem;
+                        //         padding: .0 .2667rem;
+                        //         background: rgba(255, 255, 255, 0.15);
+                        //         border-radius: .3733rem;
+                        //         text-align: center;       
+                        //         margin-right: .2667rem;  
+                        //         display: flex;
+                        //         align-items: center;
+                        //         justify-content: center;
+                        //         img {
+                        //             display: inline-block;
+                        //             width: .48rem;
+                        //             height: .5867rem;
+                        //         }
+                        //     }
+                        //     .li_left_user_country {
+                        //         padding: .0 .2667rem;
+                        //         background: rgba(255, 255, 255, 0.15);
+                        //         border-radius: .3733rem;
+                        //         text-align: center;       
+                        //         margin-right: .2667rem;  
+                        //         display: flex;
+                        //         align-items: center;
+                        //         justify-content: center;
+                        //         img {
+                        //             display: inline-block;
+                        //             width: .7467rem;
+                        //             height: .48rem;
+                        //         }
+                        //     }
+                        //     span {
+                        //         font-size: .5867rem;
+                        //         font-family: PingFangSC-Regular, PingFang SC;
+                        //         font-weight: 400;
+                        //         color: #FFFFFF;
+                        //     }
+                        // }
+                    }
+                }
+                span {
+                    font-size: .8533rem;
+                    font-family: PingFangSC-Semibold, PingFang SC;
+                    font-weight: 600;
+                    color: #FDDD99;
+                }
+            }
+        }
+    }
+   
+    // 礼物榜单--列表内容样式。。
+    .list_rewards {
+        width: 100%;
+        height: 69.2267rem;
+        background: url("../images/bg_3.png") no-repeat;
+        background-size: cover;
+        // padding-top: 1.0667rem;
+        text-align: center;
+        .rewards_title{
+            width: 5.7067rem;
+            height: 1.6533rem;
+            margin: 1.0133rem auto .48rem auto;
+            display: inline-block;
+        }
+        .rewards_top{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+        .gift {
+            width: 5.6533rem;
+            height: 5.6533rem;
+            margin-bottom: .2133rem;
+            display: inline-block;
+        }
+        .gift_name {
+            font-size: .7467rem;
+            font-family: PingFangSC-Medium, PingFang SC;
+            font-weight: 500;
+            color: #FFFFFF;
+            margin-bottom: .1067rem;
+        }
+        .gift_num {
+            font-size: .64rem;
+            font-family: PingFangSC-Medium, PingFang SC;
+            font-weight: 500;
+            color: #FDDD99;
+        }
+        .rewards_top2 {
+            text-align: center;
+        }
+    }
+
+}
+
+
+
+// 规则弹窗样式
+.rule_box_zh {
+    background: url("../images/zh/rule_bg.png") no-repeat;
+    background-size: cover;
+}
+.rule_box_vi {
+    background: url("../images/vi/rule_bg.png") no-repeat;
+    background-size: cover;
+}
+.rule_box_en {
+    background: url("../images/en/rule_bg.png") no-repeat;
+    background-size: cover;
+}
+.rule_box {
+    width: 17.8133rem;
+    height: 19.7333rem;
+    padding: 2.9333rem 1.0667rem 1.8667rem 1.0667rem;
+    .rule_box2 {
+        overflow-y: auto;
+        width: 100%;
+        height: 100%;
+        p {
+            font-size: .7467rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #FDDD99;
+            text-align: left;
+            margin-bottom: .32rem;
+        }
+    }
+}
+.van-popup {
+    background-color: rgba(0, 0, 0, 0) !important;
+}
+
+
+// 弹出框组件样式。。
+.van-dialog {
+    width: 12.2667rem !important;
+    overflow: inherit !important;
+    height: 10.6133rem;
+    background: linear-gradient(180deg, #FFE1EC 0%, #FFFFFF 100%);
+    .van-dialog__header {
+        position: relative;
+        margin-bottom: 3.4267rem;
+        .top {
+            top: 0.6rem;
+        }
+    }
+    .bottom_img {
+        position: absolute;
+        width: 6.3467rem;
+        height: 7.3067rem;
+        top: .4rem;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: -9;
+    }
+    .van-dialog__content {
+        font-size: .7rem;
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        text-align: center;
+        margin-bottom: .8333rem;
+        .dialog_diamond_text {
+            font-size: .85rem;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #1B1C33;
+        }
+    }
+    .van-button--large {
+        width: 11rem;
+        height: 2.4rem;
+        background: #FF8D90;
+        border-radius: 1.8rem;
+        color: #fff;
+        flex: none;
+        margin: 0 auto;
+    }
+    .van-dialog__confirm:active {
+        color: #fff;
+    }
+    .num {
+        color: #FF8386;
+    }
+    .van-hairline--top::after {
+        border-top-width: 0px;
+    }
+}

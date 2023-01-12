@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="referrer" content="no-referrer" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="i18n_detail"></title>
+    <link rel="stylesheet" href="./css/normalize.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <!-- 引入样式文件 -->
+    <link rel="stylesheet" href="./css/vant@2.12.css"/>
+</head> 
+<body>
+    <div id="app">
+        <!-- <template v-if="user_info"> -->
+        <template>
+        <div class="box" :class="{'box_zh1': lang == 'zh' && type == '0',
+                                    'box_zh2': lang == 'zh' && type == '1',
+                                    'box_zh3': lang == 'zh' && type == '2', 
+                                    'box_vi1': lang == 'vi' && type == '0', 
+                                    'box_vi2': lang == 'vi' && type == '1', 
+                                    'box_vi3': lang == 'vi' && type == '2', 
+                                    'box_en1': lang == 'en' && type == '0',
+                                    'box_en2': lang == 'en' && type == '1',
+                                    'box_en3': lang == 'en' && type == '2',}">
+            <!-- 活动规则按钮 -->
+            <div class="rule_btn" :class="{'rule_btn_vi': lang == 'vi'}" @click="rule_btn" data-i18n="i18n_description"></div>
+
+            <!-- tab.. -->
+            <div class="box_tab">
+                <span data-i18n="i18n_box_today" :class="{is_selected: type == 0 }" @click="get_charm_list('0')">新年奖励</span>
+                <span data-i18n="i18n_box_yesterday" :class="{is_selected: type == 1 }" @click="get_charm_list(1)">礼物榜单</span>
+                <span data-i18n="i18n_box_yesterday" :class="{is_selected: type == 2 }" @click="get_charm_list(2)">榜单奖励</span>
+            </div>
+            
+            <!-- // 新年奖励--内容---- -->
+            <div v-if="type === 0">
+                <!-- 头框奖励 -->
+                <img class="charm_title" :src=`./images/${lang}/title1.png` alt="">
+                <div class="header_frame" :class="{'header_frame_zh': lang == 'zh',
+                                                    'header_frame_en': lang == 'en',
+                                                    'header_frame_vi': lang == 'vi',}">
+                    <p class="header_frame_name">财神头框</p>
+                    <ul>
+                        <li class="header_frame_content">
+                            <div class="header_frame_top">
+                                <p class="header_frame_top_ask">奖励1：今日收到&nbsp;<img src="./images/bianpao.png" alt="">&nbsp;鞭炮</p>
+                                <p>达{{ 20 }}个可领取<span class="header_frame_top_num"> {{ '06' }}/{{20}}</span></p>
+                            </div>
+                            <button class="ok" @click="open(0)">领取</button>
+                        </li>
+                        <li class="header_frame_content">
+                            <div class="header_frame_top">
+                                <p class="header_frame_top_ask">奖励2：今日收到&nbsp;<img src="./images/bianpao.png" alt="">&nbsp;鞭炮</p>
+                                <p>达{{ 20 }}个可领取<span class="header_frame_top_num"> {{ '06' }}/{{20}}</span></p>
+                            </div>
+                            <button class="no">已领取</button>
+                        </li>
+                    </ul>
+                </div>
+                <!-- 进场秀奖励 -->
+                <img class="charm_title" :src=`./images/${lang}/title2.png` alt="">
+                <div class="header_frame" :class="{'show_zh': lang == 'zh',
+                                                    'show_en': lang == 'en',
+                                                    'show_vi': lang == 'vi',}">
+                    <p class="header_frame_name">天使之翼</p>
+                    <ul>
+                        <li class="header_frame_content">
+                            <div class="header_frame_top">
+                                <p class="header_frame_top_ask">奖励1：今日收到&nbsp;<img src="./images/yinhua.png" alt="">&nbsp;烟花</p>
+                                <p>达{{ 20 }}个可领取<span class="header_frame_top_num"> {{ '06' }}/{{20}}</span></p>
+                            </div>
+                            <button class="ok" @click="open(1)">领取</button>
+                        </li>
+                        <li class="header_frame_content">
+                            <div class="header_frame_top">
+                                <p class="header_frame_top_ask">奖励2：今日收到&nbsp;<img src="./images/yinhua.png" alt="">&nbsp;烟花</p>
+                                <p>达{{ 20 }}个可领取<span class="header_frame_top_num"> {{ '06' }}/{{20}}</span></p>
+                            </div>
+                            <button class="no">已领取</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- // 礼物榜单--列表内容---- -->
+            <div v-if="type === 1" class="box_list">
+                <div class="box_list_item">
+                    <span data-i18n="i18n_box_today" :class="{list_selected: types == 0 }" @click="get_gift_list(0)">送礼榜</span>
+                    <span data-i18n="i18n_box_yesterday" :class="{list_selected: types == 1 }" @click="get_gift_list(1)">收礼榜</span>
+                </div>
+                <p class="box_list_text"></p>
+                <!-- <ul v-if="list.length > 0"> -->
+                <ul>
+                    <li v-for="(item, i) in 50" :key="i">
+                        <div class="li_left">
+                            <img class="image" v-if="i <= 2" :src=`./images/NO${i+1}.png` alt="">
+                            <span class="image sort_num" v-else>{{i+1}}</span>
+
+                            <img class="avatar" :src="item.familyLogo" alt="" @click="open_userInfo(item)">
+                            <div class="li_left_item">
+                                <p class="li_left_name">用户名字{{i}}</p>
+                                <!-- <div class="li_left_user">
+                                    <div class="li_left_user_num">
+                                        <img src="./images/icon.png" alt="">
+                                        <p>&nbsp{{item.userNum}}</p>
+                                    </div>
+                                    <div class="li_left_user_country">
+                                        <img :src="item.countryImage" alt="">
+                                    </div>
+                                </div> -->
+                            </div>
+                        </div>
+                        <span>{{ i+100 }}</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- // 榜单奖励--内容---- -->
+            <div v-if="type === 2">
+                <img class="charm_title" :src=`./images/${lang}/title3.png` alt="">
+                <div class="list_rewards">
+                    <!-- 送礼榜。。。 -->
+                    <img class="rewards_title" :src=`./images/${lang}/giving1.png` alt="">
+                    <div class="rewards_top">
+                        <div>
+                            <img class="gift" src="./images/gift_1.png" alt="">
+                            <p class="gift_name">王冕头框</p>
+                            <p class="gift_num">（7天）</p>
+                        </div>
+                        <div>
+                            <img class="gift" src="./images/gift_2.png" alt="">
+                            <p class="gift_name">I LOVE U</p>
+                            <p class="gift_num">（价值500金币）</p>
+                        </div>
+                    </div>
+
+                    <img class="rewards_title" :src=`./images/${lang}/giving2.png` alt="">
+                    <div class="rewards_top">
+                        <div>
+                            <img class="gift" src="./images/gift_1.png" alt="">
+                            <p class="gift_name">王冕头框</p>
+                            <p class="gift_num">（5天）</p>
+                        </div>
+                        <div>
+                            <img class="gift" src="./images/gift_3.png" alt="">
+                            <p class="gift_name">爱心炮弹</p>
+                            <p class="gift_num">（价值100金币）</p>
+                        </div>
+                    </div>
+
+                    <img class="rewards_title" :src=`./images/${lang}/giving3.png` alt="">
+                    <div class="rewards_top2">
+                        <img class="gift" src="./images/gift_1.png" alt="">
+                        <p class="gift_name">王冕头框</p>
+                        <p class="gift_num">（5天）</p>
+                    </div>
+
+                    <!-- 收礼榜。。。 -->
+                    <img class="rewards_title" :src=`./images/${lang}/get_gift1.png` alt="">
+                    <div class="rewards_top">
+                        <div>
+                            <img class="gift" src="./images/gift_4.png" alt="">
+                            <p class="gift_name">蝴蝶头框</p>
+                            <p class="gift_num">（7天）</p>
+                        </div>
+                        <div>
+                            <img class="gift" src="./images/gift_2.png" alt="">
+                            <p class="gift_name">I LOVE U</p>
+                            <p class="gift_num">（价值500金币）</p>
+                        </div>
+                    </div>
+
+                    <img class="rewards_title" :src=`./images/${lang}/get_gift2.png` alt="">
+                    <div class="rewards_top">
+                        <div>
+                            <img class="gift" src="./images/gift_4.png" alt="">
+                            <p class="gift_name">蝴蝶头框</p>
+                            <p class="gift_num">（5天）</p>
+                        </div>
+                        <div>
+                            <img class="gift" src="./images/gift_3.png" alt="">
+                            <p class="gift_name">爱心炮弹</p>
+                            <p class="gift_num">（价值100金币）</p>
+                        </div>
+                    </div>
+
+                    <img class="rewards_title" :src=`./images/${lang}/get_gift3.png` alt="">
+                    <div class="rewards_top2">
+                        <img class="gift" src="./images/gift_4.png" alt="">
+                        <p class="gift_name">蝴蝶头框</p>
+                        <p class="gift_num">（5天）</p>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- 活动规则弹窗。。 -->
+        <van-popup v-model="show">
+            <div class="rule_box" :class="{'rule_box_zh': lang == 'zh', 'rule_box_vi': lang == 'vi', 'rule_box_en': lang == 'en'}">
+                <div class="rule_box2">
+                    <p data-i18n="i18n_text1"></p>
+                    <p data-i18n="i18n_text2"></p>
+                    <p>
+                        <p data-i18n="i18n_text3"></p>
+                        <p data-i18n="i18n_text4"></p>
+                        <p data-i18n="i18n_text5"></p>
+                        <p data-i18n="i18n_text6"></p>
+                        <p data-i18n="i18n_text7"></p>
+                    </p>
+                    <p data-i18n="i18n_text8"></p>
+                    <p data-i18n="i18n_text9"></p>
+                    <p data-i18n="i18n_text10"></p>
+                    <p data-i18n="i18n_text11"></p>
+                </div>
+            </div>
+        </van-popup>
+        <!-- 领取奖励弹弹窗。。 -->
+        <van-dialog v-model="shows" :confirm-button-text="$.i18n().localize('i18n_ok')" @confirm="confirm">
+            <template slot="title">
+                <img class="bottom_img" :src=`./images/award${award_type}.png` alt="">
+            </template>
+            
+            <template v-if="lang == 'vi'">
+                <p><span data-i18n='i18n_open'>开启</span> <span data-i18n='i18n_chest'>宝箱</span> kim cương</p>
+                <p>
+                    <span data-i18n='i18n_get'>获得了</span>
+                    <span class="num">{{ dialog.num }}</span>
+                    <span data-i18n='i18n_diamond_bootom'>钻石</span>
+                </p>
+            </template>
+            <template v-else>
+                <p><span>恭喜获得</span></p>
+                <p>
+                    <span>财神头框</span>
+                    <span class="num">7</span>
+                    <span>天</span>
+                </p>
+            </template>
+        </van-dialog>
+
+        </template>
+    </div>
+    <script src="./lib/eruda.min.js"></script>
+    <script>eruda.init();</script>
+
+    <script src="./lib/vue@2.6.min.js"></script>
+    <script src="./lib/vant@2.12.js"></script>
+    <script src="./lib/flexible.js"></script>
+    <script src="./lib/jquery.main.js"></script>
+    <script src="./lib/jquery.i18n.js"></script>
+    <script src="./lib/jquery.i18n.messagestore.js"></script>
+    <script src="./js/util.js"></script>
+    <script src="./js/index.js"></script>
+
+</body>
+</html>
